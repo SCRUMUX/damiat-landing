@@ -3,5 +3,19 @@
   "framework": "vite",
   "installCommand": "npm install --prefix site && npm run postinstall --prefix site",
   "buildCommand": "npm run build --prefix site",
-  "outputDirectory": "site/dist"
+  "outputDirectory": "site/dist",
+  "headers": [
+    {
+      "source": "/",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/index.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    }
+  ]
 }
