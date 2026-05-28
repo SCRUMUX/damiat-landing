@@ -8,10 +8,6 @@ html[data-scroll-loop='active'] #storybook-root {
   scrollbar-gutter: stable;
 }
 
-html[data-scroll-loop='active'] {
-  overflow-y: scroll;
-}
-
 .scroll-loop-shell {
   overflow-x: clip;
 }

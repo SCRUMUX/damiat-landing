@@ -9,11 +9,28 @@ const SCROLL_ROOT_SELECTORS = [
   '[data-is-storybook="true"]',
 ] as const;
 
+export interface SegmentScrollLayout {
+  /** Scroll offset where the segment starts in the primary root. */
+  top: number;
+  height: number;
+  /** scrollTop when the segment bottom meets the viewport bottom. */
+  endScrollY: number;
+  /** scrollTop when the duplicate (clone) zone begins. */
+  cloneStartScrollY: number;
+}
+
 export function readScrollTop(target: Element | Window): number {
   if (target === window) {
     return window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
   }
   return (target as HTMLElement).scrollTop || 0;
+}
+
+export function readClientHeight(target: Element | Window): number {
+  if (target === window) {
+    return window.innerHeight || document.documentElement.clientHeight || 800;
+  }
+  return (target as HTMLElement).clientHeight || 0;
 }
 
 function collectScrollRoots(): (Element | Window)[] {
@@ -33,61 +50,146 @@ function collectScrollRoots(): (Element | Window)[] {
   return roots;
 }
 
-/** Primary scroll container (Storybook iframe inner div when present). */
-export function getScrollRoot(): Element | Window {
-  for (const root of collectScrollRoots()) {
-    if (root === window) continue;
-    const el = root as HTMLElement;
-    if (el.scrollHeight > el.clientHeight + 1) return root;
+function scrollRange(root: Element | Window): number {
+  if (root === window) {
+    return Math.max(0, document.documentElement.scrollHeight - readClientHeight(window));
   }
-  return window;
+  const el = root as HTMLElement;
+  return Math.max(0, el.scrollHeight - el.clientHeight);
 }
 
-/** Max scroll offset across known roots (navbar fold detection). */
-export function getScrollTop(): number {
-  let max = 0;
+/** Primary scroll container — the one with the largest scrollable range. */
+export function getScrollRoot(): Element | Window {
+  let best: Element | Window = window;
+  let bestRange = scrollRange(window);
+
   for (const root of collectScrollRoots()) {
-    max = Math.max(max, readScrollTop(root));
+    if (root === window) continue;
+    const range = scrollRange(root);
+    if (range > bestRange) {
+      bestRange = range;
+      best = root;
+    }
   }
-  return max;
+
+  return best;
+}
+
+export function getScrollTop(): number {
+  return readScrollTop(getScrollRoot());
 }
 
 export function scrollRootTo(target: Element | Window, top: number): void {
-  const y = Math.round(top);
-  if (target === window) {
+  const y = Math.max(0, Math.round(top));
+  const primary = getScrollRoot();
+
+  if (primary === window) {
     window.scrollTo({ top: y, behavior: 'instant' as ScrollBehavior });
     return;
   }
-  (target as HTMLElement).scrollTop = y;
+
+  (primary as HTMLElement).scrollTop = y;
+
+  const winMax = Math.max(0, document.documentElement.scrollHeight - readClientHeight(window));
+  if (y <= winMax + 1 && Math.abs(readScrollTop(window) - y) > 4) {
+    window.scrollTo({ top: y, behavior: 'instant' as ScrollBehavior });
+  }
 }
 
+/** Segment geometry in primary-root scroll coordinates. */
+export function getSegmentScrollLayout(
+  segment: HTMLElement,
+  root: Element | Window = getScrollRoot(),
+): SegmentScrollLayout {
+  const height = segment.offsetHeight;
+  const clientH = readClientHeight(root);
+  const y = readScrollTop(root);
+  const segRect = segment.getBoundingClientRect();
+
+  let top: number;
+  if (root === window) {
+    top = segRect.top + y;
+  } else {
+    const rootRect = (root as HTMLElement).getBoundingClientRect();
+    top = y + segRect.top - rootRect.top;
+  }
+
+  const endScrollY =
+    height > clientH + 48
+      ? top + height - clientH
+      : top + height - 8;
+  const cloneStartScrollY = top + height;
+
+  return { top, height, endScrollY, cloneStartScrollY };
+}
+
+type ScrollFrameListener = () => void;
+
+let scrollFrameListeners: Set<ScrollFrameListener> | null = null;
+let scrollFrameBound = false;
+let scrollFrameId = 0;
+
+function flushScrollFrame(): void {
+  scrollFrameId = 0;
+  if (!scrollFrameListeners) return;
+  for (const listener of scrollFrameListeners) {
+    listener();
+  }
+}
+
+function scheduleScrollFrame(): void {
+  if (scrollFrameId) return;
+  scrollFrameId = requestAnimationFrame(flushScrollFrame);
+}
+
+/** One scroll listener on the primary root — shared rAF bus for loop / parallax / bridge. */
+export function subscribeScrollFrame(listener: ScrollFrameListener): () => void {
+  if (!scrollFrameListeners) {
+    scrollFrameListeners = new Set();
+  }
+
+  scrollFrameListeners.add(listener);
+
+  if (!scrollFrameBound) {
+    scrollFrameBound = true;
+    const root = getScrollRoot();
+    const opts = { passive: true, capture: true } as const;
+    root.addEventListener('scroll', scheduleScrollFrame, opts);
+  }
+
+  return () => {
+    scrollFrameListeners?.delete(listener);
+  };
+}
+
+/** Listen only on the primary scroll root. */
+export function bindPrimaryScrollRoot(
+  onScroll: () => void,
+  onWheel?: (event: WheelEvent) => void,
+): () => void {
+  const root = getScrollRoot();
+  const scrollOpts = { passive: true, capture: true } as const;
+  const wheelOpts = { passive: false, capture: true } as const;
+
+  root.addEventListener('scroll', onScroll, scrollOpts);
+  if (onWheel) {
+    root.addEventListener('wheel', onWheel, wheelOpts);
+  }
+
+  return () => {
+    root.removeEventListener('scroll', onScroll, scrollOpts);
+    if (onWheel) {
+      root.removeEventListener('wheel', onWheel, wheelOpts);
+    }
+  };
+}
+
+/** @deprecated Prefer subscribeScrollFrame. */
 export function bindScrollRoots(onScroll: () => void): () => void {
-  const opts = { passive: true, capture: true } as const;
-  const roots = collectScrollRoots();
-
-  for (const root of roots) {
-    root.addEventListener('scroll', onScroll, opts);
-  }
-
-  return () => {
-    for (const root of roots) {
-      root.removeEventListener('scroll', onScroll, opts);
-    }
-  };
+  return bindPrimaryScrollRoot(onScroll);
 }
 
-/** Wheel on the same roots as scroll (loop upward at scroll top). */
+/** @deprecated Prefer bindPrimaryScrollRoot with onWheel. */
 export function bindWheelRoots(onWheel: (event: WheelEvent) => void): () => void {
-  const opts = { passive: false, capture: true } as const;
-  const roots = collectScrollRoots();
-
-  for (const root of roots) {
-    root.addEventListener('wheel', onWheel, opts);
-  }
-
-  return () => {
-    for (const root of roots) {
-      root.removeEventListener('wheel', onWheel, opts);
-    }
-  };
+  return bindPrimaryScrollRoot(() => {}, onWheel);
 }

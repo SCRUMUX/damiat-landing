@@ -1,100 +1,86 @@
 /**
- * Loop seam — full-viewport gray buffer between footer and next hero.
+ * In-flow loop bridge — centered hero image + slogan below (slide layout).
  */
-.scroll-loop-bridge {
+.loop-scroll-bridge {
   position: relative;
-  isolation: isolate;
-  box-sizing: border-box;
+  z-index: 0;
+  display: flex;
   min-height: 100svh;
-  height: 100svh;
-  overflow: hidden;
-  background: color-mix(in srgb, var(--core-gray-50) 6%, var(--color-bg-base));
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background: #fff;
+  padding: var(--space-section-y-l) var(--grid-margin);
+  text-align: center;
+  overflow: clip;
 }
 
-.scroll-loop-bridge__base {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--core-gray-25) 55%, var(--color-bg-base)) 0%,
-    var(--color-bg-base) 38%,
-    color-mix(in srgb, var(--core-gray-15) 40%, var(--color-bg-base)) 100%
-  );
+.loop-scroll-bridge__inner {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Gray procedural noise (in addition to film grain) */
-.scroll-loop-bridge__noise {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  opacity: 0.22;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 180px 180px;
+.loop-scroll-bridge__stage {
+  display: flex;
+  width: min(72vw, 1120px);
+  max-width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-section-content-m);
 }
 
-.scroll-loop-bridge__veil-top {
-  pointer-events: none;
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: min(52vh, 480px);
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--core-gray-95) 96%, transparent) 0%,
-    color-mix(in srgb, var(--core-gray-95) 72%, transparent) 18%,
-    color-mix(in srgb, var(--core-gray-70) 28%, var(--color-bg-base)) 42%,
-    color-mix(in srgb, var(--core-gray-25) 12%, var(--color-bg-base)) 68%,
-    transparent 100%
-  );
+.loop-scroll-bridge__image-wrap {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
-.scroll-loop-bridge__veil-bottom {
-  pointer-events: none;
-  position: absolute;
-  inset: auto 0 0 0;
-  height: min(52vh, 480px);
-  background: linear-gradient(
-    0deg,
-    color-mix(in srgb, var(--core-gray-95) 88%, transparent) 0%,
-    color-mix(in srgb, var(--core-gray-95) 52%, transparent) 22%,
-    color-mix(in srgb, var(--core-gray-70) 22%, var(--color-bg-base)) 48%,
-    color-mix(in srgb, var(--core-gray-25) 10%, var(--color-bg-base)) 72%,
-    transparent 100%
-  );
+.loop-scroll-bridge__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(68vh, 840px);
+  object-fit: contain;
+  object-position: center center;
+  user-select: none;
 }
 
-.scroll-loop-bridge__wordmark {
+.loop-scroll-bridge__phrase {
   margin: 0;
-  font-size: var(--space-64);
-  line-height: 1;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  color: var(--color-brand-primary);
-}
-
-.scroll-loop-bridge__phrase {
-  transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.scroll-loop-bridge__phrase--active {
-  opacity: 1;
-}
-
-.scroll-loop-bridge__phrase--idle {
-  opacity: 0;
+  width: 100%;
+  max-width: var(--space-640);
+  font-size: clamp(1.5rem, 2.65vw, 2.125rem);
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-wrap: balance;
+  line-height: 1.3;
 }
 
 @media (max-width: 767px) {
-  .scroll-loop-bridge__wordmark {
-    font-size: var(--space-48);
-    letter-spacing: 0.16em;
+  .loop-scroll-bridge {
+    min-height: 100svh;
+    padding: var(--space-section-y-m) var(--grid-margin);
+  }
+
+  .loop-scroll-bridge__stage {
+    width: min(92vw, 100%);
+    gap: var(--space-section-content-s);
+  }
+
+  .loop-scroll-bridge__image {
+    max-height: min(56vh, 580px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .scroll-loop-bridge__phrase {
-    transition: none;
+  .loop-scroll-bridge {
+    display: none;
   }
 }

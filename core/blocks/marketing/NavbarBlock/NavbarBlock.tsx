@@ -15,7 +15,9 @@ import {
   NAVBAR_CHROME_HEIGHT_FALLBACK,
   NAVBAR_CHROME_MIN_HEIGHT,
   bindScroll,
+  getScrollRoot,
   getScrollTop,
+  readClientHeight,
   resolveNavbarSurface,
   type NavbarSurface,
 } from './navbarTheme';
@@ -192,7 +194,7 @@ function EnterpriseNavbar(props: NavbarBlockProps) {
   useLayoutEffect(() => {
     const syncScroll = () => {
       const scrollTop = getScrollTop();
-      const viewport = window.innerHeight || document.documentElement.clientHeight || 800;
+      const viewport = readClientHeight(getScrollRoot());
       const foldEnd = Math.max(viewport - effectiveChromeHeight, viewport * 0.72);
       setPastBrandFold(scrollTop > foldEnd);
     };
@@ -290,10 +292,13 @@ function EnterpriseNavbar(props: NavbarBlockProps) {
   return (
     <>
       <div className="relative isolate z-[var(--z-header)] w-full">
-        {overlay && !pastBrandFold && !staticGlass ? (
+        {overlay && !staticGlass ? (
           <div
             aria-hidden="true"
-            className="pointer-events-none fixed inset-x-0 top-[-1px] z-[calc(var(--z-header)-1)] bg-[var(--color-brand-primary)]"
+            className={cn(
+              'pointer-events-none fixed inset-x-0 top-[-1px] z-[calc(var(--z-header)-1)] bg-[var(--color-brand-primary)] transition-opacity duration-200',
+              pastBrandFold ? 'opacity-0' : 'opacity-100',
+            )}
             style={{ height: `calc(${aboveFoldBandHeight} + ${NAVBAR_BRAND_BLEED_EXTRA})` }}
           />
         ) : null}

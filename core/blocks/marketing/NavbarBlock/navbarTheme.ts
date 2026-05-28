@@ -71,6 +71,7 @@ import {
   bindScrollRoots,
   getScrollRoot,
   getScrollTop,
+  readClientHeight,
   readScrollTop,
   scrollRootTo,
 } from '../../../hooks/useScrollRoot';
@@ -79,6 +80,7 @@ export {
   bindScrollRoots as bindScroll,
   getScrollRoot,
   getScrollTop,
+  readClientHeight,
   readScrollTop,
   scrollRootTo,
 };

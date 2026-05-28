@@ -3,6 +3,7 @@ core/node_modules/
 site/node_modules/
 dist/
 site/dist/
+_gh-pages-tmp/
 *.log
 .env
 .env.local

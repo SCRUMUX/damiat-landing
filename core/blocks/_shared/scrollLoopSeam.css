@@ -1,0 +1,130 @@
+/**
+ * Loop seam — fixed bg (z=3); footer / clone-hero gates above (z=8).
+ */
+.loop-seam {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.loop-seam__runway {
+  display: block;
+  height: 120svh;
+  min-height: 120svh;
+  width: 100%;
+}
+
+.loop-seam__chamber {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: var(--seam-bg-opacity, 0);
+  transition: opacity 0.12s linear;
+}
+
+.loop-seam__chamber-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #fff;
+}
+
+.loop-seam__bg-image {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 0;
+  width: min(94vw, 1080px);
+  height: min(52vh, 480px);
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  user-select: none;
+  transform: translate(-50%, -50%) scale(var(--seam-logo-scale, 0.92));
+  transform-origin: center center;
+}
+
+.loop-seam__bg-grain {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: min(94vw, 1080px);
+  height: min(52vh, 480px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.loop-seam__phrases {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  max-width: var(--space-640);
+  min-height: var(--space-72);
+  padding: 0 var(--grid-margin);
+  text-align: center;
+  opacity: var(--seam-phrase-reveal, 0);
+  transform: translate3d(0, calc((1 - var(--seam-phrase-reveal, 0)) * var(--space-12)), 0);
+  will-change: opacity, transform;
+  text-shadow: 0 1px 24px color-mix(in srgb, white 90%, transparent);
+  pointer-events: none;
+}
+
+.loop-seam__phrase {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.loop-seam__phrase--active {
+  opacity: 1;
+}
+
+.loop-seam__phrase--idle {
+  opacity: 0;
+}
+
+[data-loop-seam-footer] {
+  position: relative;
+  z-index: 8;
+  will-change: transform;
+  transform: translate3d(0, var(--seam-footer-y, 0vh), 0);
+}
+
+[data-scroll-loop-segment='clone'] [data-loop-seam-hero] {
+  position: relative;
+  z-index: 8;
+  will-change: transform;
+  transform: translate3d(0, var(--seam-hero-y, 0vh), 0);
+}
+
+@media (max-width: 767px) {
+  .loop-seam__runway {
+    height: 110svh;
+    min-height: 110svh;
+  }
+
+  .loop-seam__bg-image,
+  .loop-seam__bg-grain {
+    height: min(42vh, 320px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loop-seam__chamber {
+    display: none;
+  }
+
+  [data-loop-seam-footer],
+  [data-scroll-loop-segment='clone'] [data-loop-seam-hero] {
+    transform: none;
+  }
+}

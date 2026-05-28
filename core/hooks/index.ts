@@ -20,10 +20,17 @@ export {
   type ScrollLoopContextValue,
 } from './ScrollLoopContext';
 export { useBridgePhraseScroll } from './useBridgePhraseScroll';
+export { useLoopBridgeScroll } from './useLoopBridgeScroll';
+export { useLoopSeamScroll, type UseLoopSeamScrollResult } from './useLoopSeamScroll';
 export {
   getScrollRoot,
   getScrollTop,
+  getSegmentScrollLayout,
   readScrollTop,
+  readClientHeight,
   scrollRootTo,
+  subscribeScrollFrame,
+  bindPrimaryScrollRoot,
   bindScrollRoots,
+  type SegmentScrollLayout,
 } from './useScrollRoot';

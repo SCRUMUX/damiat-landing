@@ -64,7 +64,7 @@ export const ParallaxBrandScene: React.FC<ParallaxBrandSceneProps> = ({
           'absolute z-[1] h-[var(--space-280)] w-full min-[1024px]:h-[var(--space-480)]',
           'left-[10%] top-[-10%] min-[1024px]:left-[40%] min-[1024px]:top-[-60px]',
           'max-w-[var(--space-480)] min-[1024px]:max-w-[var(--space-640)]',
-          'will-change-transform transition-transform duration-100 ease-linear',
+          'will-change-transform',
         )}
         style={{ transform: 'translateY(calc(var(--parallax-offset, 0px) - 100px))' }}
       >
@@ -83,7 +83,7 @@ export const ParallaxBrandScene: React.FC<ParallaxBrandSceneProps> = ({
       className={cn(
         'absolute z-[1] max-w-[var(--space-160)] min-[1024px]:max-w-[var(--space-480)]',
         'right-[-80px] top-[-10%] min-[1024px]:right-[-270px] min-[1024px]:top-[-50%]',
-        'will-change-transform transition-transform duration-100 ease-linear',
+        'will-change-transform',
       )}
       style={{ transform: 'translateY(var(--parallax-offset, 0px))' }}
     >
@@ -94,7 +94,7 @@ export const ParallaxBrandScene: React.FC<ParallaxBrandSceneProps> = ({
       className={cn(
         'absolute z-[1] max-w-[var(--space-160)] min-[1024px]:max-w-[var(--space-460)]',
         'bottom-[10%] left-[-80px] min-[1024px]:bottom-[-40%] min-[1024px]:left-0',
-        'will-change-transform transition-transform duration-100 ease-linear',
+        'will-change-transform',
       )}
       style={{ transform: 'translateY(calc(var(--parallax-offset, 0px) * -1))' }}
     >

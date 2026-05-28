@@ -1,11 +1,13 @@
 # DAMIAT Landing
 
-Production landing page for [DAMIAT](https://github.com/SCRUMUX/damiat-landing) — deployed on Vercel.
+Production landing for [DAMIAT](https://github.com/SCRUMUX/damiat-landing).
+
+**Live site:** https://damiat-landing.vercel.app/
 
 ## Structure
 
-- `core/` — AICADS design system subset required by the landing page
-- `site/` — Vite + React app that renders `DamiatLandingPage`
+- `core/` — AICADS subset (synced from `DAMIAT/DAMIAT`, landing-related packages only)
+- `site/` — Vite app rendering `DamiatLandingPage`
 
 ## Local development
 
@@ -22,7 +24,12 @@ cd site
 npm run build
 ```
 
-## Deployment
+## Deploy
 
-- **GitHub Pages (live):** https://scrumux.github.io/damiat-landing/
-- **Vercel:** import https://github.com/SCRUMUX/damiat-landing — config is in root `vercel.json` (builds from `site/`).
+Push to `master` — Vercel auto-deploys via root `vercel.json`.
+
+Manual: `npx vercel deploy --prod --scope scrumxs-projects` from repo root.
+
+## Sync core from Storybook monorepo
+
+After changes in `DAMIAT/DAMIAT`, mirror into `core/` (exclude `node_modules`, `playground`, etc.) and commit.

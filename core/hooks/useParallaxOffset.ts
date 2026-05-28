@@ -1,48 +1,52 @@
 import { useEffect, useRef } from 'react';
 import { useScrollLoopContext } from './ScrollLoopContext';
+import {
+  getScrollRoot,
+  readClientHeight,
+  subscribeScrollFrame,
+} from './useScrollRoot';
 
 /**
- * Scroll-linked parallax — sets `--parallax-offset` on the host element (Cortel-style).
- * Pauses updates while scroll-loop is wrapping; rounds px to reduce layout jitter.
+ * Scroll-linked parallax — sets `--parallax-offset` on the host element.
+ * Uses the primary scroll root bus; pauses while scroll-loop is wrapping.
  */
 export function useParallaxOffset(factor = 0.12, enabled = true) {
   const ref = useRef<HTMLElement | null>(null);
   const { isWrapping } = useScrollLoopContext();
+  const isWrappingRef = useRef(isWrapping);
 
   useEffect(() => {
-    if (!enabled) return;
+    isWrappingRef.current = isWrapping;
+  }, [isWrapping]);
 
-    let frame = 0;
+  useEffect(() => {
+    if (!enabled || factor === 0) return;
 
     const update = () => {
-      if (isWrapping) return;
+      if (isWrappingRef.current) return;
 
       const el = ref.current;
       if (!el) return;
 
+      const root = getScrollRoot();
       const rect = el.getBoundingClientRect();
-      const viewportCenter = window.innerHeight / 2;
+      const viewportCenter = readClientHeight(root) / 2;
       const sectionCenter = rect.top + rect.height / 2;
-      const offset = Math.round((viewportCenter - sectionCenter) * factor);
+      const offset = (viewportCenter - sectionCenter) * factor;
 
       el.style.setProperty('--parallax-offset', `${offset}px`);
     };
 
-    const schedule = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(update);
-    };
-
     update();
-    window.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('resize', schedule);
+    const unsubscribe = subscribeScrollFrame(update);
+    window.addEventListener('resize', update);
 
     return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener('scroll', schedule);
-      window.removeEventListener('resize', schedule);
+      unsubscribe();
+      window.removeEventListener('resize', update);
+      ref.current?.style.removeProperty('--parallax-offset');
     };
-  }, [enabled, factor, isWrapping]);
+  }, [enabled, factor]);
 
   return ref;
 }

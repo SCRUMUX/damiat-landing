@@ -32,6 +32,7 @@ export const MarketingAboveFold: React.FC<MarketingAboveFoldProps> = ({
   imageParallaxFactor = 0.14,
 }) => (
   <div
+    data-marketing-above-fold
     className={cn(
       'relative z-0 flex w-full flex-col overflow-hidden text-[var(--color-text-on-brand)]',
       backgroundImageSrc ? 'bg-[var(--core-gray-95)]' : 'bg-[var(--color-brand-primary)]',

@@ -16,7 +16,9 @@ export interface BrandPhotoHeroSectionProps extends PhotoHeroBackdropProps {
 /**
  * Brand-band section with photo backdrop + grain (scenarios, case stats, CTA+footer, etc.).
  */
-export const BrandPhotoHeroSection: React.FC<BrandPhotoHeroSectionProps> = ({
+export const BrandPhotoHeroSection: React.FC<
+  BrandPhotoHeroSectionProps & React.HTMLAttributes<HTMLElement>
+> = ({
   id,
   children,
   className,
@@ -29,6 +31,7 @@ export const BrandPhotoHeroSection: React.FC<BrandPhotoHeroSectionProps> = ({
   vignette,
   imageParallaxFactor,
   contentParallaxFactor = 0.05,
+  ...rest
 }) => {
   const content = (
     <div
@@ -45,6 +48,7 @@ export const BrandPhotoHeroSection: React.FC<BrandPhotoHeroSectionProps> = ({
   return (
     <Tag
       id={id}
+      {...rest}
       className={cn(
         'relative overflow-hidden text-[var(--color-text-on-brand)]',
         className,

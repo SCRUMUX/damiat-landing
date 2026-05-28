@@ -22,4 +22,7 @@ export {
 } from './ScrollDepthReveal';
 export { ParallaxLayer, type ParallaxLayerProps } from './ParallaxLayer';
 export { ScrollLoopShell, type ScrollLoopShellProps } from './ScrollLoopShell';
+export { LoopSeam, type LoopSeamProps } from './LoopSeam';
+export { LoopScrollBridge, type LoopScrollBridgeProps } from './LoopScrollBridge';
+export { LoopSeamChamber, type LoopSeamChamberProps } from './LoopSeamChamber';
 export { ScrollLoopBridge, type ScrollLoopBridgeProps } from './ScrollLoopBridge';
