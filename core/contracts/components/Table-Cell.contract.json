@@ -1,0 +1,293 @@
+{
+  "name": "@UI/Table/Cell",
+  "description": "Ячейка данных таблицы. Опционально: иконка слева, текст (grow), badge, tag, иконка-действие справа. Размеры sm/md/lg. Тип: text, badge, tag, actions, numeric.",
+  "variantProps": [
+    "size",
+    "type"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "type": [
+      "text",
+      "badge",
+      "tag",
+      "actions",
+      "numeric"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "background": "transparent",
+        "textColor": "color_text_primary",
+        "borderColor": "color_border_base",
+        "iconColor": "color_icon_on_base"
+      },
+      "tailwindClasses": [
+        "bg-transparent",
+        "text-[var(--color-text-primary)]",
+        "[--icon-color:var(--color-icon-on-base)]",
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "type": "numeric"
+      },
+      "style": {
+        "textAlign": "right",
+        "textColor": "color_text_primary"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-text-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "type": "actions"
+      },
+      "style": {
+        "iconColor": "color_icon_on_base",
+        "textColor": "color_text_muted"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-text-muted)]",
+        "[--icon-color:var(--color-icon-on-base)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "paddingX": "space_table_cell_x_sm",
+        "paddingY": "space_table_cell_y_sm",
+        "gap": "space_table_cell_gap",
+        "textStyle": "Text/Caption/Base",
+        "minHeight": "space_table_row_h_sm",
+        "minWidth": "space_table_col_min_sm"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-table-cell-x-sm)]",
+        "py-[var(--space-table-cell-y-sm)]",
+        "gap-[var(--space-table-cell-gap)]",
+        "min-w-[var(--space-table-col-min-sm)]",
+        "min-h-[var(--space-table-row-h-sm)]",
+        "text-style-caption"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "paddingX": "space_table_cell_x_md",
+        "paddingY": "space_table_cell_y_md",
+        "gap": "space_table_cell_gap",
+        "textStyle": "Text/Body/Base",
+        "minHeight": "space_table_row_h_md",
+        "minWidth": "space_table_col_min_md"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-table-cell-x-md)]",
+        "py-[var(--space-table-cell-y-md)]",
+        "gap-[var(--space-table-cell-gap)]",
+        "min-w-[var(--space-table-col-min-md)]",
+        "min-h-[var(--space-table-row-h-md)]",
+        "text-style-body"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "paddingX": "space_table_cell_x_lg",
+        "paddingY": "space_table_cell_y_lg",
+        "gap": "space_table_cell_gap",
+        "textStyle": "Text/Body/Base",
+        "minHeight": "space_table_row_h_lg",
+        "minWidth": "space_table_col_min_lg"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-table-cell-x-lg)]",
+        "py-[var(--space-table-cell-y-lg)]",
+        "gap-[var(--space-table-cell-gap)]",
+        "min-w-[var(--space-table-col-min-lg)]",
+        "min-h-[var(--space-table-row-h-lg)]",
+        "text-style-body"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "paddingX": {
+      "sm": "space_table_cell_x_sm",
+      "md": "space_table_cell_x_md",
+      "lg": "space_table_cell_x_lg"
+    },
+    "paddingY": {
+      "sm": "space_table_cell_y_sm",
+      "md": "space_table_cell_y_md",
+      "lg": "space_table_cell_y_lg"
+    },
+    "gap": {
+      "sm": "space_table_cell_gap",
+      "md": "space_table_cell_gap",
+      "lg": "space_table_cell_gap"
+    },
+    "minHeight": {
+      "sm": "space_table_row_h_sm",
+      "md": "space_table_row_h_md",
+      "lg": "space_table_row_h_lg"
+    },
+    "minWidth": {
+      "sm": "space_table_col_min_sm",
+      "md": "space_table_col_min_md",
+      "lg": "space_table_col_min_lg"
+    },
+    "textStyle": {
+      "sm": "Text/Caption/Base",
+      "md": "Text/Body/Base",
+      "lg": "Text/Body/Base"
+    }
+  },
+  "element": "div",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "start",
+    "cross": "center"
+  },
+  "slots": [
+    {
+      "name": "checkbox",
+      "figmaName": "Checkbox",
+      "type": "component",
+      "component": "@UI/Checkbox",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "fixed"
+    },
+    {
+      "name": "iconLeft",
+      "figmaName": "Icon Left",
+      "type": "icon",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "fixed"
+    },
+    {
+      "name": "label",
+      "figmaName": "Label",
+      "type": "text",
+      "optional": false,
+      "default": "Cell content",
+      "sizing": "hug"
+    },
+    {
+      "name": "badge",
+      "figmaName": "Badge",
+      "type": "component",
+      "component": "@UI/Badge",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "hug"
+    },
+    {
+      "name": "iconAction",
+      "figmaName": "Icon Action",
+      "type": "icon",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "fixed"
+    }
+  ],
+  "booleanProps": [
+    {
+      "name": "showCheckbox",
+      "figmaName": "Checkbox",
+      "controls": "checkbox",
+      "default": false
+    },
+    {
+      "name": "showIconLeft",
+      "figmaName": "Icon Left",
+      "controls": "iconLeft",
+      "default": false
+    },
+    {
+      "name": "showBadge",
+      "figmaName": "Badge",
+      "controls": "badge",
+      "default": false
+    },
+    {
+      "name": "showIconAction",
+      "figmaName": "Icon Action",
+      "controls": "iconAction",
+      "default": false
+    }
+  ],
+  "instanceSwapProps": [
+    {
+      "name": "checkboxVariant",
+      "figmaName": "Checkbox variant",
+      "slot": "checkbox",
+      "role": "checkbox"
+    },
+    {
+      "name": "iconLeft",
+      "figmaName": "Icon Left variant",
+      "slot": "iconLeft",
+      "role": "icon"
+    },
+    {
+      "name": "badgeVariant",
+      "figmaName": "Badge variant",
+      "slot": "badge",
+      "role": "badge"
+    },
+    {
+      "name": "iconAction",
+      "figmaName": "Icon Action variant",
+      "slot": "iconAction",
+      "role": "icon"
+    }
+  ],
+  "textProps": [
+    {
+      "name": "label",
+      "figmaName": "Label",
+      "default": "Cell content"
+    }
+  ],
+  "styleKeys": [
+    "paddingX",
+    "paddingY",
+    "gap",
+    "textStyle",
+    "textColor",
+    "iconColor"
+  ],
+  "heightConstraint": "hug",
+  "iconSizeMap": {
+    "xs": 20,
+    "sm": 20,
+    "md": 20,
+    "lg": 24,
+    "xl": 20
+  },
+  "generatorStrategy": "template",
+  "template": "TableCell"
+}

@@ -1,0 +1,195 @@
+{
+  "name": "@UI/Tooltip",
+  "description": "Tooltip: 4 позиции (top, bottom, left, right), 4 семантических вида.",
+  "variantProps": [
+    "position",
+    "appearance"
+  ],
+  "variantAxes": {
+    "position": [
+      "top",
+      "bottom",
+      "left",
+      "right"
+    ],
+    "appearance": [
+      "base",
+      "success",
+      "warning",
+      "danger"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "paddingX": "space_tooltip_inset_x",
+        "paddingY": "space_tooltip_inset_y",
+        "borderRadius": "radius_medium",
+        "textStyle": "Text/Body/SM",
+        "arrowSize": "space_6",
+        "maxWidth": "space_container_compact_max"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-tooltip-inset-x)]",
+        "py-[var(--space-tooltip-inset-y)]",
+        "max-w-[var(--space-container-compact-max)]",
+        "rounded-medium",
+        "text-style-body-sm"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "base"
+      },
+      "style": {
+        "background": "color_tooltip_bg",
+        "textColor": "color_tooltip_text"
+      },
+      "tailwindClasses": [
+        "[--bubble-bg:var(--color-tooltip-bg)]",
+        "[--bubble-text:var(--color-tooltip-text)]",
+        "bg-[var(--bubble-bg)]",
+        "text-[var(--bubble-text)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "success"
+      },
+      "style": {
+        "background": "color_success_base",
+        "textColor": "color_text_on_brand"
+      },
+      "tailwindClasses": [
+        "[--bubble-bg:var(--color-success-base)]",
+        "[--bubble-text:var(--color-text-on-brand)]",
+        "bg-[var(--bubble-bg)]",
+        "text-[var(--bubble-text)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "warning"
+      },
+      "style": {
+        "background": "color_warning_base",
+        "textColor": "color_text_primary"
+      },
+      "tailwindClasses": [
+        "[--bubble-bg:var(--color-warning-base)]",
+        "[--bubble-text:var(--color-text-primary)]",
+        "bg-[var(--bubble-bg)]",
+        "text-[var(--bubble-text)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "danger"
+      },
+      "style": {
+        "background": "color_danger_base",
+        "textColor": "color_text_on_brand"
+      },
+      "tailwindClasses": [
+        "[--bubble-bg:var(--color-danger-base)]",
+        "[--bubble-text:var(--color-text-on-brand)]",
+        "bg-[var(--bubble-bg)]",
+        "text-[var(--bubble-text)]"
+      ]
+    },
+    {
+      "when": {
+        "position": "top"
+      },
+      "style": {
+        "arrowSide": "bottom",
+        "arrowAlign": "center"
+      },
+      "tailwindClasses": [
+        "[data-arrow-side=\"bottom\"]",
+        "[data-arrow-align=\"center\"]"
+      ]
+    },
+    {
+      "when": {
+        "position": "bottom"
+      },
+      "style": {
+        "arrowSide": "top",
+        "arrowAlign": "center"
+      },
+      "tailwindClasses": [
+        "[data-arrow-side=\"top\"]",
+        "[data-arrow-align=\"center\"]"
+      ]
+    },
+    {
+      "when": {
+        "position": "left"
+      },
+      "style": {
+        "arrowSide": "right",
+        "arrowAlign": "center"
+      },
+      "tailwindClasses": [
+        "[data-arrow-side=\"right\"]",
+        "[data-arrow-align=\"center\"]"
+      ]
+    },
+    {
+      "when": {
+        "position": "right"
+      },
+      "style": {
+        "arrowSide": "left",
+        "arrowAlign": "center"
+      },
+      "tailwindClasses": [
+        "[data-arrow-side=\"left\"]",
+        "[data-arrow-align=\"center\"]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "element": "div",
+  "rootLayout": "vertical",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "customStructure": "tooltip",
+  "slots": [
+    {
+      "name": "content",
+      "figmaName": "Content",
+      "type": "text",
+      "optional": false,
+      "default": "Tooltip text",
+      "sizing": "hug"
+    }
+  ],
+  "textProps": [
+    {
+      "name": "content",
+      "figmaName": "Content",
+      "default": "Tooltip text"
+    }
+  ],
+  "styleKeys": [
+    "background",
+    "textColor",
+    "textStyle",
+    "arrowSide",
+    "arrowAlign",
+    "paddingX",
+    "paddingY",
+    "borderRadius",
+    "maxWidth",
+    "arrowSize"
+  ],
+  "heightConstraint": "hug",
+  "generatorStrategy": "template",
+  "template": "Tooltip"
+}

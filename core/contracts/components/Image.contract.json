@@ -1,0 +1,335 @@
+{
+  "name": "@UI/Image",
+  "description": "Изображение с aspect ratio, fallback, placeholder и skeleton. Оси: size (sm/md/lg) × ratio (1:1/4:3/16:9/3:2) × state (loading/loaded/error/empty) = 48 вариантов. Плюс layout=hero-full / hero-half для фона секции лендинга (без скругления, на весь экран / пол экрана). Referencing node: 143:34702.",
+  "variantProps": [
+    "layout",
+    "size",
+    "ratio",
+    "state"
+  ],
+  "variantAxes": {
+    "layout": [
+      "image",
+      "hero-full",
+      "hero-half"
+    ],
+    "size": [
+      "xs",
+      "sm",
+      "md",
+      "lg"
+    ],
+    "ratio": [
+      "1:1",
+      "4:3",
+      "16:9",
+      "3:2"
+    ],
+    "state": [
+      "loading",
+      "loaded",
+      "error",
+      "empty"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "borderRadius": "radius_medium",
+        "background": "color_surface_2",
+        "widthPx": 320,
+        "ratioValue": 0.75
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "w-[320px]",
+        "rounded-medium"
+      ]
+    },
+    {
+      "when": {
+        "layout": "image"
+      },
+      "style": {},
+      "tailwindClasses": []
+    },
+    {
+      "when": {
+        "size": "xs"
+      },
+      "style": {
+        "widthPx": 120,
+        "borderRadius": "radius_medium"
+      },
+      "tailwindClasses": [
+        "w-[120px]",
+        "rounded-medium"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "widthPx": 200,
+        "borderRadius": "radius_medium"
+      },
+      "tailwindClasses": [
+        "w-[200px]",
+        "rounded-medium"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "widthPx": 320,
+        "borderRadius": "radius_medium"
+      },
+      "tailwindClasses": [
+        "w-[320px]",
+        "rounded-medium"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "widthPx": 480,
+        "borderRadius": "radius_large"
+      },
+      "tailwindClasses": [
+        "w-[480px]",
+        "rounded-large"
+      ]
+    },
+    {
+      "when": {
+        "ratio": "1:1"
+      },
+      "style": {
+        "ratioValue": 1
+      },
+      "tailwindClasses": []
+    },
+    {
+      "when": {
+        "ratio": "4:3"
+      },
+      "style": {
+        "ratioValue": 0.75
+      },
+      "tailwindClasses": []
+    },
+    {
+      "when": {
+        "ratio": "16:9"
+      },
+      "style": {
+        "ratioValue": 0.5625
+      },
+      "tailwindClasses": []
+    },
+    {
+      "when": {
+        "ratio": "3:2"
+      },
+      "style": {
+        "ratioValue": 0.6667
+      },
+      "tailwindClasses": []
+    },
+    {
+      "when": {
+        "layout": "hero-full"
+      },
+      "style": {
+        "widthPx": 1920,
+        "ratioValue": 0.5625,
+        "borderRadius": "radius_none",
+        "heroMode": true
+      },
+      "tailwindClasses": [
+        "w-[1920px]",
+        "rounded-none",
+        "[data-hero=\"true\"]"
+      ]
+    },
+    {
+      "when": {
+        "layout": "hero-half"
+      },
+      "style": {
+        "widthPx": 960,
+        "ratioValue": 1.125,
+        "minWidthPx": 540,
+        "maxWidthPx": 960,
+        "borderRadius": "radius_none",
+        "heroMode": true
+      },
+      "tailwindClasses": [
+        "w-[960px]",
+        "min-w-[540px]",
+        "max-w-[960px]",
+        "rounded-none",
+        "[data-hero=\"true\"]"
+      ]
+    },
+    {
+      "when": {
+        "state": "loading"
+      },
+      "style": {
+        "background": "color_surface_3",
+        "shimmer": true
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-3)]",
+        "[data-shimmer=\"true\"]"
+      ]
+    },
+    {
+      "when": {
+        "state": "loaded"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "imageFill": true
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "error"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "iconName": "exclamation-diamond-fill",
+        "iconColor": "color_text_muted",
+        "labelStyle": "Text/Caption/Base",
+        "labelColor": "color_text_muted"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "[--label-color:var(--color-text-muted)]",
+        "[--icon-color:var(--color-text-muted)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "empty"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "iconName": "image",
+        "iconColor": "color_text_muted"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "[--icon-color:var(--color-text-muted)]"
+      ]
+    },
+    {
+      "when": {
+        "layout": "hero-full",
+        "state": "loading"
+      },
+      "style": {
+        "background": "color_surface_3",
+        "shimmer": true
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-3)]",
+        "[data-shimmer=\"true\"]"
+      ]
+    },
+    {
+      "when": {
+        "layout": "hero-full",
+        "state": "loaded"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "imageFill": true,
+        "imageFitMode": "CROP"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]"
+      ]
+    },
+    {
+      "when": {
+        "layout": "hero-half",
+        "state": "loading"
+      },
+      "style": {
+        "background": "color_surface_3",
+        "shimmer": true
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-3)]",
+        "[data-shimmer=\"true\"]"
+      ]
+    },
+    {
+      "when": {
+        "layout": "hero-half",
+        "state": "loaded"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "imageFill": true,
+        "imageFitMode": "CROP"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "borderRadius": {
+      "xs": "radius_medium",
+      "sm": "radius_medium",
+      "md": "radius_medium",
+      "lg": "radius_large"
+    }
+  },
+  "element": "div",
+  "rootLayout": "none",
+  "customStructure": "image",
+  "textProps": [
+    {
+      "name": "alt",
+      "figmaName": "Alt",
+      "default": ""
+    }
+  ],
+  "styleKeys": [
+    "widthPx",
+    "ratioValue",
+    "borderRadius",
+    "background",
+    "iconColor",
+    "iconName",
+    "labelColor",
+    "labelStyle",
+    "minWidthPx",
+    "maxWidthPx"
+  ],
+  "heightConstraint": "hug",
+  "clipsContent": true,
+  "generatorStrategy": "template",
+  "template": "Image",
+  "enhancements": [
+    "imgTag",
+    "skeleton",
+    "aspectRatio"
+  ]
+}

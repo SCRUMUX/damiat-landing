@@ -1,0 +1,20 @@
+{
+  "name": "@UI/TagRow",
+  "description": "Компонент-сет: один вариант — ряд из 3 тегов (@UI/Tag) в ряд. Генерируется после @UI/Tag.",
+  "variantProps": [],
+  "variantAxes": {},
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "gap": "space_tag_row_gap"
+      },
+      "tailwindClasses": [
+        "gap-[var(--space-tag-row-gap)]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "generatorStrategy": "generate"
+}

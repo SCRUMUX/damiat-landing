@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+/* HUD analytical sensor — transparent, DAMIAT brand tokens */
+
+.damiat-hud-sensor {
+  --damiat-hud-primary: var(--color-brand-hover);
+  --damiat-hud-muted: var(--color-brand-muted);
+  --damiat-hud-dim: color-mix(in srgb, var(--color-text-on-brand) 50%, transparent);
+  --damiat-hud-success: var(--color-success-base);
+  --damiat-hud-font: 'Share Tech Mono', ui-monospace, monospace;
+}
+
+.damiat-hud-sensor__graphics {
+  color: var(--damiat-hud-primary);
+}
+
+.damiat-hud-sensor__label {
+  font-family: var(--damiat-hud-font);
+  font-weight: 400;
+  color: color-mix(in srgb, var(--color-text-on-brand) 38%, transparent);
+}
+
+.damiat-hud-sensor__digit {
+  font-family: var(--damiat-hud-font);
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+  color: color-mix(in srgb, var(--color-text-on-brand) 58%, transparent);
+  text-shadow: 0 0 6px color-mix(in srgb, var(--damiat-hud-primary) 22%, transparent);
+}
+
+.damiat-hud-sensor__digit-value {
+  transition: opacity 0.5s ease-in-out;
+  opacity: var(--damiat-digit-opacity, 0.55);
+}
+
+.damiat-hud-sensor__scan {
+  opacity: 0.5;
+}
+
+@keyframes damiat-hud-rotate-cw {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes damiat-hud-rotate-ccw {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes damiat-hud-sweep {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes damiat-hud-core-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.94);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes damiat-hud-wave-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-48px);
+  }
+}
+
+.damiat-hud-sensor__ring--cw-slow {
+  transform-origin: 250px 250px;
+  animation: damiat-hud-rotate-cw 90s linear infinite;
+}
+
+.damiat-hud-sensor__ring--ccw-mid {
+  transform-origin: 250px 250px;
+  animation: damiat-hud-rotate-ccw 60s linear infinite;
+}
+
+.damiat-hud-sensor__ring--cw-fast {
+  transform-origin: 250px 250px;
+  animation: damiat-hud-rotate-cw 36s linear infinite;
+}
+
+.damiat-hud-sensor__ring--ticks {
+  transform-origin: 250px 250px;
+  animation: damiat-hud-rotate-cw 140s linear infinite;
+}
+
+.damiat-hud-sensor__sweep {
+  transform-origin: 250px 250px;
+  animation: damiat-hud-sweep 12s linear infinite;
+}
+
+.damiat-hud-sensor__core {
+  transform-origin: 250px 250px;
+  animation: damiat-hud-core-pulse 5s ease-in-out infinite;
+}
+
+.damiat-hud-sensor__wave-track {
+  animation: damiat-hud-wave-scroll 2.8s linear infinite;
+}
+
+.damiat-hud-sensor__svg-layer {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+}
+
+.damiat-hud-sensor__readouts {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .damiat-hud-sensor__ring--cw-slow,
+  .damiat-hud-sensor__ring--ccw-mid,
+  .damiat-hud-sensor__ring--cw-fast,
+  .damiat-hud-sensor__ring--ticks,
+  .damiat-hud-sensor__sweep,
+  .damiat-hud-sensor__core,
+  .damiat-hud-sensor__wave-track {
+    animation: none;
+  }
+
+  .damiat-hud-sensor__digit-value {
+    transition: none;
+  }
+}

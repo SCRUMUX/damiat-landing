@@ -1,0 +1,137 @@
+{
+  "name": "@UI/RangeSlider",
+  "description": "Dual-thumb range slider for min/max value selection. 3 sizes (sm/md/lg), states base/hover/disabled.",
+  "variantProps": [
+    "size",
+    "state"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "state": [
+      "base",
+      "hover",
+      "disabled"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "trackColor": "color_surface_3",
+        "fillColor": "color_brand_primary",
+        "thumbColor": "color_bg_base",
+        "thumbBorder": "color_brand_primary",
+        "borderRadius": "radius_full"
+      },
+      "tailwindClasses": [
+        "[--fill-color:var(--color-brand-primary)]",
+        "[--track-color:var(--color-surface-3)]",
+        "rounded-[var(--radius-full)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "base"
+      },
+      "style": {
+        "fillColor": "color_brand_primary",
+        "thumbBorder": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "[--fill-color:var(--color-brand-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "hover"
+      },
+      "style": {
+        "fillColor": "color_brand_hover",
+        "thumbBorder": "color_brand_hover"
+      },
+      "tailwindClasses": [
+        "[--fill-color:var(--color-brand-hover)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "disabled"
+      },
+      "style": {
+        "fillColor": "color_text_muted",
+        "thumbBorder": "color_text_muted",
+        "opacity": 0.5
+      },
+      "tailwindClasses": [
+        "[--fill-color:var(--color-text-muted)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "trackHeight": 4,
+        "thumbSize": 16
+      },
+      "tailwindClasses": []
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "trackHeight": 6,
+        "thumbSize": 20
+      },
+      "tailwindClasses": []
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "trackHeight": 8,
+        "thumbSize": 24
+      },
+      "tailwindClasses": []
+    }
+  ],
+  "stateMachine": {
+    "initial": "base",
+    "stateAxis": "state",
+    "states": [
+      "base",
+      "hover",
+      "disabled"
+    ],
+    "transitions": [
+      {
+        "from": "base",
+        "to": "hover",
+        "trigger": "mouseenter"
+      },
+      {
+        "from": "hover",
+        "to": "base",
+        "trigger": "mouseleave"
+      },
+      {
+        "from": "base",
+        "to": "focus",
+        "trigger": "focus"
+      },
+      {
+        "from": "focus",
+        "to": "base",
+        "trigger": "blur"
+      }
+    ]
+  },
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent"
+}

@@ -1,0 +1,91 @@
+{
+  "name": "@UI/Drawer",
+  "description": "Side panel overlay. Slides from left/right. Sizes sm (320px), md (480px), lg (640px). Has close button, header, body.",
+  "variantProps": [
+    "size",
+    "side"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "side": [
+      "left",
+      "right"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "background": "color_bg_base",
+        "borderColor": "color_border_base",
+        "headerTextStyle": "Text/Heading/H3",
+        "headerTextColor": "color_text_primary",
+        "overlayColor": "color_overlay_scrim",
+        "closeIcon": "close-x",
+        "padding": "space_page_x"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-base)]",
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "width": 320
+      },
+      "tailwindClasses": [
+        "w-[var(--space-320)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "width": 480
+      },
+      "tailwindClasses": [
+        "w-[var(--space-480)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "width": 640
+      },
+      "tailwindClasses": [
+        "w-[var(--space-640)]"
+      ]
+    },
+    {
+      "when": {
+        "side": "left"
+      },
+      "style": {
+        "origin": "left"
+      },
+      "tailwindClasses": []
+    },
+    {
+      "when": {
+        "side": "right"
+      },
+      "style": {
+        "origin": "right"
+      },
+      "tailwindClasses": []
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent"
+}

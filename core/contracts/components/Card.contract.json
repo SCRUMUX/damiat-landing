@@ -1,0 +1,357 @@
+{
+  "name": "@UI/Card",
+  "description": "Card: контейнер для контента (заголовок, текст, медиа, действия). Варианты base, outlined, elevated, filled. Размеры sm/md/lg, состояния base/hover/focus/disabled.",
+  "variantProps": [
+    "variant",
+    "size",
+    "state"
+  ],
+  "variantAxes": {
+    "variant": [
+      "base",
+      "outlined",
+      "elevated",
+      "filled"
+    ],
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "state": [
+      "base",
+      "hover",
+      "focus",
+      "disabled"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "paddingX": "space_inset_m",
+        "paddingY": "space_inset_m",
+        "gap": "space_6",
+        "borderRadius": "radius_medium",
+        "minWidth": "space_container_content_min",
+        "maxWidth": "space_container_content_max",
+        "background": "color_surface_2",
+        "borderColor": "color_border_base",
+        "borderSide": "all",
+        "titleStyle": "Text/Body/Strong",
+        "contentStyle": "Text/Body/SM"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "border",
+        "border-[var(--color-border-base)]",
+        "px-[var(--space-inset-m)]",
+        "py-[var(--space-inset-m)]",
+        "gap-[var(--space-6)]",
+        "min-w-[var(--space-container-content-min)]",
+        "max-w-[var(--space-container-content-max)]",
+        "rounded-medium",
+        "[--title-text-class:text-style-body-strong]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "paddingX": "space_inset_s",
+        "paddingY": "space_inset_s",
+        "gap": "space_4",
+        "minWidth": "space_container_compact_min",
+        "maxWidth": "space_container_compact_max",
+        "titleStyle": "Text/Caption/Base",
+        "contentStyle": "Text/Caption/XS"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-inset-s)]",
+        "py-[var(--space-inset-s)]",
+        "gap-[var(--space-4)]",
+        "min-w-[var(--space-container-compact-min)]",
+        "max-w-[var(--space-container-compact-max)]",
+        "[--title-text-class:text-style-caption]"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "paddingX": "space_inset_m",
+        "paddingY": "space_inset_m",
+        "gap": "space_6",
+        "minWidth": "space_container_content_min",
+        "maxWidth": "space_container_content_max",
+        "titleStyle": "Text/Body/Strong",
+        "contentStyle": "Text/Body/SM"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-inset-m)]",
+        "py-[var(--space-inset-m)]",
+        "gap-[var(--space-6)]",
+        "min-w-[var(--space-container-content-min)]",
+        "max-w-[var(--space-container-content-max)]",
+        "[--title-text-class:text-style-body-strong]"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "paddingX": "space_inset_l",
+        "paddingY": "space_inset_l",
+        "gap": "space_8",
+        "minWidth": "space_container_wide_min",
+        "maxWidth": "space_container_wide_max",
+        "titleStyle": "Text/Heading/H4",
+        "contentStyle": "Text/Body/Base"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-inset-l)]",
+        "py-[var(--space-inset-l)]",
+        "gap-[var(--space-8)]",
+        "min-w-[var(--space-container-wide-min)]",
+        "max-w-[var(--space-container-wide-max)]",
+        "[--title-text-class:text-style-h4]"
+      ]
+    },
+    {
+      "when": {
+        "variant": "base"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "borderColor": "color_border_base",
+        "borderSide": "all"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "variant": "outlined"
+      },
+      "style": {
+        "background": "color_bg_base",
+        "borderColor": "color_border_strong",
+        "borderSide": "all"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-base)]",
+        "border",
+        "border-[var(--color-border-strong)]"
+      ]
+    },
+    {
+      "when": {
+        "variant": "elevated"
+      },
+      "style": {
+        "background": "color_surface_1",
+        "borderColor": "color_border_base",
+        "borderSide": "none",
+        "elevationToken": "effect_elevation_1"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-1)]",
+        "border",
+        "border-transparent",
+        "shadow-elevation-1"
+      ]
+    },
+    {
+      "when": {
+        "variant": "filled"
+      },
+      "style": {
+        "background": "color_surface_3",
+        "borderColor": "color_border_base",
+        "borderSide": "all"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-3)]",
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "hover"
+      },
+      "style": {
+        "background": "color_surface_3"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-3)]"
+      ]
+    },
+    {
+      "when": {
+        "variant": "outlined",
+        "state": "hover"
+      },
+      "style": {
+        "background": "color_bg_muted"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-muted)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "focus"
+      },
+      "style": {
+        "borderColor": "color_border_strong"
+      },
+      "tailwindClasses": [
+        "border",
+        "border-[var(--color-border-strong)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "disabled"
+      },
+      "style": {
+        "opacityToken": "opacity_disabled",
+        "borderColor": "color_border_disabled"
+      },
+      "tailwindClasses": [
+        "border",
+        "border-[var(--color-border-disabled)]",
+        "opacity-[var(--opacity-disabled)]"
+      ]
+    }
+  ],
+  "stateMachine": {
+    "initial": "base",
+    "stateAxis": "state",
+    "states": [
+      "base",
+      "hover",
+      "focus",
+      "disabled"
+    ],
+    "transitions": [
+      {
+        "from": "base",
+        "to": "hover",
+        "trigger": "mouseenter"
+      },
+      {
+        "from": "hover",
+        "to": "base",
+        "trigger": "mouseleave"
+      },
+      {
+        "from": "base",
+        "to": "focus",
+        "trigger": "focus"
+      },
+      {
+        "from": "focus",
+        "to": "base",
+        "trigger": "blur"
+      }
+    ]
+  },
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "paddingX": {
+      "sm": "space_inset_s",
+      "md": "space_inset_m",
+      "lg": "space_inset_l"
+    },
+    "paddingY": {
+      "sm": "space_inset_s",
+      "md": "space_inset_m",
+      "lg": "space_inset_l"
+    },
+    "gap": {
+      "sm": "space_4",
+      "md": "space_6",
+      "lg": "space_8"
+    },
+    "minWidth": {
+      "sm": "space_container_compact_min",
+      "md": "space_container_content_min",
+      "lg": "space_container_wide_min"
+    },
+    "maxWidth": {
+      "sm": "space_container_compact_max",
+      "md": "space_container_content_max",
+      "lg": "space_container_wide_max"
+    }
+  },
+  "defaultContent": "Card content. Описание, метрики или другой контент.",
+  "element": "div",
+  "rootLayout": "vertical",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "start",
+    "cross": "start"
+  },
+  "slots": [
+    {
+      "name": "title",
+      "figmaName": "Title",
+      "type": "text",
+      "optional": false,
+      "default": "Card Title",
+      "sizing": "fill"
+    },
+    {
+      "name": "content",
+      "figmaName": "Content",
+      "type": "text",
+      "optional": false,
+      "default": "Card content",
+      "sizing": "fill"
+    }
+  ],
+  "textProps": [
+    {
+      "name": "title",
+      "figmaName": "Title",
+      "default": "Card Title"
+    },
+    {
+      "name": "content",
+      "figmaName": "Content",
+      "default": "Card content"
+    }
+  ],
+  "styleKeys": [
+    "paddingX",
+    "paddingY",
+    "gap",
+    "titleStyle",
+    "textColor",
+    "contentStyle",
+    "background",
+    "borderSide",
+    "borderColor",
+    "borderRadius",
+    "elevationToken",
+    "minWidth",
+    "maxWidth",
+    "opacityToken"
+  ],
+  "heightConstraint": "hug",
+  "borderWidthToken": "border_width_base",
+  "generatorStrategy": "template",
+  "template": "Card"
+}

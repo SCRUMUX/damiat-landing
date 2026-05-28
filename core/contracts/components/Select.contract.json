@@ -1,0 +1,198 @@
+{
+  "name": "@UI/Select",
+  "description": "Native-style select dropdown. 3 sizes (sm/md/lg), states base/hover/focus/disabled. Chevron icon on the right.",
+  "variantProps": [
+    "size",
+    "state"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "state": [
+      "base",
+      "hover",
+      "focus",
+      "disabled"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "textStyle": "Text/Body/MD",
+        "borderRadius": "radius_default",
+        "borderWidth": "border_default",
+        "iconRight": "chevron-down"
+      },
+      "tailwindClasses": [
+        "rounded-default"
+      ]
+    },
+    {
+      "when": {
+        "state": "base"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "textColor": "color_text_primary",
+        "borderColor": "color_border_base",
+        "iconColor": "color_icon_on_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "text-[var(--color-text-primary)]",
+        "[--icon-color:var(--color-icon-on-base)]",
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "hover"
+      },
+      "style": {
+        "background": "color_surface_3",
+        "textColor": "color_text_primary",
+        "borderColor": "color_border_strong",
+        "iconColor": "color_icon_on_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-3)]",
+        "text-[var(--color-text-primary)]",
+        "[--icon-color:var(--color-icon-on-base)]",
+        "border",
+        "border-[var(--color-border-strong)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "focus"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "textColor": "color_text_primary",
+        "borderColor": "color_brand_primary",
+        "iconColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "text-[var(--color-text-primary)]",
+        "[--icon-color:var(--color-brand-primary)]",
+        "border",
+        "border-[var(--color-brand-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "disabled"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "textColor": "color_text_muted",
+        "borderColor": "color_border_base",
+        "iconColor": "color_text_muted",
+        "opacity": 0.5
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "text-[var(--color-text-muted)]",
+        "[--icon-color:var(--color-text-muted)]",
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "height": "space_input_sm",
+        "paddingX": "space_input_inset_x_sm",
+        "textStyle": "Text/Body/SM",
+        "iconSize": 14
+      },
+      "tailwindClasses": [
+        "px-[var(--space-input-inset-x-sm)]",
+        "text-style-body-sm"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "height": "space_input_md",
+        "paddingX": "space_input_inset_x_md",
+        "textStyle": "Text/Body/MD",
+        "iconSize": 16
+      },
+      "tailwindClasses": [
+        "px-[var(--space-input-inset-x-md)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "height": "space_input_lg",
+        "paddingX": "space_input_inset_x_lg",
+        "textStyle": "Text/Body/LG",
+        "iconSize": 18
+      },
+      "tailwindClasses": [
+        "px-[var(--space-input-inset-x-lg)]",
+        "text-style-body-lg"
+      ]
+    }
+  ],
+  "stateMachine": {
+    "initial": "base",
+    "stateAxis": "state",
+    "states": [
+      "base",
+      "hover",
+      "focus",
+      "disabled"
+    ],
+    "transitions": [
+      {
+        "from": "base",
+        "to": "hover",
+        "trigger": "mouseenter"
+      },
+      {
+        "from": "hover",
+        "to": "base",
+        "trigger": "mouseleave"
+      },
+      {
+        "from": "base",
+        "to": "focus",
+        "trigger": "focus"
+      },
+      {
+        "from": "focus",
+        "to": "base",
+        "trigger": "blur"
+      }
+    ]
+  },
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "paddingX": {
+      "sm": "space_input_inset_x_sm",
+      "md": "space_input_inset_x_md",
+      "lg": "space_input_inset_x_lg"
+    },
+    "textStyle": {
+      "sm": "Text/Body/SM",
+      "md": "Text/Body/MD",
+      "lg": "Text/Body/LG"
+    }
+  }
+}

@@ -1,0 +1,442 @@
+{
+  "name": "@UI/Accordion",
+  "description": "Accordion: open/closed, hover, disabled. No wrapper border — open state shows 1px brand-primary top accent only. Icons turn brand-primary when open.",
+  "variantProps": [
+    "state",
+    "size",
+    "interaction"
+  ],
+  "variantAxes": {
+    "state": [
+      "open",
+      "closed"
+    ],
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "interaction": [
+      "base",
+      "hover",
+      "disabled"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "paddingX": "space_6",
+        "paddingY": "space_4",
+        "gap": "space_4",
+        "textStyle": "Text/Body/Base",
+        "contentTextStyle": "Text/Body/SM",
+        "contentMinWidth": "space_accordion_content_min_md",
+        "contentMaxWidth": "space_accordion_content_max_md"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-6)]",
+        "py-[var(--space-4)]",
+        "gap-[var(--space-4)]",
+        "text-style-body",
+        "[--content-text-class:text-style-body-sm]",
+        "min-w-[var(--space-accordion-content-min-md)]",
+        "max-w-[var(--space-accordion-content-max-md)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "open"
+      },
+      "style": {
+        "showContent": true,
+        "iconColor": "color_brand_primary",
+        "borderColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "[--icon-color:var(--color-brand-primary)]",
+        "[data-show-content=\"true\"]"
+      ]
+    },
+    {
+      "when": {
+        "state": "closed"
+      },
+      "style": {
+        "showContent": false
+      },
+      "tailwindClasses": [
+        "[data-show-content=\"false\"]"
+      ]
+    },
+    {
+      "when": {
+        "interaction": "base"
+      },
+      "style": {
+        "background": "color_bg_base",
+        "textColor": "color_text_primary",
+        "iconColor": "color_icon_on_base",
+        "borderColor": "color_border_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-base)]",
+        "text-[var(--color-text-primary)]",
+        "[--icon-color:var(--color-icon-on-base)]"
+      ]
+    },
+    {
+      "when": {
+        "interaction": "hover"
+      },
+      "style": {
+        "background": "color_surface_3",
+        "textColor": "color_text_primary",
+        "iconColor": "color_icon_on_base",
+        "borderColor": "color_border_strong"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-3)]",
+        "text-[var(--color-text-primary)]",
+        "[--icon-color:var(--color-icon-on-base)]"
+      ]
+    },
+    {
+      "when": {
+        "interaction": "disabled"
+      },
+      "style": {
+        "background": "color_bg_disabled",
+        "textColor": "color_text_disabled",
+        "iconColor": "color_text_disabled",
+        "borderColor": "color_border_disabled",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-disabled)]",
+        "text-[var(--color-text-disabled)]",
+        "[--icon-color:var(--color-text-disabled)]",
+        "opacity-[var(--opacity-disabled)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "open",
+        "interaction": "base"
+      },
+      "style": {
+        "iconColor": "color_brand_primary",
+        "borderColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "[--icon-color:var(--color-brand-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "open",
+        "interaction": "hover"
+      },
+      "style": {
+        "iconColor": "color_brand_primary",
+        "borderColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "[--icon-color:var(--color-brand-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "paddingX": "space_4",
+        "paddingY": "space_3",
+        "gap": "space_4",
+        "textStyle": "Text/Caption/Base",
+        "contentTextStyle": "Text/Caption/XS",
+        "contentMinWidth": "space_accordion_content_min_sm",
+        "contentMaxWidth": "space_accordion_content_max_sm",
+        "borderRadius": "radius_medium"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-4)]",
+        "py-[var(--space-3)]",
+        "gap-[var(--space-4)]",
+        "rounded-medium",
+        "text-style-caption",
+        "[--content-text-class:text-style-caption-xs]",
+        "min-w-[var(--space-accordion-content-min-sm)]",
+        "max-w-[var(--space-accordion-content-max-sm)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "paddingX": "space_6",
+        "paddingY": "space_4",
+        "gap": "space_4",
+        "textStyle": "Text/Body/Base",
+        "contentTextStyle": "Text/Body/SM",
+        "contentMinWidth": "space_accordion_content_min_md",
+        "contentMaxWidth": "space_accordion_content_max_md",
+        "borderRadius": "radius_medium"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-6)]",
+        "py-[var(--space-4)]",
+        "gap-[var(--space-4)]",
+        "rounded-medium",
+        "text-style-body",
+        "[--content-text-class:text-style-body-sm]",
+        "min-w-[var(--space-accordion-content-min-md)]",
+        "max-w-[var(--space-accordion-content-max-md)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "paddingX": "space_8",
+        "paddingY": "space_4",
+        "gap": "space_6",
+        "textStyle": "Text/Heading/H4",
+        "contentTextStyle": "Text/Body/Base",
+        "contentMinWidth": "space_accordion_content_min_lg",
+        "contentMaxWidth": "space_accordion_content_max_lg",
+        "borderRadius": "radius_medium"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-8)]",
+        "py-[var(--space-4)]",
+        "gap-[var(--space-6)]",
+        "rounded-medium",
+        "text-style-h4",
+        "[--content-text-class:text-style-body]",
+        "min-w-[var(--space-accordion-content-min-lg)]",
+        "max-w-[var(--space-accordion-content-max-lg)]"
+      ]
+    }
+  ],
+  "stateMachine": {
+    "initial": "base",
+    "stateAxis": "interaction",
+    "states": [
+      "base",
+      "hover",
+      "disabled"
+    ],
+    "transitions": [
+      {
+        "from": "base",
+        "to": "hover",
+        "trigger": "mouseenter"
+      },
+      {
+        "from": "hover",
+        "to": "base",
+        "trigger": "mouseleave"
+      },
+      {
+        "from": "base",
+        "to": "focus",
+        "trigger": "focus"
+      },
+      {
+        "from": "focus",
+        "to": "base",
+        "trigger": "blur"
+      }
+    ]
+  },
+  "focusRing": "",
+  "focusRingDanger": "",
+  "responsiveProps": {
+    "paddingX": {
+      "sm": "space_4",
+      "md": "space_6",
+      "lg": "space_8"
+    },
+    "paddingY": {
+      "sm": "space_3",
+      "md": "space_4",
+      "lg": "space_4"
+    },
+    "gap": {
+      "sm": "space_4",
+      "md": "space_4",
+      "lg": "space_6"
+    },
+    "textStyle": {
+      "sm": "Text/Caption/Base",
+      "md": "Text/Body/Base",
+      "lg": "Text/Heading/H4"
+    },
+    "borderRadius": {
+      "sm": "radius_medium",
+      "md": "radius_medium",
+      "lg": "radius_medium"
+    },
+    "contentMinWidth": {
+      "sm": "space_accordion_content_min_sm",
+      "md": "space_accordion_content_min_md",
+      "lg": "space_accordion_content_min_lg"
+    },
+    "contentMaxWidth": {
+      "sm": "space_accordion_content_max_sm",
+      "md": "space_accordion_content_max_md",
+      "lg": "space_accordion_content_max_lg"
+    },
+    "contentTextStyle": {
+      "sm": "Text/Caption/XS",
+      "md": "Text/Body/SM",
+      "lg": "Text/Body/Base"
+    }
+  },
+  "defaultContent": "Accordion content. Text block with min/max width constraints. Machine-readable layout — structured interface markup.",
+  "element": "div",
+  "rootLayout": "vertical",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "start",
+    "cross": "start"
+  },
+  "slots": [
+    {
+      "name": "header",
+      "figmaName": "Header",
+      "type": "frame",
+      "optional": false,
+      "sizing": "fill",
+      "layout": "horizontal",
+      "children": [
+        {
+          "name": "iconLeft1",
+          "figmaName": "Left 1 icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "iconLeft2",
+          "figmaName": "Left 2 icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "type": "text",
+          "optional": false,
+          "default": "Accordion",
+          "sizing": "fill"
+        },
+        {
+          "name": "badge",
+          "figmaName": "Badge",
+          "type": "component",
+          "component": "@UI/Badge",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "hug"
+        },
+        {
+          "name": "chevron",
+          "figmaName": "Right icon",
+          "type": "icon",
+          "optional": false,
+          "sizing": "fixed"
+        }
+      ]
+    },
+    {
+      "name": "content",
+      "figmaName": "Content",
+      "type": "text",
+      "optional": false,
+      "default": "Accordion content...",
+      "sizing": "fill",
+      "collapsible": true
+    }
+  ],
+  "booleanProps": [
+    {
+      "name": "showIconLeft1",
+      "figmaName": "Left icon 1",
+      "controls": "iconLeft1",
+      "default": false
+    },
+    {
+      "name": "showIconLeft2",
+      "figmaName": "Left icon 2",
+      "controls": "iconLeft2",
+      "default": false
+    },
+    {
+      "name": "showBadge",
+      "figmaName": "Badge",
+      "controls": "badge",
+      "default": false
+    }
+  ],
+  "instanceSwapProps": [
+    {
+      "name": "iconLeft1",
+      "figmaName": "Left Icon 1",
+      "slot": "iconLeft1",
+      "role": "icon"
+    },
+    {
+      "name": "iconLeft2",
+      "figmaName": "Left Icon 2",
+      "slot": "iconLeft2",
+      "role": "icon"
+    }
+  ],
+  "textProps": [
+    {
+      "name": "label",
+      "figmaName": "Label",
+      "default": "Accordion"
+    },
+    {
+      "name": "content",
+      "figmaName": "Content",
+      "default": "Accordion content..."
+    }
+  ],
+  "styleKeys": [
+    "paddingX",
+    "paddingY",
+    "gap",
+    "borderColor",
+    "background",
+    "textStyle",
+    "textColor",
+    "iconColor",
+    "contentMinWidth",
+    "contentMaxWidth",
+    "contentTextStyle",
+    "showContent",
+    "opacityToken"
+  ],
+  "heightConstraint": "hug",
+  "iconSizeMap": {
+    "xs": 20,
+    "sm": 20,
+    "md": 20,
+    "lg": 24,
+    "xl": 20
+  },
+  "generatorStrategy": "template",
+  "template": "Accordion"
+}

@@ -1,0 +1,13 @@
+node_modules/
+node_modules
+dist/
+.api-temp/
+storybook-static/
+playground/storybook-static/
+playground/node_modules/
+*.tgz
+.cache/
+.DS_Store
+Thumbs.db
+storybook-dev-log.txt
+.env.local

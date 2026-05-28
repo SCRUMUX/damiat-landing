@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aicads.dev/schema/ai-patterns-v1.json",
+  "title": "AICADS Pattern Manifest",
+  "type": "object",
+  "required": ["name", "version", "conventions", "patterns", "pageTemplates"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "name": { "type": "string" },
+    "version": { "type": "string" },
+    "description": { "type": "string" },
+    "conventions": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "patterns": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["block", "recipe", "category", "primitives", "storyReference", "whenToUse"],
+        "properties": {
+          "block": { "type": "string" },
+          "recipe": { "type": "string" },
+          "category": { "type": "string", "enum": ["marketing", "app"] },
+          "primitives": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "storyReference": { "type": "string" },
+          "uxReference": { "type": "string" },
+          "whenToUse": { "type": "string" }
+        }
+      }
+    },
+    "pageTemplates": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["sections"],
+        "properties": {
+          "description": { "type": "string" },
+          "sections": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "component": { "type": "string" }
+        }
+      }
+    }
+  }
+}

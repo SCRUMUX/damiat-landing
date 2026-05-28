@@ -1,0 +1,73 @@
+{
+  "name": "@UI/Breadcrumb",
+  "description": "Breadcrumb: 4 уровня вложенности. Текст — инстанс @UI/SectionHeader (только Label). Разделитель — chevron-right.",
+  "variantProps": [
+    "levels"
+  ],
+  "variantAxes": {
+    "levels": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "paddingX": "space_4",
+        "paddingY": "space_2",
+        "gap": "space_4",
+        "separatorGap": "space_4",
+        "textColor": "color_text_primary",
+        "iconColor": "color_text_muted",
+        "textStyle": "Text/Heading/H4",
+        "maxWidth": "space_container_content_max"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-text-primary)]",
+        "[--icon-color:var(--color-text-muted)]",
+        "px-[var(--space-4)]",
+        "py-[var(--space-2)]",
+        "gap-[var(--space-4)]",
+        "[--separator-gap:var(--space-4)]",
+        "max-w-[var(--space-container-content-max)]",
+        "text-style-h4"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "element": "nav",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "center",
+    "cross": "center"
+  },
+  "customStructure": "breadcrumb",
+  "styleKeys": [
+    "maxWidth",
+    "paddingX",
+    "paddingY",
+    "gap",
+    "textStyle",
+    "textColor",
+    "iconColor"
+  ],
+  "levelsCount": 4,
+  "heightConstraint": "hug",
+  "iconSizeMap": {
+    "xs": 20,
+    "sm": 20,
+    "md": 20,
+    "lg": 24,
+    "xl": 20
+  },
+  "generatorStrategy": "template",
+  "template": "Breadcrumb"
+}

@@ -1,0 +1,194 @@
+{
+  "name": "@UI/Table/Row",
+  "description": "Строка данных таблицы. Состояния: base, hover, selected, disabled. Опционально: checkbox слева. 4 Cell-слота. Размеры sm/md/lg.",
+  "variantProps": [
+    "size",
+    "state"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "state": [
+      "base",
+      "hover",
+      "selected",
+      "disabled"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {
+        "state": "base"
+      },
+      "style": {
+        "background": "color_bg_base",
+        "borderColor": "color_divider",
+        "textColor": "color_text_primary"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-base)]",
+        "text-[var(--color-text-primary)]",
+        "border",
+        "border-[var(--color-divider)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "hover"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "borderColor": "color_divider",
+        "textColor": "color_text_primary"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "text-[var(--color-text-primary)]",
+        "border",
+        "border-[var(--color-divider)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "selected"
+      },
+      "style": {
+        "background": "color_brand_muted",
+        "borderColor": "color_brand_primary",
+        "textColor": "color_text_primary"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-brand-muted)]",
+        "text-[var(--color-text-primary)]",
+        "border",
+        "border-[var(--color-brand-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "disabled"
+      },
+      "style": {
+        "background": "color_bg_disabled",
+        "borderColor": "color_border_base",
+        "textColor": "color_text_disabled",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-disabled)]",
+        "text-[var(--color-text-disabled)]",
+        "border",
+        "border-[var(--color-border-base)]",
+        "opacity-[var(--opacity-disabled)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "minHeight": "space_table_row_h_sm"
+      },
+      "tailwindClasses": [
+        "min-h-[var(--space-table-row-h-sm)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "minHeight": "space_table_row_h_md"
+      },
+      "tailwindClasses": [
+        "min-h-[var(--space-table-row-h-md)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "minHeight": "space_table_row_h_lg"
+      },
+      "tailwindClasses": [
+        "min-h-[var(--space-table-row-h-lg)]"
+      ]
+    }
+  ],
+  "stateMachine": {
+    "initial": "base",
+    "stateAxis": "state",
+    "states": [
+      "base",
+      "hover",
+      "selected",
+      "disabled"
+    ],
+    "transitions": [
+      {
+        "from": "base",
+        "to": "hover",
+        "trigger": "mouseenter"
+      },
+      {
+        "from": "hover",
+        "to": "base",
+        "trigger": "mouseleave"
+      },
+      {
+        "from": "base",
+        "to": "focus",
+        "trigger": "focus"
+      },
+      {
+        "from": "focus",
+        "to": "base",
+        "trigger": "blur"
+      }
+    ]
+  },
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "minHeight": {
+      "sm": "space_table_row_h_sm",
+      "md": "space_table_row_h_md",
+      "lg": "space_table_row_h_lg"
+    }
+  },
+  "element": "div",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "fixed",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "start",
+    "cross": "center"
+  },
+  "composite": true,
+  "defaultWidth": 560,
+  "booleanProps": [
+    {
+      "name": "showCheckboxColumn",
+      "figmaName": "Checkbox Column",
+      "controls": "checkboxColumn",
+      "default": false
+    }
+  ],
+  "styleKeys": [
+    "minHeight",
+    "background",
+    "borderColor",
+    "opacityToken"
+  ],
+  "columnCount": 4,
+  "columnComponent": "@UI/Table/Cell",
+  "heightConstraint": "hug",
+  "generatorStrategy": "template",
+  "template": "TableRow"
+}

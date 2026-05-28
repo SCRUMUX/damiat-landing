@@ -1,0 +1,105 @@
+/**
+ * Fake-3D section reveal (Corn-style depth without WebGL).
+ * Parent stage sets perspective; child animates on `.scroll-depth-reveal--revealed`.
+ */
+
+.scroll-depth-stage {
+  perspective: 900px;
+  perspective-origin: 50% 42%;
+}
+
+.scroll-depth-reveal {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  opacity: 0;
+  transform: translate3d(0, var(--scroll-depth-y, 28px), var(--scroll-depth-z, -140px))
+    rotateX(var(--scroll-depth-rotate, 9deg)) scale(var(--scroll-depth-scale, 0.92));
+  transition:
+    opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.05s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.scroll-depth-reveal--revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) rotateX(0deg) scale(1);
+  will-change: auto;
+}
+
+.scroll-depth-reveal[data-scroll-depth='subtle'] {
+  --scroll-depth-y: 18px;
+  --scroll-depth-z: -64px;
+  --scroll-depth-rotate: 4deg;
+  --scroll-depth-scale: 0.97;
+}
+
+.scroll-depth-reveal[data-scroll-depth='medium'] {
+  --scroll-depth-y: 28px;
+  --scroll-depth-z: -140px;
+  --scroll-depth-rotate: 9deg;
+  --scroll-depth-scale: 0.92;
+}
+
+.scroll-depth-reveal[data-scroll-depth='strong'] {
+  --scroll-depth-y: 40px;
+  --scroll-depth-z: -200px;
+  --scroll-depth-rotate: 12deg;
+  --scroll-depth-scale: 0.88;
+}
+
+/* Stagger direct children after the section shell reveals */
+.scroll-depth-reveal--stagger > * {
+  opacity: 0;
+  transform: translate3d(0, 18px, -56px) rotateX(6deg);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scroll-depth-reveal--revealed.scroll-depth-reveal--stagger > * {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) rotateX(0deg);
+}
+
+.scroll-depth-reveal--revealed.scroll-depth-reveal--stagger > *:nth-child(1) {
+  transition-delay: 0ms;
+}
+.scroll-depth-reveal--revealed.scroll-depth-reveal--stagger > *:nth-child(2) {
+  transition-delay: 100ms;
+}
+.scroll-depth-reveal--revealed.scroll-depth-reveal--stagger > *:nth-child(3) {
+  transition-delay: 200ms;
+}
+.scroll-depth-reveal--revealed.scroll-depth-reveal--stagger > *:nth-child(4) {
+  transition-delay: 300ms;
+}
+.scroll-depth-reveal--revealed.scroll-depth-reveal--stagger > *:nth-child(5) {
+  transition-delay: 400ms;
+}
+.scroll-depth-reveal--revealed.scroll-depth-reveal--stagger > *:nth-child(6) {
+  transition-delay: 500ms;
+}
+
+@media (max-width: 767px) {
+  .scroll-depth-reveal[data-scroll-depth='medium'],
+  .scroll-depth-reveal[data-scroll-depth='strong'] {
+    --scroll-depth-y: 20px;
+    --scroll-depth-z: -80px;
+    --scroll-depth-rotate: 5deg;
+    --scroll-depth-scale: 0.96;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-depth-stage {
+    perspective: none;
+  }
+
+  .scroll-depth-reveal,
+  .scroll-depth-reveal--stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto;
+  }
+}

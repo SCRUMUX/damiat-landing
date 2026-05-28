@@ -1,0 +1,593 @@
+{
+  "name": "@UI/ListItem",
+  "description": "Строка списка. Оси: size (sm/md/lg) × interaction (base/hover/selected/disabled) × variant (iconNav/iconMeta/avatarContact/checkboxSelect). Итого 3×4×4=48 вариантов. iconNav — иконка слева + chevron справа (настройки, навигация). iconMeta — иконка слева + badge/meta справа (уведомления). avatarContact — аватар слева + meta справа (контакты). checkboxSelect — чекбокс слева + switch справа (мультивыбор). Boolean props: Leading Icon, Leading Avatar, Leading Checkbox, Subtitle, Trailing Chevron, Trailing Badge, Trailing Meta, Trailing Action, Divider.",
+  "variantProps": [
+    "size",
+    "interaction",
+    "variant"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "interaction": [
+      "base",
+      "hover",
+      "selected",
+      "disabled"
+    ],
+    "variant": [
+      "iconNav",
+      "iconMeta",
+      "avatarContact",
+      "checkboxSelect"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "paddingX": "space_list_item_x_md",
+        "paddingY": "space_list_item_y_md",
+        "gap": "space_list_item_gap_md",
+        "minHeight": "space_list_item_h_md",
+        "textStyle": "Text/Body/Base",
+        "subtitleStyle": "Text/Body/SM",
+        "textColor": "color_text_primary",
+        "subtitleColor": "color_text_muted",
+        "iconColor": "color_icon_on_base",
+        "metaColor": "color_text_muted",
+        "dividerColor": "color_divider",
+        "borderRadius": "radius_none",
+        "background": "color_bg_base",
+        "leadingType": "icon",
+        "trailingType": "chevron"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-base)]",
+        "text-[var(--color-text-primary)]",
+        "[--subtitle-color:var(--color-text-muted)]",
+        "[--meta-color:var(--color-text-muted)]",
+        "[--icon-color:var(--color-icon-on-base)]",
+        "[--divider-color:var(--color-divider)]",
+        "px-[var(--space-list-item-x-md)]",
+        "py-[var(--space-list-item-y-md)]",
+        "gap-[var(--space-list-item-gap-md)]",
+        "min-h-[var(--space-list-item-h-md)]",
+        "rounded-none",
+        "text-style-body",
+        "[--subtitle-text-class:text-style-body-sm]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "paddingX": "space_list_item_x_sm",
+        "paddingY": "space_list_item_y_sm",
+        "gap": "space_list_item_gap_sm",
+        "minHeight": "space_list_item_h_sm",
+        "textStyle": "Text/Body/SM",
+        "subtitleStyle": "Text/Caption/XS"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-list-item-x-sm)]",
+        "py-[var(--space-list-item-y-sm)]",
+        "gap-[var(--space-list-item-gap-sm)]",
+        "min-h-[var(--space-list-item-h-sm)]",
+        "text-style-body-sm",
+        "[--subtitle-text-class:text-style-caption-xs]"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "paddingX": "space_list_item_x_md",
+        "paddingY": "space_list_item_y_md",
+        "gap": "space_list_item_gap_md",
+        "minHeight": "space_list_item_h_md",
+        "textStyle": "Text/Body/Base",
+        "subtitleStyle": "Text/Body/SM"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-list-item-x-md)]",
+        "py-[var(--space-list-item-y-md)]",
+        "gap-[var(--space-list-item-gap-md)]",
+        "min-h-[var(--space-list-item-h-md)]",
+        "text-style-body",
+        "[--subtitle-text-class:text-style-body-sm]"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "paddingX": "space_list_item_x_lg",
+        "paddingY": "space_list_item_y_lg",
+        "gap": "space_list_item_gap_lg",
+        "minHeight": "space_list_item_h_lg",
+        "textStyle": "Text/Body/LG",
+        "subtitleStyle": "Text/Body/Base"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-list-item-x-lg)]",
+        "py-[var(--space-list-item-y-lg)]",
+        "gap-[var(--space-list-item-gap-lg)]",
+        "min-h-[var(--space-list-item-h-lg)]",
+        "text-style-body-lg",
+        "[--subtitle-text-class:text-style-body]"
+      ]
+    },
+    {
+      "when": {
+        "interaction": "base"
+      },
+      "style": {
+        "background": "color_bg_base",
+        "textColor": "color_text_primary",
+        "iconColor": "color_icon_on_base",
+        "metaColor": "color_text_muted"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-base)]",
+        "text-[var(--color-text-primary)]",
+        "[--meta-color:var(--color-text-muted)]",
+        "[--icon-color:var(--color-icon-on-base)]"
+      ]
+    },
+    {
+      "when": {
+        "interaction": "hover"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "textColor": "color_text_primary",
+        "iconColor": "color_icon_on_base",
+        "metaColor": "color_text_muted"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "text-[var(--color-text-primary)]",
+        "[--meta-color:var(--color-text-muted)]",
+        "[--icon-color:var(--color-icon-on-base)]"
+      ]
+    },
+    {
+      "when": {
+        "interaction": "selected"
+      },
+      "style": {
+        "background": "color_brand_muted",
+        "textColor": "color_brand_primary",
+        "iconColor": "color_brand_primary",
+        "metaColor": "color_brand_primary",
+        "textStyle": "Text/Body/Strong"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-brand-muted)]",
+        "text-[var(--color-brand-primary)]",
+        "[--meta-color:var(--color-brand-primary)]",
+        "[--icon-color:var(--color-brand-primary)]",
+        "text-style-body-strong"
+      ]
+    },
+    {
+      "when": {
+        "interaction": "selected",
+        "size": "sm"
+      },
+      "style": {
+        "textStyle": "Text/Body/SM"
+      },
+      "tailwindClasses": [
+        "text-style-body-sm"
+      ]
+    },
+    {
+      "when": {
+        "interaction": "selected",
+        "size": "lg"
+      },
+      "style": {
+        "textStyle": "Text/Body/LG"
+      },
+      "tailwindClasses": [
+        "text-style-body-lg"
+      ]
+    },
+    {
+      "when": {
+        "interaction": "disabled"
+      },
+      "style": {
+        "background": "color_bg_disabled",
+        "textColor": "color_text_disabled",
+        "subtitleColor": "color_text_disabled",
+        "iconColor": "color_text_disabled",
+        "metaColor": "color_text_disabled",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-disabled)]",
+        "text-[var(--color-text-disabled)]",
+        "[--subtitle-color:var(--color-text-disabled)]",
+        "[--meta-color:var(--color-text-disabled)]",
+        "[--icon-color:var(--color-text-disabled)]",
+        "opacity-[var(--opacity-disabled)]"
+      ]
+    },
+    {
+      "when": {
+        "variant": "iconNav"
+      },
+      "style": {
+        "leadingType": "icon",
+        "trailingType": "chevron"
+      },
+      "tailwindClasses": []
+    },
+    {
+      "when": {
+        "variant": "iconMeta"
+      },
+      "style": {
+        "leadingType": "icon",
+        "trailingType": "badge"
+      },
+      "tailwindClasses": []
+    },
+    {
+      "when": {
+        "variant": "avatarContact"
+      },
+      "style": {
+        "leadingType": "avatar",
+        "trailingType": "meta"
+      },
+      "tailwindClasses": []
+    },
+    {
+      "when": {
+        "variant": "checkboxSelect"
+      },
+      "style": {
+        "leadingType": "checkbox",
+        "trailingType": "action"
+      },
+      "tailwindClasses": []
+    },
+    {
+      "when": {
+        "interaction": "selected",
+        "variant": "iconMeta"
+      },
+      "style": {
+        "metaColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "[--meta-color:var(--color-brand-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "interaction": "selected",
+        "variant": "avatarContact"
+      },
+      "style": {
+        "metaColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "[--meta-color:var(--color-brand-primary)]"
+      ]
+    }
+  ],
+  "stateMachine": {
+    "initial": "base",
+    "stateAxis": "interaction",
+    "states": [
+      "base",
+      "hover",
+      "selected",
+      "disabled"
+    ],
+    "transitions": [
+      {
+        "from": "base",
+        "to": "hover",
+        "trigger": "mouseenter"
+      },
+      {
+        "from": "hover",
+        "to": "base",
+        "trigger": "mouseleave"
+      },
+      {
+        "from": "base",
+        "to": "focus",
+        "trigger": "focus"
+      },
+      {
+        "from": "focus",
+        "to": "base",
+        "trigger": "blur"
+      }
+    ]
+  },
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "paddingX": {
+      "sm": "space_list_item_x_sm",
+      "md": "space_list_item_x_md",
+      "lg": "space_list_item_x_lg"
+    },
+    "paddingY": {
+      "sm": "space_list_item_y_sm",
+      "md": "space_list_item_y_md",
+      "lg": "space_list_item_y_lg"
+    },
+    "gap": {
+      "sm": "space_list_item_gap_sm",
+      "md": "space_list_item_gap_md",
+      "lg": "space_list_item_gap_lg"
+    },
+    "minHeight": {
+      "sm": "space_list_item_h_sm",
+      "md": "space_list_item_h_md",
+      "lg": "space_list_item_h_lg"
+    },
+    "textStyle": {
+      "sm": "Text/Body/SM",
+      "md": "Text/Body/Base",
+      "lg": "Text/Body/LG"
+    }
+  },
+  "element": "div",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "fixed",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "space-between",
+    "cross": "center"
+  },
+  "defaultWidth": 360,
+  "slots": [
+    {
+      "name": "leftGroup",
+      "figmaName": "Left Group",
+      "type": "frame",
+      "optional": false,
+      "sizing": "fill",
+      "layout": "horizontal",
+      "children": [
+        {
+          "name": "leadingIcon",
+          "figmaName": "Leading Icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "leadingAvatar",
+          "figmaName": "Leading Avatar",
+          "type": "component",
+          "component": "@UI/Avatar",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "leadingCheckbox",
+          "figmaName": "Leading Checkbox",
+          "type": "component",
+          "component": "@UI/Checkbox",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "textBlock",
+          "figmaName": "Text Block",
+          "type": "frame",
+          "optional": false,
+          "sizing": "fill",
+          "layout": "vertical",
+          "children": [
+            {
+              "name": "label",
+              "figmaName": "Label",
+              "type": "text",
+              "optional": false,
+              "default": "List item",
+              "sizing": "fill"
+            },
+            {
+              "name": "subtitle",
+              "figmaName": "Subtitle",
+              "type": "text",
+              "optional": true,
+              "defaultVisible": false,
+              "sizing": "fill"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "trailingBadge",
+      "figmaName": "Trailing Badge",
+      "type": "component",
+      "component": "@UI/Badge",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "hug"
+    },
+    {
+      "name": "trailingMeta",
+      "figmaName": "Trailing Meta",
+      "type": "text",
+      "optional": true,
+      "defaultVisible": false,
+      "default": "12:00",
+      "sizing": "hug"
+    },
+    {
+      "name": "trailingChevron",
+      "figmaName": "Trailing Chevron",
+      "type": "icon",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "fixed"
+    },
+    {
+      "name": "trailingAction",
+      "figmaName": "Trailing Action",
+      "type": "component",
+      "component": "@UI/Switch",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "hug"
+    }
+  ],
+  "booleanProps": [
+    {
+      "name": "showLeadingIcon",
+      "figmaName": "Leading Icon",
+      "controls": "leadingIcon",
+      "default": false
+    },
+    {
+      "name": "showLeadingAvatar",
+      "figmaName": "Leading Avatar",
+      "controls": "leadingAvatar",
+      "default": false
+    },
+    {
+      "name": "showLeadingCheckbox",
+      "figmaName": "Leading Checkbox",
+      "controls": "leadingCheckbox",
+      "default": false
+    },
+    {
+      "name": "showSubtitle",
+      "figmaName": "Subtitle",
+      "controls": "subtitle",
+      "default": false
+    },
+    {
+      "name": "showTrailingBadge",
+      "figmaName": "Trailing Badge",
+      "controls": "trailingBadge",
+      "default": false
+    },
+    {
+      "name": "showTrailingChevron",
+      "figmaName": "Trailing Chevron",
+      "controls": "trailingChevron",
+      "default": false
+    },
+    {
+      "name": "showTrailingAction",
+      "figmaName": "Trailing Action",
+      "controls": "trailingAction",
+      "default": false
+    },
+    {
+      "name": "showDivider",
+      "figmaName": "Divider",
+      "controls": "divider",
+      "default": true
+    }
+  ],
+  "instanceSwapProps": [
+    {
+      "name": "leadingIcon",
+      "figmaName": "Leading Icon variant",
+      "slot": "leadingIcon",
+      "role": "icon"
+    },
+    {
+      "name": "leadingAvatar",
+      "figmaName": "Avatar variant",
+      "slot": "leadingAvatar",
+      "role": "avatar"
+    },
+    {
+      "name": "leadingCheckbox",
+      "figmaName": "Checkbox variant",
+      "slot": "leadingCheckbox",
+      "role": "checkbox"
+    },
+    {
+      "name": "trailingBadge",
+      "figmaName": "Badge variant",
+      "slot": "trailingBadge",
+      "role": "badge"
+    },
+    {
+      "name": "trailingChevron",
+      "figmaName": "Trailing Chevron variant",
+      "slot": "trailingChevron",
+      "role": "icon"
+    },
+    {
+      "name": "trailingAction",
+      "figmaName": "Action variant",
+      "slot": "trailingAction",
+      "role": "switch"
+    }
+  ],
+  "textProps": [
+    {
+      "name": "label",
+      "figmaName": "Label",
+      "default": "List item"
+    },
+    {
+      "name": "subtitle",
+      "figmaName": "Subtitle Text",
+      "default": "Secondary description"
+    },
+    {
+      "name": "meta",
+      "figmaName": "Meta Text",
+      "default": "12:00"
+    }
+  ],
+  "styleKeys": [
+    "paddingX",
+    "paddingY",
+    "gap",
+    "minHeight",
+    "leadingType",
+    "trailingType",
+    "textStyle",
+    "subtitleStyle",
+    "background",
+    "textColor",
+    "subtitleColor",
+    "iconColor",
+    "metaColor",
+    "dividerColor",
+    "opacityToken"
+  ],
+  "heightConstraint": "hug",
+  "iconSizeMap": {
+    "xs": 20,
+    "sm": 20,
+    "md": 20,
+    "lg": 24,
+    "xl": 20
+  },
+  "generatorStrategy": "template",
+  "template": "ListItem"
+}

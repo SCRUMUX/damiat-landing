@@ -1,0 +1,54 @@
+{
+  "tokenCategory": "Layout",
+  "description": "Layout grid tokens for the design system. Source of truth: @Layout.pdf. Covers Desktop, Tablet, Mobile grids and 8pt baseline.",
+  "sourceDocument": "@Layout.pdf",
+  "grids": {
+    "desktop": {
+      "description": "Desktop Grid — for web layouts 1440px+",
+      "name": "Grid/Columns/Desktop",
+      "columns": 12,
+      "gutterSize": 24,
+      "offset": 80,
+      "sectionSize": 84.67,
+      "pattern": "COLUMNS",
+      "alignment": "STRETCH",
+      "breakpoint": { "min": 1440, "max": null },
+      "unit": "px"
+    },
+    "tablet": {
+      "description": "Tablet Grid — for tablets 768–1024px",
+      "name": "Grid/Columns/Tablet",
+      "columns": 8,
+      "gutterSize": 20,
+      "offset": 32,
+      "sectionSize": 70.5,
+      "pattern": "COLUMNS",
+      "alignment": "STRETCH",
+      "breakpoint": { "min": 768, "max": 1439 },
+      "unit": "px"
+    },
+    "mobile": {
+      "description": "Mobile Grid — for screens 320–480px",
+      "name": "Grid/Columns/Mobile",
+      "columns": 4,
+      "gutterSize": 16,
+      "offset": 16,
+      "sectionSize": 73.75,
+      "pattern": "COLUMNS",
+      "alignment": "STRETCH",
+      "breakpoint": { "min": 320, "max": 767 },
+      "unit": "px"
+    },
+    "baseline": {
+      "description": "Baseline 8pt — for text alignment and vertical rhythm",
+      "name": "Grid/Baseline",
+      "unit": 8,
+      "pattern": "ROWS",
+      "usage": "Vertical alignment of text and spacing"
+    }
+  },
+  "constraints": {
+    "noHardcodedGrids": "All grid parameters must come from this contract.",
+    "useBreakpoints": "Grid selection is determined by viewport width matching breakpoint.min/max ranges."
+  }
+}

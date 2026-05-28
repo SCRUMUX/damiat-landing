@@ -1,0 +1,494 @@
+{
+  "name": "@UI/EmptyState",
+  "description": "EmptyState: пустое состояние с иконкой, заголовком, описанием и CTA. Оси: size (sm/md/lg) × appearance (base/info/success/warning/danger) × layout (vertical/horizontal). Boolean props: Icon, Title, Description, CTA, SecondaryAction. Применение: пустые списки, ошибки загрузки, онбординг.",
+  "variantProps": [
+    "size",
+    "appearance",
+    "layout"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "appearance": [
+      "base",
+      "info",
+      "success",
+      "warning",
+      "danger"
+    ],
+    "layout": [
+      "vertical",
+      "horizontal"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "paddingX": "space_inset_l",
+        "paddingY": "space_inset_l",
+        "gap": "space_empty_state_gap_md",
+        "textBlockGap": "space_empty_state_text_gap_md",
+        "actionsGap": "space_empty_state_actions_gap_md",
+        "iconSize": "space_empty_state_icon_md",
+        "iconWrapperSize": "space_empty_state_icon_wrapper_md",
+        "titleStyle": "Text/Heading/H4",
+        "descriptionStyle": "Text/Body/Base",
+        "titleColor": "color_text_primary",
+        "descriptionColor": "color_text_muted",
+        "iconColor": "color_icon_on_base",
+        "background": "color_surface_2",
+        "borderColor": "color_border_base",
+        "borderSide": "none",
+        "borderRadius": "radius_medium",
+        "minWidth": "space_container_content_min",
+        "maxWidth": "space_container_content_max",
+        "ctaAppearance": "brand",
+        "secondaryAppearance": "ghost",
+        "ctaSize": "md"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "[--title-color:var(--color-text-primary)]",
+        "[--description-color:var(--color-text-muted)]",
+        "[--icon-color:var(--color-icon-on-base)]",
+        "border",
+        "border-transparent",
+        "px-[var(--space-inset-l)]",
+        "py-[var(--space-inset-l)]",
+        "gap-[var(--space-empty-state-gap-md)]",
+        "[--text-block-gap:var(--space-empty-state-text-gap-md)]",
+        "[--actions-gap:var(--space-empty-state-actions-gap-md)]",
+        "min-w-[var(--space-container-content-min)]",
+        "max-w-[var(--space-container-content-max)]",
+        "[--icon-size:var(--space-empty-state-icon-md)]",
+        "[--icon-wrap-size:var(--space-empty-state-icon-wrapper-md)]",
+        "rounded-medium",
+        "[--title-text-class:text-style-h4]",
+        "[--desc-text-class:text-style-body]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "paddingX": "space_inset_m",
+        "paddingY": "space_inset_m",
+        "gap": "space_empty_state_gap_sm",
+        "textBlockGap": "space_empty_state_text_gap_sm",
+        "actionsGap": "space_empty_state_actions_gap_sm",
+        "iconSize": "space_empty_state_icon_sm",
+        "iconWrapperSize": "space_empty_state_icon_wrapper_sm",
+        "titleStyle": "Text/Body/Strong",
+        "descriptionStyle": "Text/Body/SM",
+        "minWidth": "space_container_compact_min",
+        "maxWidth": "space_container_compact_max",
+        "ctaSize": "sm"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-inset-m)]",
+        "py-[var(--space-inset-m)]",
+        "gap-[var(--space-empty-state-gap-sm)]",
+        "[--text-block-gap:var(--space-empty-state-text-gap-sm)]",
+        "[--actions-gap:var(--space-empty-state-actions-gap-sm)]",
+        "min-w-[var(--space-container-compact-min)]",
+        "max-w-[var(--space-container-compact-max)]",
+        "[--icon-size:var(--space-empty-state-icon-sm)]",
+        "[--icon-wrap-size:var(--space-empty-state-icon-wrapper-sm)]",
+        "[--title-text-class:text-style-body-strong]",
+        "[--desc-text-class:text-style-body-sm]"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "paddingX": "space_inset_l",
+        "paddingY": "space_inset_l",
+        "gap": "space_empty_state_gap_md",
+        "textBlockGap": "space_empty_state_text_gap_md",
+        "actionsGap": "space_empty_state_actions_gap_md",
+        "iconSize": "space_empty_state_icon_md",
+        "iconWrapperSize": "space_empty_state_icon_wrapper_md",
+        "titleStyle": "Text/Heading/H4",
+        "descriptionStyle": "Text/Body/Base",
+        "minWidth": "space_container_content_min",
+        "maxWidth": "space_container_content_max",
+        "ctaSize": "md"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-inset-l)]",
+        "py-[var(--space-inset-l)]",
+        "gap-[var(--space-empty-state-gap-md)]",
+        "[--text-block-gap:var(--space-empty-state-text-gap-md)]",
+        "[--actions-gap:var(--space-empty-state-actions-gap-md)]",
+        "min-w-[var(--space-container-content-min)]",
+        "max-w-[var(--space-container-content-max)]",
+        "[--icon-size:var(--space-empty-state-icon-md)]",
+        "[--icon-wrap-size:var(--space-empty-state-icon-wrapper-md)]",
+        "[--title-text-class:text-style-h4]",
+        "[--desc-text-class:text-style-body]"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "paddingX": "space_inset_xl",
+        "paddingY": "space_inset_xl",
+        "gap": "space_empty_state_gap_lg",
+        "textBlockGap": "space_empty_state_text_gap_lg",
+        "actionsGap": "space_empty_state_actions_gap_lg",
+        "iconSize": "space_empty_state_icon_lg",
+        "iconWrapperSize": "space_empty_state_icon_wrapper_lg",
+        "titleStyle": "Text/Heading/H3",
+        "descriptionStyle": "Text/Body/LG",
+        "minWidth": "space_container_wide_min",
+        "maxWidth": "space_container_wide_max",
+        "ctaSize": "lg"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-inset-xl)]",
+        "py-[var(--space-inset-xl)]",
+        "gap-[var(--space-empty-state-gap-lg)]",
+        "[--text-block-gap:var(--space-empty-state-text-gap-lg)]",
+        "[--actions-gap:var(--space-empty-state-actions-gap-lg)]",
+        "min-w-[var(--space-container-wide-min)]",
+        "max-w-[var(--space-container-wide-max)]",
+        "[--icon-size:var(--space-empty-state-icon-lg)]",
+        "[--icon-wrap-size:var(--space-empty-state-icon-wrapper-lg)]",
+        "[--title-text-class:text-style-h3]",
+        "[--desc-text-class:text-style-body-lg]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "base"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "iconColor": "color_icon_on_base",
+        "borderColor": "color_border_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "[--icon-color:var(--color-icon-on-base)]",
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "info"
+      },
+      "style": {
+        "background": "color_info_surface",
+        "iconColor": "color_info_base",
+        "borderColor": "color_info_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-info-surface)]",
+        "[--icon-color:var(--color-info-base)]",
+        "border",
+        "border-[var(--color-info-base)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "success"
+      },
+      "style": {
+        "background": "color_success_surface",
+        "iconColor": "color_success_base",
+        "borderColor": "color_success_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-success-surface)]",
+        "[--icon-color:var(--color-success-base)]",
+        "border",
+        "border-[var(--color-success-base)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "warning"
+      },
+      "style": {
+        "background": "color_warning_surface",
+        "iconColor": "color_warning_base",
+        "borderColor": "color_warning_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-warning-surface)]",
+        "[--icon-color:var(--color-warning-base)]",
+        "border",
+        "border-[var(--color-warning-base)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "danger"
+      },
+      "style": {
+        "background": "color_danger_surface",
+        "iconColor": "color_danger_base",
+        "borderColor": "color_danger_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-danger-surface)]",
+        "[--icon-color:var(--color-danger-base)]",
+        "border",
+        "border-[var(--color-danger-base)]"
+      ]
+    },
+    {
+      "when": {
+        "layout": "vertical"
+      },
+      "style": {
+        "layoutDirection": "VERTICAL",
+        "primaryAxisAlignItems": "CENTER",
+        "counterAxisAlignItems": "CENTER",
+        "textAlign": "CENTER"
+      },
+      "tailwindClasses": [
+        "flex-col",
+        "items-center",
+        "[data-counter-align=\"CENTER\"]",
+        "[data-primary-align=\"CENTER\"]"
+      ]
+    },
+    {
+      "when": {
+        "layout": "horizontal"
+      },
+      "style": {
+        "layoutDirection": "HORIZONTAL",
+        "primaryAxisAlignItems": "MIN",
+        "counterAxisAlignItems": "MIN",
+        "textAlign": "LEFT"
+      },
+      "tailwindClasses": [
+        "flex-row",
+        "[data-counter-align=\"MIN\"]",
+        "[data-primary-align=\"MIN\"]"
+      ]
+    },
+    {
+      "when": {
+        "layout": "horizontal",
+        "size": "sm"
+      },
+      "style": {
+        "gap": "space_empty_state_gap_sm"
+      },
+      "tailwindClasses": [
+        "gap-[var(--space-empty-state-gap-sm)]"
+      ]
+    },
+    {
+      "when": {
+        "layout": "horizontal",
+        "size": "md"
+      },
+      "style": {
+        "gap": "space_empty_state_gap_md"
+      },
+      "tailwindClasses": [
+        "gap-[var(--space-empty-state-gap-md)]"
+      ]
+    },
+    {
+      "when": {
+        "layout": "horizontal",
+        "size": "lg"
+      },
+      "style": {
+        "gap": "space_empty_state_gap_lg"
+      },
+      "tailwindClasses": [
+        "gap-[var(--space-empty-state-gap-lg)]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "paddingX": {
+      "sm": "space_inset_m",
+      "md": "space_inset_l",
+      "lg": "space_inset_xl"
+    },
+    "paddingY": {
+      "sm": "space_inset_m",
+      "md": "space_inset_l",
+      "lg": "space_inset_xl"
+    },
+    "gap": {
+      "sm": "space_empty_state_gap_sm",
+      "md": "space_empty_state_gap_md",
+      "lg": "space_empty_state_gap_lg"
+    },
+    "minWidth": {
+      "sm": "space_container_compact_min",
+      "md": "space_container_content_min",
+      "lg": "space_container_wide_min"
+    },
+    "maxWidth": {
+      "sm": "space_container_compact_max",
+      "md": "space_container_content_max",
+      "lg": "space_container_wide_max"
+    },
+    "iconSize": {
+      "sm": "space_empty_state_icon_sm",
+      "md": "space_empty_state_icon_md",
+      "lg": "space_empty_state_icon_lg"
+    },
+    "iconWrapperSize": {
+      "sm": "space_empty_state_icon_wrapper_sm",
+      "md": "space_empty_state_icon_wrapper_md",
+      "lg": "space_empty_state_icon_wrapper_lg"
+    }
+  },
+  "defaultContent": "No data found. Try adjusting your filters or adding new items.",
+  "element": "div",
+  "rootLayout": "dynamic",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "center",
+    "cross": "center"
+  },
+  "slots": [
+    {
+      "name": "icon",
+      "figmaName": "Icon",
+      "type": "icon",
+      "optional": true,
+      "defaultVisible": true,
+      "sizing": "fixed"
+    },
+    {
+      "name": "textBlock",
+      "figmaName": "Text",
+      "type": "frame",
+      "optional": false,
+      "sizing": "fill",
+      "layout": "vertical",
+      "children": [
+        {
+          "name": "title",
+          "figmaName": "Title",
+          "type": "text",
+          "optional": false,
+          "default": "No items yet",
+          "sizing": "fill"
+        },
+        {
+          "name": "description",
+          "figmaName": "Description",
+          "type": "text",
+          "optional": false,
+          "default": "Description text",
+          "sizing": "fill"
+        }
+      ]
+    },
+    {
+      "name": "actions",
+      "figmaName": "Actions",
+      "type": "frame",
+      "optional": false,
+      "sizing": "hug",
+      "layout": "horizontal",
+      "children": [
+        {
+          "name": "ctaButton",
+          "figmaName": "CTA",
+          "type": "component",
+          "component": "@UI/Button",
+          "optional": true,
+          "sizing": "hug"
+        },
+        {
+          "name": "secondaryButton",
+          "figmaName": "Secondary Action",
+          "type": "component",
+          "component": "@UI/Button",
+          "optional": true,
+          "sizing": "hug"
+        }
+      ]
+    }
+  ],
+  "booleanProps": [
+    {
+      "name": "showIcon",
+      "figmaName": "Icon",
+      "controls": "icon",
+      "default": true
+    },
+    {
+      "name": "showCta",
+      "figmaName": "CTA",
+      "controls": "ctaButton",
+      "default": true
+    },
+    {
+      "name": "showSecondary",
+      "figmaName": "Secondary Action",
+      "controls": "secondaryButton",
+      "default": true
+    }
+  ],
+  "textProps": [
+    {
+      "name": "title",
+      "figmaName": "Title",
+      "default": "No items yet"
+    },
+    {
+      "name": "description",
+      "figmaName": "Description",
+      "default": "Description text"
+    }
+  ],
+  "styleKeys": [
+    "layoutDirection",
+    "textAlign",
+    "paddingX",
+    "paddingY",
+    "gap",
+    "textBlockGap",
+    "actionsGap",
+    "iconSize",
+    "iconWrapperSize",
+    "minWidth",
+    "maxWidth",
+    "borderRadius",
+    "background",
+    "iconColor",
+    "titleColor",
+    "titleStyle",
+    "descriptionColor",
+    "descriptionStyle"
+  ],
+  "heightConstraint": "hug",
+  "iconSizeMap": {
+    "xs": 20,
+    "sm": 20,
+    "md": 20,
+    "lg": 24,
+    "xl": 20
+  },
+  "generatorStrategy": "template",
+  "template": "EmptyState"
+}

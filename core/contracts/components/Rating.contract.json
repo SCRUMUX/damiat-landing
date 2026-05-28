@@ -1,0 +1,67 @@
+{
+  "name": "@UI/Rating",
+  "description": "Star rating component. 3 sizes (sm/md/lg), readonly or interactive, values 0-5.",
+  "variantProps": [
+    "size",
+    "value"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "value": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "filledColor": "color_warning_base",
+        "emptyColor": "color_surface_3",
+        "gap": "space_2"
+      },
+      "tailwindClasses": [
+        "gap-[var(--space-2)]",
+        "[--filled-color:var(--color-warning-base)]",
+        "[--empty-color:var(--color-surface-3)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "starSize": 16
+      },
+      "tailwindClasses": []
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "starSize": 20
+      },
+      "tailwindClasses": []
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "starSize": 28
+      },
+      "tailwindClasses": []
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent"
+}

@@ -1,0 +1,3390 @@
+{
+  "$schema": "component-structures-schema.json",
+  "$comment": "Declarative component structure definitions extracted from figma-ai-ds-code.js build*Layout functions. Used by frontend generators to produce React components with correct slot structure, boolean props, and layout.",
+  "components": {
+    "@UI/Button": {
+      "element": "button",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "sizeHeightMap": {
+        "sm": "space_button_h_sm",
+        "md": "space_button_h_md",
+        "lg": "space_button_h_lg"
+      },
+      "rootAlign": {
+        "main": "center",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "gap",
+        "borderRadius",
+        "background",
+        "borderColor",
+        "borderSide",
+        "textColor",
+        "iconColor",
+        "textStyle",
+        "minHeight",
+        "opacityToken"
+      ],
+      "slots": [
+        {
+          "name": "iconLeft",
+          "figmaName": "Left icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "type": "text",
+          "optional": false,
+          "default": "Button",
+          "sizing": "hug"
+        },
+        {
+          "name": "iconRight",
+          "figmaName": "Right icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        }
+      ],
+      "booleanProps": [
+        {
+          "name": "showLeftIcon",
+          "figmaName": "Left icon",
+          "controls": "iconLeft",
+          "default": true
+        },
+        {
+          "name": "showRightIcon",
+          "figmaName": "Right icon",
+          "controls": "iconRight",
+          "default": true
+        },
+        {
+          "name": "showLabel",
+          "figmaName": "Text",
+          "controls": "label",
+          "default": true
+        }
+      ],
+      "instanceSwapProps": [
+        {
+          "name": "leftIcon",
+          "figmaName": "Left Icon",
+          "slot": "iconLeft",
+          "role": "icon"
+        },
+        {
+          "name": "rightIcon",
+          "figmaName": "Right Icon",
+          "slot": "iconRight",
+          "role": "icon"
+        }
+      ],
+      "textProps": [
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "default": "Button"
+        }
+      ],
+      "heightConstraint": "fixed",
+      "borderWidthToken": "border_width_base",
+      "iconSizeMap": {
+        "xs": 20,
+        "sm": 20,
+        "md": 20,
+        "lg": 24,
+        "xl": 20
+      }
+    },
+    "@UI/Badge": {
+      "element": "span",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "end",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "borderRadius",
+        "minWidth",
+        "minHeight",
+        "background",
+        "borderColor",
+        "borderSide",
+        "textStyle",
+        "textColor"
+      ],
+      "slots": [
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "type": "text",
+          "optional": false,
+          "default": "99",
+          "sizing": "hug"
+        }
+      ],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "default": "99"
+        }
+      ],
+      "heightConstraint": "hug",
+      "borderWidthToken": "border_width_base"
+    },
+    "@UI/Tab": {
+      "element": "button",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "center",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "borderRadius",
+        "background",
+        "borderColor",
+        "underlineColor",
+        "underlineSide",
+        "textStyle",
+        "textColor",
+        "filledTextColor",
+        "iconColor",
+        "opacityToken"
+      ],
+      "slots": [
+        {
+          "name": "iconLeft",
+          "figmaName": "Left icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": true,
+          "sizing": "fixed"
+        },
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "type": "text",
+          "optional": false,
+          "default": "Tab",
+          "sizing": "hug"
+        },
+        {
+          "name": "badge",
+          "figmaName": "Badge",
+          "type": "component",
+          "component": "@UI/Badge",
+          "optional": true,
+          "defaultVisible": true,
+          "sizing": "hug"
+        },
+        {
+          "name": "iconRight",
+          "figmaName": "Right icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": true,
+          "sizing": "fixed"
+        }
+      ],
+      "booleanProps": [
+        {
+          "name": "showLeftIcon",
+          "figmaName": "Left icon",
+          "controls": "iconLeft",
+          "default": true
+        },
+        {
+          "name": "showBadge",
+          "figmaName": "Badge",
+          "controls": "badge",
+          "default": true
+        },
+        {
+          "name": "showRightIcon",
+          "figmaName": "Right icon",
+          "controls": "iconRight",
+          "default": true
+        }
+      ],
+      "instanceSwapProps": [
+        {
+          "name": "leftIcon",
+          "figmaName": "Left Icon",
+          "slot": "iconLeft",
+          "role": "icon"
+        },
+        {
+          "name": "rightIcon",
+          "figmaName": "Right Icon",
+          "slot": "iconRight",
+          "role": "icon"
+        },
+        {
+          "name": "badgeVariant",
+          "figmaName": "Badge Variant",
+          "slot": "badge",
+          "role": "badge"
+        }
+      ],
+      "textProps": [
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "default": "Tab"
+        }
+      ],
+      "heightConstraint": "hug",
+      "iconSizeMap": {
+        "xs": 20,
+        "sm": 20,
+        "md": 20,
+        "lg": 24,
+        "xl": 20
+      }
+    },
+    "@UI/Tag": {
+      "element": "span",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "sizeHeightMap": {
+        "sm": "space_22",
+        "md": "space_28"
+      },
+      "rootAlign": {
+        "main": "center",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "gap",
+        "borderRadius",
+        "background",
+        "borderColor",
+        "textStyle",
+        "textColor",
+        "iconColor",
+        "opacityToken"
+      ],
+      "slots": [
+        {
+          "name": "iconLeft",
+          "figmaName": "Left icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "type": "text",
+          "optional": true,
+          "default": "Tag",
+          "sizing": "hug"
+        },
+        {
+          "name": "iconRight",
+          "figmaName": "Right icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        }
+      ],
+      "booleanProps": [
+        {
+          "name": "showLeftIcon",
+          "figmaName": "Left icon",
+          "controls": "iconLeft",
+          "default": true
+        },
+        {
+          "name": "showRightIcon",
+          "figmaName": "Right icon",
+          "controls": "iconRight",
+          "default": true
+        },
+        {
+          "name": "showLabel",
+          "figmaName": "Text",
+          "controls": "label",
+          "default": true
+        }
+      ],
+      "instanceSwapProps": [
+        {
+          "name": "leftIcon",
+          "figmaName": "Left Icon",
+          "slot": "iconLeft",
+          "role": "icon"
+        },
+        {
+          "name": "rightIcon",
+          "figmaName": "Right Icon",
+          "slot": "iconRight",
+          "role": "close"
+        }
+      ],
+      "textProps": [
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "default": "Tag"
+        }
+      ],
+      "heightConstraint": "fixed",
+      "borderWidthToken": "border_width_base",
+      "iconSizeMap": {
+        "xs": 16,
+        "sm": 16,
+        "md": 20,
+        "lg": 16,
+        "xl": 16
+      }
+    },
+    "@UI/Chip": {
+      "element": "button",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "sizeHeightMap": {
+        "sm": "space_22",
+        "md": "space_24",
+        "lg": "space_32"
+      },
+      "rootAlign": {
+        "main": "center",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "gap",
+        "borderRadius",
+        "background",
+        "borderColor",
+        "textStyle",
+        "textColor",
+        "iconColor",
+        "opacityToken"
+      ],
+      "slots": [
+        {
+          "name": "iconLeft",
+          "figmaName": "Left icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "type": "text",
+          "optional": false,
+          "default": "Chip",
+          "sizing": "hug"
+        },
+        {
+          "name": "closeIcon",
+          "figmaName": "Close icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": true,
+          "sizing": "fixed"
+        }
+      ],
+      "booleanProps": [
+        {
+          "name": "showLeftIcon",
+          "figmaName": "Left icon",
+          "controls": "iconLeft",
+          "default": false
+        },
+        {
+          "name": "showCloseIcon",
+          "figmaName": "Close icon",
+          "controls": "closeIcon",
+          "default": true
+        }
+      ],
+      "instanceSwapProps": [
+        {
+          "name": "leftIcon",
+          "figmaName": "Left Icon variant",
+          "slot": "iconLeft",
+          "role": "icon"
+        },
+        {
+          "name": "closeIcon",
+          "figmaName": "Close Icon variant",
+          "slot": "closeIcon",
+          "role": "close"
+        }
+      ],
+      "textProps": [
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "default": "Chip"
+        }
+      ],
+      "heightConstraint": "fixed",
+      "iconSizeMap": {
+        "xs": 16,
+        "sm": 16,
+        "md": 16,
+        "lg": 20,
+        "xl": 16
+      }
+    },
+    "@UI/Input": {
+      "element": "div",
+      "htmlInput": true,
+      "rootLayout": "horizontal",
+      "sizeHeightMap": {
+        "sm": "space_28",
+        "md": "space_36",
+        "lg": "space_40"
+      },
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "center",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "gap",
+        "borderRadius",
+        "minWidth",
+        "background",
+        "borderColor",
+        "borderSide",
+        "textStyle",
+        "textColor",
+        "iconColor",
+        "opacityToken"
+      ],
+      "slots": [
+        {
+          "name": "iconLeft1",
+          "figmaName": "Left 1 icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "iconLeft2",
+          "figmaName": "Left 2 icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "inputField",
+          "figmaName": "Label",
+          "type": "input",
+          "optional": false,
+          "default": "Placeholder",
+          "sizing": "fill"
+        },
+        {
+          "name": "badge",
+          "figmaName": "Badge",
+          "type": "component",
+          "component": "@UI/Badge",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "hug"
+        },
+        {
+          "name": "tagRow",
+          "figmaName": "Tag row",
+          "type": "component",
+          "component": "@UI/Tag",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "hug"
+        },
+        {
+          "name": "iconRight1",
+          "figmaName": "Right 1 icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "iconRight2",
+          "figmaName": "Right 2 icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        }
+      ],
+      "booleanProps": [
+        {
+          "name": "showIconLeft1",
+          "figmaName": "Left icon 1",
+          "controls": "iconLeft1",
+          "default": false
+        },
+        {
+          "name": "showIconLeft2",
+          "figmaName": "Left icon 2",
+          "controls": "iconLeft2",
+          "default": false
+        },
+        {
+          "name": "showBadge",
+          "figmaName": "Badge",
+          "controls": "badge",
+          "default": false
+        },
+        {
+          "name": "showTagRow",
+          "figmaName": "Tag row",
+          "controls": "tagRow",
+          "default": false
+        },
+        {
+          "name": "showIconRight1",
+          "figmaName": "Right icon 1",
+          "controls": "iconRight1",
+          "default": false
+        },
+        {
+          "name": "showIconRight2",
+          "figmaName": "Right icon 2",
+          "controls": "iconRight2",
+          "default": false
+        }
+      ],
+      "instanceSwapProps": [
+        {
+          "name": "iconLeft1",
+          "figmaName": "Left Icon 1",
+          "slot": "iconLeft1",
+          "role": "icon"
+        },
+        {
+          "name": "iconLeft2",
+          "figmaName": "Left Icon 2",
+          "slot": "iconLeft2",
+          "role": "icon"
+        },
+        {
+          "name": "iconRight1",
+          "figmaName": "Right Icon 1",
+          "slot": "iconRight1",
+          "role": "icon"
+        },
+        {
+          "name": "iconRight2",
+          "figmaName": "Right Icon 2",
+          "slot": "iconRight2",
+          "role": "icon"
+        }
+      ],
+      "textProps": [
+        {
+          "name": "placeholder",
+          "figmaName": "Label",
+          "default": "Placeholder"
+        }
+      ],
+      "heightConstraint": "fixed",
+      "borderWidthToken": "border_width_base",
+      "iconSizeMap": {
+        "xs": 20,
+        "sm": 20,
+        "md": 20,
+        "lg": 24,
+        "xl": 20
+      }
+    },
+    "@UI/DropdownItem": {
+      "element": "div",
+      "rootLayout": "horizontal",
+      "sizeHeightMap": {
+        "sm": "space_28",
+        "md": "space_36",
+        "lg": "space_40"
+      },
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "start",
+        "cross": "start"
+      },
+      "styleKeys": [
+        "itemTextColor",
+        "itemIconColor",
+        "itemPaddingX",
+        "itemPaddingY",
+        "itemGap",
+        "textStyle",
+        "minHeight"
+      ],
+      "slots": [
+        {
+          "name": "checkbox",
+          "figmaName": "Checkbox",
+          "type": "component",
+          "component": "@UI/Checkbox",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "iconLeft",
+          "figmaName": "Icon Left",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "type": "text",
+          "optional": false,
+          "default": "Option",
+          "sizing": "fill"
+        },
+        {
+          "name": "badge",
+          "figmaName": "Badge",
+          "type": "component",
+          "component": "@UI/Badge",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "hug"
+        },
+        {
+          "name": "iconRight",
+          "figmaName": "Icon Right",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        }
+      ],
+      "booleanProps": [
+        {
+          "name": "showCheckbox",
+          "figmaName": "Checkbox",
+          "controls": "checkbox",
+          "default": false
+        },
+        {
+          "name": "showIconLeft",
+          "figmaName": "Icon Left",
+          "controls": "iconLeft",
+          "default": false
+        },
+        {
+          "name": "showBadge",
+          "figmaName": "Badge",
+          "controls": "badge",
+          "default": false
+        },
+        {
+          "name": "showIconRight",
+          "figmaName": "Icon Right",
+          "controls": "iconRight",
+          "default": false
+        }
+      ],
+      "instanceSwapProps": [
+        {
+          "name": "checkboxVariant",
+          "figmaName": "Checkbox variant",
+          "slot": "checkbox",
+          "role": "checkbox"
+        },
+        {
+          "name": "iconLeft",
+          "figmaName": "Icon Left variant",
+          "slot": "iconLeft",
+          "role": "icon"
+        },
+        {
+          "name": "badgeVariant",
+          "figmaName": "Badge variant",
+          "slot": "badge",
+          "role": "badge"
+        },
+        {
+          "name": "iconRight",
+          "figmaName": "Icon Right variant",
+          "slot": "iconRight",
+          "role": "icon"
+        }
+      ],
+      "textProps": [
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "default": "Option"
+        }
+      ],
+      "heightConstraint": "hug",
+      "iconSizeMap": {
+        "xs": 20,
+        "sm": 20,
+        "md": 20,
+        "lg": 24,
+        "xl": 20
+      }
+    },
+    "@UI/Dropdown": {
+      "element": "div",
+      "composite": true,
+      "rootLayout": "horizontal",
+      "sizeHeightMap": {
+        "sm": "space_28",
+        "md": "space_36",
+        "lg": "space_40"
+      },
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "start",
+        "cross": "start"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "gap",
+        "borderRadius",
+        "background",
+        "borderColor",
+        "borderSide",
+        "textStyle",
+        "textColor",
+        "iconColor",
+        "opacityToken",
+        "minWidth",
+        "maxWidth",
+        "popoverPadding",
+        "popoverBg",
+        "popoverBorder",
+        "popoverRadius",
+        "popoverMaxHeight",
+        "popoverElevation",
+        "elevationToken",
+        "submenuOffset",
+        "submenuPadding",
+        "itemGap",
+        "triggerLabel"
+      ],
+      "slots": [
+        {
+          "name": "trigger",
+          "figmaName": "Trigger",
+          "type": "frame",
+          "optional": false,
+          "sizing": "fill",
+          "layout": "horizontal",
+          "children": [
+            {
+              "name": "iconLeft",
+              "figmaName": "Icon (left)",
+              "type": "icon",
+              "optional": true,
+              "defaultVisible": false,
+              "sizing": "fixed"
+            },
+            {
+              "name": "label",
+              "figmaName": "Label",
+              "type": "text",
+              "optional": false,
+              "default": "Select",
+              "sizing": "fill"
+            },
+            {
+              "name": "tagRow",
+              "figmaName": "TagRow",
+              "type": "component",
+              "optional": true,
+              "defaultVisible": false,
+              "sizing": "hug"
+            },
+            {
+              "name": "badge",
+              "figmaName": "Badge",
+              "type": "component",
+              "optional": true,
+              "defaultVisible": false,
+              "sizing": "hug"
+            },
+            {
+              "name": "chevron",
+              "figmaName": "Chevron",
+              "type": "icon",
+              "optional": false,
+              "sizing": "fixed"
+            }
+          ]
+        },
+        {
+          "name": "popover",
+          "figmaName": "Popover",
+          "type": "frame",
+          "optional": false,
+          "sizing": "fill",
+          "layout": "vertical",
+          "visibleWhen": "state !== 'closed'",
+          "slotCount": 5,
+          "slotComponent": "@UI/DropdownItem"
+        },
+        {
+          "name": "submenu",
+          "figmaName": "Submenu",
+          "type": "frame",
+          "optional": true,
+          "sizing": "hug",
+          "layout": "vertical",
+          "visibleWhen": "state !== 'closed'",
+          "slotCount": 3,
+          "slotComponent": "@UI/DropdownItem"
+        }
+      ],
+      "booleanProps": [
+        {
+          "name": "showSubmenu",
+          "figmaName": "Submenu (More Options)",
+          "controls": "submenu",
+          "default": true
+        },
+        {
+          "name": "showIconLeft",
+          "figmaName": "Icon (left)",
+          "controls": "iconLeft",
+          "default": false
+        },
+        {
+          "name": "showBadge",
+          "figmaName": "Badge",
+          "controls": "badge",
+          "default": false
+        },
+        {
+          "name": "showTagRow",
+          "figmaName": "TagRow",
+          "controls": "tagRow",
+          "default": false
+        }
+      ],
+      "instanceSwapProps": [],
+      "textProps": [
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "default": "Select"
+        }
+      ],
+      "heightConstraint": "hug"
+    },
+    "@UI/Textarea": {
+      "element": "div",
+      "htmlInput": true,
+      "inputType": "textarea",
+      "rootLayout": "vertical",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "start",
+        "cross": "start"
+      },
+      "styleKeys": [
+        "minWidth",
+        "maxWidth",
+        "minHeight",
+        "paddingX",
+        "paddingY",
+        "gap",
+        "borderRadius",
+        "background",
+        "borderColor",
+        "textStyle",
+        "textColor",
+        "opacityToken"
+      ],
+      "slots": [
+        {
+          "name": "content",
+          "figmaName": "Content",
+          "type": "textarea",
+          "optional": false,
+          "default": "Enter text...",
+          "sizing": "fill"
+        }
+      ],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [
+        {
+          "name": "placeholder",
+          "figmaName": "Label",
+          "default": "Enter text..."
+        }
+      ],
+      "heightConstraint": "hug",
+      "borderWidthToken": "border_width_base",
+      "iconSizeMap": {
+        "xs": 20,
+        "sm": 20,
+        "md": 20,
+        "lg": 24,
+        "xl": 20
+      }
+    },
+    "@UI/SectionHeader": {
+      "element": "div",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "center",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "gap",
+        "textStyle",
+        "textColor",
+        "iconColor"
+      ],
+      "slots": [
+        {
+          "name": "iconLeft",
+          "figmaName": "Left icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "type": "text",
+          "optional": false,
+          "default": "Section",
+          "sizing": "hug"
+        },
+        {
+          "name": "badge",
+          "figmaName": "Badge",
+          "type": "component",
+          "component": "@UI/Badge",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "hug"
+        },
+        {
+          "name": "iconRight",
+          "figmaName": "Right icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        }
+      ],
+      "booleanProps": [
+        {
+          "name": "showLeftIcon",
+          "figmaName": "Left icon",
+          "controls": "iconLeft",
+          "default": false
+        },
+        {
+          "name": "showBadge",
+          "figmaName": "Badge",
+          "controls": "badge",
+          "default": false
+        },
+        {
+          "name": "showRightIcon",
+          "figmaName": "Right icon",
+          "controls": "iconRight",
+          "default": false
+        }
+      ],
+      "instanceSwapProps": [
+        {
+          "name": "leftIcon",
+          "figmaName": "Left Icon",
+          "slot": "iconLeft",
+          "role": "icon"
+        },
+        {
+          "name": "rightIcon",
+          "figmaName": "Right Icon",
+          "slot": "iconRight",
+          "role": "icon"
+        }
+      ],
+      "textProps": [
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "default": "Section"
+        }
+      ],
+      "heightConstraint": "hug",
+      "iconSizeMap": {
+        "xs": 20,
+        "sm": 20,
+        "md": 20,
+        "lg": 24,
+        "xl": 20
+      }
+    },
+    "@UI/Accordion": {
+      "element": "div",
+      "rootLayout": "vertical",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "start",
+        "cross": "start"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "gap",
+        "borderColor",
+        "background",
+        "textStyle",
+        "textColor",
+        "iconColor",
+        "contentMinWidth",
+        "contentMaxWidth",
+        "contentTextStyle",
+        "showContent",
+        "opacityToken"
+      ],
+      "slots": [
+        {
+          "name": "header",
+          "figmaName": "Header",
+          "type": "frame",
+          "optional": false,
+          "sizing": "fill",
+          "layout": "horizontal",
+          "children": [
+            {
+              "name": "iconLeft1",
+              "figmaName": "Left 1 icon",
+              "type": "icon",
+              "optional": true,
+              "defaultVisible": false,
+              "sizing": "fixed"
+            },
+            {
+              "name": "iconLeft2",
+              "figmaName": "Left 2 icon",
+              "type": "icon",
+              "optional": true,
+              "defaultVisible": false,
+              "sizing": "fixed"
+            },
+            {
+              "name": "label",
+              "figmaName": "Label",
+              "type": "text",
+              "optional": false,
+              "default": "Accordion",
+              "sizing": "fill"
+            },
+            {
+              "name": "badge",
+              "figmaName": "Badge",
+              "type": "component",
+              "component": "@UI/Badge",
+              "optional": true,
+              "defaultVisible": false,
+              "sizing": "hug"
+            },
+            {
+              "name": "chevron",
+              "figmaName": "Right icon",
+              "type": "icon",
+              "optional": false,
+              "sizing": "fixed"
+            }
+          ]
+        },
+        {
+          "name": "content",
+          "figmaName": "Content",
+          "type": "text",
+          "optional": false,
+          "default": "Accordion content...",
+          "sizing": "fill",
+          "collapsible": true
+        }
+      ],
+      "booleanProps": [
+        {
+          "name": "showIconLeft1",
+          "figmaName": "Left icon 1",
+          "controls": "iconLeft1",
+          "default": false
+        },
+        {
+          "name": "showIconLeft2",
+          "figmaName": "Left icon 2",
+          "controls": "iconLeft2",
+          "default": false
+        },
+        {
+          "name": "showBadge",
+          "figmaName": "Badge",
+          "controls": "badge",
+          "default": false
+        }
+      ],
+      "instanceSwapProps": [
+        {
+          "name": "iconLeft1",
+          "figmaName": "Left Icon 1",
+          "slot": "iconLeft1",
+          "role": "icon"
+        },
+        {
+          "name": "iconLeft2",
+          "figmaName": "Left Icon 2",
+          "slot": "iconLeft2",
+          "role": "icon"
+        }
+      ],
+      "textProps": [
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "default": "Accordion"
+        },
+        {
+          "name": "content",
+          "figmaName": "Content",
+          "default": "Accordion content..."
+        }
+      ],
+      "heightConstraint": "hug",
+      "iconSizeMap": {
+        "xs": 20,
+        "sm": 20,
+        "md": 20,
+        "lg": 24,
+        "xl": 20
+      }
+    },
+    "@UI/Modal": {
+      "element": "div",
+      "rootLayout": "vertical",
+      "rootSizing": {
+        "main": "fixed",
+        "cross": "fixed"
+      },
+      "rootAlign": {
+        "main": "start",
+        "cross": "start"
+      },
+      "styleKeys": [
+        "overlayToken",
+        "minWidth",
+        "maxWidth",
+        "paddingX",
+        "paddingY",
+        "gap",
+        "titleStyle",
+        "titleColor",
+        "textColor",
+        "contentStyle",
+        "background",
+        "borderColor",
+        "borderRadius",
+        "elevationToken"
+      ],
+      "slots": [
+        {
+          "name": "overlay",
+          "figmaName": "Overlay",
+          "type": "overlay",
+          "optional": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "panel",
+          "figmaName": "Panel",
+          "type": "frame",
+          "optional": false,
+          "sizing": "hug",
+          "layout": "vertical",
+          "children": [
+            {
+              "name": "header",
+              "figmaName": "Header",
+              "type": "frame",
+              "sizing": "fill",
+              "layout": "horizontal",
+              "children": [
+                {
+                  "name": "title",
+                  "figmaName": "Title",
+                  "type": "text",
+                  "default": "Modal Title",
+                  "sizing": "fill"
+                },
+                {
+                  "name": "closeButton",
+                  "figmaName": "Close",
+                  "type": "icon",
+                  "optional": true,
+                  "sizing": "fixed"
+                }
+              ]
+            },
+            {
+              "name": "content",
+              "figmaName": "Content",
+              "type": "text",
+              "default": "Modal content",
+              "sizing": "fill"
+            },
+            {
+              "name": "footer",
+              "figmaName": "Footer",
+              "type": "frame",
+              "optional": true,
+              "sizing": "hug",
+              "layout": "horizontal",
+              "children": [
+                {
+                  "name": "cancelButton",
+                  "figmaName": "Cancel",
+                  "type": "component",
+                  "component": "@UI/Button",
+                  "optional": true,
+                  "sizing": "hug"
+                },
+                {
+                  "name": "confirmButton",
+                  "figmaName": "Confirm",
+                  "type": "component",
+                  "component": "@UI/Button",
+                  "optional": true,
+                  "sizing": "hug"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [
+        {
+          "name": "title",
+          "figmaName": "Title",
+          "default": "Modal Title"
+        },
+        {
+          "name": "content",
+          "figmaName": "Content",
+          "default": "Modal content"
+        },
+        {
+          "name": "cancelLabel",
+          "figmaName": "Cancel label",
+          "default": "Cancel"
+        },
+        {
+          "name": "confirmLabel",
+          "figmaName": "Confirm label",
+          "default": "Confirm"
+        }
+      ],
+      "heightConstraint": "hug",
+      "borderWidthToken": "border_width_base"
+    },
+    "@UI/Pagination": {
+      "element": "nav",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "center",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "gap",
+        "borderRadius",
+        "textStyle"
+      ],
+      "conditionalSlots": {
+        "variantAxis": "variant",
+        "variants": {
+          "minimal": [
+            {
+              "name": "prevButton",
+              "type": "icon",
+              "optional": false,
+              "sizing": "fixed"
+            },
+            {
+              "name": "nextButton",
+              "type": "icon",
+              "optional": false,
+              "sizing": "fixed"
+            }
+          ],
+          "compact": [
+            {
+              "name": "prevButton",
+              "type": "icon",
+              "optional": false,
+              "sizing": "fixed"
+            },
+            {
+              "name": "pageInfo",
+              "type": "text",
+              "optional": false,
+              "default": "2 / 5",
+              "sizing": "hug"
+            },
+            {
+              "name": "nextButton",
+              "type": "icon",
+              "optional": false,
+              "sizing": "fixed"
+            }
+          ],
+          "with-numbers": [
+            {
+              "name": "prevButton",
+              "type": "icon",
+              "optional": false,
+              "sizing": "fixed"
+            },
+            {
+              "name": "pages",
+              "type": "pageButtons",
+              "optional": false,
+              "sizing": "hug"
+            },
+            {
+              "name": "nextButton",
+              "type": "icon",
+              "optional": false,
+              "sizing": "fixed"
+            }
+          ]
+        }
+      },
+      "slots": [],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug",
+      "iconSizeMap": {
+        "xs": 20,
+        "sm": 20,
+        "md": 20,
+        "lg": 24,
+        "xl": 20
+      }
+    },
+    "@UI/Card": {
+      "element": "div",
+      "rootLayout": "vertical",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "start",
+        "cross": "start"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "gap",
+        "titleStyle",
+        "textColor",
+        "contentStyle",
+        "background",
+        "borderSide",
+        "borderColor",
+        "borderRadius",
+        "elevationToken",
+        "minWidth",
+        "maxWidth",
+        "opacityToken"
+      ],
+      "slots": [
+        {
+          "name": "title",
+          "figmaName": "Title",
+          "type": "text",
+          "optional": false,
+          "default": "Card Title",
+          "sizing": "fill"
+        },
+        {
+          "name": "content",
+          "figmaName": "Content",
+          "type": "text",
+          "optional": false,
+          "default": "Card content",
+          "sizing": "fill"
+        }
+      ],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [
+        {
+          "name": "title",
+          "figmaName": "Title",
+          "default": "Card Title"
+        },
+        {
+          "name": "content",
+          "figmaName": "Content",
+          "default": "Card content"
+        }
+      ],
+      "heightConstraint": "hug",
+      "borderWidthToken": "border_width_base"
+    },
+    "@UI/Alert": {
+      "element": "div",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "center",
+        "cross": "start"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "gap",
+        "titleStyle",
+        "textColor",
+        "paragraphStyle",
+        "background",
+        "borderSide",
+        "borderColor",
+        "borderRadius",
+        "iconColor",
+        "minWidth",
+        "maxWidth"
+      ],
+      "slots": [
+        {
+          "name": "iconLeft",
+          "figmaName": "Left icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "content",
+          "figmaName": "Content",
+          "type": "frame",
+          "optional": false,
+          "sizing": "fill",
+          "layout": "vertical",
+          "children": [
+            {
+              "name": "title",
+              "figmaName": "Title",
+              "type": "text",
+              "optional": true,
+              "default": "Alert title",
+              "sizing": "fill"
+            },
+            {
+              "name": "paragraph",
+              "figmaName": "Paragraph",
+              "type": "text",
+              "optional": true,
+              "default": "Alert message",
+              "sizing": "fill"
+            }
+          ]
+        },
+        {
+          "name": "iconRight",
+          "figmaName": "Right icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        }
+      ],
+      "booleanProps": [
+        {
+          "name": "showLeftIcon",
+          "figmaName": "Left icon",
+          "controls": "iconLeft",
+          "default": false
+        },
+        {
+          "name": "showRightIcon",
+          "figmaName": "Right icon",
+          "controls": "iconRight",
+          "default": false
+        },
+        {
+          "name": "showTitle",
+          "figmaName": "Title",
+          "controls": "title",
+          "default": true
+        },
+        {
+          "name": "showParagraph",
+          "figmaName": "Paragraph",
+          "controls": "paragraph",
+          "default": true
+        }
+      ],
+      "instanceSwapProps": [
+        {
+          "name": "leftIcon",
+          "figmaName": "Left Icon",
+          "slot": "iconLeft",
+          "role": "icon"
+        },
+        {
+          "name": "rightIcon",
+          "figmaName": "Right Icon",
+          "slot": "iconRight",
+          "role": "close"
+        }
+      ],
+      "textProps": [
+        {
+          "name": "title",
+          "figmaName": "Title text",
+          "default": "Alert title"
+        },
+        {
+          "name": "paragraph",
+          "figmaName": "Paragraph text",
+          "default": "Alert message"
+        }
+      ],
+      "heightConstraint": "hug",
+      "borderWidthToken": "border_width_thick",
+      "iconSizeMap": {
+        "xs": 20,
+        "sm": 20,
+        "md": 20,
+        "lg": 24,
+        "xl": 20
+      }
+    },
+    "@UI/Breadcrumb": {
+      "element": "nav",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "center",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "maxWidth",
+        "paddingX",
+        "paddingY",
+        "gap",
+        "textStyle",
+        "textColor",
+        "iconColor"
+      ],
+      "customStructure": "breadcrumb",
+      "levelsCount": 4,
+      "slots": [],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug",
+      "iconSizeMap": {
+        "xs": 20,
+        "sm": 20,
+        "md": 20,
+        "lg": 24,
+        "xl": 20
+      }
+    },
+    "@UI/FormHint": {
+      "element": "div",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "center",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "gap",
+        "textStyle",
+        "textColor",
+        "iconColor"
+      ],
+      "slots": [
+        {
+          "name": "icon",
+          "figmaName": "Icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "hint",
+          "figmaName": "Hint",
+          "type": "text",
+          "optional": false,
+          "default": "Hint text",
+          "sizing": "hug"
+        }
+      ],
+      "booleanProps": [
+        {
+          "name": "showIcon",
+          "figmaName": "Show icon",
+          "controls": "icon",
+          "default": false
+        }
+      ],
+      "instanceSwapProps": [
+        {
+          "name": "icon",
+          "figmaName": "Icon",
+          "slot": "icon",
+          "role": "icon"
+        }
+      ],
+      "textProps": [
+        {
+          "name": "hint",
+          "figmaName": "Hint",
+          "default": "Hint text"
+        }
+      ],
+      "heightConstraint": "hug",
+      "iconSizeMap": {
+        "xs": 20,
+        "sm": 20,
+        "md": 20,
+        "lg": 24,
+        "xl": 20
+      }
+    },
+    "@UI/Link": {
+      "element": "a",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "center",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "gap",
+        "textStyle",
+        "textColor",
+        "iconColor",
+        "opacityToken"
+      ],
+      "slots": [
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "type": "text",
+          "optional": false,
+          "default": "Link",
+          "sizing": "hug"
+        },
+        {
+          "name": "iconRight",
+          "figmaName": "Right icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": true,
+          "sizing": "fixed"
+        }
+      ],
+      "booleanProps": [
+        {
+          "name": "showLabel",
+          "figmaName": "Text",
+          "controls": "label",
+          "default": true
+        },
+        {
+          "name": "showRightIcon",
+          "figmaName": "Right icon",
+          "controls": "iconRight",
+          "default": true
+        }
+      ],
+      "instanceSwapProps": [
+        {
+          "name": "rightIcon",
+          "figmaName": "Right Icon",
+          "slot": "iconRight",
+          "role": "link"
+        }
+      ],
+      "textProps": [
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "default": "Link"
+        }
+      ],
+      "heightConstraint": "hug",
+      "iconSizeMap": {
+        "xs": 20,
+        "sm": 20,
+        "md": 20,
+        "lg": 24,
+        "xl": 20
+      }
+    },
+    "@UI/PinInput": {
+      "element": "div",
+      "customStructure": "pinInput",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "center",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "cellCount",
+        "cellSize",
+        "gap",
+        "cellDotOpacity",
+        "cellBorderColor",
+        "cellDotColor",
+        "cellBg",
+        "opacityToken"
+      ],
+      "slots": [],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug",
+      "borderWidthToken": "border_width_base"
+    },
+    "@UI/Slider": {
+      "element": "div",
+      "customStructure": "slider",
+      "rootLayout": "none",
+      "styleKeys": [
+        "trackWidth",
+        "trackHeight",
+        "thumbSize",
+        "value",
+        "valueMin",
+        "valueMax",
+        "trackBg",
+        "fillColor",
+        "thumbBg",
+        "thumbBorder"
+      ],
+      "slots": [],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug",
+      "borderWidthToken": "border_width_base"
+    },
+    "@UI/ScrollBar": {
+      "element": "div",
+      "customStructure": "scrollbar",
+      "rootLayout": "dynamic",
+      "styleKeys": [
+        "trackLength",
+        "trackThickness",
+        "thumbSize",
+        "thumbWidthPct",
+        "thumbShape",
+        "arrowColor",
+        "trackBg",
+        "thumbBg",
+        "thumbBorder"
+      ],
+      "slots": [],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug",
+      "borderWidthToken": "border_width_base"
+    },
+    "@UI/LinearProgress": {
+      "element": "div",
+      "customStructure": "linearProgress",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "fixed",
+        "cross": "fixed"
+      },
+      "styleKeys": [
+        "trackWidth",
+        "trackHeight",
+        "value",
+        "trackBg",
+        "fillColor"
+      ],
+      "slots": [],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug"
+    },
+    "@UI/Divider": {
+      "element": "div",
+      "customStructure": "divider",
+      "rootLayout": "none",
+      "styleKeys": [
+        "lineThickness",
+        "lineLength",
+        "lineColor",
+        "borderRadius"
+      ],
+      "slots": [],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug"
+    },
+    "@UI/CircularProgress": {
+      "element": "div",
+      "customStructure": "circularProgress",
+      "rootLayout": "none",
+      "styleKeys": [
+        "boxSize",
+        "value",
+        "showLabel",
+        "trackColor",
+        "fillColor",
+        "textColor"
+      ],
+      "slots": [],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug"
+    },
+    "@UI/Spinner": {
+      "element": "div",
+      "customStructure": "spinner",
+      "rootLayout": "none",
+      "styleKeys": [
+        "boxSize",
+        "trackColor",
+        "fillColor",
+        "trackOpacity"
+      ],
+      "slots": [],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug"
+    },
+    "@UI/Tooltip": {
+      "element": "div",
+      "customStructure": "tooltip",
+      "rootLayout": "vertical",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "styleKeys": [
+        "background",
+        "textColor",
+        "textStyle",
+        "arrowSide",
+        "arrowAlign",
+        "paddingX",
+        "paddingY",
+        "borderRadius",
+        "maxWidth",
+        "arrowSize"
+      ],
+      "slots": [
+        {
+          "name": "content",
+          "figmaName": "Content",
+          "type": "text",
+          "optional": false,
+          "default": "Tooltip text",
+          "sizing": "hug"
+        }
+      ],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [
+        {
+          "name": "content",
+          "figmaName": "Content",
+          "default": "Tooltip text"
+        }
+      ],
+      "heightConstraint": "hug"
+    },
+    "@UI/Captcha": {
+      "element": "div",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "center",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "minWidth",
+        "maxWidth",
+        "paddingX",
+        "paddingY",
+        "borderRadius",
+        "background",
+        "borderColor",
+        "textStyle",
+        "textColor"
+      ],
+      "slots": [
+        {
+          "name": "placeholder",
+          "figmaName": "Placeholder",
+          "type": "text",
+          "optional": false,
+          "default": "Captcha",
+          "sizing": "hug"
+        }
+      ],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [
+        {
+          "name": "placeholder",
+          "figmaName": "Placeholder",
+          "default": "Captcha"
+        }
+      ],
+      "heightConstraint": "hug",
+      "borderWidthToken": "border_width_base"
+    },
+    "@UI/Paragraph": {
+      "element": "div",
+      "rootLayout": "vertical",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "fixed"
+      },
+      "rootAlign": {
+        "main": "start",
+        "cross": "start"
+      },
+      "styleKeys": [
+        "paddingBottom",
+        "minWidth",
+        "maxWidth",
+        "textStyle"
+      ],
+      "slots": [
+        {
+          "name": "content",
+          "figmaName": "Content",
+          "type": "text",
+          "optional": false,
+          "default": "Paragraph text",
+          "sizing": "fill"
+        }
+      ],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [
+        {
+          "name": "content",
+          "figmaName": "Content",
+          "default": "Paragraph text"
+        }
+      ],
+      "heightConstraint": "hug"
+    },
+    "@UI/Switch": {
+      "element": "button",
+      "customStructure": "switch",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "fixed",
+        "cross": "fixed"
+      },
+      "rootAlign": {
+        "main": "center",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "trackW",
+        "trackH",
+        "thumbSize",
+        "trackBg",
+        "borderColor",
+        "thumbBg",
+        "thumbBorderColor",
+        "opacityToken",
+        "borderRadius"
+      ],
+      "slots": [],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug",
+      "borderWidthToken": "border_width_base"
+    },
+    "@UI/Checkbox": {
+      "element": "button",
+      "customStructure": "checkbox",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "fixed",
+        "cross": "fixed"
+      },
+      "rootAlign": {
+        "main": "center",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "boxSize",
+        "icon",
+        "bg",
+        "borderColor",
+        "borderRadius",
+        "iconColor",
+        "opacityToken"
+      ],
+      "slots": [],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug",
+      "borderWidthToken": "border_width_base"
+    },
+    "@UI/RadioButton": {
+      "element": "button",
+      "customStructure": "radioButton",
+      "rootLayout": "none",
+      "styleKeys": [
+        "boxSize",
+        "innerSize",
+        "inner",
+        "bg",
+        "borderColor",
+        "borderRadius",
+        "iconColor",
+        "opacityToken"
+      ],
+      "slots": [],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug",
+      "borderWidthToken": "border_width_base"
+    },
+    "@UI/Avatar": {
+      "element": "div",
+      "customStructure": "avatar",
+      "rootLayout": "none",
+      "styleKeys": [
+        "boxSize",
+        "badgeSize",
+        "bg",
+        "iconColor",
+        "initialsColor",
+        "initials"
+      ],
+      "conditionalSlots": {
+        "variantAxis": "type",
+        "variants": {
+          "guest": [
+            {
+              "name": "background",
+              "type": "circle",
+              "sizing": "fixed"
+            },
+            {
+              "name": "userIcon",
+              "type": "icon",
+              "sizing": "fixed"
+            }
+          ],
+          "registered-no-photo": [
+            {
+              "name": "background",
+              "type": "circle",
+              "sizing": "fixed"
+            },
+            {
+              "name": "initials",
+              "type": "text",
+              "default": "VK",
+              "sizing": "fixed"
+            }
+          ],
+          "registered-with-photo": [
+            {
+              "name": "photo",
+              "type": "image",
+              "sizing": "fixed"
+            }
+          ]
+        }
+      },
+      "slots": [],
+      "booleanProps": [
+        {
+          "name": "showBadge",
+          "figmaName": "Badge",
+          "controls": "badge",
+          "default": true
+        }
+      ],
+      "instanceSwapProps": [],
+      "textProps": [
+        {
+          "name": "initials",
+          "figmaName": "Initials",
+          "default": "VK"
+        }
+      ],
+      "heightConstraint": "hug"
+    },
+    "@UI/AutocompleteItem": {
+      "element": "div",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "start",
+        "cross": "start"
+      },
+      "styleKeys": [
+        "itemTextColor",
+        "itemIconColor",
+        "itemPaddingX",
+        "itemPaddingY",
+        "itemGap",
+        "minWidth",
+        "maxWidth",
+        "textStyle"
+      ],
+      "slots": [
+        {
+          "name": "checkbox",
+          "figmaName": "Checkbox",
+          "type": "component",
+          "component": "@UI/Checkbox",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "iconLeft",
+          "figmaName": "Icon Left",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "type": "text",
+          "optional": false,
+          "default": "Option",
+          "sizing": "fill"
+        },
+        {
+          "name": "badge1",
+          "figmaName": "Badge 1",
+          "type": "component",
+          "component": "@UI/Badge",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "hug"
+        },
+        {
+          "name": "badge2",
+          "figmaName": "Badge 2",
+          "type": "component",
+          "component": "@UI/Badge",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "hug"
+        },
+        {
+          "name": "badge3",
+          "figmaName": "Badge 3",
+          "type": "component",
+          "component": "@UI/Badge",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "hug"
+        },
+        {
+          "name": "iconRight",
+          "figmaName": "Icon Right",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        }
+      ],
+      "booleanProps": [
+        {
+          "name": "showCheckbox",
+          "figmaName": "Checkbox",
+          "controls": "checkbox",
+          "default": false
+        },
+        {
+          "name": "showIconLeft",
+          "figmaName": "Icon Left",
+          "controls": "iconLeft",
+          "default": false
+        },
+        {
+          "name": "showBadge1",
+          "figmaName": "Badge 1",
+          "controls": "badge1",
+          "default": false
+        },
+        {
+          "name": "showBadge2",
+          "figmaName": "Badge 2",
+          "controls": "badge2",
+          "default": false
+        },
+        {
+          "name": "showBadge3",
+          "figmaName": "Badge 3",
+          "controls": "badge3",
+          "default": false
+        },
+        {
+          "name": "showIconRight",
+          "figmaName": "Icon Right",
+          "controls": "iconRight",
+          "default": false
+        }
+      ],
+      "instanceSwapProps": [
+        {
+          "name": "checkboxVariant",
+          "figmaName": "Checkbox variant",
+          "slot": "checkbox",
+          "role": "checkbox"
+        },
+        {
+          "name": "iconLeft",
+          "figmaName": "Icon Left variant",
+          "slot": "iconLeft",
+          "role": "icon"
+        },
+        {
+          "name": "iconRight",
+          "figmaName": "Icon Right variant",
+          "slot": "iconRight",
+          "role": "icon"
+        }
+      ],
+      "textProps": [
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "default": "Option"
+        }
+      ],
+      "heightConstraint": "hug",
+      "iconSizeMap": {
+        "xs": 20,
+        "sm": 20,
+        "md": 20,
+        "lg": 24,
+        "xl": 20
+      }
+    },
+    "@UI/Autocomplete": {
+      "element": "div",
+      "composite": true,
+      "rootLayout": "vertical",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "start",
+        "cross": "start"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "gap",
+        "textStyle",
+        "textColor",
+        "iconColor",
+        "background",
+        "borderColor",
+        "borderRadius",
+        "minWidth",
+        "maxWidth",
+        "popoverPadding",
+        "itemGap",
+        "popoverBg",
+        "popoverBorder",
+        "popoverRadius",
+        "popoverMaxHeight",
+        "popoverElevation"
+      ],
+      "slots": [
+        {
+          "name": "trigger",
+          "figmaName": "Trigger",
+          "type": "frame",
+          "optional": false,
+          "sizing": "fill",
+          "layout": "horizontal",
+          "children": [
+            {
+              "name": "searchIcon",
+              "figmaName": "Search Icon",
+              "type": "icon",
+              "optional": false,
+              "sizing": "fixed"
+            },
+            {
+              "name": "tagRow",
+              "figmaName": "TagRow",
+              "type": "component",
+              "optional": true,
+              "defaultVisible": false,
+              "sizing": "hug"
+            },
+            {
+              "name": "inputField",
+              "figmaName": "Input",
+              "type": "input",
+              "optional": false,
+              "default": "Search...",
+              "sizing": "fill"
+            },
+            {
+              "name": "clearIcon",
+              "figmaName": "Clear Icon",
+              "type": "icon",
+              "optional": true,
+              "defaultVisible": false,
+              "sizing": "fixed"
+            }
+          ]
+        },
+        {
+          "name": "popover",
+          "figmaName": "Popover",
+          "type": "frame",
+          "optional": false,
+          "sizing": "fill",
+          "layout": "vertical",
+          "visibleWhen": "state === 'open'",
+          "slotCount": 10,
+          "slotComponent": "@UI/AutocompleteItem"
+        }
+      ],
+      "booleanProps": [
+        {
+          "name": "showTagRow",
+          "figmaName": "TagRow",
+          "controls": "tagRow",
+          "default": false
+        },
+        {
+          "name": "showClearIcon",
+          "figmaName": "Clear Icon",
+          "controls": "clearIcon",
+          "default": false
+        }
+      ],
+      "instanceSwapProps": [],
+      "textProps": [
+        {
+          "name": "placeholder",
+          "figmaName": "Label",
+          "default": "Search..."
+        }
+      ],
+      "heightConstraint": "hug",
+      "iconSizeMap": {
+        "xs": 20,
+        "sm": 20,
+        "md": 20,
+        "lg": 24,
+        "xl": 20
+      }
+    },
+    "@UI/Table/HeaderCell": {
+      "element": "div",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "start",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "gap",
+        "textStyle",
+        "textColor",
+        "background",
+        "sortIconColor",
+        "iconColor"
+      ],
+      "slots": [
+        {
+          "name": "iconLeft",
+          "figmaName": "Icon Left",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "type": "text",
+          "optional": false,
+          "default": "Column",
+          "sizing": "hug"
+        },
+        {
+          "name": "sortIcon",
+          "figmaName": "Sort Icon",
+          "type": "icon",
+          "optional": true,
+          "sizing": "fixed"
+        }
+      ],
+      "booleanProps": [
+        {
+          "name": "showIconLeft",
+          "figmaName": "Icon Left",
+          "controls": "iconLeft",
+          "default": false
+        },
+        {
+          "name": "showSortIcon",
+          "figmaName": "Sort Icon",
+          "controls": "sortIcon",
+          "default": false
+        }
+      ],
+      "instanceSwapProps": [
+        {
+          "name": "iconLeft",
+          "figmaName": "Icon Left variant",
+          "slot": "iconLeft",
+          "role": "icon"
+        },
+        {
+          "name": "sortIcon",
+          "figmaName": "Sort Icon variant",
+          "slot": "sortIcon",
+          "role": "icon"
+        }
+      ],
+      "textProps": [
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "default": "Column"
+        }
+      ],
+      "heightConstraint": "hug",
+      "iconSizeMap": {
+        "xs": 20,
+        "sm": 20,
+        "md": 20,
+        "lg": 24,
+        "xl": 20
+      }
+    },
+    "@UI/Table/Cell": {
+      "element": "div",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "start",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "gap",
+        "textStyle",
+        "textColor",
+        "iconColor"
+      ],
+      "slots": [
+        {
+          "name": "checkbox",
+          "figmaName": "Checkbox",
+          "type": "component",
+          "component": "@UI/Checkbox",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "iconLeft",
+          "figmaName": "Icon Left",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "type": "text",
+          "optional": false,
+          "default": "Cell content",
+          "sizing": "hug"
+        },
+        {
+          "name": "badge",
+          "figmaName": "Badge",
+          "type": "component",
+          "component": "@UI/Badge",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "hug"
+        },
+        {
+          "name": "iconAction",
+          "figmaName": "Icon Action",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        }
+      ],
+      "booleanProps": [
+        {
+          "name": "showCheckbox",
+          "figmaName": "Checkbox",
+          "controls": "checkbox",
+          "default": false
+        },
+        {
+          "name": "showIconLeft",
+          "figmaName": "Icon Left",
+          "controls": "iconLeft",
+          "default": false
+        },
+        {
+          "name": "showBadge",
+          "figmaName": "Badge",
+          "controls": "badge",
+          "default": false
+        },
+        {
+          "name": "showIconAction",
+          "figmaName": "Icon Action",
+          "controls": "iconAction",
+          "default": false
+        }
+      ],
+      "instanceSwapProps": [
+        {
+          "name": "checkboxVariant",
+          "figmaName": "Checkbox variant",
+          "slot": "checkbox",
+          "role": "checkbox"
+        },
+        {
+          "name": "iconLeft",
+          "figmaName": "Icon Left variant",
+          "slot": "iconLeft",
+          "role": "icon"
+        },
+        {
+          "name": "badgeVariant",
+          "figmaName": "Badge variant",
+          "slot": "badge",
+          "role": "badge"
+        },
+        {
+          "name": "iconAction",
+          "figmaName": "Icon Action variant",
+          "slot": "iconAction",
+          "role": "icon"
+        }
+      ],
+      "textProps": [
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "default": "Cell content"
+        }
+      ],
+      "heightConstraint": "hug",
+      "iconSizeMap": {
+        "xs": 20,
+        "sm": 20,
+        "md": 20,
+        "lg": 24,
+        "xl": 20
+      }
+    },
+    "@UI/Table/HeaderRow": {
+      "element": "div",
+      "composite": true,
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "fixed",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "start",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "minHeight",
+        "background"
+      ],
+      "defaultWidth": 560,
+      "columnCount": 4,
+      "columnComponent": "@UI/Table/HeaderCell",
+      "slots": [],
+      "booleanProps": [
+        {
+          "name": "showCheckboxColumn",
+          "figmaName": "Checkbox Column",
+          "controls": "checkboxColumn",
+          "default": false
+        }
+      ],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug"
+    },
+    "@UI/Table/Row": {
+      "element": "div",
+      "composite": true,
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "fixed",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "start",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "minHeight",
+        "background",
+        "borderColor",
+        "opacityToken"
+      ],
+      "defaultWidth": 560,
+      "columnCount": 4,
+      "columnComponent": "@UI/Table/Cell",
+      "slots": [],
+      "booleanProps": [
+        {
+          "name": "showCheckboxColumn",
+          "figmaName": "Checkbox Column",
+          "controls": "checkboxColumn",
+          "default": false
+        }
+      ],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug"
+    },
+    "@UI/Table": {
+      "element": "div",
+      "composite": true,
+      "rootLayout": "vertical",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "fixed"
+      },
+      "rootAlign": {
+        "main": "start",
+        "cross": "start"
+      },
+      "styleKeys": [
+        "background",
+        "borderColor",
+        "borderRadius"
+      ],
+      "defaultWidth": 560,
+      "headerComponent": "@UI/Table/HeaderRow",
+      "rowComponent": "@UI/Table/Row",
+      "rowCount": 4,
+      "slots": [],
+      "booleanProps": [
+        {
+          "name": "showCheckboxColumn",
+          "figmaName": "Checkbox Column",
+          "controls": "checkboxColumn",
+          "default": false
+        }
+      ],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug"
+    },
+    "@UI/ListItem": {
+      "element": "div",
+      "rootLayout": "horizontal",
+      "rootSizing": {
+        "main": "fixed",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "space-between",
+        "cross": "center"
+      },
+      "defaultWidth": 360,
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "gap",
+        "minHeight",
+        "leadingType",
+        "trailingType",
+        "textStyle",
+        "subtitleStyle",
+        "background",
+        "textColor",
+        "subtitleColor",
+        "iconColor",
+        "metaColor",
+        "dividerColor",
+        "opacityToken"
+      ],
+      "slots": [
+        {
+          "name": "leftGroup",
+          "figmaName": "Left Group",
+          "type": "frame",
+          "optional": false,
+          "sizing": "fill",
+          "layout": "horizontal",
+          "children": [
+            {
+              "name": "leadingIcon",
+              "figmaName": "Leading Icon",
+              "type": "icon",
+              "optional": true,
+              "defaultVisible": false,
+              "sizing": "fixed"
+            },
+            {
+              "name": "leadingAvatar",
+              "figmaName": "Leading Avatar",
+              "type": "component",
+              "component": "@UI/Avatar",
+              "optional": true,
+              "defaultVisible": false,
+              "sizing": "fixed"
+            },
+            {
+              "name": "leadingCheckbox",
+              "figmaName": "Leading Checkbox",
+              "type": "component",
+              "component": "@UI/Checkbox",
+              "optional": true,
+              "defaultVisible": false,
+              "sizing": "fixed"
+            },
+            {
+              "name": "textBlock",
+              "figmaName": "Text Block",
+              "type": "frame",
+              "optional": false,
+              "sizing": "fill",
+              "layout": "vertical",
+              "children": [
+                {
+                  "name": "label",
+                  "figmaName": "Label",
+                  "type": "text",
+                  "optional": false,
+                  "default": "List item",
+                  "sizing": "fill"
+                },
+                {
+                  "name": "subtitle",
+                  "figmaName": "Subtitle",
+                  "type": "text",
+                  "optional": true,
+                  "defaultVisible": false,
+                  "sizing": "fill"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "trailingBadge",
+          "figmaName": "Trailing Badge",
+          "type": "component",
+          "component": "@UI/Badge",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "hug"
+        },
+        {
+          "name": "trailingMeta",
+          "figmaName": "Trailing Meta",
+          "type": "text",
+          "optional": true,
+          "defaultVisible": false,
+          "default": "12:00",
+          "sizing": "hug"
+        },
+        {
+          "name": "trailingChevron",
+          "figmaName": "Trailing Chevron",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "trailingAction",
+          "figmaName": "Trailing Action",
+          "type": "component",
+          "component": "@UI/Switch",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "hug"
+        }
+      ],
+      "booleanProps": [
+        {
+          "name": "showLeadingIcon",
+          "figmaName": "Leading Icon",
+          "controls": "leadingIcon",
+          "default": false
+        },
+        {
+          "name": "showLeadingAvatar",
+          "figmaName": "Leading Avatar",
+          "controls": "leadingAvatar",
+          "default": false
+        },
+        {
+          "name": "showLeadingCheckbox",
+          "figmaName": "Leading Checkbox",
+          "controls": "leadingCheckbox",
+          "default": false
+        },
+        {
+          "name": "showSubtitle",
+          "figmaName": "Subtitle",
+          "controls": "subtitle",
+          "default": false
+        },
+        {
+          "name": "showTrailingBadge",
+          "figmaName": "Trailing Badge",
+          "controls": "trailingBadge",
+          "default": false
+        },
+        {
+          "name": "showTrailingChevron",
+          "figmaName": "Trailing Chevron",
+          "controls": "trailingChevron",
+          "default": false
+        },
+        {
+          "name": "showTrailingAction",
+          "figmaName": "Trailing Action",
+          "controls": "trailingAction",
+          "default": false
+        },
+        {
+          "name": "showDivider",
+          "figmaName": "Divider",
+          "controls": "divider",
+          "default": true
+        }
+      ],
+      "instanceSwapProps": [
+        {
+          "name": "leadingIcon",
+          "figmaName": "Leading Icon variant",
+          "slot": "leadingIcon",
+          "role": "icon"
+        },
+        {
+          "name": "leadingAvatar",
+          "figmaName": "Avatar variant",
+          "slot": "leadingAvatar",
+          "role": "avatar"
+        },
+        {
+          "name": "leadingCheckbox",
+          "figmaName": "Checkbox variant",
+          "slot": "leadingCheckbox",
+          "role": "checkbox"
+        },
+        {
+          "name": "trailingBadge",
+          "figmaName": "Badge variant",
+          "slot": "trailingBadge",
+          "role": "badge"
+        },
+        {
+          "name": "trailingChevron",
+          "figmaName": "Trailing Chevron variant",
+          "slot": "trailingChevron",
+          "role": "icon"
+        },
+        {
+          "name": "trailingAction",
+          "figmaName": "Action variant",
+          "slot": "trailingAction",
+          "role": "switch"
+        }
+      ],
+      "textProps": [
+        {
+          "name": "label",
+          "figmaName": "Label",
+          "default": "List item"
+        },
+        {
+          "name": "subtitle",
+          "figmaName": "Subtitle Text",
+          "default": "Secondary description"
+        },
+        {
+          "name": "meta",
+          "figmaName": "Meta Text",
+          "default": "12:00"
+        }
+      ],
+      "heightConstraint": "hug",
+      "iconSizeMap": {
+        "xs": 20,
+        "sm": 20,
+        "md": 20,
+        "lg": 24,
+        "xl": 20
+      }
+    },
+    "@UI/Image": {
+      "element": "div",
+      "customStructure": "image",
+      "rootLayout": "none",
+      "styleKeys": [
+        "widthPx",
+        "ratioValue",
+        "borderRadius",
+        "background",
+        "iconColor",
+        "iconName",
+        "labelColor",
+        "labelStyle",
+        "minWidthPx",
+        "maxWidthPx"
+      ],
+      "slots": [],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [
+        {
+          "name": "alt",
+          "figmaName": "Alt",
+          "default": ""
+        }
+      ],
+      "heightConstraint": "hug",
+      "clipsContent": true
+    },
+    "@UI/EmptyState": {
+      "element": "div",
+      "rootLayout": "dynamic",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "hug"
+      },
+      "rootAlign": {
+        "main": "center",
+        "cross": "center"
+      },
+      "styleKeys": [
+        "layoutDirection",
+        "textAlign",
+        "paddingX",
+        "paddingY",
+        "gap",
+        "textBlockGap",
+        "actionsGap",
+        "iconSize",
+        "iconWrapperSize",
+        "minWidth",
+        "maxWidth",
+        "borderRadius",
+        "background",
+        "iconColor",
+        "titleColor",
+        "titleStyle",
+        "descriptionColor",
+        "descriptionStyle"
+      ],
+      "slots": [
+        {
+          "name": "icon",
+          "figmaName": "Icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": true,
+          "sizing": "fixed"
+        },
+        {
+          "name": "textBlock",
+          "figmaName": "Text",
+          "type": "frame",
+          "optional": false,
+          "sizing": "fill",
+          "layout": "vertical",
+          "children": [
+            {
+              "name": "title",
+              "figmaName": "Title",
+              "type": "text",
+              "optional": false,
+              "default": "No items yet",
+              "sizing": "fill"
+            },
+            {
+              "name": "description",
+              "figmaName": "Description",
+              "type": "text",
+              "optional": false,
+              "default": "Description text",
+              "sizing": "fill"
+            }
+          ]
+        },
+        {
+          "name": "actions",
+          "figmaName": "Actions",
+          "type": "frame",
+          "optional": false,
+          "sizing": "hug",
+          "layout": "horizontal",
+          "children": [
+            {
+              "name": "ctaButton",
+              "figmaName": "CTA",
+              "type": "component",
+              "component": "@UI/Button",
+              "optional": true,
+              "sizing": "hug"
+            },
+            {
+              "name": "secondaryButton",
+              "figmaName": "Secondary Action",
+              "type": "component",
+              "component": "@UI/Button",
+              "optional": true,
+              "sizing": "hug"
+            }
+          ]
+        }
+      ],
+      "booleanProps": [
+        {
+          "name": "showIcon",
+          "figmaName": "Icon",
+          "controls": "icon",
+          "default": true
+        },
+        {
+          "name": "showCta",
+          "figmaName": "CTA",
+          "controls": "ctaButton",
+          "default": true
+        },
+        {
+          "name": "showSecondary",
+          "figmaName": "Secondary Action",
+          "controls": "secondaryButton",
+          "default": true
+        }
+      ],
+      "instanceSwapProps": [],
+      "textProps": [
+        {
+          "name": "title",
+          "figmaName": "Title",
+          "default": "No items yet"
+        },
+        {
+          "name": "description",
+          "figmaName": "Description",
+          "default": "Description text"
+        }
+      ],
+      "heightConstraint": "hug",
+      "iconSizeMap": {
+        "xs": 20,
+        "sm": 20,
+        "md": 20,
+        "lg": 24,
+        "xl": 20
+      }
+    },
+    "@UI/Skeleton/Page": {
+      "element": "div",
+      "customStructure": "skeletonPage",
+      "rootLayout": "vertical",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "fixed"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "gap",
+        "headerH",
+        "heroH",
+        "lineH",
+        "cardH",
+        "maxWidth",
+        "blockColor",
+        "background",
+        "borderRadius",
+        "shimmer"
+      ],
+      "slots": [],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug"
+    },
+    "@UI/Skeleton/List": {
+      "element": "div",
+      "customStructure": "skeletonList",
+      "rootLayout": "vertical",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "fixed"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "gap",
+        "rowH",
+        "lineH",
+        "circleD",
+        "metaWidth",
+        "maxWidth",
+        "rowCount",
+        "blockColor",
+        "background",
+        "dividerColor",
+        "borderRadius",
+        "shimmer"
+      ],
+      "slots": [],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug"
+    },
+    "@UI/Skeleton/Card": {
+      "element": "div",
+      "customStructure": "skeletonCard",
+      "rootLayout": "vertical",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "fixed"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "gap",
+        "mediaH",
+        "lineH",
+        "maxWidth",
+        "actionW",
+        "blockColor",
+        "background",
+        "borderRadius",
+        "shimmer"
+      ],
+      "slots": [],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug",
+      "clipsContent": true
+    },
+    "@UI/Skeleton/Table": {
+      "element": "div",
+      "customStructure": "skeletonTable",
+      "rootLayout": "vertical",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "fixed"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "rowH",
+        "lineH",
+        "minWidth",
+        "colCount",
+        "rowCount",
+        "blockColor",
+        "background",
+        "headerBg",
+        "dividerColor",
+        "borderColor",
+        "borderRadius",
+        "shimmer"
+      ],
+      "slots": [],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug",
+      "clipsContent": true
+    },
+    "@UI/Skeleton/Chart": {
+      "element": "div",
+      "customStructure": "skeletonChart",
+      "rootLayout": "vertical",
+      "rootSizing": {
+        "main": "hug",
+        "cross": "fixed"
+      },
+      "styleKeys": [
+        "paddingX",
+        "paddingY",
+        "gap",
+        "lineH",
+        "barsH",
+        "maxWidth",
+        "blockColor",
+        "background",
+        "borderRadius",
+        "shimmer",
+        "chartMode",
+        "barCount"
+      ],
+      "slots": [],
+      "booleanProps": [],
+      "instanceSwapProps": [],
+      "textProps": [],
+      "heightConstraint": "hug"
+    }
+  }
+}

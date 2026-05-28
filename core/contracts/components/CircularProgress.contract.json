@@ -1,0 +1,165 @@
+{
+  "name": "@UI/CircularProgress",
+  "description": "Круговой прогресс. 5 размеров (xs, sm, md, lg, xl) от 18px. Текст процентов внутри от md (32px). Состояния 25%, 50%, 75%. ",
+  "variantProps": [
+    "size",
+    "value"
+  ],
+  "variantAxes": {
+    "size": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl"
+    ],
+    "value": [
+      "25",
+      "50",
+      "75"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "trackColor": "color_surface_3",
+        "fillColor": "color_brand_primary",
+        "textColor": "color_text_primary"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-text-primary)]",
+        "[--fill-color:var(--color-brand-primary)]",
+        "[--track-color:var(--color-surface-3)]"
+      ]
+    },
+    {
+      "when": {
+        "value": "25"
+      },
+      "style": {
+        "value": 25
+      },
+      "tailwindClasses": [
+        "[data-value=\"25\"]"
+      ]
+    },
+    {
+      "when": {
+        "value": "50"
+      },
+      "style": {
+        "value": 50
+      },
+      "tailwindClasses": [
+        "[data-value=\"50\"]"
+      ]
+    },
+    {
+      "when": {
+        "value": "75"
+      },
+      "style": {
+        "value": 75
+      },
+      "tailwindClasses": [
+        "[data-value=\"75\"]"
+      ]
+    },
+    {
+      "when": {
+        "size": "xs"
+      },
+      "style": {
+        "boxSize": "space_circular_xs",
+        "showLabel": false
+      },
+      "tailwindClasses": [
+        "w-[var(--space-circular-xs)]",
+        "h-[var(--space-circular-xs)]",
+        "[data-show-label=\"false\"]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "boxSize": "space_circular_sm",
+        "showLabel": false
+      },
+      "tailwindClasses": [
+        "w-[var(--space-circular-sm)]",
+        "h-[var(--space-circular-sm)]",
+        "[data-show-label=\"false\"]"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "boxSize": "space_circular_md",
+        "showLabel": true
+      },
+      "tailwindClasses": [
+        "w-[var(--space-circular-md)]",
+        "h-[var(--space-circular-md)]",
+        "[data-show-label=\"true\"]"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "boxSize": "space_circular_lg",
+        "showLabel": true
+      },
+      "tailwindClasses": [
+        "w-[var(--space-circular-lg)]",
+        "h-[var(--space-circular-lg)]",
+        "[data-show-label=\"true\"]"
+      ]
+    },
+    {
+      "when": {
+        "size": "xl"
+      },
+      "style": {
+        "boxSize": "space_circular_xl",
+        "showLabel": true
+      },
+      "tailwindClasses": [
+        "w-[var(--space-circular-xl)]",
+        "h-[var(--space-circular-xl)]",
+        "[data-show-label=\"true\"]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "boxSize": {
+      "xs": "space_circular_xs",
+      "sm": "space_circular_sm",
+      "md": "space_circular_md",
+      "lg": "space_circular_lg",
+      "xl": "space_circular_xl"
+    }
+  },
+  "element": "div",
+  "rootLayout": "none",
+  "customStructure": "circularProgress",
+  "styleKeys": [
+    "boxSize",
+    "value",
+    "showLabel",
+    "trackColor",
+    "fillColor",
+    "textColor"
+  ],
+  "heightConstraint": "hug",
+  "generatorStrategy": "template",
+  "template": "CircularProgress"
+}

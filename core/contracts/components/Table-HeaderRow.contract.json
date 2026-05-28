@@ -1,0 +1,99 @@
+{
+  "name": "@UI/Table/HeaderRow",
+  "description": "Строка заголовков таблицы. 4 HeaderCell-слота. Нижний border-divider. Размеры sm/md/lg.",
+  "variantProps": [
+    "size"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "background": "color_surface_1",
+        "borderColor": "color_border_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-1)]",
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "minHeight": "space_table_row_h_sm"
+      },
+      "tailwindClasses": [
+        "min-h-[var(--space-table-row-h-sm)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "minHeight": "space_table_row_h_md"
+      },
+      "tailwindClasses": [
+        "min-h-[var(--space-table-row-h-md)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "minHeight": "space_table_row_h_lg"
+      },
+      "tailwindClasses": [
+        "min-h-[var(--space-table-row-h-lg)]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "minHeight": {
+      "sm": "space_table_row_h_sm",
+      "md": "space_table_row_h_md",
+      "lg": "space_table_row_h_lg"
+    }
+  },
+  "element": "div",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "fixed",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "start",
+    "cross": "center"
+  },
+  "composite": true,
+  "defaultWidth": 560,
+  "booleanProps": [
+    {
+      "name": "showCheckboxColumn",
+      "figmaName": "Checkbox Column",
+      "controls": "checkboxColumn",
+      "default": false
+    }
+  ],
+  "styleKeys": [
+    "minHeight",
+    "background"
+  ],
+  "columnCount": 4,
+  "columnComponent": "@UI/Table/HeaderCell",
+  "heightConstraint": "hug",
+  "generatorStrategy": "template",
+  "template": "TableHeaderRow"
+}

@@ -1,0 +1,38 @@
+{
+  "name": "@UI/CommandPalette",
+  "description": "Searchable command dialog backed by cmdk + Radix Dialog. Overlay scrim, panel shell, input row, scrollable list.",
+  "variantProps": [],
+  "variantAxes": {},
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "background": "color_surface_1",
+        "borderColor": "color_border_base",
+        "borderRadius": "radius_default",
+        "maxWidth": "space_560",
+        "elevationToken": "effect_elevation_2",
+        "overlayToken": "effect_scrim_light"
+      },
+      "tailwindClasses": [
+        "w-full max-w-[var(--space-560)]",
+        "rounded-[var(--radius-default)]",
+        "border border-solid border-[var(--border-width-base)] border-[var(--color-border-base)]",
+        "bg-[var(--color-surface-1)]",
+        "shadow-elevation-2",
+        "overflow-hidden"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "element": "div",
+  "rootLayout": "vertical",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "fill"
+  },
+  "heightConstraint": "hug",
+  "generatorStrategy": "template",
+  "template": "CommandPalette"
+}

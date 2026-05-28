@@ -1,0 +1,219 @@
+{
+  "name": "@UI/FormHint",
+  "description": "Helper text под полем ввода. 3 размера (sm/md/lg), 4 вида (base, success, warning, danger). Опционально иконка слева.",
+  "variantProps": [
+    "size",
+    "appearance"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "appearance": [
+      "base",
+      "success",
+      "warning",
+      "danger"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {
+        "appearance": "base"
+      },
+      "style": {
+        "textColor": "color_text_muted",
+        "iconColor": "color_icon_on_base"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-text-muted)]",
+        "[--icon-color:var(--color-icon-on-base)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "success"
+      },
+      "style": {
+        "textColor": "color_success_base",
+        "iconColor": "color_icon_on_success"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-success-base)]",
+        "[--icon-color:var(--color-icon-on-success)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "warning"
+      },
+      "style": {
+        "textColor": "color_warning_base",
+        "iconColor": "color_icon_on_warning"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-warning-base)]",
+        "[--icon-color:var(--color-icon-on-warning)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "danger"
+      },
+      "style": {
+        "textColor": "color_danger_base",
+        "iconColor": "color_icon_on_danger"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-danger-base)]",
+        "[--icon-color:var(--color-icon-on-danger)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "paddingX": "space_2",
+        "paddingY": "space_1",
+        "gap": "space_2",
+        "textStyle": "Text/Caption/XS"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-2)]",
+        "py-[var(--space-1)]",
+        "gap-[var(--space-2)]",
+        "text-style-caption-xs"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "paddingX": "space_2",
+        "paddingY": "space_1",
+        "gap": "space_4",
+        "textStyle": "Text/Caption/Base"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-2)]",
+        "py-[var(--space-1)]",
+        "gap-[var(--space-4)]",
+        "text-style-caption"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "paddingX": "space_2",
+        "paddingY": "space_1",
+        "gap": "space_4",
+        "textStyle": "Text/Body/Base"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-2)]",
+        "py-[var(--space-1)]",
+        "gap-[var(--space-4)]",
+        "text-style-body"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "paddingX": {
+      "sm": "space_2",
+      "md": "space_2",
+      "lg": "space_2"
+    },
+    "paddingY": {
+      "sm": "space_1",
+      "md": "space_1",
+      "lg": "space_1"
+    },
+    "gap": {
+      "sm": "space_2",
+      "md": "space_4",
+      "lg": "space_4"
+    },
+    "textStyle": {
+      "sm": "Text/Caption/XS",
+      "md": "Text/Caption/Base",
+      "lg": "Text/Body/Base"
+    }
+  },
+  "element": "div",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "center",
+    "cross": "center"
+  },
+  "slots": [
+    {
+      "name": "icon",
+      "figmaName": "Icon",
+      "type": "icon",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "fixed"
+    },
+    {
+      "name": "hint",
+      "figmaName": "Hint",
+      "type": "text",
+      "optional": false,
+      "default": "Hint text",
+      "sizing": "hug"
+    }
+  ],
+  "booleanProps": [
+    {
+      "name": "showIcon",
+      "figmaName": "Show icon",
+      "controls": "icon",
+      "default": false
+    }
+  ],
+  "instanceSwapProps": [
+    {
+      "name": "icon",
+      "figmaName": "Icon",
+      "slot": "icon",
+      "role": "icon"
+    }
+  ],
+  "textProps": [
+    {
+      "name": "hint",
+      "figmaName": "Hint",
+      "default": "Hint text"
+    }
+  ],
+  "styleKeys": [
+    "paddingX",
+    "paddingY",
+    "gap",
+    "textStyle",
+    "textColor",
+    "iconColor"
+  ],
+  "heightConstraint": "hug",
+  "iconSizeMap": {
+    "xs": 20,
+    "sm": 20,
+    "md": 20,
+    "lg": 24,
+    "xl": 20
+  },
+  "generatorStrategy": "template",
+  "template": "FormHint"
+}

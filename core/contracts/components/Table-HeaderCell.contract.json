@@ -1,0 +1,253 @@
+{
+  "name": "@UI/Table/HeaderCell",
+  "description": "Ячейка заголовка таблицы. Опционально: иконка слева, лейбл (grow), sort-иконка справа. Состояния сортировки: none, asc, desc. Размеры sm/md/lg.",
+  "variantProps": [
+    "size",
+    "sort"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "sort": [
+      "none",
+      "asc",
+      "desc"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "background": "color_surface_1",
+        "textColor": "color_text_muted",
+        "borderColor": "color_border_base",
+        "iconColor": "color_icon_on_base",
+        "sortIconColor": "color_icon_on_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-1)]",
+        "text-[var(--color-text-muted)]",
+        "[--icon-color:var(--color-icon-on-base)]",
+        "[--sort-icon-color:var(--color-icon-on-base)]",
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "sort": "asc"
+      },
+      "style": {
+        "textColor": "color_text_primary",
+        "sortIconColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-text-primary)]",
+        "[--sort-icon-color:var(--color-brand-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "sort": "desc"
+      },
+      "style": {
+        "textColor": "color_text_primary",
+        "sortIconColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-text-primary)]",
+        "[--sort-icon-color:var(--color-brand-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "paddingX": "space_table_cell_x_sm",
+        "paddingY": "space_table_cell_y_sm",
+        "gap": "space_table_cell_gap",
+        "textStyle": "Text/Caption/Base",
+        "minHeight": "space_table_row_h_sm",
+        "minWidth": "space_table_col_min_sm"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-table-cell-x-sm)]",
+        "py-[var(--space-table-cell-y-sm)]",
+        "gap-[var(--space-table-cell-gap)]",
+        "min-w-[var(--space-table-col-min-sm)]",
+        "min-h-[var(--space-table-row-h-sm)]",
+        "text-style-caption"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "paddingX": "space_table_cell_x_md",
+        "paddingY": "space_table_cell_y_md",
+        "gap": "space_table_cell_gap",
+        "textStyle": "Text/Body/Strong",
+        "minHeight": "space_table_row_h_md",
+        "minWidth": "space_table_col_min_md"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-table-cell-x-md)]",
+        "py-[var(--space-table-cell-y-md)]",
+        "gap-[var(--space-table-cell-gap)]",
+        "min-w-[var(--space-table-col-min-md)]",
+        "min-h-[var(--space-table-row-h-md)]",
+        "text-style-body-strong"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "paddingX": "space_table_cell_x_lg",
+        "paddingY": "space_table_cell_y_lg",
+        "gap": "space_table_cell_gap",
+        "textStyle": "Text/Body/Strong",
+        "minHeight": "space_table_row_h_lg",
+        "minWidth": "space_table_col_min_lg"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-table-cell-x-lg)]",
+        "py-[var(--space-table-cell-y-lg)]",
+        "gap-[var(--space-table-cell-gap)]",
+        "min-w-[var(--space-table-col-min-lg)]",
+        "min-h-[var(--space-table-row-h-lg)]",
+        "text-style-body-strong"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "paddingX": {
+      "sm": "space_table_cell_x_sm",
+      "md": "space_table_cell_x_md",
+      "lg": "space_table_cell_x_lg"
+    },
+    "paddingY": {
+      "sm": "space_table_cell_y_sm",
+      "md": "space_table_cell_y_md",
+      "lg": "space_table_cell_y_lg"
+    },
+    "gap": {
+      "sm": "space_table_cell_gap",
+      "md": "space_table_cell_gap",
+      "lg": "space_table_cell_gap"
+    },
+    "minHeight": {
+      "sm": "space_table_row_h_sm",
+      "md": "space_table_row_h_md",
+      "lg": "space_table_row_h_lg"
+    },
+    "minWidth": {
+      "sm": "space_table_col_min_sm",
+      "md": "space_table_col_min_md",
+      "lg": "space_table_col_min_lg"
+    },
+    "textStyle": {
+      "sm": "Text/Caption/Base",
+      "md": "Text/Body/Strong",
+      "lg": "Text/Body/Strong"
+    }
+  },
+  "element": "div",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "start",
+    "cross": "center"
+  },
+  "slots": [
+    {
+      "name": "iconLeft",
+      "figmaName": "Icon Left",
+      "type": "icon",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "fixed"
+    },
+    {
+      "name": "label",
+      "figmaName": "Label",
+      "type": "text",
+      "optional": false,
+      "default": "Column",
+      "sizing": "hug"
+    },
+    {
+      "name": "sortIcon",
+      "figmaName": "Sort Icon",
+      "type": "icon",
+      "optional": true,
+      "sizing": "fixed"
+    }
+  ],
+  "booleanProps": [
+    {
+      "name": "showIconLeft",
+      "figmaName": "Icon Left",
+      "controls": "iconLeft",
+      "default": false
+    },
+    {
+      "name": "showSortIcon",
+      "figmaName": "Sort Icon",
+      "controls": "sortIcon",
+      "default": false
+    }
+  ],
+  "instanceSwapProps": [
+    {
+      "name": "iconLeft",
+      "figmaName": "Icon Left variant",
+      "slot": "iconLeft",
+      "role": "icon"
+    },
+    {
+      "name": "sortIcon",
+      "figmaName": "Sort Icon variant",
+      "slot": "sortIcon",
+      "role": "icon"
+    }
+  ],
+  "textProps": [
+    {
+      "name": "label",
+      "figmaName": "Label",
+      "default": "Column"
+    }
+  ],
+  "styleKeys": [
+    "paddingX",
+    "paddingY",
+    "gap",
+    "textStyle",
+    "textColor",
+    "background",
+    "sortIconColor",
+    "iconColor"
+  ],
+  "heightConstraint": "hug",
+  "iconSizeMap": {
+    "xs": 20,
+    "sm": 20,
+    "md": 20,
+    "lg": 24,
+    "xl": 20
+  },
+  "generatorStrategy": "template",
+  "template": "TableHeaderCell"
+}

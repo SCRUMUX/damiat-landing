@@ -1,0 +1,175 @@
+{
+  "name": "@UI/FileUpload",
+  "description": "File upload zone with drag-and-drop. States: idle, hover/dragover, uploading, done, error. Sizes sm/md/lg.",
+  "variantProps": [
+    "size",
+    "state"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "state": [
+      "idle",
+      "dragover",
+      "uploading",
+      "done",
+      "error"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "borderRadius": "radius_medium",
+        "borderWidth": "border_default",
+        "borderStyle": "dashed",
+        "textStyle": "Text/Body/MD",
+        "icon": "upload",
+        "padding": "space_card_inset"
+      },
+      "tailwindClasses": [
+        "rounded-medium",
+        "[data-icon=\"upload\"]"
+      ]
+    },
+    {
+      "when": {
+        "state": "idle"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "borderColor": "color_border_base",
+        "textColor": "color_text_secondary",
+        "iconColor": "color_icon_on_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "text-[var(--color-text-secondary)]",
+        "[--icon-color:var(--color-icon-on-base)]",
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "dragover"
+      },
+      "style": {
+        "background": "color_brand_subtle",
+        "borderColor": "color_brand_primary",
+        "textColor": "color_brand_primary",
+        "iconColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-brand-subtle)]",
+        "text-[var(--color-brand-primary)]",
+        "[--icon-color:var(--color-brand-primary)]",
+        "border",
+        "border-[var(--color-brand-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "uploading"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "borderColor": "color_brand_primary",
+        "textColor": "color_text_secondary",
+        "iconColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "text-[var(--color-text-secondary)]",
+        "[--icon-color:var(--color-brand-primary)]",
+        "border",
+        "border-[var(--color-brand-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "done"
+      },
+      "style": {
+        "background": "color_success_subtle",
+        "borderColor": "color_success_base",
+        "textColor": "color_success_base",
+        "iconColor": "color_success_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-success-subtle)]",
+        "text-[var(--color-success-base)]",
+        "[--icon-color:var(--color-success-base)]",
+        "border",
+        "border-[var(--color-success-base)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "error"
+      },
+      "style": {
+        "background": "color_danger_subtle",
+        "borderColor": "color_danger_base",
+        "textColor": "color_danger_base",
+        "iconColor": "color_danger_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-danger-subtle)]",
+        "text-[var(--color-danger-base)]",
+        "[--icon-color:var(--color-danger-base)]",
+        "border",
+        "border-[var(--color-danger-base)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "height": 80,
+        "textStyle": "Text/Body/SM",
+        "iconSize": 20
+      },
+      "tailwindClasses": [
+        "text-style-body-sm"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "height": 120,
+        "textStyle": "Text/Body/MD",
+        "iconSize": 28
+      },
+      "tailwindClasses": []
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "height": 180,
+        "textStyle": "Text/Body/LG",
+        "iconSize": 36
+      },
+      "tailwindClasses": [
+        "text-style-body-lg"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "textStyle": {
+      "sm": "Text/Body/SM",
+      "md": "Text/Body/MD",
+      "lg": "Text/Body/LG"
+    }
+  }
+}

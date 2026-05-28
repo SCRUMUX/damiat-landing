@@ -1,0 +1,218 @@
+{
+  "name": "@UI/Switch",
+  "description": "Switch: 4 размера (xs, sm, md, lg), 4 состояния (on, off, disabled-on, disabled-off). Pill track + thumb. Без семантических стилей.",
+  "variantProps": [
+    "size",
+    "state"
+  ],
+  "variantAxes": {
+    "size": [
+      "xs",
+      "sm",
+      "md",
+      "lg"
+    ],
+    "state": [
+      "on",
+      "off",
+      "disabled-on",
+      "disabled-off"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {
+        "state": "on"
+      },
+      "style": {
+        "trackBg": "color_brand_primary",
+        "thumbBg": "color_icon_on_brand",
+        "thumbBorderColor": "color_border_base",
+        "opacity": 1
+      },
+      "tailwindClasses": [
+        "[--track-bg:var(--color-brand-primary)]",
+        "[--thumb-bg:var(--color-icon-on-brand)]",
+        "[--thumb-border:var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "off"
+      },
+      "style": {
+        "trackBg": "color_surface_3",
+        "thumbBg": "color_icon_on_brand",
+        "borderColor": "color_border_strong",
+        "thumbBorderColor": "color_border_strong",
+        "opacity": 1
+      },
+      "tailwindClasses": [
+        "[--track-bg:var(--color-surface-3)]",
+        "[--thumb-bg:var(--color-icon-on-brand)]",
+        "[--thumb-border:var(--color-border-strong)]",
+        "border",
+        "border-[var(--color-border-strong)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "disabled-on"
+      },
+      "style": {
+        "trackBg": "color_brand_primary",
+        "thumbBg": "color_icon_on_brand",
+        "thumbBorderColor": "color_border_base",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "[--track-bg:var(--color-brand-primary)]",
+        "[--thumb-bg:var(--color-icon-on-brand)]",
+        "[--thumb-border:var(--color-border-base)]",
+        "opacity-[var(--opacity-disabled)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "disabled-off"
+      },
+      "style": {
+        "trackBg": "color_surface_3",
+        "thumbBg": "color_icon_on_brand",
+        "borderColor": "color_border_strong",
+        "thumbBorderColor": "color_border_strong",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "[--track-bg:var(--color-surface-3)]",
+        "[--thumb-bg:var(--color-icon-on-brand)]",
+        "[--thumb-border:var(--color-border-strong)]",
+        "border",
+        "border-[var(--color-border-strong)]",
+        "opacity-[var(--opacity-disabled)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "xs"
+      },
+      "style": {
+        "trackW": "space_switch_track_w_xs",
+        "trackH": "space_switch_track_h_xs",
+        "thumbSize": "space_8",
+        "borderRadius": "radius_pill"
+      },
+      "tailwindClasses": [
+        "[--thumb-size:var(--space-8)]",
+        "w-[var(--space-switch-track-w-xs)]",
+        "h-[var(--space-switch-track-h-xs)]",
+        "rounded-pill"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "trackW": "space_switch_track_w_sm",
+        "trackH": "space_switch_track_h_sm",
+        "thumbSize": "space_12",
+        "borderRadius": "radius_pill"
+      },
+      "tailwindClasses": [
+        "[--thumb-size:var(--space-12)]",
+        "w-[var(--space-switch-track-w-sm)]",
+        "h-[var(--space-switch-track-h-sm)]",
+        "rounded-pill"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "trackW": "space_switch_track_w_md",
+        "trackH": "space_switch_track_h_md",
+        "thumbSize": "space_control_box_sm",
+        "borderRadius": "radius_pill"
+      },
+      "tailwindClasses": [
+        "[--thumb-size:var(--space-control-box-sm)]",
+        "w-[var(--space-switch-track-w-md)]",
+        "h-[var(--space-switch-track-h-md)]",
+        "rounded-pill"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "trackW": "space_switch_track_w_lg",
+        "trackH": "space_switch_track_h_lg",
+        "thumbSize": "space_control_box_md",
+        "borderRadius": "radius_pill"
+      },
+      "tailwindClasses": [
+        "[--thumb-size:var(--space-control-box-md)]",
+        "w-[var(--space-switch-track-w-lg)]",
+        "h-[var(--space-switch-track-h-lg)]",
+        "rounded-pill"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "borderRadius": {
+      "xs": "radius_pill",
+      "sm": "radius_pill",
+      "md": "radius_pill",
+      "lg": "radius_pill"
+    },
+    "trackW": {
+      "xs": "space_switch_track_w_xs",
+      "sm": "space_switch_track_w_sm",
+      "md": "space_switch_track_w_md",
+      "lg": "space_switch_track_w_lg"
+    },
+    "trackH": {
+      "xs": "space_switch_track_h_xs",
+      "sm": "space_switch_track_h_sm",
+      "md": "space_switch_track_h_md",
+      "lg": "space_switch_track_h_lg"
+    },
+    "thumbSize": {
+      "xs": "space_8",
+      "sm": "space_12",
+      "md": "space_control_box_sm",
+      "lg": "space_control_box_md"
+    }
+  },
+  "element": "button",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "fixed",
+    "cross": "fixed"
+  },
+  "rootAlign": {
+    "main": "center",
+    "cross": "center"
+  },
+  "customStructure": "switch",
+  "styleKeys": [
+    "trackW",
+    "trackH",
+    "thumbSize",
+    "trackBg",
+    "borderColor",
+    "thumbBg",
+    "thumbBorderColor",
+    "opacityToken",
+    "borderRadius"
+  ],
+  "heightConstraint": "hug",
+  "borderWidthToken": "border_width_base",
+  "generatorStrategy": "template",
+  "template": "Switch"
+}

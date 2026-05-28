@@ -1,0 +1,161 @@
+{
+  "name": "@UI/ScrollBar",
+  "description": "ScrollBar: трек, thumb (circle или rect), стрелки на концах. horizontal/vertical. 3 размера, 2 формы thumb. ",
+  "variantProps": [
+    "orientation",
+    "size",
+    "shape"
+  ],
+  "variantAxes": {
+    "orientation": [
+      "horizontal",
+      "vertical"
+    ],
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "shape": [
+      "circle",
+      "rect"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "trackBg": "color_surface_3",
+        "thumbBg": "color_bg_base",
+        "thumbBorder": "color_border_strong",
+        "arrowColor": "color_surface_3"
+      },
+      "tailwindClasses": [
+        "[--track-bg:var(--color-surface-3)]",
+        "[--thumb-bg:var(--color-bg-base)]"
+      ]
+    },
+    {
+      "when": {
+        "orientation": "horizontal"
+      },
+      "style": {
+        "trackLength": "space_track_w_sm"
+      },
+      "tailwindClasses": [
+        "[--track-length:var(--space-track-w-sm)]"
+      ]
+    },
+    {
+      "when": {
+        "orientation": "vertical"
+      },
+      "style": {
+        "trackLength": "space_track_w_md"
+      },
+      "tailwindClasses": [
+        "[--track-length:var(--space-track-w-md)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "trackThickness": "space_track_h_sm",
+        "thumbSize": "space_12",
+        "thumbWidthPct": 25,
+        "borderRadius": "radius_pill"
+      },
+      "tailwindClasses": [
+        "[--thumb-size:var(--space-12)]",
+        "rounded-pill"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "trackThickness": "space_track_h_md",
+        "thumbSize": "space_control_box_sm",
+        "thumbWidthPct": 25,
+        "borderRadius": "radius_pill"
+      },
+      "tailwindClasses": [
+        "[--thumb-size:var(--space-control-box-sm)]",
+        "rounded-pill"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "trackThickness": "space_track_h_lg",
+        "thumbSize": "space_control_box_md",
+        "thumbWidthPct": 25,
+        "borderRadius": "radius_pill"
+      },
+      "tailwindClasses": [
+        "[--thumb-size:var(--space-control-box-md)]",
+        "rounded-pill"
+      ]
+    },
+    {
+      "when": {
+        "shape": "circle"
+      },
+      "style": {
+        "thumbShape": "circle"
+      },
+      "tailwindClasses": [
+        "[data-thumb-shape=\"circle\"]"
+      ]
+    },
+    {
+      "when": {
+        "shape": "rect"
+      },
+      "style": {
+        "thumbShape": "rect",
+        "thumbWidthPct": 40
+      },
+      "tailwindClasses": [
+        "[data-thumb-shape=\"rect\"]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "borderRadius": {
+      "sm": "radius_pill",
+      "md": "radius_pill",
+      "lg": "radius_pill"
+    },
+    "thumbSize": {
+      "sm": "space_12",
+      "md": "space_control_box_sm",
+      "lg": "space_control_box_md"
+    }
+  },
+  "element": "div",
+  "rootLayout": "dynamic",
+  "customStructure": "scrollbar",
+  "styleKeys": [
+    "trackLength",
+    "trackThickness",
+    "thumbSize",
+    "thumbWidthPct",
+    "thumbShape",
+    "arrowColor",
+    "trackBg",
+    "thumbBg",
+    "thumbBorder"
+  ],
+  "heightConstraint": "hug",
+  "borderWidthToken": "border_width_base",
+  "generatorStrategy": "template",
+  "template": "ScrollBar"
+}

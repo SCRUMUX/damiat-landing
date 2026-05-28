@@ -1,0 +1,158 @@
+{
+  "name": "@UI/Spinner",
+  "description": "Spinner: индикатор загрузки. 5 размеров (xs/sm/md/lg/xl) совпадают с CircularProgress. 3 варианта (brand/base/inherit). Дуга ~270° окружности без лейбла.",
+  "variantProps": [
+    "size",
+    "appearance"
+  ],
+  "variantAxes": {
+    "size": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl"
+    ],
+    "appearance": [
+      "brand",
+      "base",
+      "inherit"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "trackColor": "color_surface_3",
+        "fillColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "[--fill-color:var(--color-brand-primary)]",
+        "[--track-color:var(--color-surface-3)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "brand"
+      },
+      "style": {
+        "trackColor": "color_surface_3",
+        "fillColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "[--fill-color:var(--color-brand-primary)]",
+        "[--track-color:var(--color-surface-3)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "base"
+      },
+      "style": {
+        "trackColor": "color_surface_3",
+        "fillColor": "color_text_muted"
+      },
+      "tailwindClasses": [
+        "[--fill-color:var(--color-text-muted)]",
+        "[--track-color:var(--color-surface-3)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "inherit"
+      },
+      "style": {
+        "trackColor": "color_text_on_brand",
+        "fillColor": "color_text_on_brand",
+        "trackOpacity": 0.3
+      },
+      "tailwindClasses": [
+        "[--fill-color:var(--color-text-on-brand)]",
+        "[--track-color:var(--color-text-on-brand)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "xs"
+      },
+      "style": {
+        "boxSize": "space_circular_xs"
+      },
+      "tailwindClasses": [
+        "w-[var(--space-circular-xs)]",
+        "h-[var(--space-circular-xs)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "boxSize": "space_circular_sm"
+      },
+      "tailwindClasses": [
+        "w-[var(--space-circular-sm)]",
+        "h-[var(--space-circular-sm)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "boxSize": "space_circular_md"
+      },
+      "tailwindClasses": [
+        "w-[var(--space-circular-md)]",
+        "h-[var(--space-circular-md)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "boxSize": "space_circular_lg"
+      },
+      "tailwindClasses": [
+        "w-[var(--space-circular-lg)]",
+        "h-[var(--space-circular-lg)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "xl"
+      },
+      "style": {
+        "boxSize": "space_circular_xl"
+      },
+      "tailwindClasses": [
+        "w-[var(--space-circular-xl)]",
+        "h-[var(--space-circular-xl)]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "boxSize": {
+      "xs": "space_circular_xs",
+      "sm": "space_circular_sm",
+      "md": "space_circular_md",
+      "lg": "space_circular_lg",
+      "xl": "space_circular_xl"
+    }
+  },
+  "element": "div",
+  "rootLayout": "none",
+  "customStructure": "spinner",
+  "styleKeys": [
+    "boxSize",
+    "trackColor",
+    "fillColor",
+    "trackOpacity"
+  ],
+  "heightConstraint": "hug",
+  "generatorStrategy": "template",
+  "template": "Spinner"
+}

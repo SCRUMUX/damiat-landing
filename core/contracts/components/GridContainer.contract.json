@@ -1,0 +1,77 @@
+{
+  "name": "@UI/GridContainer",
+  "description": "Responsive grid container: 4→8→12 columns at breakpoints. maxWidth presets clamp content width.",
+  "variantProps": [
+    "maxWidth"
+  ],
+  "variantAxes": {
+    "maxWidth": [
+      "mobile",
+      "tablet",
+      "desktop",
+      "full"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "columnsMobile": 4,
+        "columnsTablet": 8,
+        "columnsDesktop": 12
+      },
+      "tailwindClasses": [
+        "grid-container"
+      ]
+    },
+    {
+      "when": {
+        "maxWidth": "mobile"
+      },
+      "style": {
+        "maxWidthToken": "breakpoint_mobile_max"
+      },
+      "tailwindClasses": [
+        "max-w-[var(--breakpoint-mobile-max)]"
+      ]
+    },
+    {
+      "when": {
+        "maxWidth": "tablet"
+      },
+      "style": {
+        "maxWidthToken": "breakpoint_tablet_max"
+      },
+      "tailwindClasses": [
+        "max-w-[var(--breakpoint-tablet-max)]"
+      ]
+    },
+    {
+      "when": {
+        "maxWidth": "desktop"
+      },
+      "style": {
+        "maxWidthToken": "breakpoint_desktop"
+      },
+      "tailwindClasses": [
+        "max-w-[var(--breakpoint-desktop)]"
+      ]
+    },
+    {
+      "when": {
+        "maxWidth": "full"
+      },
+      "style": {
+        "maxWidthToken": null
+      },
+      "tailwindClasses": []
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "element": "div",
+  "rootLayout": "grid",
+  "heightConstraint": "hug",
+  "generatorStrategy": "template",
+  "template": "GridContainer"
+}

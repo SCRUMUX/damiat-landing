@@ -1,0 +1,27 @@
+{
+  "tokenCategory": "Radius",
+  "description": "Radius tokens for the design system. Source of truth: @Radius.pdf.",
+  "sourceDocument": "@Radius.pdf",
+  "primitives": {
+    "radius_0":    { "value": 0,      "unit": "px" },
+    "radius_1":    { "value": 1,      "unit": "px" },
+    "radius_2":    { "value": 2,      "unit": "px" },
+    "radius_4":    { "value": 4,      "unit": "px" },
+    "radius_6":    { "value": 6,      "unit": "px" },
+    "radius_8":    { "value": 8,      "unit": "px" },
+    "radius_full": { "value": 9999,   "unit": "px" }
+  },
+  "semantic": {
+    "radius_none":    { "alias": "radius_0",    "usage": "Sharp corners, tables, dividers" },
+    "radius_subtle":  { "alias": "radius_1",    "usage": "Minimal rounding" },
+    "radius_default": { "alias": "radius_2",    "usage": "Standard elements: inputs, buttons" },
+    "radius_medium":  { "alias": "radius_4",    "usage": "Cards, modals, dropdowns" },
+    "radius_large":   { "alias": "radius_6",    "usage": "Large containers, sections" },
+    "radius_xl":      { "alias": "radius_8",    "usage": "Hero blocks, feature cards" },
+    "radius_pill":    { "alias": "radius_full",  "usage": "Pills, tags, avatars, fully rounded buttons" }
+  },
+  "constraints": {
+    "noHardcodedRadii": "All radii must come from this contract.",
+    "semanticOnly": "Use semantic names (e.g. radius_medium), not primitives (e.g. radius_4) in components."
+  }
+}

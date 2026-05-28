@@ -1,0 +1,343 @@
+{
+  "name": "@UI/Autocomplete",
+  "description": "Autocomplete: поле ввода с выпадающим списком значений по вхождению. state: closed/open. size: sm/md/lg. Trigger: Input-like поле с иконкой поиска, TagRow для выбранных значений. Popover: 10 слотов AutocompleteItem, FILL по ширине. В open-состоянии input в фокусе.",
+  "variantProps": [
+    "state",
+    "size"
+  ],
+  "variantAxes": {
+    "state": [
+      "closed",
+      "open"
+    ],
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "background": "color_bg_base",
+        "textStyle": "Text/Body/Base",
+        "textColor": "color_text_primary",
+        "placeholderColor": "color_text_muted",
+        "iconColor": "color_icon_on_base",
+        "borderRadius": "radius_default",
+        "paddingX": "space_button_x_md",
+        "paddingY": "space_button_y_md",
+        "gap": "space_button_gap_md",
+        "popoverBg": "color_surface_1",
+        "popoverBorder": "color_border_base",
+        "popoverPadding": "space_dropdown_popover_inset",
+        "popoverRadius": "radius_default",
+        "popoverElevation": "effect_elevation_2",
+        "popoverMaxHeight": "space_320",
+        "itemPaddingX": "space_button_x_md",
+        "itemPaddingY": "space_button_y_md",
+        "itemGap": "space_button_gap_md"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-base)]",
+        "text-[var(--color-text-primary)]",
+        "[--icon-color:var(--color-icon-on-base)]",
+        "[--popover-bg:var(--color-surface-1)]",
+        "[--popover-border:var(--color-border-base)]",
+        "px-[var(--space-button-x-md)]",
+        "py-[var(--space-button-y-md)]",
+        "gap-[var(--space-button-gap-md)]",
+        "[--item-px:var(--space-button-x-md)]",
+        "[--item-py:var(--space-button-y-md)]",
+        "[--item-gap:var(--space-button-gap-md)]",
+        "[--popover-pad:var(--space-dropdown-popover-inset)]",
+        "[--popover-max-h:var(--space-320)]",
+        "[--popover-radius:var(--radius-default)]",
+        "rounded-default",
+        "text-style-body"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "textStyle": "Text/Body/SM",
+        "paddingX": "space_button_x_sm",
+        "paddingY": "space_button_y_sm",
+        "gap": "space_button_gap_sm",
+        "itemPaddingX": "space_button_x_sm",
+        "itemPaddingY": "space_button_y_sm",
+        "itemGap": "space_button_gap_sm",
+        "minWidth": "space_container_compact_min",
+        "maxWidth": "space_container_compact_max"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-button-x-sm)]",
+        "py-[var(--space-button-y-sm)]",
+        "gap-[var(--space-button-gap-sm)]",
+        "[--item-px:var(--space-button-x-sm)]",
+        "[--item-py:var(--space-button-y-sm)]",
+        "[--item-gap:var(--space-button-gap-sm)]",
+        "min-w-[var(--space-container-compact-min)]",
+        "max-w-[var(--space-container-compact-max)]",
+        "text-style-body-sm"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "textStyle": "Text/Body/Base",
+        "paddingX": "space_button_x_md",
+        "paddingY": "space_button_y_md",
+        "gap": "space_button_gap_md",
+        "itemPaddingX": "space_button_x_md",
+        "itemPaddingY": "space_button_y_md",
+        "itemGap": "space_button_gap_md",
+        "minWidth": "space_container_content_min",
+        "maxWidth": "space_container_content_max"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-button-x-md)]",
+        "py-[var(--space-button-y-md)]",
+        "gap-[var(--space-button-gap-md)]",
+        "[--item-px:var(--space-button-x-md)]",
+        "[--item-py:var(--space-button-y-md)]",
+        "[--item-gap:var(--space-button-gap-md)]",
+        "min-w-[var(--space-container-content-min)]",
+        "max-w-[var(--space-container-content-max)]",
+        "text-style-body"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "textStyle": "Text/Body/LG",
+        "paddingX": "space_button_x_lg",
+        "paddingY": "space_button_y_lg",
+        "gap": "space_button_gap_lg",
+        "itemPaddingX": "space_button_x_lg",
+        "itemPaddingY": "space_button_y_lg",
+        "itemGap": "space_button_gap_lg",
+        "minWidth": "space_container_wide_min",
+        "maxWidth": "space_container_wide_max"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-button-x-lg)]",
+        "py-[var(--space-button-y-lg)]",
+        "gap-[var(--space-button-gap-lg)]",
+        "[--item-px:var(--space-button-x-lg)]",
+        "[--item-py:var(--space-button-y-lg)]",
+        "[--item-gap:var(--space-button-gap-lg)]",
+        "min-w-[var(--space-container-wide-min)]",
+        "max-w-[var(--space-container-wide-max)]",
+        "text-style-body-lg"
+      ]
+    },
+    {
+      "when": {
+        "state": "closed"
+      },
+      "style": {
+        "borderColor": "color_border_base",
+        "borderSide": "all"
+      },
+      "tailwindClasses": [
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "open"
+      },
+      "style": {
+        "borderColor": "color_brand_primary",
+        "borderSide": "all",
+        "popoverBorder": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "[--popover-border:var(--color-brand-primary)]",
+        "border",
+        "border-[var(--color-brand-primary)]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "paddingX": {
+      "sm": "space_button_x_sm",
+      "md": "space_button_x_md",
+      "lg": "space_button_x_lg"
+    },
+    "paddingY": {
+      "sm": "space_button_y_sm",
+      "md": "space_button_y_md",
+      "lg": "space_button_y_lg"
+    },
+    "gap": {
+      "sm": "space_button_gap_sm",
+      "md": "space_button_gap_md",
+      "lg": "space_button_gap_lg"
+    },
+    "minWidth": {
+      "sm": "space_container_compact_min",
+      "md": "space_container_content_min",
+      "lg": "space_container_wide_min"
+    },
+    "maxWidth": {
+      "sm": "space_container_compact_max",
+      "md": "space_container_content_max",
+      "lg": "space_container_wide_max"
+    },
+    "textStyle": {
+      "sm": "Text/Body/SM",
+      "md": "Text/Body/Base",
+      "lg": "Text/Body/LG"
+    },
+    "itemPaddingX": {
+      "sm": "space_button_x_sm",
+      "md": "space_button_x_md",
+      "lg": "space_button_x_lg"
+    },
+    "itemPaddingY": {
+      "sm": "space_button_y_sm",
+      "md": "space_button_y_md",
+      "lg": "space_button_y_lg"
+    },
+    "itemGap": {
+      "sm": "space_button_gap_sm",
+      "md": "space_button_gap_md",
+      "lg": "space_button_gap_lg"
+    }
+  },
+  "popoverSlotCount": 10,
+  "element": "div",
+  "rootLayout": "vertical",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "start",
+    "cross": "start"
+  },
+  "composite": true,
+  "slots": [
+    {
+      "name": "trigger",
+      "figmaName": "Trigger",
+      "type": "frame",
+      "optional": false,
+      "sizing": "fill",
+      "layout": "horizontal",
+      "children": [
+        {
+          "name": "searchIcon",
+          "figmaName": "Search Icon",
+          "type": "icon",
+          "optional": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "tagRow",
+          "figmaName": "TagRow",
+          "type": "component",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "hug"
+        },
+        {
+          "name": "inputField",
+          "figmaName": "Input",
+          "type": "input",
+          "optional": false,
+          "default": "Search...",
+          "sizing": "fill"
+        },
+        {
+          "name": "clearIcon",
+          "figmaName": "Clear Icon",
+          "type": "icon",
+          "optional": true,
+          "defaultVisible": false,
+          "sizing": "fixed"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "figmaName": "Popover",
+      "type": "frame",
+      "optional": false,
+      "sizing": "fill",
+      "layout": "vertical",
+      "visibleWhen": "state === 'open'",
+      "slotCount": 10,
+      "slotComponent": "@UI/AutocompleteItem"
+    }
+  ],
+  "booleanProps": [
+    {
+      "name": "showTagRow",
+      "figmaName": "TagRow",
+      "controls": "tagRow",
+      "default": false
+    },
+    {
+      "name": "showClearIcon",
+      "figmaName": "Clear Icon",
+      "controls": "clearIcon",
+      "default": false
+    }
+  ],
+  "textProps": [
+    {
+      "name": "placeholder",
+      "figmaName": "Label",
+      "default": "Search..."
+    }
+  ],
+  "styleKeys": [
+    "paddingX",
+    "paddingY",
+    "gap",
+    "textStyle",
+    "textColor",
+    "iconColor",
+    "background",
+    "borderColor",
+    "borderRadius",
+    "minWidth",
+    "maxWidth",
+    "popoverPadding",
+    "itemGap",
+    "popoverBg",
+    "popoverBorder",
+    "popoverRadius",
+    "popoverMaxHeight",
+    "popoverElevation"
+  ],
+  "heightConstraint": "hug",
+  "iconSizeMap": {
+    "xs": 20,
+    "sm": 20,
+    "md": 20,
+    "lg": 24,
+    "xl": 20
+  },
+  "generatorStrategy": "template",
+  "template": "Autocomplete",
+  "enhancements": [
+    "popover",
+    "clickOutside",
+    "escapeKey",
+    "clearButton"
+  ]
+}
