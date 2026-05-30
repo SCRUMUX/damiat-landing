@@ -63,7 +63,7 @@ function SummaryChipCard({ chip, withDamiat }: { chip: SummaryChip; withDamiat: 
         {chip.value}
       </span>
       {chip.hint ? (
-        <span className="mt-[var(--space-4)] line-clamp-2 text-style-body font-normal leading-snug text-[var(--color-text-muted)]">
+        <span className="mt-[var(--space-4)] whitespace-nowrap text-style-body font-normal leading-snug text-[var(--color-text-muted)]">
           {chip.hint}
         </span>
       ) : null}
@@ -85,7 +85,7 @@ function buildChips(data: DamiatCalculatorSummaryData, device1: boolean): Summar
         id: 'mass',
         label: 'Сохранено',
         value: data.massWithTons,
-        hint: 'Масса урожая без порчи',
+        hint: 'Тонн урожая с DAMIAT',
       },
       {
         id: 'cost',
@@ -109,7 +109,7 @@ function buildChips(data: DamiatCalculatorSummaryData, device1: boolean): Summar
       id: 'mass',
       label: 'Потеряно',
       value: data.massWithoutTons,
-      hint: 'Тонн урожая сверх порчи без DAMIAT',
+      hint: 'Тонн урожая без DAMIAT',
     },
     {
       id: 'cost',
