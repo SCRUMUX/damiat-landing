@@ -2,11 +2,12 @@
  * Layout constants for harvest chart grid / SVG geometry.
  * Pixel values are intentional — tied to chart scale math, not typography tokens.
  */
-export const CALC_CHART_HEIGHT = 250;
+export const CALC_CHART_HEIGHT = 300;
 /** Label column: Y-axis ticks + metric row labels */
 export const CALC_LABEL_COL_WIDTH = 92;
 export const CALC_METRIC_ROW_HEIGHT = 34;
 export const CALC_MONTH_ROW_HEIGHT = 28;
+export const CALC_EDITABLE_ROW_HEIGHT = 40;
 export const CALC_AXIS_FONT_SIZE = 12;
 /** Vertical padding inside chart area — symmetric price/loss zones */
 export const CALC_CHART_PAD = 14;

@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { cn } from '../../../components/primitives/_shared';
-import { Button } from '../../../components/primitives/Button';
 import { buildDynamicsPageTabLabels, DYNAMICS_MONTHS_PER_PAGE } from './calculatorConfig';
 import { Tab, TabList, Tabs } from '../../../components/primitives/Tab';
 import type { ChartSeriesData, ScenarioBreakdown } from './calculatorEngine';
@@ -34,7 +33,6 @@ export interface DamiatCalculatorHarvestChartProps {
   onSalesCellChange: (monthIndex: number, value: string) => void;
   onSalesCellCommit: (monthIndex: number, value: string) => void;
   onOpexCellChange: (monthIndex: number, value: string) => void;
-  onResetUniformSales: () => void;
   className?: string;
 }
 
@@ -234,7 +232,6 @@ export const DamiatCalculatorHarvestChart: React.FC<DamiatCalculatorHarvestChart
   onSalesCellChange,
   onSalesCellCommit,
   onOpexCellChange,
-  onResetUniformSales,
   className,
 }) => {
   const [page, setPage] = useState(0);
@@ -244,7 +241,7 @@ export const DamiatCalculatorHarvestChart: React.FC<DamiatCalculatorHarvestChart
 
   useEffect(() => {
     setPage(0);
-  }, [series, scenarioWithout, scenarioWith, withGenerator]);
+  }, [series, scenarioWithout, scenarioWith]);
 
   useEffect(() => {
     if (page > pageCount - 1) setPage(Math.max(0, pageCount - 1));
@@ -332,7 +329,7 @@ export const DamiatCalculatorHarvestChart: React.FC<DamiatCalculatorHarvestChart
       key: 'result',
       label: 'Итог мес.',
       labelTitle: 'Выручка от реализации − потери − расходы на хранение и DAMIAT',
-      format: (m) => formatRubCompact(m.monthResult),
+      format: (m) => formatRubCompact(Math.max(0, m.monthResult)),
       tone: 'result',
     }),
     [],
@@ -392,7 +389,7 @@ export const DamiatCalculatorHarvestChart: React.FC<DamiatCalculatorHarvestChart
         className,
       )}
     >
-      <div className="flex flex-wrap items-start justify-between gap-[var(--space-section-stack-m)] border-b border-[var(--color-border-base)] pb-[var(--space-section-content-m)]">
+      <div className="flex flex-wrap items-start justify-between gap-[var(--space-section-stack-m)] pb-[var(--space-section-content-m)]">
         <div className="flex min-w-0 flex-col gap-[var(--space-8)]">
           <div className="flex min-w-0 flex-wrap items-center gap-[var(--space-12)]">
             <h3 className="m-0 shrink-0 text-style-h4 text-[var(--color-text-primary)]">Динамика по месяцам</h3>
@@ -420,27 +417,16 @@ export const DamiatCalculatorHarvestChart: React.FC<DamiatCalculatorHarvestChart
             ) : null}
           </div>
           {hasData ? (
-            <div className="flex flex-wrap items-center gap-[var(--space-8)]">
-              <span
-                className={cn(
-                  'text-style-caption font-medium leading-snug',
-                  withGenerator
-                    ? 'text-[var(--color-brand-primary)]'
-                    : 'text-[var(--color-danger-base)]',
-                )}
-              >
-                {withGenerator ? 'Сценарий хранения с DAMIAT' : 'Сценарий убытков без DAMIAT'}
-              </span>
-              <Button
-                type="button"
-                appearance="outline"
-                size="sm"
-                onClick={onResetUniformSales}
-                disabled={volumeTons <= 0}
-              >
-                Распределить равномерно
-              </Button>
-            </div>
+            <span
+              className={cn(
+                'text-style-caption font-medium leading-snug',
+                withGenerator
+                  ? 'text-[var(--color-brand-primary)]'
+                  : 'text-[var(--color-danger-base)]',
+              )}
+            >
+              {withGenerator ? 'Сценарий хранения с DAMIAT' : 'Сценарий убытков без DAMIAT'}
+            </span>
           ) : null}
         </div>
         {hasData ? (

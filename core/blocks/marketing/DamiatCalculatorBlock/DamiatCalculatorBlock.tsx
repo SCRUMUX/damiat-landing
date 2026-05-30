@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { SectionShell } from '../../_shared/SectionShell';
 import { BlockSectionHeader } from '../../_shared/BlockSectionHeader';
 import {
@@ -18,7 +18,6 @@ import {
 import {
   buildUniformSalesStrings,
   emptyOpexStrings,
-  ensureScheduleStrings,
   redistributeSalesFromMonth,
 } from './calculatorSchedule';
 import { STORAGE_MONTHS } from './calculatorConfig';
@@ -55,8 +54,10 @@ function buildSummaryData(
   const savedMassTons = without.totalLossTons - withScenario.totalLossTons;
 
   return {
-    moneyRub: formatRubCompact(Math.max(0, result.netBenefit)),
-    massTons: formatTons(Math.max(0, savedMassTons)),
+    moneyWithRub: formatRubCompact(Math.max(0, result.profitDelta)),
+    moneyWithoutRub: formatRubCompact(without.totalLossRub),
+    massWithTons: formatTons(Math.max(0, savedMassTons)),
+    massWithoutTons: formatTons(without.totalLossTons),
     deviceCostRub: formatRubCompact(result.deviceCostTotal),
     deviceCostHint: `${result.volumeTons.toLocaleString('ru-RU')} т × 250 ₽/т`,
   };
@@ -106,6 +107,7 @@ export const DamiatCalculatorBlock: React.FC<DamiatCalculatorBlockProps> = ({
     opexRubByMonth: defaultValues?.opexRubByMonth ?? INITIAL_VALUES.opexRubByMonth,
     salesPlanMode: defaultValues?.salesPlanMode ?? INITIAL_VALUES.salesPlanMode,
   }));
+  const prevVolumeTonsRef = useRef<number | undefined>(undefined);
 
   const volumeTons = useMemo(() => {
     const ha = Number(values.hectares) || 0;
@@ -114,19 +116,37 @@ export const DamiatCalculatorBlock: React.FC<DamiatCalculatorBlockProps> = ({
   }, [values.hectares, values.yieldTonsPerHa]);
 
   useEffect(() => {
-    if (volumeTons <= 0) return;
-    setValues((v) => {
-      if (v.salesPlanMode === 'uniform') {
-        const next = ensureScheduleStrings(v.salesTonsByMonth, v.opexRubByMonth, volumeTons, 'uniform');
-        return { ...v, ...next };
+    const prevVolume = prevVolumeTonsRef.current;
+    prevVolumeTonsRef.current = volumeTons;
+    const volumeChanged = prevVolume !== undefined && prevVolume !== volumeTons;
+
+    if (volumeTons <= 0) {
+      if (volumeChanged && prevVolume! > 0) {
+        setValues((v) => ({
+          ...v,
+          salesTonsByMonth: Array(STORAGE_MONTHS).fill(''),
+          salesPlanMode: 'uniform',
+        }));
       }
-      const opex =
-        v.opexRubByMonth?.length === STORAGE_MONTHS ? v.opexRubByMonth : emptyOpexStrings();
-      const sales =
-        v.salesTonsByMonth?.length === STORAGE_MONTHS
-          ? v.salesTonsByMonth
-          : buildUniformSalesStrings(volumeTons);
-      return { ...v, salesTonsByMonth: sales, opexRubByMonth: opex };
+      return;
+    }
+
+    setValues((v) => {
+      if (volumeChanged) {
+        return {
+          ...v,
+          salesTonsByMonth: buildUniformSalesStrings(volumeTons),
+          salesPlanMode: 'uniform',
+        };
+      }
+      if (v.salesPlanMode === 'uniform' || v.salesTonsByMonth.length !== STORAGE_MONTHS) {
+        return {
+          ...v,
+          salesTonsByMonth: buildUniformSalesStrings(volumeTons),
+          salesPlanMode: 'uniform',
+        };
+      }
+      return v;
     });
   }, [volumeTons]);
 
@@ -153,6 +173,12 @@ export const DamiatCalculatorBlock: React.FC<DamiatCalculatorBlockProps> = ({
   );
 
   const summaryData = useMemo(() => (result ? buildSummaryData(result) : null), [result]);
+
+  const seasonProfitRub = useMemo(() => {
+    if (!result || volumeTons <= 0) return null;
+    const profit = values.device1 ? result.totalProfitWith : result.totalProfitWithout;
+    return formatRubCompact(Math.max(0, profit));
+  }, [result, volumeTons, values.device1]);
 
   const onSalesCellChange = useCallback((monthIndex: number, raw: string) => {
     setValues((v) => {
@@ -209,12 +235,15 @@ export const DamiatCalculatorBlock: React.FC<DamiatCalculatorBlockProps> = ({
               onValuesChange={setValues}
               devicesTitle={devicesTitle}
               onDeviceChange={(device1) => setValues((v) => ({ ...v, device1 }))}
+              seasonProfitRub={seasonProfitRub}
+              onResetUniformSales={onResetUniformSales}
               recommendationsHref={recommendationsHref}
               recommendationsLabel={recommendationsLabel}
             />
 
-            <div className="flex min-w-0 flex-col gap-[var(--space-section-stack-m)]">
+            <div className="flex min-h-full min-w-0 flex-col">
               <DamiatCalculatorHarvestChart
+                className="min-h-0 flex-1"
                 series={chartSeries}
                 scenarioWithout={result?.without ?? null}
                 scenarioWith={result?.with ?? null}
@@ -225,10 +254,10 @@ export const DamiatCalculatorBlock: React.FC<DamiatCalculatorBlockProps> = ({
                 onSalesCellChange={onSalesCellChange}
                 onSalesCellCommit={onSalesCellCommit}
                 onOpexCellChange={onOpexCellChange}
-                onResetUniformSales={onResetUniformSales}
               />
 
               <DamiatCalculatorSummary
+                className="mt-auto shrink-0 pt-[var(--space-section-stack-m)]"
                 data={summaryData}
                 device1={values.device1}
                 hasVolume={volumeTons > 0}

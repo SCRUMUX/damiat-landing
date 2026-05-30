@@ -3,6 +3,7 @@ import { Input } from '../../../components/primitives/Input';
 import { Slider } from '../../../components/primitives/Slider';
 import { Button } from '../../../components/primitives/Button';
 import { Switch } from '../../../components/primitives/Switch';
+import { cn } from '../../../components/primitives/_shared';
 import { POTATO_CROP } from './calculatorCropsData';
 import { PRICE_ADJUST_MAX, PRICE_ADJUST_MIN } from './calculatorConfig';
 import {
@@ -67,6 +68,9 @@ export interface DamiatCalculatorFormProps
   values: DamiatCalculatorFormValues;
   onValuesChange: (values: DamiatCalculatorFormValues) => void;
   onDeviceChange: (device1: boolean) => void;
+  /** Суммарная прибыль за сезон по активному сценарию; null — нет объёма */
+  seasonProfitRub: string | null;
+  onResetUniformSales: () => void;
 }
 
 /** Левая панель калькулятора (параметры урожая + цена). */
@@ -74,6 +78,8 @@ export const DamiatCalculatorForm: React.FC<DamiatCalculatorFormProps> = ({
   values,
   onValuesChange,
   onDeviceChange,
+  seasonProfitRub,
+  onResetUniformSales,
   devicesTitle = 'Генератор DAMIAT',
   recommendationsHref = '#scenarios',
   recommendationsLabel = 'Перейти в рекомендации',
@@ -134,14 +140,26 @@ export const DamiatCalculatorForm: React.FC<DamiatCalculatorFormProps> = ({
           </div>
           <div>
             <FieldLabel unit="т">Общий объём урожая</FieldLabel>
-            <span className="text-style-h4 text-style-tabular block font-semibold leading-tight text-[var(--color-brand-primary)]">
-              {totalTons > 0 ? formatTons(totalTons) : '—'}
-            </span>
+            <div className="flex items-center justify-between gap-[var(--space-8)]">
+              <span className="text-style-h4 text-style-tabular font-semibold leading-tight text-[var(--color-brand-primary)]">
+                {totalTons > 0 ? formatTons(totalTons) : '—'}
+              </span>
+              <Button
+                type="button"
+                appearance="outline"
+                size="sm"
+                className="shrink-0 font-normal"
+                onClick={onResetUniformSales}
+                disabled={totalTons <= 0}
+              >
+                Распределить реализацию
+              </Button>
+            </div>
           </div>
         </div>
       </SidebarSection>
 
-      <SidebarSection number={2} title="Базовая цена" divided>
+      <SidebarSection number={2} title="Параметры стоимости">
         <div className="flex flex-col gap-[var(--space-section-content-m)]">
           <div>
             <FieldLabel unit="₽/т">Цена при сборке урожая</FieldLabel>
@@ -186,21 +204,48 @@ export const DamiatCalculatorForm: React.FC<DamiatCalculatorFormProps> = ({
             </p>
           </div>
 
-          <div className="flex flex-col gap-[var(--space-8)] pt-[var(--space-section-content-m)]">
-            <label className="flex cursor-pointer items-center gap-[var(--space-8)] text-style-caption text-[var(--color-text-primary)]">
-              <Switch
-                size="md"
-                state={values.device1 ? 'on' : 'off'}
-                onToggle={onDeviceChange}
-                aria-label={devicesTitle}
-              />
-              <span className="font-medium">{devicesTitle}</span>
-            </label>
-            <p className="m-0 text-style-caption leading-snug text-[var(--color-text-muted)]">
-              {values.device1
-                ? 'В сценарии есть DAMIAT — ниже эффект экономии'
-                : 'Без DAMIAT — ниже упущенная выгода и потери'}
-            </p>
+          <div className="mt-[var(--space-section-stack-s)] pt-[var(--space-8)]">
+            <div
+              className={cn(
+                'rounded-[var(--radius-medium)] border px-[var(--space-inset-l)] py-[var(--space-10)] transition-colors',
+                values.device1
+                  ? 'border-[var(--color-brand-primary)] bg-[var(--color-brand-muted)]'
+                  : 'border-[var(--color-border-base)] bg-[var(--color-surface-2)]',
+              )}
+            >
+              <label className="flex cursor-pointer items-center justify-between gap-[var(--space-12)]">
+                <span className="text-style-body font-semibold leading-snug text-[var(--color-text-primary)]">
+                  {devicesTitle}
+                </span>
+                <Switch
+                  size="md"
+                  state={values.device1 ? 'on' : 'off'}
+                  onToggle={onDeviceChange}
+                  aria-label={devicesTitle}
+                />
+              </label>
+            </div>
+
+            <div className="mt-[var(--space-section-content-m)]">
+              <FieldLabel>Прибыль за сезон</FieldLabel>
+              <span
+                className={cn(
+                  'text-style-h3 text-style-tabular block font-semibold leading-tight tracking-tight',
+                  seasonProfitRub && values.device1 && 'text-[var(--color-brand-primary)]',
+                  seasonProfitRub && !values.device1 && 'text-[var(--color-danger-base)]',
+                  !seasonProfitRub && 'text-[var(--color-text-muted)]',
+                )}
+              >
+                {seasonProfitRub ?? '—'}
+              </span>
+              <p className="m-0 mt-[var(--space-6)] text-style-caption leading-snug text-[var(--color-text-muted)]">
+                {seasonProfitRub
+                  ? 'Сумма по месяцам: реализация − потери − расходы'
+                  : values.device1
+                    ? 'В сценарии есть DAMIAT — ниже эффект экономии'
+                    : 'Без DAMIAT — ниже упущенная выгода и потери'}
+              </p>
+            </div>
           </div>
         </div>
       </SidebarSection>

@@ -10,8 +10,19 @@ import {
   totalTonsFromFields,
 } from '../calculatorEngine';
 import { CALCULATOR_MONTHS } from '../calculatorCropsData';
-import { buildUniformSalesStrings, parseScheduleCell, roundTons1, redistributeSalesFromMonth } from '../calculatorSchedule';
-import { STORAGE_MONTHS } from '../calculatorConfig';
+import {
+  buildUniformSalesStrings,
+  clampSalesPlanToVolume,
+  parseSalesPlan,
+  parseScheduleCell,
+  roundTons1,
+  redistributeSalesFromMonth,
+} from '../calculatorSchedule';
+import {
+  STORAGE_MONTHS,
+  TARGET_LOSS_FRACTION_WITHOUT,
+  TARGET_LOSS_FRACTION_WITH,
+} from '../calculatorConfig';
 
 const AGRO_HECTARES = 536;
 const AGRO_YIELD = 28;
@@ -40,16 +51,23 @@ assert(
 
 const lossFracWithout = r.without.totalLossTons / volumeTons;
 const lossFracWith = r.with.totalLossTons / volumeTons;
-assert(lossFracWithout < 0.2, `without loss frac reasonable, got ${lossFracWithout}`);
-assert(lossFracWith < lossFracWithout, `with loss < without loss`);
+assert(
+  approxEqual(lossFracWithout, TARGET_LOSS_FRACTION_WITHOUT, 0.02, 0.005),
+  `without loss frac ~14.5%, got ${lossFracWithout}`,
+);
+assert(
+  approxEqual(lossFracWith, TARGET_LOSS_FRACTION_WITH, 0.02, 0.005),
+  `with loss frac ~6.5%, got ${lossFracWith}`,
+);
+assert(lossFracWith < lossFracWithout, 'with loss < without loss');
 
 assert(
   approxEqual(r.lossSavings, r.without.totalLossRub - r.with.totalLossRub, 1e-9, 0.01),
   'lossSavings === without.totalLossRub - with.totalLossRub',
 );
 assert(
-  approxEqual(r.profitDelta, Math.max(0, r.totalProfitWith - r.totalProfitWithout), 1e-9, 0.01),
-  'profitDelta === max(0, totalProfitWith - totalProfitWithout)',
+  approxEqual(r.profitDelta, r.totalProfitWith - r.totalProfitWithout, 1e-9, 0.01),
+  'profitDelta === totalProfitWith - totalProfitWithout (no engine clamp)',
 );
 assert(approxEqual(r.netBenefit, r.profitDelta, 1e-9, 0.01), 'netBenefit === profitDelta');
 
@@ -61,6 +79,15 @@ for (const [name, scenario] of [
   ['with', r.with],
 ] as const) {
   assert(scenario.months.length === CALCULATOR_MONTHS, `${name}: month count`);
+  assert(
+    approxEqual(
+      scenario.totalSoldTons + scenario.totalLossTons + scenario.finalStock,
+      volumeTons,
+      0.001,
+      0.5,
+    ),
+    `${name}: mass balance sold + loss + stock === volume`,
+  );
   for (let i = 0; i < scenario.months.length; i++) {
     const m = scenario.months[i];
     assert(
@@ -72,9 +99,14 @@ for (const [name, scenario] of [
       `${name}[${i}]: soldRub ≈ soldTons × priceForecast`,
     );
     const deviceCost = name === 'with' ? costTotal / STORAGE_MONTHS : 0;
+    const rawMonthResult = m.soldRub - m.lossRub - m.opexRub - deviceCost;
     assert(
-      approxEqual(m.monthResult, Math.max(0, m.soldRub - m.lossRub - m.opexRub - deviceCost), 0.001, 1),
-      `${name}[${i}]: monthResult cash-flow (non-negative)`,
+      approxEqual(m.monthResult, rawMonthResult, 0.001, 1),
+      `${name}[${i}]: monthResult is raw cash-flow (no engine floor)`,
+    );
+    assert(
+      approxEqual(Math.max(0, m.monthResult), Math.max(0, rawMonthResult), 1e-9, 0.01),
+      `${name}[${i}]: display monthResult === max(0, raw)`,
     );
     assert(m.stockEnd >= -0.01, `${name}[${i}]: stockEnd non-negative`);
   }
@@ -134,10 +166,18 @@ assert(
   'overflow redistribute: sum === volume',
 );
 
+const overflowPlan = parseSalesPlan(['200', '200', ...Array(STORAGE_MONTHS - 2).fill('50')], 120);
+const clamped = clampSalesPlanToVolume(overflowPlan, 120);
+assert(
+  approxEqual(clamped.reduce((a, b) => a + b, 0), 120, 0.001, 0.1),
+  'clampSalesPlanToVolume: sum === volume',
+);
+
 console.log('verify-engine: OK', {
   volumeTons,
   lossWithoutPct: `${(lossFracWithout * 100).toFixed(1)}%`,
   lossWithPct: `${(lossFracWith * 100).toFixed(1)}%`,
   lossSavingsMln: (r.lossSavings / 1e6).toFixed(2),
   netBenefitMln: (r.netBenefit / 1e6).toFixed(2),
+  displayNetBenefitMln: (Math.max(0, r.netBenefit) / 1e6).toFixed(2),
 });

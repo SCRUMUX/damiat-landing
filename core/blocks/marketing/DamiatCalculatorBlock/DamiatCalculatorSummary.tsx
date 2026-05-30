@@ -27,7 +27,7 @@ function SummaryChipCard({ chip, withDamiat }: { chip: SummaryChip; withDamiat: 
   return (
     <div
       className={cn(
-        'flex min-h-[var(--space-64)] min-w-[140px] flex-1 flex-col justify-center rounded-[var(--radius-medium)] border px-[var(--space-inset-l)] py-[var(--space-6)]',
+        'flex h-full min-h-[var(--space-80)] min-w-[140px] flex-1 flex-col justify-end rounded-[var(--radius-medium)] border px-[var(--space-inset-l)] py-[var(--space-10)]',
         isNeutral && 'border-[var(--color-border-base)] bg-[var(--color-surface-2)]',
         !isNeutral &&
           isPrimary &&
@@ -47,30 +47,23 @@ function SummaryChipCard({ chip, withDamiat }: { chip: SummaryChip; withDamiat: 
           'border-[var(--color-danger-base)] bg-[var(--color-surface-2)]',
       )}
     >
-      <span
-        className={cn(
-          'text-style-caption font-medium leading-none',
-          isNeutral && 'text-[var(--color-text-muted)]',
-          !isNeutral && withDamiat && 'text-[var(--color-brand-primary)]',
-          !isNeutral && !withDamiat && 'text-[var(--color-danger-base)]',
-        )}
-      >
+      <span className="text-style-body font-medium leading-snug text-[var(--color-text-muted)]">
         {chip.label}
       </span>
       <span
         className={cn(
-          'text-style-tabular mt-[var(--space-2)] block font-semibold leading-none tracking-tight',
-          isPrimary && 'text-style-h4',
-          !isPrimary && 'text-style-body-lg',
+          'text-style-h3 text-style-tabular mt-[var(--space-4)] block font-semibold leading-none tracking-tight',
+          isPrimary && withDamiat && 'text-[var(--color-brand-primary)]',
+          isPrimary && !withDamiat && 'text-[var(--color-danger-base)]',
           isNeutral && 'text-[var(--color-text-primary)]',
-          !isNeutral && withDamiat && 'text-[var(--color-brand-primary)]',
-          !isNeutral && !withDamiat && 'text-[var(--color-danger-base)]',
+          !isPrimary && !isNeutral && withDamiat && 'text-[var(--color-brand-primary)]',
+          !isPrimary && !isNeutral && !withDamiat && 'text-[var(--color-danger-base)]',
         )}
       >
         {chip.value}
       </span>
       {chip.hint ? (
-        <span className="mt-[var(--space-2)] line-clamp-2 text-style-caption font-normal leading-snug text-[var(--color-text-muted)]">
+        <span className="mt-[var(--space-4)] line-clamp-2 text-style-body font-normal leading-snug text-[var(--color-text-muted)]">
           {chip.hint}
         </span>
       ) : null}
@@ -83,15 +76,15 @@ function buildChips(data: DamiatCalculatorSummaryData, device1: boolean): Summar
     return [
       {
         id: 'money',
-        label: 'Сэкономлено',
-        value: data.moneyRub,
-        hint: 'Разница итоговой прибыли за сезон: с DAMIAT минус без',
+        label: 'Выгода',
+        value: data.moneyWithRub,
+        hint: 'Выгода с DAMIAT',
         primary: true,
       },
       {
         id: 'mass',
         label: 'Сохранено',
-        value: data.massTons,
+        value: data.massWithTons,
         hint: 'Масса урожая без порчи',
       },
       {
@@ -108,14 +101,14 @@ function buildChips(data: DamiatCalculatorSummaryData, device1: boolean): Summar
     {
       id: 'money',
       label: 'Потеряно',
-      value: data.moneyRub,
-      hint: 'Итоговые убытки без DAMIAT',
+      value: data.moneyWithoutRub,
+      hint: 'Убытки без DAMIAT',
       primary: true,
     },
     {
       id: 'mass',
       label: 'Потеряно',
-      value: data.massTons,
+      value: data.massWithoutTons,
       hint: 'Тонн урожая сверх порчи без DAMIAT',
     },
     {
@@ -145,8 +138,8 @@ export const DamiatCalculatorSummary: React.FC<DamiatCalculatorSummaryProps> = (
   }
 
   return (
-    <div className={cn('flex w-full min-w-0 flex-col gap-[var(--space-section-stack-m)]', className)}>
-      <div className="flex gap-[var(--space-8)] overflow-x-auto pb-[var(--space-2)] [-webkit-overflow-scrolling:touch] min-[1024px]:gap-[var(--grid-desktop-gutter)] min-[1024px]:overflow-visible">
+    <div className={cn('flex w-full min-w-0 flex-col', className)}>
+      <div className="flex items-stretch gap-[var(--space-8)] overflow-x-auto pb-[var(--space-2)] [-webkit-overflow-scrolling:touch] min-[1024px]:gap-[var(--grid-desktop-gutter)] min-[1024px]:overflow-visible">
         {chips.map((chip) => (
           <SummaryChipCard key={`${device1}-${chip.id}`} chip={chip} withDamiat={device1} />
         ))}

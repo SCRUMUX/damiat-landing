@@ -11,6 +11,8 @@ import {
   DEVICE_TONS_CAPACITY,
   ETHYLENE_COST_PER_TON_RUB,
   STORAGE_MONTHS,
+  TARGET_LOSS_FRACTION_WITHOUT,
+  TARGET_LOSS_FRACTION_WITH,
 } from './calculatorConfig';
 
 export interface MonthRow {
@@ -180,6 +182,61 @@ export function computeDocStyleEffect(
   };
 }
 
+/** Симуляция доли потерь массы от урожая при заданном плане продаж (без цен). */
+export function simulateLossFraction(
+  volumeTons: number,
+  spoilageRates: number[],
+  plannedSales: readonly number[],
+): number {
+  if (volumeTons <= 0) return 0;
+  let stock = volumeTons;
+  let totalLossTons = 0;
+  for (let m = 0; m < CALCULATOR_MONTHS; m++) {
+    const stockStart = stock;
+    const rate = Math.min(0.999, Math.max(0, spoilageRates[m] ?? 0));
+    const lossTons = stockStart * rate;
+    const afterLoss = stockStart - lossTons;
+    const planned = plannedSales[m] ?? 0;
+    const soldTons = Math.min(Math.max(0, planned), Math.max(0, afterLoss));
+    totalLossTons += lossTons;
+    stock = Math.max(0, afterLoss - soldTons);
+  }
+  return totalLossTons / volumeTons;
+}
+
+/**
+ * Масштабирует базовые ставки порчи, чтобы totalLossTons/volume ≈ targetFraction
+ * при текущем плане реализации.
+ */
+export function calibrateSpoilageRates(
+  baseRates: readonly number[],
+  targetFraction: number,
+  volumeTons: number,
+  plannedSales: readonly number[],
+): number[] {
+  if (volumeTons <= 0 || targetFraction <= 0) {
+    return baseRates.map(() => 0);
+  }
+
+  const scaleRates = (scale: number) =>
+    baseRates.map((r) => Math.min(0.999, Math.max(0, r * scale)));
+
+  let lo = 0;
+  let hi = 1;
+  while (simulateLossFraction(volumeTons, scaleRates(hi), plannedSales) < targetFraction && hi < 512) {
+    hi *= 2;
+  }
+
+  for (let i = 0; i < 64; i++) {
+    const mid = (lo + hi) / 2;
+    const frac = simulateLossFraction(volumeTons, scaleRates(mid), plannedSales);
+    if (frac < targetFraction) lo = mid;
+    else hi = mid;
+  }
+
+  return scaleRates((lo + hi) / 2);
+}
+
 function buildScenario(
   crop: CalculatorCropData,
   volumeTons: number,
@@ -214,8 +271,7 @@ function buildScenario(
     totalSoldTons += soldTons;
     totalSoldRub += soldRub;
     totalOpexRub += opexRub;
-    const monthResultRaw = soldRub - lossRub - deviceCostPerMonth - opexRub;
-    const monthResult = Math.max(0, monthResultRaw);
+    const monthResult = soldRub - lossRub - deviceCostPerMonth - opexRub;
     totalProfit += monthResult;
     stock = Math.max(0, stockEnd);
 
@@ -273,10 +329,24 @@ export function computeFullResult(
   const costTotal = deviceCostTotal(volumeTons);
   const costPerMonthWith = volumeTons > 0 ? costTotal / STORAGE_MONTHS : 0;
 
+  const plannedSales = schedule.plannedSalesTons;
+  const spoilageWithout = calibrateSpoilageRates(
+    crop.spoilageRateWithout,
+    TARGET_LOSS_FRACTION_WITHOUT,
+    volumeTons,
+    plannedSales,
+  );
+  const spoilageWith = calibrateSpoilageRates(
+    crop.spoilageRateWith,
+    TARGET_LOSS_FRACTION_WITH,
+    volumeTons,
+    plannedSales,
+  );
+
   const without = buildScenario(
     crop,
     volumeTons,
-    crop.spoilageRateWithout,
+    spoilageWithout,
     priceForecast,
     priceLastYear,
     0,
@@ -286,7 +356,7 @@ export function computeFullResult(
   const withScenario = buildScenario(
     crop,
     volumeTons,
-    crop.spoilageRateWith,
+    spoilageWith,
     priceForecast,
     priceLastYear,
     costPerMonthWith,
@@ -294,7 +364,7 @@ export function computeFullResult(
   );
 
   const lossSavings = without.totalLossRub - withScenario.totalLossRub;
-  const profitDelta = Math.max(0, withScenario.totalProfit - without.totalProfit);
+  const profitDelta = withScenario.totalProfit - without.totalProfit;
   const netBenefit = profitDelta;
   const avgRealizationPricePerTon = averageRealizationPricePerTon(priceForecast);
   const doc = computeDocStyleEffect(volumeTons, avgRealizationPricePerTon);

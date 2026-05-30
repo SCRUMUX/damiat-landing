@@ -15,10 +15,12 @@ export interface DamiatCalculatorFormValues {
   salesPlanMode: SalesPlanMode;
 }
 
-/** Итоги для плашек: одни числа, подписи зависят от device1. */
+/** Итоги для плашек: значения для обоих режимов свитча, подписи — в Summary. */
 export interface DamiatCalculatorSummaryData {
-  moneyRub: string;
-  massTons: string;
+  moneyWithRub: string;
+  moneyWithoutRub: string;
+  massWithTons: string;
+  massWithoutTons: string;
   deviceCostRub: string;
   deviceCostHint: string;
 }

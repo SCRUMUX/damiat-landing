@@ -147,13 +147,23 @@ export function validateSchedule(
   };
 }
 
+export function clampSalesPlanToVolume(plan: number[], volumeTons: number): number[] {
+  let remaining = roundTons1(Math.max(0, volumeTons));
+  return plan.map((planned) => {
+    const clamped = roundTons1(Math.max(0, Math.min(planned, remaining)));
+    remaining = roundTons1(Math.max(0, remaining - clamped));
+    return clamped;
+  });
+}
+
 export function buildScheduleInput(
   salesRaw: string[],
   opexRaw: string[],
   volumeTons: number,
 ): CalculatorScheduleInput {
+  const parsed = parseSalesPlan(salesRaw, volumeTons);
   return {
-    plannedSalesTons: parseSalesPlan(salesRaw, volumeTons),
+    plannedSalesTons: clampSalesPlanToVolume(parsed, volumeTons),
     opexRub: parseOpexPlan(opexRaw),
   };
 }
