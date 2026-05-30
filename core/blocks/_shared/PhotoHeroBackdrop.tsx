@@ -37,6 +37,8 @@ export interface PhotoHeroBackdropProps {
   vignette?: boolean;
   /** Background image parallax factor — default 0.12. */
   imageParallaxFactor?: number;
+  /** `lazy` for below-the-fold photo bands. */
+  imageLoading?: 'eager' | 'lazy';
   className?: string;
 }
 
@@ -50,10 +52,12 @@ export const PhotoHeroBackdrop: React.FC<PhotoHeroBackdropProps> = ({
   depth = 'enhanced',
   vignette = true,
   imageParallaxFactor = 0.12,
+  imageLoading = 'eager',
   className,
 }) => {
   const scrim = PHOTO_HERO_SCRIM[photoTone];
-  const imageParallaxRef = useParallaxOffset(imageParallaxFactor, true);
+  const parallaxActive = imageParallaxFactor !== 0;
+  const imageParallaxRef = useParallaxOffset(imageParallaxFactor, parallaxActive);
   const enhanced = depth === 'enhanced';
 
   return (
@@ -62,15 +66,23 @@ export const PhotoHeroBackdrop: React.FC<PhotoHeroBackdropProps> = ({
       aria-hidden="true"
     >
       <div
-        ref={imageParallaxRef as React.RefObject<HTMLDivElement>}
-        className="absolute inset-0 overflow-hidden will-change-transform motion-reduce:transform-none"
-        style={{ transform: 'translate3d(0, var(--parallax-offset, 0), 0)' }}
+        ref={parallaxActive ? (imageParallaxRef as React.RefObject<HTMLDivElement>) : undefined}
+        className={cn(
+          'absolute inset-0 overflow-hidden motion-reduce:transform-none',
+          parallaxActive && 'will-change-transform',
+        )}
+        style={
+          parallaxActive
+            ? { transform: 'translate3d(0, var(--parallax-offset, 0), 0)' }
+            : undefined
+        }
       >
         <img
           src={backgroundImageSrc}
           alt=""
           className="absolute inset-0 h-[108%] w-full object-cover object-center saturate-[0.92] contrast-[1.05]"
           decoding="async"
+          loading={imageLoading}
         />
       </div>
 

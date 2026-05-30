@@ -1,68 +1,82 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { Input } from '../../../components/primitives/Input';
-import { Select } from '../../../components/primitives/Select';
+import { Slider } from '../../../components/primitives/Slider';
+import { Button } from '../../../components/primitives/Button';
 import { Switch } from '../../../components/primitives/Switch';
-import { cn } from '../../../components/primitives/_shared';
+import { POTATO_CROP } from './calculatorCropsData';
+import { PRICE_ADJUST_MAX, PRICE_ADJUST_MIN } from './calculatorConfig';
 import {
-  BLOCK_CARD_COMPACT_CLASS,
-  BLOCK_CARD_COMPACT_INSET_CLASS,
-} from '../../_shared/blockLayout';
-import type {
-  DamiatCalculatorBlockProps,
-  DamiatCalculatorFormValues,
-} from './DamiatCalculatorBlock.types';
+  averagePricePerTon,
+  buildPriceForecast,
+  defaultSeptemberPricePerTon,
+  formatTons,
+  totalTonsFromFields,
+} from './calculatorEngine';
+import type { DamiatCalculatorBlockProps, DamiatCalculatorFormValues } from './DamiatCalculatorBlock.types';
 
-const DEFAULT_VALUES: DamiatCalculatorFormValues = {
-  region: '',
-  volume: '',
-  price: '',
-  storagePeriod: '',
-  storageType: '',
-  device1: true,
-  device2: true,
-};
-
-export interface DamiatCalculatorFormProps
-  extends Pick<
-    DamiatCalculatorBlockProps,
-    | 'fields'
-    | 'regionOptions'
-    | 'storageTypeOptions'
-    | 'marketTitle'
-    | 'marketItems'
-    | 'devices'
-    | 'devicesTitle'
-    | 'defaultValues'
-  > {
-  values: DamiatCalculatorFormValues;
-  onValuesChange: (values: DamiatCalculatorFormValues) => void;
+function SidebarSection({
+  number,
+  title,
+  children,
+  divided,
+}: {
+  number: number;
+  title: string;
+  children: React.ReactNode;
+  divided?: boolean;
+}) {
+  return (
+    <section
+      className={
+        divided
+          ? 'border-t border-[var(--color-border-base)] pt-[var(--space-section-content-m)]'
+          : undefined
+      }
+    >
+      <div className="mb-[var(--space-section-stack-s)] flex items-center gap-[var(--space-8)]">
+        <span
+          className="flex h-[var(--space-28)] w-[var(--space-28)] shrink-0 items-center justify-center rounded-full border border-[var(--color-brand-primary)] text-style-caption font-semibold text-[var(--color-brand-primary)]"
+          aria-hidden
+        >
+          {number}
+        </span>
+        <h3 className="m-0 text-style-h4 text-[var(--color-text-primary)]">{title}</h3>
+      </div>
+      {children}
+    </section>
+  );
 }
 
-const FIELD_STACK_CLASS = 'flex w-full min-w-0 flex-col gap-[var(--space-12)]';
-const FIELD_ROW_CLASS = cn(
-  'flex w-full min-w-0 flex-col gap-[var(--space-12)]',
-  'min-[1024px]:grid min-[1024px]:grid-cols-2 min-[1024px]:gap-[var(--space-16)]',
-);
-
-function FieldLabel({ children }: { children: React.ReactNode }) {
+function FieldLabel({ children, unit }: { children: React.ReactNode; unit?: string }) {
   return (
-    <span className="mb-[var(--space-4)] block text-style-caption font-medium text-[var(--color-text-secondary)]">
+    <span className="mb-[var(--space-6)] block text-style-body font-medium text-[var(--color-text-secondary)]">
       {children}
+      {unit ? <span className="font-normal text-[var(--color-text-muted)]">, {unit}</span> : null}
     </span>
   );
 }
 
+const numericInputProps = {
+  type: 'text' as const,
+  inputMode: 'decimal' as const,
+  autoComplete: 'off',
+};
+
+export interface DamiatCalculatorFormProps
+  extends Pick<DamiatCalculatorBlockProps, 'devicesTitle' | 'recommendationsHref' | 'recommendationsLabel'> {
+  values: DamiatCalculatorFormValues;
+  onValuesChange: (values: DamiatCalculatorFormValues) => void;
+  onDeviceChange: (device1: boolean) => void;
+}
+
+/** Левая панель калькулятора (параметры урожая + цена). */
 export const DamiatCalculatorForm: React.FC<DamiatCalculatorFormProps> = ({
-  fields,
-  regionOptions,
-  storageTypeOptions,
-  marketTitle = 'Рыночный слой (авто)',
-  marketItems,
-  devices,
-  devicesTitle = 'Оборудование',
-  defaultValues,
   values,
   onValuesChange,
+  onDeviceChange,
+  devicesTitle = 'Генератор DAMIAT',
+  recommendationsHref = '#scenarios',
+  recommendationsLabel = 'Перейти в рекомендации',
 }) => {
   const update = useCallback(
     (patch: Partial<DamiatCalculatorFormValues>) => {
@@ -71,101 +85,140 @@ export const DamiatCalculatorForm: React.FC<DamiatCalculatorFormProps> = ({
     [onValuesChange, values],
   );
 
-  const textFields = fields.filter((f) => f.id !== 'region' && f.id !== 'storageType');
+  const totalTons = useMemo(() => {
+    const ha = Number(values.hectares) || 0;
+    const y = Number(values.yieldTonsPerHa) || 0;
+    return totalTonsFromFields(ha, y);
+  }, [values.hectares, values.yieldTonsPerHa]);
+
+  const defaultBasePrice = useMemo(() => defaultSeptemberPricePerTon(POTATO_CROP), []);
+
+  const pricePreview = useMemo(() => {
+    const manual = Number(String(values.manualBasePricePerTon).replace(/\s/g, '').replace(',', '.'));
+    const manualBase = Number.isFinite(manual) && manual > 0 ? manual : undefined;
+    return buildPriceForecast(POTATO_CROP, values.priceAdjustPercent, manualBase);
+  }, [values.manualBasePricePerTon, values.priceAdjustPercent]);
+
+  const avgPriceYear = useMemo(() => averagePricePerTon(pricePreview), [pricePreview]);
+
+  const adjustLabel =
+    values.priceAdjustPercent !== 0
+      ? `${values.priceAdjustPercent > 0 ? '+' : ''}${values.priceAdjustPercent}%`
+      : '0%';
 
   return (
-    <div className={FIELD_STACK_CLASS}>
-      <div className={FIELD_ROW_CLASS}>
-        <div>
-          <FieldLabel>Регион</FieldLabel>
-          <Select
-            size="md"
-            placeholder="Выберите регион"
-            options={regionOptions}
-            value={values.region || undefined}
-            onValueChange={(region) => update({ region })}
-          />
-        </div>
-        {textFields.slice(0, 1).map((field) => (
-          <div key={field.id}>
-            <FieldLabel>{field.label}</FieldLabel>
+    <aside className="flex h-full min-h-full w-full min-w-0 flex-col gap-[var(--space-section-content-m)] text-style-body">
+      <SidebarSection number={1} title="Параметры урожая">
+        <div className="flex flex-col gap-[var(--space-section-content-m)]">
+          <div>
+            <FieldLabel unit="га">Площадь посева</FieldLabel>
             <Input
-              size="md"
+              size="lg"
               fullWidth
-              type={field.inputType ?? 'text'}
-              placeholder={field.placeholder}
-              value={values[field.id] as string}
-              onChange={(e) => update({ [field.id]: e.target.value } as Partial<DamiatCalculatorFormValues>)}
+              placeholder="500"
+              value={values.hectares}
+              onChange={(e) => update({ hectares: e.target.value })}
+              inputProps={numericInputProps}
             />
           </div>
-        ))}
-      </div>
-
-      <div className={FIELD_ROW_CLASS}>
-        {textFields.slice(1).map((field) => (
-          <div key={field.id}>
-            <FieldLabel>{field.label}</FieldLabel>
+          <div>
+            <FieldLabel unit="т/га">Урожайность</FieldLabel>
             <Input
-              size="md"
+              size="lg"
               fullWidth
-              type={field.inputType ?? 'text'}
-              placeholder={field.placeholder}
-              value={values[field.id] as string}
-              onChange={(e) => update({ [field.id]: e.target.value } as Partial<DamiatCalculatorFormValues>)}
+              placeholder={String(POTATO_CROP.defaultYieldTonsPerHa)}
+              value={values.yieldTonsPerHa}
+              onChange={(e) => update({ yieldTonsPerHa: e.target.value })}
+              inputProps={numericInputProps}
             />
           </div>
-        ))}
-        <div>
-          <FieldLabel>Тип хранилища</FieldLabel>
-          <Select
-            size="md"
-            placeholder="Тип хранилища"
-            options={storageTypeOptions}
-            value={values.storageType || undefined}
-            onValueChange={(storageType) => update({ storageType })}
-          />
+          <div>
+            <FieldLabel unit="т">Общий объём урожая</FieldLabel>
+            <span className="text-style-h4 text-style-tabular block font-semibold leading-tight text-[var(--color-brand-primary)]">
+              {totalTons > 0 ? formatTons(totalTons) : '—'}
+            </span>
+          </div>
         </div>
-      </div>
+      </SidebarSection>
 
-      <div className={cn(BLOCK_CARD_COMPACT_CLASS, BLOCK_CARD_COMPACT_INSET_CLASS, 'bg-[var(--color-surface-2)]')}>
-        <p className="m-0 mb-[var(--space-12)] text-style-body-strong text-[var(--color-text-primary)]">
-          {marketTitle}
-        </p>
-        <ul className="m-0 flex list-none flex-col gap-[var(--space-8)] p-0">
-          {marketItems.map((item) => (
-            <li
-              key={item.label}
-              className="flex items-center justify-between gap-[var(--space-16)] text-style-body-sm"
-            >
-              <span className="text-[var(--color-text-secondary)]">{item.label}</span>
-              <span className="text-style-tabular font-medium text-[var(--color-text-primary)]">{item.value}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <SidebarSection number={2} title="Базовая цена" divided>
+        <div className="flex flex-col gap-[var(--space-section-content-m)]">
+          <div>
+            <FieldLabel unit="₽/т">Цена при сборке урожая</FieldLabel>
+            <Input
+              size="lg"
+              fullWidth
+              placeholder={defaultBasePrice > 0 ? String(Math.round(defaultBasePrice)) : '15600'}
+              value={values.manualBasePricePerTon}
+              onChange={(e) => update({ manualBasePricePerTon: e.target.value })}
+              inputProps={numericInputProps}
+            />
+          </div>
 
-      <div>
-        <p className="m-0 mb-[var(--space-12)] text-style-body-strong text-[var(--color-text-primary)]">
-          {devicesTitle}
-        </p>
-        <div className="flex flex-col gap-[var(--space-12)] min-[1024px]:flex-row min-[1024px]:gap-[var(--space-24)]">
-          {devices.map((device) => (
-            <label
-              key={device.id}
-              className="flex cursor-pointer items-center gap-[var(--space-12)] text-style-body-sm text-[var(--color-text-primary)]"
-            >
+          <div className="flex items-baseline justify-between gap-[var(--space-8)]">
+            <FieldLabel unit="₽/т">Средняя цена за год</FieldLabel>
+            <span className="text-style-body-lg text-style-tabular shrink-0 font-semibold leading-tight text-[var(--color-brand-primary)]">
+              {avgPriceYear}
+            </span>
+          </div>
+
+          <div>
+            <FieldLabel>Корректировка цены</FieldLabel>
+            <div className="flex items-center gap-[var(--space-8)]">
+              <span className="w-[var(--space-36)] shrink-0 text-style-body-sm text-[var(--color-text-muted)]">
+                {PRICE_ADJUST_MIN}%
+              </span>
+              <Slider
+                size="md"
+                className="flex-1"
+                min={PRICE_ADJUST_MIN}
+                max={PRICE_ADJUST_MAX}
+                step={1}
+                value={values.priceAdjustPercent}
+                onChange={(v) => update({ priceAdjustPercent: v })}
+              />
+              <span className="w-[var(--space-36)] shrink-0 text-right text-style-body-sm text-[var(--color-text-muted)]">
+                +{PRICE_ADJUST_MAX}%
+              </span>
+            </div>
+            <p className="m-0 mt-[var(--space-8)] text-center text-style-body font-medium text-[var(--color-text-primary)]">
+              {adjustLabel}
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-[var(--space-8)] pt-[var(--space-section-content-m)]">
+            <label className="flex cursor-pointer items-center gap-[var(--space-8)] text-style-caption text-[var(--color-text-primary)]">
               <Switch
                 size="md"
-                state={values[device.id] ? 'on' : 'off'}
-                onToggle={(checked) => update({ [device.id]: checked } as Partial<DamiatCalculatorFormValues>)}
-                aria-label={device.label}
+                state={values.device1 ? 'on' : 'off'}
+                onToggle={onDeviceChange}
+                aria-label={devicesTitle}
               />
-              {device.label}
+              <span className="font-medium">{devicesTitle}</span>
             </label>
-          ))}
+            <p className="m-0 text-style-caption leading-snug text-[var(--color-text-muted)]">
+              {values.device1
+                ? 'В сценарии есть DAMIAT — ниже эффект экономии'
+                : 'Без DAMIAT — ниже упущенная выгода и потери'}
+            </p>
+          </div>
         </div>
+      </SidebarSection>
+
+      <div className="mt-auto pt-[var(--space-section-content-m)]">
+        <Button
+          appearance="brand"
+          size="md"
+          type="button"
+          className="w-full"
+          onClick={() => {
+            document.querySelector(recommendationsHref)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }}
+        >
+          {recommendationsLabel}
+        </Button>
       </div>
-    </div>
+    </aside>
   );
 };
 

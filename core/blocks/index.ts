@@ -114,10 +114,7 @@ export { DamiatCalculatorBlock } from './marketing/DamiatCalculatorBlock';
 export type {
   DamiatCalculatorBlockProps,
   DamiatCalculatorFormValues,
-  DamiatCalculatorFieldConfig,
-  DamiatCalculatorMarketItem,
-  DamiatCalculatorDeviceConfig,
-  DamiatCalculatorResultMetric,
+  DamiatCalculatorSummaryData,
 } from './marketing/DamiatCalculatorBlock';
 
 export { DamiatLandingPage } from './marketing/DamiatLandingPage';

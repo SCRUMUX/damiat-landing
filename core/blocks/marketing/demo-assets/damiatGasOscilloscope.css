@@ -67,15 +67,6 @@
   }
 }
 
-@keyframes damiat-hud-wave-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-48px);
-  }
-}
-
 .damiat-hud-sensor__ring--cw-slow {
   transform-origin: 250px 250px;
   animation: damiat-hud-rotate-cw 90s linear infinite;
@@ -106,10 +97,6 @@
   animation: damiat-hud-core-pulse 5s ease-in-out infinite;
 }
 
-.damiat-hud-sensor__wave-track {
-  animation: damiat-hud-wave-scroll 2.8s linear infinite;
-}
-
 .damiat-hud-sensor__svg-layer {
   position: relative;
   z-index: 1;
@@ -124,14 +111,31 @@
   pointer-events: none;
 }
 
+.damiat-hud-sensor--static .damiat-hud-sensor__ring--cw-slow,
+.damiat-hud-sensor--static .damiat-hud-sensor__ring--ccw-mid,
+.damiat-hud-sensor--static .damiat-hud-sensor__ring--cw-fast,
+.damiat-hud-sensor--static .damiat-hud-sensor__ring--ticks,
+.damiat-hud-sensor--static .damiat-hud-sensor__sweep,
+.damiat-hud-sensor--static .damiat-hud-sensor__core {
+  animation: none;
+}
+
+.damiat-hud-sensor--paused .damiat-hud-sensor__ring--cw-slow,
+.damiat-hud-sensor--paused .damiat-hud-sensor__ring--ccw-mid,
+.damiat-hud-sensor--paused .damiat-hud-sensor__ring--cw-fast,
+.damiat-hud-sensor--paused .damiat-hud-sensor__ring--ticks,
+.damiat-hud-sensor--paused .damiat-hud-sensor__sweep,
+.damiat-hud-sensor--paused .damiat-hud-sensor__core {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .damiat-hud-sensor__ring--cw-slow,
   .damiat-hud-sensor__ring--ccw-mid,
   .damiat-hud-sensor__ring--cw-fast,
   .damiat-hud-sensor__ring--ticks,
   .damiat-hud-sensor__sweep,
-  .damiat-hud-sensor__core,
-  .damiat-hud-sensor__wave-track {
+  .damiat-hud-sensor__core {
     animation: none;
   }
 

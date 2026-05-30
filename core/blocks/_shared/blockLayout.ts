@@ -289,6 +289,25 @@ export const BLOCK_GLASS_SCRIM_CLASS = cn(
   'bg-[var(--effect-glass-scrim-bg)]',
 );
 
+/** Calculator — decorative ambient layer (blobs) for readable glass blur on base sections. */
+export const BLOCK_CALCULATOR_AMBIENT_CLASS =
+  'pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]';
+
+/** Calculator — unified glass workspace (form + chart + summary). */
+export const BLOCK_CALCULATOR_WORKSPACE_CLASS = cn(
+  BLOCK_GLASS_CHROME_PANEL_CLASS,
+  'relative z-10',
+  'bg-[color-mix(in_srgb,var(--color-surface-1)_82%,transparent)]',
+  'p-[var(--space-inset-l)]',
+  'desktop:p-[var(--space-inset-xl)]',
+);
+
+/** Calculator — two-column grid inside workspace. */
+export const BLOCK_CALCULATOR_GRID_CLASS = cn(
+  'grid w-full min-w-0 grid-cols-1 items-stretch gap-[var(--space-section-content-l)]',
+  'min-[1024px]:grid-cols-[minmax(0,var(--space-320))_minmax(0,1fr)]',
+);
+
 /** @deprecated Use BLOCK_GLASS_CHROME_PANEL_CLASS */
 export const BLOCK_GLASS_PANEL_CLASS = BLOCK_GLASS_CHROME_PANEL_CLASS;
 

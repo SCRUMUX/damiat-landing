@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useState } from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
 import { cn } from '../../../components/primitives/_shared';
 import './damiatGasOscilloscope.css';
 
@@ -118,27 +118,46 @@ function HudDigit({
   );
 }
 
-export const DamiatGasOscilloscope: React.FC<{ className?: string }> = ({ className }) => {
+export const DamiatGasOscilloscope: React.FC<{ className?: string; staticDisplay?: boolean }> = ({
+  className,
+  staticDisplay = false,
+}) => {
   const uid = useId().replace(/:/g, '');
   const glowId = `damiat-hud-glow-${uid}`;
-  const waveClipId = `damiat-hud-wave-clip-${uid}`;
+  const rootRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(true);
   const [frameIndex, setFrameIndex] = useState(0);
+  const animating = !staticDisplay && inView;
 
   useEffect(() => {
+    const node = rootRef.current;
+    if (!node || typeof IntersectionObserver === 'undefined') return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: '120px' },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!animating) return undefined;
     const id = window.setInterval(() => {
       setFrameIndex((i) => (i + 1) % TELEMETRY_FRAMES.length);
     }, 1100);
     return () => window.clearInterval(id);
-  }, []);
+  }, [animating]);
 
   const t = TELEMETRY_FRAMES[frameIndex];
-  const wavePath =
-    'M0 12 L6 8 L12 14 L18 6 L24 16 L30 10 L36 18 L42 7 L48 13 L54 9 L60 15 L66 11 L72 17 L78 8 L84 14 L90 10';
 
   return (
     <div
+      ref={rootRef}
       className={cn(
         'damiat-hud-sensor relative mx-auto w-full max-w-[var(--space-400)] bg-transparent min-[1024px]:mx-0 min-[1024px]:max-w-[var(--space-480)]',
+        staticDisplay && 'damiat-hud-sensor--static',
+        !animating && 'damiat-hud-sensor--paused',
         className,
       )}
       style={{ aspectRatio: '1' }}
@@ -157,12 +176,9 @@ export const DamiatGasOscilloscope: React.FC<{ className?: string }> = ({ classN
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
-          <clipPath id={waveClipId}>
-            <rect x={52} y={238} width={80} height={28} />
-          </clipPath>
         </defs>
 
-        <g filter={`url(#${glowId})`} className="damiat-hud-sensor__graphics">
+        <g className="damiat-hud-sensor__graphics" filter={staticDisplay ? undefined : `url(#${glowId})`}>
           <g className="damiat-hud-sensor__ring--ccw-mid">
             <circle
               cx={CX}
@@ -276,42 +292,6 @@ export const DamiatGasOscilloscope: React.FC<{ className?: string }> = ({ classN
               />
             );
           })}
-        </g>
-
-        <g className="damiat-hud-sensor__graphics">
-          <rect
-            x={48}
-            y={234}
-            width={88}
-            height={28}
-            fill="none"
-            stroke="currentColor"
-            strokeOpacity={0.25}
-            strokeWidth={0.75}
-            rx={2}
-          />
-          <g clipPath={`url(#${waveClipId})`}>
-            <g className="damiat-hud-sensor__wave-track" transform="translate(52, 238)">
-              <path
-                d={wavePath}
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={1.5}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d={wavePath}
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={1.5}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                transform="translate(48 0)"
-                opacity={0.55}
-              />
-            </g>
-          </g>
         </g>
 
       </svg>

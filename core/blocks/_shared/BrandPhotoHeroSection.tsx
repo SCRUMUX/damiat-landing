@@ -11,6 +11,7 @@ export interface BrandPhotoHeroSectionProps extends PhotoHeroBackdropProps {
   as?: 'section' | 'div';
   /** Foreground content parallax — default 0.05; set 0 to disable. */
   contentParallaxFactor?: number;
+  imageLoading?: 'eager' | 'lazy';
 }
 
 /**
@@ -31,6 +32,7 @@ export const BrandPhotoHeroSection: React.FC<
   vignette,
   imageParallaxFactor,
   contentParallaxFactor = 0.05,
+  imageLoading = 'lazy',
   ...rest
 }) => {
   const content = (
@@ -61,6 +63,7 @@ export const BrandPhotoHeroSection: React.FC<
         depth={depth}
         vignette={vignette}
         imageParallaxFactor={imageParallaxFactor}
+        imageLoading={imageLoading}
       />
       {contentParallaxFactor > 0 ? (
         <ParallaxLayer factor={contentParallaxFactor} className="relative z-[1]">

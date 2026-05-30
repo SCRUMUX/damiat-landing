@@ -1,54 +1,34 @@
-import type { SelectOption } from '../../../components/primitives/Select';
-
-export interface DamiatCalculatorFieldConfig {
-  id: keyof DamiatCalculatorFormValues;
-  label: string;
-  placeholder?: string;
-  inputType?: 'text' | 'number';
-}
-
-export interface DamiatCalculatorMarketItem {
-  label: string;
-  value: string;
-}
-
-export interface DamiatCalculatorDeviceConfig {
-  id: 'device1' | 'device2';
-  label: string;
-}
-
-export interface DamiatCalculatorResultMetric {
-  id: string;
-  value: string;
-  label: string;
-  /** Primary DAMIAT Index metric — larger typography */
-  primary?: boolean;
-}
+import type { SalesPlanMode } from './calculatorSchedule';
 
 export interface DamiatCalculatorFormValues {
-  region: string;
-  volume: string;
-  price: string;
-  storagePeriod: string;
-  storageType: string;
+  hectares: string;
+  yieldTonsPerHa: string;
   device1: boolean;
-  device2: boolean;
+  /** Пусто = прогноз опта; иначе база сентября, ₽/т */
+  manualBasePricePerTon: string;
+  /** Корректировка прогнозной цены, % */
+  priceAdjustPercent: number;
+  /** План реализации по месяцам, т (строки для инпутов) */
+  salesTonsByMonth: string[];
+  /** Операционные расходы по месяцам, ₽ */
+  opexRubByMonth: string[];
+  salesPlanMode: SalesPlanMode;
+}
+
+/** Итоги для плашек: одни числа, подписи зависят от device1. */
+export interface DamiatCalculatorSummaryData {
+  moneyRub: string;
+  massTons: string;
+  deviceCostRub: string;
+  deviceCostHint: string;
 }
 
 export interface DamiatCalculatorBlockProps {
   title?: string;
   subtitle?: string;
-  fields: DamiatCalculatorFieldConfig[];
-  regionOptions: SelectOption[];
-  storageTypeOptions: SelectOption[];
-  marketTitle?: string;
-  marketItems: DamiatCalculatorMarketItem[];
-  devices: DamiatCalculatorDeviceConfig[];
   devicesTitle?: string;
-  resultsTitle?: string;
-  calculateLabel?: string;
+  recommendationsHref?: string;
+  recommendationsLabel?: string;
   defaultValues?: Partial<DamiatCalculatorFormValues>;
-  /** Demo metrics after «Рассчитать» (Storybook / landing fixtures). */
-  demoResults: DamiatCalculatorResultMetric[];
   className?: string;
 }

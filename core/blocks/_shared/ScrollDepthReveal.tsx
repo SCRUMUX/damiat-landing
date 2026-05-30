@@ -8,10 +8,15 @@ import './scrollDepthReveal.css';
 
 export type ScrollDepthIntensity = 'subtle' | 'medium' | 'strong';
 
+/** `depth` — 3D perspective reveal; `fade` — opacity + translateY only. */
+export type ScrollDepthVariant = 'depth' | 'fade';
+
 export interface ScrollDepthRevealProps
   extends React.HTMLAttributes<HTMLDivElement>,
     Pick<UseScrollDepthRevealOptions, 'disabled' | 'rootMargin' | 'threshold'> {
-  /** Perspective + 3D enter strength. */
+  /** `depth` (default) or lightweight `fade` for long landing pages. */
+  variant?: ScrollDepthVariant;
+  /** Perspective + 3D enter strength (depth variant only). */
   intensity?: ScrollDepthIntensity;
   /** Animate direct children with incremental delay. */
   staggerChildren?: boolean;
@@ -25,6 +30,7 @@ export interface ScrollDepthRevealProps
  * One-shot fake-3D section reveal on scroll (CSS perspective + translateZ / rotateX).
  */
 export const ScrollDepthReveal: React.FC<ScrollDepthRevealProps> = ({
+  variant = 'depth',
   intensity = 'medium',
   staggerChildren = false,
   stage = true,
@@ -36,6 +42,7 @@ export const ScrollDepthReveal: React.FC<ScrollDepthRevealProps> = ({
   children,
   ...rest
 }) => {
+  const fade = variant === 'fade';
   const { ref, revealed } = useScrollDepthReveal<HTMLDivElement>({
     disabled,
     rootMargin,
@@ -45,11 +52,12 @@ export const ScrollDepthReveal: React.FC<ScrollDepthRevealProps> = ({
   const reveal = (
     <Tag
       ref={ref}
-      data-scroll-depth={intensity}
+      data-scroll-depth={fade ? undefined : intensity}
       className={cn(
         'scroll-depth-reveal w-full',
+        fade && 'scroll-depth-reveal--fade',
         revealed && 'scroll-depth-reveal--revealed',
-        staggerChildren && 'scroll-depth-reveal--stagger',
+        !fade && staggerChildren && 'scroll-depth-reveal--stagger',
         !stage && className,
       )}
       {...(stage ? {} : rest)}
@@ -63,7 +71,14 @@ export const ScrollDepthReveal: React.FC<ScrollDepthRevealProps> = ({
   }
 
   return (
-    <div className={cn('scroll-depth-stage w-full', className)} {...rest}>
+    <div
+      className={cn(
+        'scroll-depth-stage w-full',
+        fade && 'scroll-depth-stage--fade',
+        className,
+      )}
+      {...rest}
+    >
       {reveal}
     </div>
   );

@@ -77,17 +77,15 @@ function HeroActions({
   secondaryAction,
   centered,
   onBrand,
-  enterprise,
 }: {
   primaryAction?: HeroBlockAction;
   secondaryAction?: HeroBlockAction;
   centered?: boolean;
   onBrand?: boolean;
-  enterprise?: boolean;
 }) {
   if (!primaryAction && !secondaryAction) return null;
 
-  const primaryAppearance = enterprise && onBrand ? 'outline' : 'brand';
+  const primaryAppearance = 'brand';
 
   return (
     <div
@@ -102,11 +100,6 @@ function HeroActions({
           appearance={primaryAppearance}
           size="lg"
           onBrand={onBrand}
-          className={
-            enterprise && onBrand
-              ? 'transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-[var(--color-text-on-brand)] hover:bg-[var(--color-text-on-brand)]/14 hover:shadow-elevation-2 active:translate-y-0'
-              : undefined
-          }
         />
       ) : null}
       {secondaryAction ? (
@@ -237,7 +230,6 @@ function HeroEnterpriseLayout({
         primaryAction={primaryAction}
         secondaryAction={secondaryAction}
         onBrand={onBrand}
-        enterprise
       />
     </>
   );

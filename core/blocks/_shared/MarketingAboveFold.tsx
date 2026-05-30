@@ -1,7 +1,7 @@
 import React from 'react';
 import { cn } from '../../components/primitives/_shared';
 import { ParallaxBrandScene } from './ParallaxBrandScene';
-import { PhotoHeroBackdrop, type PhotoHeroTone } from './PhotoHeroBackdrop';
+import { PhotoHeroBackdrop, type PhotoHeroTone, type PhotoHeroBackdropProps } from './PhotoHeroBackdrop';
 
 export type MarketingAboveFoldPhotoTone = PhotoHeroTone;
 
@@ -16,6 +16,8 @@ export interface MarketingAboveFoldProps {
   photoTone?: MarketingAboveFoldPhotoTone;
   /** Main hero photo parallax — default 0.14 when photo present. */
   imageParallaxFactor?: number;
+  /** Film grain on photo backdrop — default `strong`. */
+  grainIntensity?: PhotoHeroBackdropProps['grainIntensity'];
 }
 
 /**
@@ -30,6 +32,7 @@ export const MarketingAboveFold: React.FC<MarketingAboveFoldProps> = ({
   backgroundImageSrc,
   photoTone = 'brand',
   imageParallaxFactor = 0.14,
+  grainIntensity = 'strong',
 }) => (
   <div
     data-marketing-above-fold
@@ -46,7 +49,7 @@ export const MarketingAboveFold: React.FC<MarketingAboveFoldProps> = ({
         <PhotoHeroBackdrop
           backgroundImageSrc={backgroundImageSrc}
           photoTone={photoTone}
-          grainIntensity="strong"
+          grainIntensity={grainIntensity}
           depth="enhanced"
           imageParallaxFactor={imageParallaxFactor}
         />

@@ -7,6 +7,8 @@ export interface BlockSectionHeaderProps {
   eyebrow?: string;
   title: string;
   subtitle?: string;
+  /** Substring of `subtitle` rendered in brand primary (must appear in subtitle text). */
+  subtitleAccent?: string;
   /**
    * Section header alignment. Default `left` — matches landing layout contract.
    * Use `center` only for standalone centered hero (`marketing.hero.centered`).
@@ -22,6 +24,7 @@ export const BlockSectionHeader: React.FC<BlockSectionHeaderProps> = ({
   eyebrow,
   title,
   subtitle,
+  subtitleAccent,
   align = 'left',
   titleScale = 'section',
   onBrand = false,
@@ -73,7 +76,17 @@ export const BlockSectionHeader: React.FC<BlockSectionHeaderProps> = ({
               BLOCK_PROSE_CLASS,
             )}
           >
-            {subtitle}
+            {subtitleAccent && subtitle.includes(subtitleAccent) ? (
+              <>
+                {subtitle.split(subtitleAccent)[0]}
+                <span className="font-medium text-[var(--color-brand-primary)]">
+                  {subtitleAccent}
+                </span>
+                {subtitle.split(subtitleAccent)[1]}
+              </>
+            ) : (
+              subtitle
+            )}
           </p>
         )}
       </div>

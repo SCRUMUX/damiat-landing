@@ -1,632 +1,399 @@
 import React from 'react';
-
 import { cn } from '../../../components/primitives/_shared';
-
+import './damiatLandingScroll.css';
+import { useScrollActivity } from '../../../hooks/useScrollActivity';
 import { BrandPhotoHeroSection } from '../../_shared/BrandPhotoHeroSection';
-
+import { DamiatBridgeSection } from '../../_shared/DamiatBridgeSection';
 import { MarketingAboveFold } from '../../_shared/MarketingAboveFold';
-
-import { ScrollDepthReveal } from '../../_shared/ScrollDepthReveal';
-
-import { LoopScrollBridge } from '../../_shared/LoopScrollBridge';
-import { ScrollLoopShell } from '../../_shared/ScrollLoopShell';
-
+import {
+  ScrollDepthReveal,
+  type ScrollDepthIntensity,
+} from '../../_shared/ScrollDepthReveal';
 import { NavbarBlock, type NavbarBlockProps } from '../NavbarBlock';
-
 import { HeroBlock, type HeroBlockProps } from '../HeroBlock';
-
 import { EventsBlock, type EventsBlockProps } from '../EventsBlock/EventsBlock';
-
 import { FeaturesBlock, type FeaturesBlockProps } from '../FeaturesBlock';
-
 import { DamiatCalculatorBlock, type DamiatCalculatorBlockProps } from '../DamiatCalculatorBlock';
-
 import { ShowcasePanelBlock, type ShowcasePanelBlockProps } from '../ShowcasePanelBlock';
-
 import { WhyUsBlock, type WhyUsBlockProps } from '../WhyUsBlock';
-
 import { StatsBlock, type StatsBlockProps } from '../StatsBlock';
-
 import { ProcessBlock, type ProcessBlockProps } from '../ProcessBlock';
-
 import { TrustBlock, type TrustBlockProps } from '../TrustBlock';
-
 import { PartnersBlock, type PartnersBlockProps } from '../PartnersBlock';
-
 import { LogoCloudBlock, type LogoCloudBlockProps } from '../LogoCloudBlock';
-
 import { ContactHeroBlock, type ContactHeroBlockProps } from '../ContactHeroBlock';
-
 import { FooterBlock, type FooterBlockProps } from '../FooterBlock';
-
 import {
-
   damiatLandingHeroBackgrounds,
-
   type DamiatLandingHeroBackgroundKey,
-
 } from '../demo-assets/damiatLandingHeroBackgrounds';
-
 import { DamiatGasOscilloscope } from '../demo-assets/DamiatGasOscilloscope';
-
-import {
-  damiatLoopBridgeImage,
-  damiatLoopBridgePhrases,
-} from '../damiatLoopBridgeContent';
+import { damiatBridgeImage, damiatBridgePhrase } from '../damiatBridgeContent';
 
 export type DamiatLandingHeroBackgrounds = typeof damiatLandingHeroBackgrounds;
 
+/** `lean` — no parallax, fade reveals on key sections; `full` — legacy motion stack. */
+export type DamiatMotionProfile = 'lean' | 'full';
 
+function LandingSectionReveal({
+  profile,
+  intensity = 'medium',
+  staggerChildren,
+  children,
+}: {
+  profile: DamiatMotionProfile;
+  intensity?: ScrollDepthIntensity;
+  staggerChildren?: boolean;
+  children: React.ReactNode;
+}) {
+  if (profile === 'full') {
+    return (
+      <ScrollDepthReveal
+        variant="depth"
+        intensity={intensity}
+        staggerChildren={staggerChildren}
+      >
+        {children}
+      </ScrollDepthReveal>
+    );
+  }
 
-export interface DamiatLandingScrollBodyProps {
-
-  events: EventsBlockProps;
-
-  problem: FeaturesBlockProps;
-
-  calculator: DamiatCalculatorBlockProps;
-
-  scenario: ShowcasePanelBlockProps;
-
-  deviceIntro: WhyUsBlockProps;
-
-  devicePrinciple: ProcessBlockProps;
-
-  deviceCapabilities: FeaturesBlockProps;
-
-  dashboardStats: StatsBlockProps;
-
-  dashboardAlerts: FeaturesBlockProps;
-
-  howItWorks: ProcessBlockProps;
-
-  caseStudyStats: StatsBlockProps;
-
-  caseStudyDetails: FeaturesBlockProps;
-
-  trust: TrustBlockProps;
-
-  partners: PartnersBlockProps;
-
-  logoCloud: LogoCloudBlockProps;
-
-  contactHero: ContactHeroBlockProps;
-
-  footer: FooterBlockProps;
-
-  navbar: NavbarBlockProps;
-
-  heroProps: HeroBlockProps;
-
-  brandBandEvents: boolean;
-
-  mainHeroImage?: string;
-
-  backgrounds: DamiatLandingHeroBackgrounds;
-
-  scrollLoop: boolean;
-
+  return (
+    <ScrollDepthReveal variant="fade" intensity={intensity} staggerChildren={staggerChildren}>
+      {children}
+    </ScrollDepthReveal>
+  );
 }
 
+export interface DamiatLandingScrollBodyProps {
+  events: EventsBlockProps;
+  problem: FeaturesBlockProps;
+  calculator: DamiatCalculatorBlockProps;
+  scenario: ShowcasePanelBlockProps;
+  deviceIntro: WhyUsBlockProps;
+  devicePrinciple: ProcessBlockProps;
+  deviceCapabilities: FeaturesBlockProps;
+  dashboardStats: StatsBlockProps;
+  dashboardAlerts: FeaturesBlockProps;
+  howItWorks: ProcessBlockProps;
+  caseStudyStats: StatsBlockProps;
+  caseStudyDetails: FeaturesBlockProps;
+  trust: TrustBlockProps;
+  partners: PartnersBlockProps;
+  logoCloud: LogoCloudBlockProps;
+  contactHero: ContactHeroBlockProps;
+  footer: FooterBlockProps;
+  navbar: NavbarBlockProps;
+  heroProps: HeroBlockProps;
+  brandBandEvents: boolean;
+  mainHeroImage?: string;
+  backgrounds: DamiatLandingHeroBackgrounds;
+  motionProfile?: DamiatMotionProfile;
+}
 
-
-/** Scrollable landing body (hero through footer + optional loop bridge) — used inside ScrollLoopShell. */
-
+/** Scrollable landing body (hero through footer). */
 export const DamiatLandingScrollBody: React.FC<DamiatLandingScrollBodyProps> = ({
-
   events,
-
   problem,
-
   calculator,
-
   scenario,
-
   deviceIntro,
-
   devicePrinciple,
-
   deviceCapabilities,
-
   dashboardStats,
-
   dashboardAlerts,
-
   howItWorks,
-
   caseStudyStats,
-
   caseStudyDetails,
-
   trust,
-
   partners,
-
   logoCloud,
-
   contactHero,
-
   footer,
-
   navbar,
-
   heroProps,
-
   brandBandEvents,
-
   mainHeroImage,
-
   backgrounds,
-
-  scrollLoop,
-
+  motionProfile = 'lean',
 }) => {
-  const noScrollParallax = scrollLoop
-    ? { imageParallaxFactor: 0, contentParallaxFactor: 0 }
-    : {};
+  const lean = motionProfile === 'lean';
+  useScrollActivity(lean);
+  const imageParallax = lean ? 0 : 0.14;
+  const contentParallax = lean ? 0 : 0.05;
+  const contactContentParallax = lean ? 0 : 0.03;
+  const photoGrain = lean ? 'none' : 'strong';
+  const contactGrain = lean ? 'none' : 'heavy';
+  const photoDepth = lean ? 'standard' : 'enhanced';
+  const heroGrain = lean ? 'none' : 'strong';
 
-  /** Photo-band heroes — same viewport height as the first above-the-fold hero. */
-  const photoHeroSectionClass = 'flex min-h-[100svh] flex-col';
+  const photoHeroSectionClass = lean
+    ? 'flex min-h-[min(100svh,720px)] flex-col'
+    : 'flex min-h-[100svh] flex-col';
   const photoHeroContentClass = 'flex min-h-0 flex-1 flex-col justify-center';
   const contactHeroContentClass = 'flex min-h-0 flex-1 flex-col justify-between';
 
   return (
-
     <>
-
       <MarketingAboveFold
-
         underFixedNavbar={Boolean(navbar.sticky ?? true)}
-
         backgroundImageSrc={mainHeroImage}
-
         photoTone={mainHeroImage ? 'deep' : 'brand'}
-
-        imageParallaxFactor={scrollLoop ? 0 : 0.14}
-
-        className="flex min-h-[100svh] flex-col"
-
+        imageParallaxFactor={imageParallax}
+        grainIntensity={heroGrain}
+        className={cn('flex min-h-[100svh] flex-col')}
       >
-
         <HeroBlock
-
           {...heroProps}
-
-          depthParallax={!scrollLoop}
-
-          media={heroProps.media ?? <DamiatGasOscilloscope />}
-
+          depthParallax={!lean}
+          media={heroProps.media ?? <DamiatGasOscilloscope staticDisplay={lean} />}
           fillViewport={heroProps.variant === 'enterprise'}
-
           className={cn('!bg-transparent', heroProps.className)}
-
           style={{
-
             paddingTop: 'var(--space-section-y-l)',
-
             paddingBottom: brandBandEvents
-
               ? 'var(--space-section-content-l)'
-
               : 'var(--space-section-y-xl)',
-
             ...(heroProps.style ?? {}),
-
           }}
-
         />
 
         {brandBandEvents ? (
-
           <div id="events">
-
             <EventsBlock
-
               {...events}
-
               sectionStyle={{
-
                 paddingTop: 'calc(var(--space-section-y-m) - var(--space-30))',
-
                 paddingBottom: 'var(--space-section-y-m)',
-
                 ...(events.sectionStyle ?? {}),
-
               }}
-
               className={cn('shrink-0 !border-b-0 !bg-transparent', events.className)}
-
             />
-
           </div>
-
         ) : null}
-
       </MarketingAboveFold>
 
-
-
       <div id="problem">
-
-        <ScrollDepthReveal intensity="subtle">
-
+        <LandingSectionReveal profile={motionProfile} intensity="subtle">
           <FeaturesBlock {...problem} />
-
-        </ScrollDepthReveal>
-
+        </LandingSectionReveal>
       </div>
-
-
 
       <div id="calculator">
-
-        <ScrollDepthReveal intensity="strong">
-
+        <LandingSectionReveal profile={motionProfile} intensity="strong">
           <DamiatCalculatorBlock {...calculator} />
-
-        </ScrollDepthReveal>
-
+        </LandingSectionReveal>
       </div>
-
-
 
       <BrandPhotoHeroSection
         id="scenarios"
         backgroundImageSrc={backgrounds.scenarios}
         photoTone="deep"
-        grainIntensity="strong"
+        grainIntensity={photoGrain}
+        depth={photoDepth}
         className={photoHeroSectionClass}
         contentClassName={photoHeroContentClass}
-        {...noScrollParallax}
+        imageParallaxFactor={imageParallax}
+        contentParallaxFactor={contentParallax}
       >
-
-        <ScrollDepthReveal intensity="strong">
-
+        <LandingSectionReveal profile={motionProfile} intensity="strong">
           <ShowcasePanelBlock {...scenario} parallax={false} className="!bg-transparent" />
-
-        </ScrollDepthReveal>
-
+        </LandingSectionReveal>
       </BrandPhotoHeroSection>
 
-
-
       <div id="device">
-
-        <ScrollDepthReveal intensity="strong">
-
+        <LandingSectionReveal profile={motionProfile} intensity="strong">
           <WhyUsBlock {...deviceIntro} />
-
-        </ScrollDepthReveal>
-
+        </LandingSectionReveal>
       </div>
-
-
 
       <div id="technology">
-
-        <ScrollDepthReveal intensity="strong">
-
+        <LandingSectionReveal profile={motionProfile} intensity="strong">
           <ProcessBlock {...devicePrinciple} />
-
           <FeaturesBlock {...deviceCapabilities} />
-
-        </ScrollDepthReveal>
-
+        </LandingSectionReveal>
       </div>
 
-
-
       <div id="dashboard">
-
         <BrandPhotoHeroSection
           backgroundImageSrc={backgrounds.platform}
           photoTone="deep"
-          grainIntensity="strong"
+          grainIntensity={photoGrain}
+          depth={photoDepth}
           className={photoHeroSectionClass}
           contentClassName={photoHeroContentClass}
-          {...noScrollParallax}
+          imageParallaxFactor={imageParallax}
+          contentParallaxFactor={contentParallax}
         >
-
-          <ScrollDepthReveal intensity="strong">
-
+          <LandingSectionReveal profile={motionProfile} intensity="strong">
             <StatsBlock {...dashboardStats} className="!bg-transparent" />
-
-          </ScrollDepthReveal>
-
+          </LandingSectionReveal>
         </BrandPhotoHeroSection>
 
-        <ScrollDepthReveal intensity="medium">
-
+        <LandingSectionReveal profile={motionProfile} intensity="medium">
           <FeaturesBlock {...dashboardAlerts} />
-
-        </ScrollDepthReveal>
-
+        </LandingSectionReveal>
       </div>
 
-
-
-      <ScrollDepthReveal intensity="medium">
-
-        <ProcessBlock {...howItWorks} />
-
-      </ScrollDepthReveal>
-
-
+      <div>
+        <LandingSectionReveal profile={motionProfile} intensity="medium">
+          <ProcessBlock {...howItWorks} />
+        </LandingSectionReveal>
+      </div>
 
       <div id="case">
-
         <BrandPhotoHeroSection
           backgroundImageSrc={backgrounds.case}
           photoTone="deep"
-          grainIntensity="strong"
+          grainIntensity={photoGrain}
+          depth={photoDepth}
           className={photoHeroSectionClass}
           contentClassName={photoHeroContentClass}
-          {...noScrollParallax}
+          imageParallaxFactor={imageParallax}
+          contentParallaxFactor={contentParallax}
         >
-
-          <ScrollDepthReveal intensity="strong">
-
+          <LandingSectionReveal profile={motionProfile} intensity="strong">
             <StatsBlock {...caseStudyStats} className="!bg-transparent" />
-
-          </ScrollDepthReveal>
-
+          </LandingSectionReveal>
         </BrandPhotoHeroSection>
 
-        <ScrollDepthReveal intensity="medium">
-
+        <LandingSectionReveal profile={motionProfile} intensity="medium">
           <FeaturesBlock {...caseStudyDetails} />
-
-        </ScrollDepthReveal>
-
+        </LandingSectionReveal>
       </div>
-
-
 
       <div id="trust">
-
-        <ScrollDepthReveal intensity="medium" staggerChildren>
-
+        <LandingSectionReveal profile={motionProfile} intensity="medium" staggerChildren>
           <TrustBlock {...trust} />
-
           <PartnersBlock {...partners} />
-
           <LogoCloudBlock {...logoCloud} />
-
-        </ScrollDepthReveal>
-
+        </LandingSectionReveal>
       </div>
 
-
+      <div>
+        <DamiatBridgeSection
+          imageSrc={damiatBridgeImage}
+          phrase={damiatBridgePhrase}
+          grain={!lean}
+        />
+      </div>
 
       <BrandPhotoHeroSection
         id="contact"
         backgroundImageSrc={backgrounds.closing}
         photoTone="deep"
-        grainIntensity="heavy"
+        grainIntensity={contactGrain}
+        depth={photoDepth}
         className={photoHeroSectionClass}
         contentClassName={contactHeroContentClass}
-        {...noScrollParallax}
-        contentParallaxFactor={scrollLoop ? 0 : 0.03}
+        imageParallaxFactor={imageParallax}
+        contentParallaxFactor={contactContentParallax}
       >
-        <ScrollDepthReveal intensity="subtle" staggerChildren disabled={scrollLoop}>
+        <LandingSectionReveal profile={motionProfile} intensity="subtle" staggerChildren>
           <ContactHeroBlock
             {...contactHero}
             embeddedInPhotoHero
             className="!bg-transparent min-h-0 flex-1"
           />
           <FooterBlock {...footer} className="!bg-transparent" showTopDivider={false} />
-        </ScrollDepthReveal>
+        </LandingSectionReveal>
       </BrandPhotoHeroSection>
-
-      {scrollLoop ? (
-        <LoopScrollBridge
-          enabled={scrollLoop}
-          imageSrc={damiatLoopBridgeImage}
-          phrases={damiatLoopBridgePhrases}
-        />
-      ) : null}
-
     </>
-
   );
-
 };
-
-
 
 export interface DamiatLandingPageProps {
-
   navbar: NavbarBlockProps;
-
   hero: HeroBlockProps;
-
   events: EventsBlockProps;
-
   problem: FeaturesBlockProps;
-
   calculator: DamiatCalculatorBlockProps;
-
   scenario: ShowcasePanelBlockProps;
-
   deviceIntro: WhyUsBlockProps;
-
   devicePrinciple: ProcessBlockProps;
-
   deviceCapabilities: FeaturesBlockProps;
-
   dashboardStats: StatsBlockProps;
-
   dashboardAlerts: FeaturesBlockProps;
-
   howItWorks: ProcessBlockProps;
-
   caseStudyStats: StatsBlockProps;
-
   caseStudyDetails: FeaturesBlockProps;
-
   trust: TrustBlockProps;
-
   partners: PartnersBlockProps;
-
   logoCloud: LogoCloudBlockProps;
-
   contactHero: ContactHeroBlockProps;
-
   footer: FooterBlockProps;
-
   heroBackgroundImage?: string;
-
   sectionBackgrounds?: Partial<Record<DamiatLandingHeroBackgroundKey, string>>;
-
-  scrollLoop?: boolean;
-
+  /** Default `lean` for Product Landing — lighter scroll + fade reveals on key sections. */
+  motionProfile?: DamiatMotionProfile;
   className?: string;
-
 }
 
-
-
-/**
-
- * DAMIAT product landing — calculator & scenarios, then ethylene generator, platform, case study.
-
- */
-
+/** DAMIAT product landing — calculator & scenarios, then ethylene generator, platform, case study. */
 export const DamiatLandingPage: React.FC<DamiatLandingPageProps> = ({
-
   navbar,
-
   hero,
-
   events,
-
   problem,
-
   calculator,
-
   scenario,
-
   deviceIntro,
-
   devicePrinciple,
-
   deviceCapabilities,
-
   dashboardStats,
-
   dashboardAlerts,
-
   howItWorks,
-
   caseStudyStats,
-
   caseStudyDetails,
-
   trust,
-
   partners,
-
   logoCloud,
-
   contactHero,
-
   footer,
-
   heroBackgroundImage,
-
   sectionBackgrounds,
-
-  scrollLoop = true,
-
+  motionProfile = 'lean',
   className,
-
 }) => {
-
   const heroProps =
-
     navbar.overlay && !hero.appearance ? { ...hero, appearance: 'brand' as const } : hero;
-
   const brandBandEvents = events.variant === undefined || events.variant === 'featured';
-
-
-
   const backgrounds = { ...damiatLandingHeroBackgrounds, ...sectionBackgrounds };
-
   const mainHeroImage = heroBackgroundImage ?? backgrounds.main;
 
-
-
-  const scrollBody = (
-
-    <DamiatLandingScrollBody
-
-      events={events}
-
-      problem={problem}
-
-      calculator={calculator}
-
-      scenario={scenario}
-
-      deviceIntro={deviceIntro}
-
-      devicePrinciple={devicePrinciple}
-
-      deviceCapabilities={deviceCapabilities}
-
-      dashboardStats={dashboardStats}
-
-      dashboardAlerts={dashboardAlerts}
-
-      howItWorks={howItWorks}
-
-      caseStudyStats={caseStudyStats}
-
-      caseStudyDetails={caseStudyDetails}
-
-      trust={trust}
-
-      partners={partners}
-
-      logoCloud={logoCloud}
-
-      contactHero={contactHero}
-
-      footer={footer}
-
-      navbar={navbar}
-
-      heroProps={heroProps}
-
-      brandBandEvents={brandBandEvents}
-
-      mainHeroImage={mainHeroImage}
-
-      backgrounds={backgrounds}
-
-      scrollLoop={scrollLoop}
-
-    />
-
-  );
-
-
-
   return (
-
-    <div className={cn(className, navbar.overlay && !mainHeroImage && 'bg-[var(--core-green-900)]')}>
-
-      <NavbarBlock {...navbar} />
-
-      <ScrollLoopShell enabled={scrollLoop}>{scrollBody}</ScrollLoopShell>
-
+    <div
+      data-damiat-landing-scroll=""
+      className={cn(className, navbar.overlay && !mainHeroImage && 'bg-[var(--core-green-900)]')}
+    >
+      <NavbarBlock {...navbar} scrollPerf={motionProfile === 'lean'} />
+      <DamiatLandingScrollBody
+        events={events}
+        problem={problem}
+        calculator={calculator}
+        scenario={scenario}
+        deviceIntro={deviceIntro}
+        devicePrinciple={devicePrinciple}
+        deviceCapabilities={deviceCapabilities}
+        dashboardStats={dashboardStats}
+        dashboardAlerts={dashboardAlerts}
+        howItWorks={howItWorks}
+        caseStudyStats={caseStudyStats}
+        caseStudyDetails={caseStudyDetails}
+        trust={trust}
+        partners={partners}
+        logoCloud={logoCloud}
+        contactHero={contactHero}
+        footer={footer}
+        navbar={navbar}
+        heroProps={heroProps}
+        brandBandEvents={brandBandEvents}
+        mainHeroImage={mainHeroImage}
+        backgrounds={backgrounds}
+        motionProfile={motionProfile}
+      />
     </div>
-
   );
-
 };
 
-
-
 DamiatLandingPage.displayName = 'DamiatLandingPage';
-

@@ -11,16 +11,17 @@ import { NavbarMobileMenu } from './NavbarMobileMenu';
 import { ChevronDownIcon, MenuIcon, SendIcon, UserIcon } from './NavbarIcons';
 import {
   NAVBAR_SURFACE,
+  NAVBAR_LINK_TYPE,
+  NAVBAR_ACTION_TYPE,
+  NAVBAR_LOGO_TYPE,
   NAVBAR_BRAND_BLEED_EXTRA,
   NAVBAR_CHROME_HEIGHT_FALLBACK,
   NAVBAR_CHROME_MIN_HEIGHT,
-  bindScroll,
-  getScrollRoot,
-  getScrollTop,
-  readClientHeight,
   resolveNavbarSurface,
+  resolveNavbarHeaderClass,
   type NavbarSurface,
 } from './navbarTheme';
+import { getScrollRoot } from '../../../hooks/useScrollRoot';
 
 const SOCIAL_RAIL_FLOW_HEIGHT = 'var(--space-48)';
 
@@ -38,13 +39,18 @@ function NavAnchor({
   href,
   children,
   className,
+  surface,
 }: {
   href?: string;
   children: React.ReactNode;
   className?: string;
+  surface: NavbarSurface;
 }) {
   return (
-    <a href={href ?? '#'} className={cn('text-style-body-sm font-medium no-underline', className)}>
+    <a
+      href={href ?? '#'}
+      className={cn(NAVBAR_LINK_TYPE, NAVBAR_SURFACE.navLink[surface], className)}
+    >
       {children}
     </a>
   );
@@ -66,7 +72,9 @@ function NavTextAction({
   const Icon = icon === 'send' ? SendIcon : UserIcon;
   const className = cn(
     'inline-flex h-[var(--space-36)] shrink-0 items-center gap-[var(--space-2)]',
-    'whitespace-nowrap text-style-body-sm font-medium no-underline transition-opacity duration-200',
+    'border-0 bg-transparent p-0 font-inherit',
+    NAVBAR_ACTION_TYPE,
+    NAVBAR_SURFACE.text[surface],
     NAVBAR_SURFACE.textAction[surface],
   );
 
@@ -157,6 +165,7 @@ function EnterpriseNavbar(props: NavbarBlockProps) {
     className,
     defaultServicesOpen = false,
     defaultMobileOpen = false,
+    scrollPerf = false,
   } = props;
 
   const chromeRef = useRef<HTMLDivElement>(null);
@@ -170,10 +179,14 @@ function EnterpriseNavbar(props: NavbarBlockProps) {
   const triggerLabel =
     servicesTriggerLabel ?? links.find((l) => l.megaMenu)?.label ?? 'Компоненты';
   const resolvedSurface = resolveNavbarSurface(overlay, pastBrandFold, servicesOpen);
-  const useStaticGlass = staticGlass && overlay && !servicesOpen;
-  const headerSurface = useStaticGlass ? 'staticGlass' : resolvedSurface;
-  /** Text actions and chrome divider — overlay tokens on photo hero (incl. static glass). */
-  const surface: NavbarSurface = useStaticGlass ? 'overlay' : resolvedSurface;
+  /** First screen: glass over hero (no solid brand bleed). After scroll: solid + dark text. */
+  const heroOverlayChrome = overlay && !pastBrandFold && !servicesOpen;
+  const useStaticGlassHeader =
+    heroOverlayChrome || (staticGlass && overlay && !servicesOpen);
+  const headerSurface = useStaticGlassHeader ? 'staticGlass' : resolvedSurface;
+  /** White text on hero glass (incl. static header); solid after brand fold. */
+  const surface: NavbarSurface =
+    overlay && !pastBrandFold ? 'overlay' : resolvedSurface;
   const textClass = NAVBAR_SURFACE.text[surface];
   /** Above-fold only — below navbar bar, hidden once user leaves brand first screen. */
   const showAboveFoldSocial =
@@ -191,16 +204,54 @@ function EnterpriseNavbar(props: NavbarBlockProps) {
       ? `calc(${effectiveChromeHeight}px + ${SOCIAL_RAIL_FLOW_HEIGHT})`
       : `${effectiveChromeHeight}px`;
 
+  const pastBrandFoldRef = useRef(false);
+
   useLayoutEffect(() => {
-    const syncScroll = () => {
-      const scrollTop = getScrollTop();
-      const viewport = readClientHeight(getScrollRoot());
-      const foldEnd = Math.max(viewport - effectiveChromeHeight, viewport * 0.72);
-      setPastBrandFold(scrollTop > foldEnd);
+    if (!overlay) {
+      pastBrandFoldRef.current = false;
+      setPastBrandFold(false);
+      return undefined;
+    }
+
+    const target = document.querySelector('[data-marketing-above-fold]');
+    if (!target || typeof IntersectionObserver === 'undefined') {
+      return undefined;
+    }
+
+    let observer: IntersectionObserver | null = null;
+
+    const connect = () => {
+      observer?.disconnect();
+      const root = getScrollRoot();
+      const ioRoot = root === window ? null : (root as Element);
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          const next = !entry.isIntersecting;
+          if (next !== pastBrandFoldRef.current) {
+            pastBrandFoldRef.current = next;
+            setPastBrandFold(next);
+          }
+        },
+        {
+          root: ioRoot,
+          threshold: 0,
+          rootMargin: `-${effectiveChromeHeight}px 0px -28% 0px`,
+        },
+      );
+      observer.observe(target);
     };
-    syncScroll();
-    return bindScroll(syncScroll);
-  }, [effectiveChromeHeight]);
+
+    connect();
+    const onLayoutChange = () => connect();
+    window.addEventListener('resize', onLayoutChange, { passive: true });
+    document.addEventListener('fullscreenchange', onLayoutChange);
+
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener('resize', onLayoutChange);
+      document.removeEventListener('fullscreenchange', onLayoutChange);
+    };
+  }, [overlay, effectiveChromeHeight]);
 
   useLayoutEffect(() => {
     const node = chromeRef.current;
@@ -250,8 +301,8 @@ function EnterpriseNavbar(props: NavbarBlockProps) {
   const chromeShellClass = cn(
     sticky && 'fixed inset-x-0 top-0',
     servicesOpen ? 'z-[calc(var(--z-modal)+2)]' : 'z-[var(--z-header)]',
-    'w-full overflow-visible transition-[background-color,box-shadow,border-color,backdrop-filter] duration-200',
-    NAVBAR_SURFACE.header[headerSurface],
+    'w-full overflow-visible transition-[background-color,box-shadow,border-color] duration-200',
+    resolveNavbarHeaderClass(headerSurface, scrollPerf),
     className,
   );
 
@@ -266,8 +317,8 @@ function EnterpriseNavbar(props: NavbarBlockProps) {
           ref={servicesTriggerRef}
           type="button"
           className={cn(
-            'inline-flex items-center gap-[var(--space-1)] text-style-body-sm font-medium transition-opacity duration-200 hover:opacity-80',
-            textClass,
+            NAVBAR_LINK_TYPE,
+            NAVBAR_SURFACE.navLink[surface],
           )}
           aria-expanded={servicesOpen}
           aria-haspopup="true"
@@ -283,7 +334,7 @@ function EnterpriseNavbar(props: NavbarBlockProps) {
     }
 
     return (
-      <NavAnchor key={link.label} href={link.href} className={textClass}>
+      <NavAnchor key={link.label} href={link.href} surface={surface}>
         {link.label}
       </NavAnchor>
     );
@@ -292,7 +343,7 @@ function EnterpriseNavbar(props: NavbarBlockProps) {
   return (
     <>
       <div className="relative isolate z-[var(--z-header)] w-full">
-        {overlay && !staticGlass ? (
+        {overlay && !staticGlass && !heroOverlayChrome ? (
           <div
             aria-hidden="true"
             className={cn(
@@ -308,9 +359,13 @@ function EnterpriseNavbar(props: NavbarBlockProps) {
             <div className={cn(BLOCK_CONTENT_CLASS, 'py-[var(--space-4)]')}>
               <div className="flex w-full min-w-0 items-center justify-between gap-[var(--space-section-stack-l)]">
                 <div className="flex min-h-[var(--space-56)] min-w-0 flex-1 items-center gap-[var(--space-section-content-l)]">
-                  <a href="/" className={cn('shrink-0 no-underline', textClass)} aria-label="Home">
+                  <a
+                    href="/"
+                    className={cn('shrink-0', textClass, NAVBAR_SURFACE.logoLink[surface])}
+                    aria-label="Home"
+                  >
                     {typeof logo === 'string' ? (
-                      <span className="text-style-h4 font-semibold">{logo}</span>
+                      <span className={NAVBAR_LOGO_TYPE}>{logo}</span>
                     ) : (
                       logo
                     )}
@@ -330,9 +385,15 @@ function EnterpriseNavbar(props: NavbarBlockProps) {
                       <div className="flex flex-col items-end justify-center gap-[var(--space-1)]">
                         <a
                           href={phone.href ?? `tel:${phone.number.replace(/\s/g, '')}`}
+                          aria-label={
+                            phone.href?.startsWith('tel:')
+                              ? `Позвонить: +7 918 432 11 99`
+                              : undefined
+                          }
                           className={cn(
-                            'text-style-body-sm font-medium leading-none no-underline min-[1024px]:text-style-caption',
-                            textClass,
+                            NAVBAR_ACTION_TYPE,
+                            'leading-none',
+                            NAVBAR_SURFACE.phoneLink[surface],
                           )}
                         >
                           {phone.number}
@@ -341,8 +402,8 @@ function EnterpriseNavbar(props: NavbarBlockProps) {
                           <a
                             href={phone.status.href}
                             className={cn(
-                              'inline-flex items-center gap-[var(--space-2)] text-style-caption leading-none opacity-80 no-underline transition-opacity hover:opacity-100',
-                              textClass,
+                              'inline-flex items-center gap-[var(--space-2)] text-style-body-sm leading-none opacity-80',
+                              NAVBAR_SURFACE.phoneLink[surface],
                             )}
                           >
                             <span
@@ -391,7 +452,7 @@ function EnterpriseNavbar(props: NavbarBlockProps) {
                   type="button"
                   className={cn(
                     'inline-flex h-[var(--space-44)] w-[var(--space-44)] shrink-0 items-center justify-center rounded-[var(--radius-medium)] min-[768px]:hidden',
-                    'transition-opacity duration-200 hover:opacity-80',
+                    NAVBAR_SURFACE.navLink[surface],
                     'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-primary)]',
                     textClass,
                   )}

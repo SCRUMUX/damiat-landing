@@ -4,3 +4,4 @@
  */
 import 'vaul/style.css';
 import 'sonner/dist/styles.css';
+import './landingScroll.css';

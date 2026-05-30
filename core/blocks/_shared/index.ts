@@ -19,10 +19,9 @@ export {
   ScrollDepthReveal,
   type ScrollDepthRevealProps,
   type ScrollDepthIntensity,
+  type ScrollDepthVariant,
 } from './ScrollDepthReveal';
 export { ParallaxLayer, type ParallaxLayerProps } from './ParallaxLayer';
-export { ScrollLoopShell, type ScrollLoopShellProps } from './ScrollLoopShell';
-export { LoopSeam, type LoopSeamProps } from './LoopSeam';
+export { DamiatBridgeSection, type DamiatBridgeSectionProps } from './DamiatBridgeSection';
+/** @deprecated Use DamiatBridgeSection */
 export { LoopScrollBridge, type LoopScrollBridgeProps } from './LoopScrollBridge';
-export { LoopSeamChamber, type LoopSeamChamberProps } from './LoopSeamChamber';
-export { ScrollLoopBridge, type ScrollLoopBridgeProps } from './ScrollLoopBridge';

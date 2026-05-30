@@ -12,20 +12,16 @@ export { useMediaQuery } from './useMediaQuery';
 export { useScrollLock } from './useScrollLock';
 export { useIntersectionObserver } from './useIntersectionObserver';
 export { useParallaxOffset } from './useParallaxOffset';
+export { registerParallaxElement } from './parallaxRegistry';
+export { useScrollIdle } from './useScrollIdle';
+export { useScrollActivity } from './useScrollActivity';
 export { useScrollDepthReveal, type UseScrollDepthRevealOptions } from './useScrollDepthReveal';
-export { useScrollLoop, type UseScrollLoopOptions } from './useScrollLoop';
-export {
-  ScrollLoopProvider,
-  useScrollLoopContext,
-  type ScrollLoopContextValue,
-} from './ScrollLoopContext';
-export { useBridgePhraseScroll } from './useBridgePhraseScroll';
-export { useLoopBridgeScroll } from './useLoopBridgeScroll';
-export { useLoopSeamScroll, type UseLoopSeamScrollResult } from './useLoopSeamScroll';
 export {
   getScrollRoot,
   getScrollTop,
+  getScrollMetrics,
   getSegmentScrollLayout,
+  invalidateScrollRootCache,
   readScrollTop,
   readClientHeight,
   scrollRootTo,

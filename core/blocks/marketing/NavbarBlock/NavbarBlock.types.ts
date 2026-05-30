@@ -81,6 +81,8 @@ export interface NavbarBlockProps {
   /** Show above-fold social strip before scroll (default true when socialLinks set). */
   showSocialRail?: boolean;
   phone?: NavbarPhoneInfo;
+  /** Lean landing profile — glass chrome retained while scrolling (HUD/grain still throttled). */
+  scrollPerf?: boolean;
   className?: string;
 }
 

@@ -22,19 +22,17 @@ export const damiatNavbarFixture: NavbarBlockProps = {
   logo: 'DAMIAT',
   sticky: true,
   overlay: true,
-  staticGlass: true,
+  /** false — после первого экрана solid: светлое стекло + тёмный текст на светлых секциях. */
+  staticGlass: false,
   links: [
-    { label: 'Мероприятия', href: '#events' },
     { label: 'Калькулятор', href: '#calculator' },
     { label: 'Сценарии', href: '#scenarios' },
     { label: 'Прибор', href: '#device' },
     { label: 'Кейсы', href: '#case' },
-    { label: 'Платформа', href: '#dashboard' },
   ],
   phone: {
-    number: 'Демо-режим',
-    href: '#demo',
-    status: { label: 'Поддержка', href: '#support' },
+    number: 'Позвонить',
+    href: 'tel:+79184321199',
   },
   accountCta: { label: 'Войти', href: '#login', icon: 'user' },
   cta: { label: 'Рассчитайте выгоду', href: '#calculator', icon: 'send' },
@@ -54,8 +52,8 @@ export const damiatHeroContent: HeroBlockProps = {
   primaryAction: { label: 'Рассчитайте выгоду', href: '#calculator' },
   secondaryAction: { label: 'Узнайте о генераторе', href: '#device' },
   stats: [
-    { value: '4–6,5%', label: 'потери с КГС и этиленом' },
-    { value: '6 точек', label: 'контроля температуры' },
+    { value: '≈2,5 млн ₽', label: 'чистая выгода с 1 000 т (35 ₽/кг, 12 мес.)' },
+    { value: '+8%', label: 'массы сохраняется с КГС' },
     { value: '24/7', label: 'удалённый мониторинг' },
   ],
 };
@@ -94,30 +92,36 @@ export const damiatEventsContent: EventsBlockProps = {
 };
 
 export const damiatProblemContent: FeaturesBlockProps = {
-  title: 'Почему без контролируемой газовой среды теряется урожай',
+  title: 'Без контролируемой газовой среды теряется урожай',
   subtitle:
     'Без этиленгенератора ускоряется созревание, растёт дыхание клубней и активизируются болезни — потери доходят до 12–17% массы.',
+  subtitleAccent: 'потери доходят до 12–17% массы.',
+  variant: 'catalog',
   columns: 2,
   features: [
     {
+      id: 'sprouting',
+      icon: '🌱',
       title: 'Прорастание и созревание',
       description: 'Естественное накопление этилена ускоряет физиологическое старение клубней.',
-      icon: '🌱',
     },
     {
+      id: 'shrinkage',
+      icon: '💧',
       title: 'Усушка и порча',
       description: 'Метаболизм и патогены без КГС снижают товарный вид и массу партии.',
-      icon: '💧',
     },
     {
+      id: 'losses',
+      icon: '📉',
       title: 'Потери 12–17%',
       description: 'Против 4–6,5% при контролируемой атмосфере и этиленгенераторе DAMIAT.',
-      icon: '📉',
     },
     {
+      id: 'timing',
+      icon: '⏱',
       title: 'Неверный момент продажи',
       description: 'Снижение качества и рыночный тайминг вместе съедают маржу хозяйства.',
-      icon: '⏱',
     },
   ],
 };
@@ -125,52 +129,14 @@ export const damiatProblemContent: FeaturesBlockProps = {
 export const damiatCalculatorContent: DamiatCalculatorBlockProps = {
   title: 'Рассчитайте стоимость урожая и выгоду от хранения',
   subtitle:
-    'Укажите объём и срок — увидьте потери, прогноз цены и чистую выгоду с генератором этилена и платформой.',
-  fields: [
-    { id: 'volume', label: 'Объём (тонны)', placeholder: '15000', inputType: 'number' },
-    { id: 'price', label: 'Цена (₽/кг)', placeholder: '35', inputType: 'number' },
-    { id: 'storagePeriod', label: 'Срок хранения (мес.)', placeholder: '6', inputType: 'number' },
-  ],
-  regionOptions: [
-    { value: 'krasnodar', label: 'Краснодарский край' },
-    { value: 'central', label: 'Центральный ФО' },
-    { value: 'volga', label: 'Приволжский ФО' },
-    { value: 'south', label: 'Южный ФО' },
-  ],
-  storageTypeOptions: [
-    { value: 'bulk', label: 'Навальный склад' },
-    { value: 'box', label: 'Контейнерный' },
-    { value: 'cold', label: 'Холодильный комплекс' },
-  ],
-  marketItems: [
-    { label: 'Средняя цена (Росстат)', value: '35,0 ₽/кг' },
-    { label: 'Динамика цены (30 дн.)', value: '+4,2%' },
-    { label: 'Погодные условия', value: 'Норма осадков' },
-    { label: 'Сезонный фактор', value: 'Постреализационный спад' },
-  ],
-  devices: [
-    { id: 'device1', label: 'Генератор этилена DAMIAT' },
-    { id: 'device2', label: 'Озонатор (интеграция)' },
-  ],
+    'Укажите площадь посевов и урожайность картофеля — увидите прогноз цен по месяцам, потери и выгоду от генератора DAMIAT.',
   defaultValues: {
-    region: 'krasnodar',
-    volume: '15000',
-    price: '35',
-    storagePeriod: '6',
-    storageType: 'cold',
+    hectares: '536',
+    yieldTonsPerHa: '28',
     device1: true,
-    device2: true,
+    manualBasePricePerTon: '',
+    priceAdjustPercent: 0,
   },
-  demoResults: [
-    { id: 'index', label: 'Оценка хранения', value: '78', primary: true },
-    { id: 'current', label: 'Текущая стоимость', value: '525 млн ₽' },
-    { id: 'forecast', label: 'Прогноз стоимости', value: '558 млн ₽' },
-    { id: 'loss-without', label: 'Потери без оборудования', value: '63,8 млн ₽' },
-    { id: 'loss-with', label: 'Потери с генератором', value: '22,3 млн ₽' },
-    { id: 'benefit', label: 'Выгода (чистая)', value: '38,3 млн ₽' },
-    { id: 'benefit-ton', label: 'Выгода / тонна', value: '2 550 ₽' },
-    { id: 'benefit-kg', label: 'Выгода / кг', value: '2,55 ₽' },
-  ],
 };
 
 export const damiatScenarioContent: ShowcasePanelBlockProps = {
@@ -181,8 +147,8 @@ export const damiatScenarioContent: ShowcasePanelBlockProps = {
       id: 'growth',
       title: 'Сценарий: рост цены',
       bullets: [
-        'Ожидайте рост +6–9% к концу срока хранения',
-        'Держите партию до недели 22',
+        'На графике калькулятора — рост ₽/т к весне',
+        'Держите партию при контроле C₂H₄ и влажности',
         'Поддерживайте микроклимат — этилен в норме',
       ],
       action: { label: 'Подробнее', href: '#growth' },

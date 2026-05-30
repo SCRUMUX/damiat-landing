@@ -2,7 +2,7 @@ import React from 'react';
 import { cn } from '../../components/primitives/_shared';
 import './filmGrainOverlay.css';
 
-export type FilmGrainIntensity = 'subtle' | 'medium' | 'strong' | 'heavy';
+export type FilmGrainIntensity = 'none' | 'subtle' | 'medium' | 'strong' | 'heavy';
 
 const INTENSITY_OPACITY: Record<FilmGrainIntensity, string> = {
   subtle: 'opacity-[0.12]',
@@ -23,6 +23,8 @@ export const FilmGrainOverlay: React.FC<FilmGrainOverlayProps> = ({
   className,
   intensity = 'strong',
 }) => {
+  if (intensity === 'none') return null;
+
   const useDual = intensity === 'heavy' || intensity === 'strong';
 
   return (

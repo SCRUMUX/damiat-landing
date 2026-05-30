@@ -9,7 +9,6 @@ import type {
   NavbarServiceCategory,
   NavbarSocialLink,
 } from './NavbarBlock.types';
-import { lockScrollRoot } from './navbarTheme';
 import { ChevronDownIcon, SOCIAL_ICON_MAP } from './NavbarIcons';
 
 export interface NavbarMobileMenuProps {
@@ -98,11 +97,6 @@ export const NavbarMobileMenu: React.FC<NavbarMobileMenuProps> = ({
       setActiveCategory(servicesMenu[0]?.id ?? '');
     }
   }, [open, servicesMenu]);
-
-  useEffect(() => {
-    if (!open) return undefined;
-    return lockScrollRoot(true);
-  }, [open]);
 
   useEffect(() => {
     if (wasOpenRef.current && !open) {

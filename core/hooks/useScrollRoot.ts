@@ -15,7 +15,7 @@ export interface SegmentScrollLayout {
   height: number;
   /** scrollTop when the segment bottom meets the viewport bottom. */
   endScrollY: number;
-  /** scrollTop when the duplicate (clone) zone begins. */
+  /** @deprecated Scroll-loop only — clone zone start; unused on linear landings. */
   cloneStartScrollY: number;
 }
 
@@ -33,23 +33,6 @@ export function readClientHeight(target: Element | Window): number {
   return (target as HTMLElement).clientHeight || 0;
 }
 
-function collectScrollRoots(): (Element | Window)[] {
-  if (typeof document === 'undefined') return [window];
-
-  const roots: (Element | Window)[] = [window, document.documentElement, document.body];
-
-  for (const id of SCROLL_ROOT_IDS) {
-    const el = document.getElementById(id);
-    if (el) roots.push(el);
-  }
-
-  for (const selector of SCROLL_ROOT_SELECTORS) {
-    document.querySelectorAll(selector).forEach((el) => roots.push(el));
-  }
-
-  return roots;
-}
-
 function scrollRange(root: Element | Window): number {
   if (root === window) {
     return Math.max(0, document.documentElement.scrollHeight - readClientHeight(window));
@@ -58,28 +41,101 @@ function scrollRange(root: Element | Window): number {
   return Math.max(0, el.scrollHeight - el.clientHeight);
 }
 
-/** Primary scroll container — the one with the largest scrollable range. */
-export function getScrollRoot(): Element | Window {
-  let best: Element | Window = window;
-  let bestRange = scrollRange(window);
+let cachedScrollRoot: Element | Window | null = null;
 
-  for (const root of collectScrollRoots()) {
-    if (root === window) continue;
-    const range = scrollRange(root);
-    if (range > bestRange) {
-      bestRange = range;
-      best = root;
+/** Invalidate after resize / layout changes (Storybook viewport, etc.). */
+export function invalidateScrollRootCache(): void {
+  cachedScrollRoot = null;
+}
+
+function isActiveScrollport(root: Element | Window): boolean {
+  if (root === window) {
+    return scrollRange(window) > 1;
+  }
+  const el = root as HTMLElement;
+  if (!el.isConnected || el.scrollHeight <= el.clientHeight + 1) {
+    return false;
+  }
+  const { overflowY } = getComputedStyle(el);
+  return overflowY === 'auto' || overflowY === 'scroll' || overflowY === 'overlay';
+}
+
+/** Pick the element that actually scrolls — not the one with the largest scrollHeight. */
+function detectScrollRoot(): Element | Window {
+  for (const selector of SCROLL_ROOT_SELECTORS) {
+    const matches = document.querySelectorAll<HTMLElement>(selector);
+    for (const el of matches) {
+      if (isActiveScrollport(el)) {
+        return el;
+      }
     }
   }
 
-  return best;
+  for (const id of SCROLL_ROOT_IDS) {
+    const el = document.getElementById(id);
+    if (el && isActiveScrollport(el)) {
+      return el;
+    }
+  }
+
+  return window;
+}
+
+function rebindScrollFrameIfNeeded(): void {
+  if (!scrollFrameBound || !scrollFrameListeners || scrollFrameListeners.size === 0) {
+    return;
+  }
+
+  const root = detectScrollRoot();
+  if (boundScrollRoot === root) {
+    return;
+  }
+
+  const opts = { passive: true, capture: true } as const;
+  if (boundScrollRoot) {
+    boundScrollRoot.removeEventListener('scroll', scheduleScrollFrame, opts);
+  }
+  boundScrollRoot = root;
+  root.addEventListener('scroll', scheduleScrollFrame, opts);
+}
+
+/** Primary scroll container — re-validates when Storybook toggles canvas fullscreen. */
+export function getScrollRoot(): Element | Window {
+  const resolved = detectScrollRoot();
+  if (cachedScrollRoot !== resolved) {
+    cachedScrollRoot = resolved;
+    rebindScrollFrameIfNeeded();
+  }
+  return resolved;
+}
+
+/** Reused inside one rAF flush so listeners share one root lookup. */
+let frameScrollRoot: Element | Window | null = null;
+
+function getScrollRootForFrame(): Element | Window {
+  return frameScrollRoot ?? getScrollRoot();
 }
 
 export function getScrollTop(): number {
-  return readScrollTop(getScrollRoot());
+  return readScrollTop(getScrollRootForFrame());
 }
 
-export function scrollRootTo(target: Element | Window, top: number): void {
+/** Scroll metrics for navbar / parallax — one root read per call site. */
+export function getScrollMetrics(): {
+  root: Element | Window;
+  scrollTop: number;
+  clientHeight: number;
+} {
+  const root = getScrollRootForFrame();
+  return {
+    root,
+    scrollTop: readScrollTop(root),
+    clientHeight: readClientHeight(root),
+  };
+}
+
+export function scrollRootTo(_target: Element | Window, top: number): void {
+  invalidateScrollRootCache();
   const y = Math.max(0, Math.round(top));
   const primary = getScrollRoot();
 
@@ -128,13 +184,19 @@ type ScrollFrameListener = () => void;
 let scrollFrameListeners: Set<ScrollFrameListener> | null = null;
 let scrollFrameBound = false;
 let scrollFrameId = 0;
+let boundScrollRoot: Element | Window | null = null;
 
 function flushScrollFrame(): void {
   scrollFrameId = 0;
-  if (!scrollFrameListeners) return;
+  frameScrollRoot = getScrollRoot();
+  if (!scrollFrameListeners) {
+    frameScrollRoot = null;
+    return;
+  }
   for (const listener of scrollFrameListeners) {
     listener();
   }
+  frameScrollRoot = null;
 }
 
 function scheduleScrollFrame(): void {
@@ -142,7 +204,16 @@ function scheduleScrollFrame(): void {
   scrollFrameId = requestAnimationFrame(flushScrollFrame);
 }
 
-/** One scroll listener on the primary root — shared rAF bus for loop / parallax / bridge. */
+function unbindScrollFrameIfEmpty(): void {
+  if (scrollFrameListeners && scrollFrameListeners.size > 0) return;
+  if (!scrollFrameBound || !boundScrollRoot) return;
+  const opts = { passive: true, capture: true } as const;
+  boundScrollRoot.removeEventListener('scroll', scheduleScrollFrame, opts);
+  scrollFrameBound = false;
+  boundScrollRoot = null;
+}
+
+/** One scroll listener on the primary root — shared rAF bus for parallax / navbar. */
 export function subscribeScrollFrame(listener: ScrollFrameListener): () => void {
   if (!scrollFrameListeners) {
     scrollFrameListeners = new Set();
@@ -152,13 +223,15 @@ export function subscribeScrollFrame(listener: ScrollFrameListener): () => void 
 
   if (!scrollFrameBound) {
     scrollFrameBound = true;
-    const root = getScrollRoot();
+    invalidateScrollRootCache();
+    boundScrollRoot = getScrollRoot();
     const opts = { passive: true, capture: true } as const;
-    root.addEventListener('scroll', scheduleScrollFrame, opts);
+    boundScrollRoot.addEventListener('scroll', scheduleScrollFrame, opts);
   }
 
   return () => {
     scrollFrameListeners?.delete(listener);
+    unbindScrollFrameIfEmpty();
   };
 }
 
@@ -167,6 +240,7 @@ export function bindPrimaryScrollRoot(
   onScroll: () => void,
   onWheel?: (event: WheelEvent) => void,
 ): () => void {
+  invalidateScrollRootCache();
   const root = getScrollRoot();
   const scrollOpts = { passive: true, capture: true } as const;
   const wheelOpts = { passive: false, capture: true } as const;
@@ -192,4 +266,17 @@ export function bindScrollRoots(onScroll: () => void): () => void {
 /** @deprecated Prefer bindPrimaryScrollRoot with onWheel. */
 export function bindWheelRoots(onWheel: (event: WheelEvent) => void): () => void {
   return bindPrimaryScrollRoot(() => {}, onWheel);
+}
+
+if (typeof window !== 'undefined') {
+  const invalidate = () => {
+    invalidateScrollRootCache();
+    rebindScrollFrameIfNeeded();
+  };
+  window.addEventListener('resize', invalidate, { passive: true });
+  document.addEventListener('fullscreenchange', invalidate);
+  // Re-detect scroll root after first layout (landing images, Storybook canvas).
+  requestAnimationFrame(() => {
+    requestAnimationFrame(invalidate);
+  });
 }

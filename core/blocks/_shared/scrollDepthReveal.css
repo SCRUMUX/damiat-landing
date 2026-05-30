@@ -90,12 +90,33 @@
   }
 }
 
+/* Lightweight fade — no perspective / rotateX (landing lean profile) */
+.scroll-depth-stage--fade {
+  perspective: none;
+}
+
+.scroll-depth-reveal--fade {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  transition:
+    opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.scroll-depth-reveal--fade.scroll-depth-reveal--revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .scroll-depth-stage {
     perspective: none;
   }
 
   .scroll-depth-reveal,
+  .scroll-depth-reveal--fade,
   .scroll-depth-reveal--stagger > * {
     opacity: 1 !important;
     transform: none !important;

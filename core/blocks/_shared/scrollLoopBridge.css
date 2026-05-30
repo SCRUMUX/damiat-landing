@@ -1,11 +1,11 @@
 /**
- * In-flow loop bridge — centered hero image + slogan below (slide layout).
+ * In-flow bridge — centered DAMIAT image + slogan.
  */
 .loop-scroll-bridge {
   position: relative;
   z-index: 0;
   display: flex;
-  min-height: 100svh;
+  min-height: min(100svh, 720px);
   width: 100%;
   flex-direction: column;
   align-items: center;
@@ -65,7 +65,7 @@
 
 @media (max-width: 767px) {
   .loop-scroll-bridge {
-    min-height: 100svh;
+    min-height: min(100svh, 720px);
     padding: var(--space-section-y-m) var(--grid-margin);
   }
 
