@@ -25,6 +25,14 @@ export interface ChooseUsBlockProps {
   title?: string;
   /** Substring rendered in brand color (Cortel «нас выбирают» accent). */
   titleAccent?: string;
+  /** Optional section title weight / typography override. */
+  titleClassName?: string;
+  /** Optional card title weight / typography override. */
+  cardTitleClassName?: string;
+  /** Featured panel — vertical alignment of copy (default: bottom, Cortel). */
+  featuredContentAlign?: 'top' | 'bottom';
+  /** Optional featured title typography override. */
+  featuredTitleClassName?: string;
   cards: ChooseUsCardItem[];
   featured: ChooseUsFeaturedItem;
   className?: string;

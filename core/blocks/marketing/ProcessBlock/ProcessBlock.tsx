@@ -15,8 +15,11 @@ export const ProcessBlock: React.FC<ProcessBlockProps> = ({
   title = 'Как выглядит процесс',
   steps,
   className,
+  headingAppearance = 'default',
 }) => {
   if (steps.length === 0) return null;
+
+  const headingPrimary = headingAppearance === 'primary';
 
   return (
     <SectionShell
@@ -28,13 +31,25 @@ export const ProcessBlock: React.FC<ProcessBlockProps> = ({
       )}
       aria-label="Process"
     >
-      <h2 className={PROCESS_TITLE_CLASS}>{title}</h2>
+      <h2
+        className={cn(
+          PROCESS_TITLE_CLASS,
+          headingPrimary && 'text-[var(--color-brand-primary)]',
+        )}
+      >
+        {title}
+      </h2>
 
       <div className={PROCESS_TIMELINE_VIEWPORT_CLASS}>
         <ProcessTimelineTrack />
         <ol className={PROCESS_STEPS_LIST_CLASS}>
           {steps.map((step, index) => (
-            <ProcessStep key={step.id ?? step.title} {...step} index={index} />
+            <ProcessStep
+              key={step.id ?? step.title}
+              {...step}
+              index={index}
+              titlePrimary={headingPrimary}
+            />
           ))}
         </ol>
       </div>

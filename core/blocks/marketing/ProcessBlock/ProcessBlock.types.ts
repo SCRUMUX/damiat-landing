@@ -13,4 +13,6 @@ export interface ProcessBlockProps {
   title?: string;
   steps: ProcessStepItem[];
   className?: string;
+  /** Step card titles — brand primary on DAMIAT device block. */
+  headingAppearance?: 'default' | 'primary';
 }

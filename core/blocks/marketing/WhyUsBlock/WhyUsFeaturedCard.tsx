@@ -4,6 +4,8 @@ import {
   WHY_US_DECORATIVE_HIGHLIGHT_CLASS,
   WHY_US_FEATURED_CLASS,
   WHY_US_FEATURED_DESCRIPTION_CLASS,
+  WHY_US_FEATURED_MEDIA_SCRIM_CLASS,
+  WHY_US_FEATURED_PRIMARY_CLASS,
   WHY_US_FEATURED_TITLE_CLASS,
 } from '../../_shared/blockLayout';
 import { DEMO_PALETTE } from '../demo-assets/demoMediaPalette';
@@ -12,15 +14,16 @@ import type { WhyUsFeaturedItem } from './WhyUsBlock.types';
 function WhyUsFeaturedTitle({
   title,
   titleBreakBefore,
-}: Pick<WhyUsFeaturedItem, 'title' | 'titleBreakBefore'>) {
+  titleClassName,
+}: Pick<WhyUsFeaturedItem, 'title' | 'titleBreakBefore'> & { titleClassName?: string }) {
   if (!titleBreakBefore || !title.includes(titleBreakBefore)) {
-    return <div className={WHY_US_FEATURED_TITLE_CLASS}>{title}</div>;
+    return <div className={cn(WHY_US_FEATURED_TITLE_CLASS, titleClassName)}>{title}</div>;
   }
 
   const [before, after] = title.split(titleBreakBefore);
 
   return (
-    <div className={WHY_US_FEATURED_TITLE_CLASS}>
+    <div className={cn(WHY_US_FEATURED_TITLE_CLASS, titleClassName)}>
       {before}
       <br className="min-[1024px]:hidden" />
       {titleBreakBefore}
@@ -58,6 +61,7 @@ function DefaultFeaturedMedia() {
 
 export interface WhyUsFeaturedCardProps extends WhyUsFeaturedItem {
   className?: string;
+  titleClassName?: string;
 }
 
 export const WhyUsFeaturedCard: React.FC<WhyUsFeaturedCardProps> = ({
@@ -67,11 +71,26 @@ export const WhyUsFeaturedCard: React.FC<WhyUsFeaturedCardProps> = ({
   media,
   videoSrc,
   videoPoster,
+  variant = 'neutral',
   className,
-}) => (
-  <article className={cn(WHY_US_FEATURED_CLASS, className)}>
+  titleClassName,
+}) => {
+  const isPrimary = variant === 'primary';
+
+  return (
+  <article
+    className={cn(
+      WHY_US_FEATURED_CLASS,
+      isPrimary && WHY_US_FEATURED_PRIMARY_CLASS,
+      className,
+    )}
+  >
     {media ? (
-      <div className="absolute inset-[-1px] h-[101%] w-[101%]">{media}</div>
+      <>
+        {isPrimary ? <div className="absolute inset-0 bg-[var(--color-brand-primary)]" aria-hidden /> : null}
+        <div className="absolute inset-[-1px] h-[101%] w-[101%]">{media}</div>
+        {isPrimary ? <div className={WHY_US_FEATURED_MEDIA_SCRIM_CLASS} aria-hidden /> : null}
+      </>
     ) : videoSrc ? (
       <video
         className="absolute inset-[-1px] h-[101%] w-[101%] object-cover"
@@ -84,15 +103,22 @@ export const WhyUsFeaturedCard: React.FC<WhyUsFeaturedCardProps> = ({
       >
         <source src={videoSrc} type="video/webm" />
       </video>
+    ) : isPrimary ? (
+      <div className="absolute inset-0 bg-[var(--color-brand-primary)]" aria-hidden />
     ) : (
       <DefaultFeaturedMedia />
     )}
 
     <div className="relative z-10 min-[1024px]:max-w-[var(--space-350)]">
-      <WhyUsFeaturedTitle title={title} titleBreakBefore={titleBreakBefore} />
+      <WhyUsFeaturedTitle
+        title={title}
+        titleBreakBefore={titleBreakBefore}
+        titleClassName={titleClassName}
+      />
       <p className={WHY_US_FEATURED_DESCRIPTION_CLASS}>{description}</p>
     </div>
   </article>
-);
+  );
+};
 
 WhyUsFeaturedCard.displayName = 'WhyUsFeaturedCard';

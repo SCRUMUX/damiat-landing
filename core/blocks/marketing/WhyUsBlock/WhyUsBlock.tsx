@@ -35,6 +35,7 @@ function WhyUsTitle({
 export const WhyUsBlock: React.FC<WhyUsBlockProps> = ({
   title = 'Почему с AICADS работают продуктовые команды',
   titleBreakBefore = ' продуктовые команды',
+  cardTitleClassName,
   primaryCards,
   secondaryCards,
   featured,
@@ -57,16 +58,32 @@ export const WhyUsBlock: React.FC<WhyUsBlockProps> = ({
 
       <div className={WHY_US_ROW_TOP_CLASS}>
         {primaryCards.map((card) => (
-          <WhyUsCard key={card.id ?? card.title} {...card} />
+          <WhyUsCard
+            key={card.id ?? card.title}
+            {...card}
+            titleClassName={cardTitleClassName}
+          />
         ))}
-        <WhyUsFeaturedCard {...featured} className="max-lg:hidden" />
+        <WhyUsFeaturedCard
+          {...featured}
+          titleClassName={cardTitleClassName}
+          className="max-lg:hidden"
+        />
       </div>
 
       <div className={WHY_US_ROW_BOTTOM_CLASS}>
         {secondaryCards.map((card) => (
-          <WhyUsCard key={card.id ?? card.title} {...card} />
+          <WhyUsCard
+            key={card.id ?? card.title}
+            {...card}
+            titleClassName={cardTitleClassName}
+          />
         ))}
-        <WhyUsFeaturedCard {...featured} className="min-[1024px]:hidden" />
+        <WhyUsFeaturedCard
+          {...featured}
+          titleClassName={cardTitleClassName}
+          className="min-[1024px]:hidden"
+        />
       </div>
     </SectionShell>
   );

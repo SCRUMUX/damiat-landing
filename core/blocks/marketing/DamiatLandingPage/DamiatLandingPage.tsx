@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '../../../components/primitives/_shared';
 import './damiatLandingScroll.css';
+import './damiatLandingTypography.css';
 import { useScrollActivity } from '../../../hooks/useScrollActivity';
 import { BrandPhotoHeroSection } from '../../_shared/BrandPhotoHeroSection';
 import { DamiatBridgeSection } from '../../_shared/DamiatBridgeSection';
@@ -18,9 +19,11 @@ import { ShowcasePanelBlock, type ShowcasePanelBlockProps } from '../ShowcasePan
 import { WhyUsBlock, type WhyUsBlockProps } from '../WhyUsBlock';
 import { StatsBlock, type StatsBlockProps } from '../StatsBlock';
 import { ProcessBlock, type ProcessBlockProps } from '../ProcessBlock';
+import { ChooseUsBlock, type ChooseUsBlockProps } from '../ChooseUsBlock';
+import { DamiatCaseStudiesBlock, type DamiatCaseStudiesBlockProps } from '../DamiatCaseStudiesBlock';
+import { DamiatVolumeBenefitBlock, type DamiatVolumeBenefitBlockProps } from '../DamiatVolumeBenefitBlock';
 import { TrustBlock, type TrustBlockProps } from '../TrustBlock';
 import { PartnersBlock, type PartnersBlockProps } from '../PartnersBlock';
-import { LogoCloudBlock, type LogoCloudBlockProps } from '../LogoCloudBlock';
 import { ContactHeroBlock, type ContactHeroBlockProps } from '../ContactHeroBlock';
 import { FooterBlock, type FooterBlockProps } from '../FooterBlock';
 import {
@@ -72,15 +75,12 @@ export interface DamiatLandingScrollBodyProps {
   scenario: ShowcasePanelBlockProps;
   deviceIntro: WhyUsBlockProps;
   devicePrinciple: ProcessBlockProps;
-  deviceCapabilities: FeaturesBlockProps;
   dashboardStats: StatsBlockProps;
-  dashboardAlerts: FeaturesBlockProps;
-  howItWorks: ProcessBlockProps;
-  caseStudyStats: StatsBlockProps;
-  caseStudyDetails: FeaturesBlockProps;
+  generatorBenefits: ChooseUsBlockProps;
+  caseStudies: DamiatCaseStudiesBlockProps;
+  volumeBenefit: DamiatVolumeBenefitBlockProps;
   trust: TrustBlockProps;
   partners: PartnersBlockProps;
-  logoCloud: LogoCloudBlockProps;
   contactHero: ContactHeroBlockProps;
   footer: FooterBlockProps;
   navbar: NavbarBlockProps;
@@ -99,15 +99,12 @@ export const DamiatLandingScrollBody: React.FC<DamiatLandingScrollBodyProps> = (
   scenario,
   deviceIntro,
   devicePrinciple,
-  deviceCapabilities,
   dashboardStats,
-  dashboardAlerts,
-  howItWorks,
-  caseStudyStats,
-  caseStudyDetails,
+  generatorBenefits,
+  caseStudies,
+  volumeBenefit,
   trust,
   partners,
-  logoCloud,
   contactHero,
   footer,
   navbar,
@@ -210,7 +207,6 @@ export const DamiatLandingScrollBody: React.FC<DamiatLandingScrollBodyProps> = (
       <div id="technology">
         <LandingSectionReveal profile={motionProfile} intensity="strong">
           <ProcessBlock {...devicePrinciple} />
-          <FeaturesBlock {...deviceCapabilities} />
         </LandingSectionReveal>
       </div>
 
@@ -230,15 +226,11 @@ export const DamiatLandingScrollBody: React.FC<DamiatLandingScrollBodyProps> = (
           </LandingSectionReveal>
         </BrandPhotoHeroSection>
 
-        <LandingSectionReveal profile={motionProfile} intensity="medium">
-          <FeaturesBlock {...dashboardAlerts} />
-        </LandingSectionReveal>
-      </div>
-
-      <div>
-        <LandingSectionReveal profile={motionProfile} intensity="medium">
-          <ProcessBlock {...howItWorks} />
-        </LandingSectionReveal>
+        <div id="benefits">
+          <LandingSectionReveal profile={motionProfile} intensity="medium">
+            <ChooseUsBlock {...generatorBenefits} />
+          </LandingSectionReveal>
+        </div>
       </div>
 
       <div id="case">
@@ -253,12 +245,12 @@ export const DamiatLandingScrollBody: React.FC<DamiatLandingScrollBodyProps> = (
           contentParallaxFactor={contentParallax}
         >
           <LandingSectionReveal profile={motionProfile} intensity="strong">
-            <StatsBlock {...caseStudyStats} className="!bg-transparent" />
+            <DamiatCaseStudiesBlock {...caseStudies} embeddedInPhotoHero className="!bg-transparent" />
           </LandingSectionReveal>
         </BrandPhotoHeroSection>
 
         <LandingSectionReveal profile={motionProfile} intensity="medium">
-          <FeaturesBlock {...caseStudyDetails} />
+          <DamiatVolumeBenefitBlock {...volumeBenefit} />
         </LandingSectionReveal>
       </div>
 
@@ -266,7 +258,6 @@ export const DamiatLandingScrollBody: React.FC<DamiatLandingScrollBodyProps> = (
         <LandingSectionReveal profile={motionProfile} intensity="medium" staggerChildren>
           <TrustBlock {...trust} />
           <PartnersBlock {...partners} />
-          <LogoCloudBlock {...logoCloud} />
         </LandingSectionReveal>
       </div>
 
@@ -311,15 +302,12 @@ export interface DamiatLandingPageProps {
   scenario: ShowcasePanelBlockProps;
   deviceIntro: WhyUsBlockProps;
   devicePrinciple: ProcessBlockProps;
-  deviceCapabilities: FeaturesBlockProps;
   dashboardStats: StatsBlockProps;
-  dashboardAlerts: FeaturesBlockProps;
-  howItWorks: ProcessBlockProps;
-  caseStudyStats: StatsBlockProps;
-  caseStudyDetails: FeaturesBlockProps;
+  generatorBenefits: ChooseUsBlockProps;
+  caseStudies: DamiatCaseStudiesBlockProps;
+  volumeBenefit: DamiatVolumeBenefitBlockProps;
   trust: TrustBlockProps;
   partners: PartnersBlockProps;
-  logoCloud: LogoCloudBlockProps;
   contactHero: ContactHeroBlockProps;
   footer: FooterBlockProps;
   heroBackgroundImage?: string;
@@ -339,15 +327,12 @@ export const DamiatLandingPage: React.FC<DamiatLandingPageProps> = ({
   scenario,
   deviceIntro,
   devicePrinciple,
-  deviceCapabilities,
   dashboardStats,
-  dashboardAlerts,
-  howItWorks,
-  caseStudyStats,
-  caseStudyDetails,
+  generatorBenefits,
+  caseStudies,
+  volumeBenefit,
   trust,
   partners,
-  logoCloud,
   contactHero,
   footer,
   heroBackgroundImage,
@@ -374,15 +359,12 @@ export const DamiatLandingPage: React.FC<DamiatLandingPageProps> = ({
         scenario={scenario}
         deviceIntro={deviceIntro}
         devicePrinciple={devicePrinciple}
-        deviceCapabilities={deviceCapabilities}
         dashboardStats={dashboardStats}
-        dashboardAlerts={dashboardAlerts}
-        howItWorks={howItWorks}
-        caseStudyStats={caseStudyStats}
-        caseStudyDetails={caseStudyDetails}
+        generatorBenefits={generatorBenefits}
+        caseStudies={caseStudies}
+        volumeBenefit={volumeBenefit}
         trust={trust}
         partners={partners}
-        logoCloud={logoCloud}
         contactHero={contactHero}
         footer={footer}
         navbar={navbar}

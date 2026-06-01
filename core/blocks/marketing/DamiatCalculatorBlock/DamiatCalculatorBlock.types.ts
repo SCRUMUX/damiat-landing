@@ -29,8 +29,6 @@ export interface DamiatCalculatorBlockProps {
   title?: string;
   subtitle?: string;
   devicesTitle?: string;
-  recommendationsHref?: string;
-  recommendationsLabel?: string;
   defaultValues?: Partial<DamiatCalculatorFormValues>;
   className?: string;
 }

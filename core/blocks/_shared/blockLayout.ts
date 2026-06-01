@@ -414,8 +414,7 @@ export const SOLUTIONS_CATALOG_TITLE_CLASS = cn(
 );
 
 export const SOLUTIONS_CATALOG_DESCRIPTION_CLASS = cn(
-  'm-0 text-balance text-style-body text-[var(--color-text-secondary)]',
-  'min-[1024px]:text-style-body-sm',
+  'm-0 text-balance text-style-body-lg text-[var(--color-text-secondary)]',
 );
 
 export const SOLUTIONS_CATALOG_ARROW_CLASS = cn(
@@ -602,13 +601,14 @@ export const PARTNERS_MARQUEE_ROW_GAP_CLASS = 'mt-[var(--space-2)]';
 export const PARTNER_TILE_CLASS = cn(
   'flex shrink-0 cursor-pointer items-center justify-center',
   BLOCK_CARD_PROMINENT_SHELL_CLASS,
+  'h-[var(--space-100)] w-[var(--space-164)] px-[var(--space-inset-s)] py-[var(--space-12)]',
+  'min-[1024px]:h-[var(--space-120)] min-[1024px]:w-[var(--space-190)]',
   'transition-all duration-300',
   'grayscale opacity-80 hover:grayscale-0 hover:opacity-100',
 );
 
 export const PARTNER_LOGO_IMAGE_CLASS = cn(
-  'h-[var(--space-100)] w-[var(--space-164)] object-contain',
-  'min-[1024px]:h-[var(--space-120)] min-[1024px]:w-[var(--space-190)]',
+  'h-full w-full max-h-full max-w-full object-contain object-center',
 );
 
 /** Contact hero — split copy + glass form (Cortel action band). */
@@ -725,8 +725,8 @@ export const WHY_US_CARD_TITLE_CLASS = cn(
 );
 
 export const WHY_US_CARD_DESCRIPTION_CLASS = cn(
-  'm-0 font-normal text-style-body text-[var(--color-text-secondary)]',
-  'min-[1024px]:mt-[var(--space-14)] min-[1024px]:text-style-body-sm',
+  'm-0 font-normal text-style-body-lg text-[var(--color-text-secondary)]',
+  'min-[1024px]:mt-[var(--space-14)]',
 );
 
 export const WHY_US_CARD_ICON_SLOT_CLASS = 'mt-[var(--space-16)] flex self-end';
@@ -735,6 +735,13 @@ export const WHY_US_FEATURED_CLASS = cn(
   'relative flex overflow-hidden rounded-[var(--radius-large)]',
   BLOCK_CARD_STANDARD_INSET_CLASS,
   'h-[var(--space-296)] min-[1024px]:h-full',
+);
+
+export const WHY_US_FEATURED_PRIMARY_CLASS = 'bg-[var(--color-brand-primary)]';
+
+export const WHY_US_FEATURED_MEDIA_SCRIM_CLASS = cn(
+  'pointer-events-none absolute inset-0',
+  'bg-gradient-to-t from-[color-mix(in_srgb,var(--color-brand-primary)_92%,black)] via-[color-mix(in_srgb,var(--color-brand-primary)_45%,transparent)] to-[color-mix(in_srgb,var(--color-brand-primary)_18%,transparent)]',
 );
 
 export const WHY_US_FEATURED_TITLE_CLASS = cn(
@@ -852,7 +859,7 @@ export const PROCESS_STEP_ITEM_CLASS = cn(
 
 export const PROCESS_STEP_MARKER_CLASS = cn(
   'flex w-[var(--space-36)] shrink-0 flex-col-reverse items-center gap-[var(--space-4)]',
-  'text-style-body-sm font-normal text-[var(--color-text-secondary)]',
+  'text-style-body-lg font-normal text-[var(--color-text-secondary)]',
   'min-[1024px]:flex-col-reverse min-[1024px]:gap-[var(--space-12)]',
 );
 
@@ -868,8 +875,8 @@ export const PROCESS_STEP_TITLE_CLASS = cn(
 );
 
 export const PROCESS_STEP_DESCRIPTION_CLASS = cn(
-  'm-0 mt-[var(--space-8)] font-normal text-style-body text-[var(--color-text-secondary)]',
-  'min-[1024px]:mt-[var(--space-20)] min-[1024px]:text-style-body-sm',
+  'm-0 mt-[var(--space-8)] font-normal text-style-body-lg text-[var(--color-text-secondary)]',
+  'min-[1024px]:mt-[var(--space-20)]',
 );
 
 /** FAQ enterprise — Cortel vmware card accordion. */

@@ -78,7 +78,7 @@ export { SupportBlock } from './marketing/SupportBlock';
 export type { SupportBlockProps, SupportStatItem, SupportContactItem } from './marketing/SupportBlock';
 
 export { ShowcasePanelBlock } from './marketing/ShowcasePanelBlock';
-export type { ShowcasePanelBlockProps, ShowcasePanelItem, ShowcasePanelAction } from './marketing/ShowcasePanelBlock';
+export type { ShowcasePanelBlockProps, ShowcasePanelItem, ShowcasePanelAction, ShowcasePanelAlert, ShowcasePanelMetric, ShowcasePanelMetricTrend, ShowcasePanelHarvestStatus, ShowcasePanelOperationMode, ShowcasePanelResource } from './marketing/ShowcasePanelBlock';
 
 export { BlogBlock } from './marketing/BlogBlock';
 export type { BlogBlockProps, BlogPostItem, BlogViewAllAction } from './marketing/BlogBlock';

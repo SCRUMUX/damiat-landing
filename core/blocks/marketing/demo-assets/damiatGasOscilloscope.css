@@ -29,7 +29,7 @@
 }
 
 .damiat-hud-sensor__digit-value {
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.85s ease-in-out;
   opacity: var(--damiat-digit-opacity, 0.55);
 }
 
@@ -109,6 +109,25 @@
   inset: 0;
   z-index: 2;
   pointer-events: none;
+}
+
+/* Showcase preview panels sit on light surface — override hero HUD tints */
+.damiat-hud-sensor--surface .damiat-hud-sensor__label {
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--color-text-muted);
+  letter-spacing: 0.08em;
+}
+
+.damiat-hud-sensor--surface .damiat-hud-sensor__digit {
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+  text-shadow: none;
+}
+
+.damiat-hud-sensor--surface .damiat-hud-sensor__digit.damiat-hud-sensor__digit--danger {
+  color: var(--color-danger-base);
 }
 
 .damiat-hud-sensor--static .damiat-hud-sensor__ring--cw-slow,

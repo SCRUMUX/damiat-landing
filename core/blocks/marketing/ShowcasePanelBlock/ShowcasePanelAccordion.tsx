@@ -11,7 +11,14 @@ import {
   ShowcasePanelCloseIcon,
   ShowcasePanelPlusIcon,
 } from './ShowcasePanelBlockIcons';
-import type { ShowcasePanelItem } from './ShowcasePanelBlock.types';
+import type {
+  ShowcasePanelItem,
+  ShowcasePanelAlert,
+  ShowcasePanelMetric,
+  ShowcasePanelHarvestStatus,
+  ShowcasePanelOperationMode,
+  ShowcasePanelResource,
+} from './ShowcasePanelBlock.types';
 
 const ITEM_SHELL_CLASS = cn(
   'group flex flex-col overflow-hidden',
@@ -27,7 +34,7 @@ const TRIGGER_CLASS = cn(
   'flex w-full min-w-0 items-center gap-[var(--space-section-content-m)]',
   'border-0 bg-transparent text-left cursor-pointer text-[var(--color-text-primary)]',
   'px-[var(--space-inset-l)] pb-[var(--space-22)] pt-[var(--space-inset-l)]',
-  'min-[1024px]:p-[var(--space-inset-xl)]',
+  'min-[1024px]:px-[var(--space-inset-l)] min-[1024px]:py-[var(--space-inset-m)]',
   'outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)]',
 );
 
@@ -46,7 +53,7 @@ const CONTENT_CLASS = cn(
   'data-[state=closed]:animate-accordion-close data-[state=open]:animate-accordion-open',
   'min-[1024px]:!animate-none',
   'min-[1024px]:data-[state=closed]:hidden',
-  'min-[1024px]:data-[state=open]:flex min-[1024px]:data-[state=open]:min-h-0 min-[1024px]:data-[state=open]:flex-1 min-[1024px]:data-[state=open]:flex-col',
+  'min-[1024px]:data-[state=open]:flex min-[1024px]:data-[state=open]:min-h-0 min-[1024px]:data-[state=open]:flex-1 min-[1024px]:data-[state=open]:flex-col min-[1024px]:data-[state=open]:overflow-hidden',
 );
 
 function ShowcaseToggleIcons() {
@@ -62,20 +69,314 @@ function ShowcaseToggleIcons() {
   );
 }
 
-function ShowcasePanelBullets({ bullets }: { bullets: string[] }) {
+const PANEL_SECTION_GAP_CLASS = 'gap-[var(--space-8)] min-[1024px]:gap-[var(--space-8)]';
+
+const COMPACT_TILE_CLASS =
+  'rounded-[var(--radius-medium)] border border-[var(--color-border-base)] bg-[var(--color-surface-2)] px-[var(--space-8)] py-[var(--space-6)]';
+
+function ShowcasePanelBullets({ bullets, secondary, compact }: { bullets: string[]; secondary?: boolean; compact?: boolean }) {
+  if (bullets.length === 0) return null;
+
   return (
-    <ul className="m-0 flex list-none flex-col p-0" style={{ gap: 'var(--space-section-stack-m)' }}>
+    <ul
+      className={cn(
+        'm-0 flex list-none flex-col p-0',
+        compact && 'min-[1024px]:hidden',
+      )}
+      style={{ gap: 'var(--space-section-stack-m)' }}
+    >
       {bullets.map((bullet) => (
         <li
           key={bullet}
           className="flex gap-[var(--space-section-stack-s)] min-[1024px]:gap-[var(--space-section-content-m)]"
         >
-          <span className="text-[var(--color-brand-primary)]">
+          <span className={cn('text-[var(--color-brand-primary)]', secondary && 'opacity-70')}>
             <ShowcasePanelBulletIcon />
           </span>
-          <span className="text-style-body-sm text-[var(--color-text-secondary)] min-[1024px]:text-style-body">
+          <span
+            className={cn(
+              'text-style-body-sm min-[1024px]:text-style-body',
+              secondary
+                ? 'font-normal text-[var(--color-text-muted)]'
+                : 'text-[var(--color-text-secondary)]',
+            )}
+          >
             {bullet}
           </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+const METRIC_TREND_LABEL: Record<NonNullable<ShowcasePanelMetric['trend']>, string> = {
+  up: '↑ растёт',
+  down: '↓ снижается',
+  stable: '→ стабильно',
+};
+
+function ShowcasePanelHarvestStatusPill({ status }: { status: ShowcasePanelHarvestStatus }) {
+  return (
+    <span
+      className={cn(
+        'inline-flex w-fit items-center rounded-[var(--radius-medium)] border px-[var(--space-10)] py-[var(--space-4)]',
+        'text-style-caption font-normal leading-snug',
+        status.level === 'ok' &&
+          'border-[var(--color-brand-primary)] bg-[var(--color-brand-muted)] text-[var(--color-brand-primary)]',
+        status.level === 'watch' &&
+          'border-[var(--color-warning-base)] bg-[color-mix(in_srgb,var(--color-warning-hover-bg)_75%,var(--color-surface-1))] text-[var(--color-text-primary)]',
+        status.level === 'alert' &&
+          'border-[var(--color-danger-base)] bg-[color-mix(in_srgb,var(--color-danger-subtle)_75%,var(--color-surface-1))] text-[var(--color-text-primary)]',
+      )}
+    >
+      {status.label}
+    </span>
+  );
+}
+
+function ShowcasePanelMetrics({
+  metrics,
+  compact,
+}: {
+  metrics: ShowcasePanelMetric[];
+  compact?: boolean;
+}) {
+  if (metrics.length === 0) return null;
+
+  return (
+    <ul
+      className={cn(
+        'm-0 list-none p-0 gap-[var(--space-6)]',
+        compact && metrics.length > 1
+          ? 'grid grid-cols-1 min-[1024px]:grid-cols-2 min-[1024px]:gap-[var(--space-8)]'
+          : 'flex flex-col',
+      )}
+    >
+      {metrics.map((metric) => (
+        <li key={metric.label} className={COMPACT_TILE_CLASS}>
+          <div className="flex items-start justify-between gap-[var(--space-6)]">
+            <span className="min-w-0 text-style-caption font-normal leading-snug text-[var(--color-text-muted)]">
+              {metric.label}
+            </span>
+            {metric.trend ? (
+              <span className="shrink-0 text-style-caption font-normal text-[var(--color-text-muted)]">
+                {METRIC_TREND_LABEL[metric.trend]}
+              </span>
+            ) : null}
+          </div>
+          <p className="m-0 mt-[var(--space-2)] text-style-body-sm font-normal leading-snug text-[var(--color-text-primary)]">
+            <span className="font-medium">
+              {metric.value}
+              {metric.unit ? `\u00a0${metric.unit}` : ''}
+            </span>
+            <span className="text-[var(--color-text-muted)]">
+              {' · '}
+              {metric.min}–{metric.max}
+              {metric.unit ? `\u00a0${metric.unit}` : ''}
+            </span>
+          </p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function ShowcasePanelModeSwitcher({
+  modes,
+  status,
+  modesLabel = 'Режим генератора',
+}: {
+  modes: ShowcasePanelOperationMode[];
+  status?: ShowcasePanelHarvestStatus;
+  modesLabel?: string;
+}) {
+  if (modes.length === 0) return null;
+
+  return (
+    <div className="flex flex-col gap-[var(--space-4)]">
+      <span className="text-style-caption font-normal leading-snug text-[var(--color-text-muted)]">
+        {modesLabel}
+      </span>
+      <div className="flex flex-col gap-[var(--space-6)] min-[1024px]:flex-row min-[1024px]:items-center min-[1024px]:gap-[var(--space-8)]">
+        <div
+          role="group"
+          aria-label={modesLabel}
+          className="grid min-w-0 flex-1 gap-[var(--space-2)] rounded-[var(--radius-medium)] border border-[var(--color-border-base)] bg-[var(--color-surface-2)] p-[var(--space-2)]"
+          style={{ gridTemplateColumns: `repeat(${modes.length}, minmax(0, 1fr))` }}
+        >
+          {modes.map((mode) => (
+            <div
+              key={mode.id}
+              aria-current={mode.active ? 'true' : undefined}
+              className={cn(
+                'rounded-[calc(var(--radius-medium)-var(--space-2))] px-[var(--space-6)] py-[var(--space-4)] text-center',
+                'text-style-caption font-normal leading-snug transition-colors',
+                mode.active
+                  ? 'bg-[var(--color-brand-primary)] text-[var(--color-text-on-brand)] shadow-[0_1px_2px_color-mix(in_srgb,var(--color-text-primary)_12%,transparent)]'
+                  : 'text-[var(--color-text-secondary)]',
+              )}
+            >
+              {mode.label}
+            </div>
+          ))}
+        </div>
+        {status ? <ShowcasePanelHarvestStatusPill status={status} /> : null}
+      </div>
+    </div>
+  );
+}
+
+function ShowcasePanelMonitoringHeader({
+  modes,
+  status,
+  modesLabel,
+}: {
+  modes?: ShowcasePanelOperationMode[];
+  status?: ShowcasePanelHarvestStatus;
+  modesLabel?: string;
+}) {
+  if (!modes?.length && !status) return null;
+
+  const inactiveMode = modes?.find((mode) => !mode.active && mode.description);
+
+  return (
+    <div className={cn('flex flex-col', PANEL_SECTION_GAP_CLASS)}>
+      {modes?.length ? (
+        <ShowcasePanelModeSwitcher modes={modes} status={status} modesLabel={modesLabel} />
+      ) : status ? (
+        <ShowcasePanelHarvestStatusPill status={status} />
+      ) : null}
+      {inactiveMode ? (
+        <p className="m-0 text-style-caption font-normal leading-snug text-[var(--color-text-muted)]">
+          {inactiveMode.description}
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+function ShowcasePanelResources({ resources }: { resources: ShowcasePanelResource[] }) {
+  if (resources.length === 0) return null;
+
+  return (
+    <ul className="m-0 flex list-none flex-col p-0 gap-[var(--space-6)]">
+      {resources.map((resource) => (
+        <li key={resource.label} className={COMPACT_TILE_CLASS}>
+          <div className="flex items-start justify-between gap-[var(--space-6)]">
+            <span className="min-w-0 text-style-caption font-normal leading-snug text-[var(--color-text-muted)]">
+              {resource.label}
+            </span>
+            {resource.trend ? (
+              <span className="shrink-0 text-style-caption font-normal text-[var(--color-text-muted)]">
+                {METRIC_TREND_LABEL[resource.trend]}
+              </span>
+            ) : null}
+          </div>
+          <p className="m-0 mt-[var(--space-2)] text-style-body-sm font-normal leading-snug text-[var(--color-text-primary)]">
+            <span className="font-medium">
+              {resource.level}
+              {resource.unit ? `\u00a0${resource.unit}` : ''}
+            </span>
+            {resource.consumption ? (
+              <span className="text-[var(--color-text-muted)]"> · {resource.consumption}</span>
+            ) : null}
+          </p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function ShowcasePanelSignals({
+  metrics,
+  resources,
+}: {
+  metrics?: ShowcasePanelMetric[];
+  resources?: ShowcasePanelResource[];
+}) {
+  const hasMetrics = Boolean(metrics?.length);
+  const hasResources = Boolean(resources?.length);
+  if (!hasMetrics && !hasResources) return null;
+
+  const useGrid = hasMetrics && hasResources;
+
+  return (
+    <div
+      className={cn(
+        useGrid &&
+          'grid grid-cols-1 gap-[var(--space-6)] min-[1024px]:grid-cols-2 min-[1024px]:gap-[var(--space-8)]',
+        !useGrid && 'flex flex-col gap-[var(--space-6)]',
+      )}
+    >
+      {hasMetrics ? (
+        <div className={useGrid ? 'min-w-0' : undefined}>
+          <ShowcasePanelMetrics metrics={metrics!} compact />
+        </div>
+      ) : null}
+      {hasResources ? (
+        <div className={useGrid ? 'min-w-0' : undefined}>
+          <ShowcasePanelResources resources={resources!} />
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function ShowcasePanelAlertCard({
+  alert,
+  compact,
+}: {
+  alert: ShowcasePanelAlert;
+  compact?: boolean;
+}) {
+  return (
+    <div
+      className={cn(
+        'shrink-0 rounded-[var(--radius-medium)] border px-[var(--space-8)] py-[var(--space-6)]',
+        alert.level === 'warning' &&
+          'border-[var(--color-danger-base)] bg-[color-mix(in_srgb,var(--color-danger-subtle)_75%,var(--color-surface-1))]',
+        alert.level === 'info' &&
+          'border-[var(--color-border-base)] bg-[var(--color-surface-2)]',
+        alert.level === 'success' &&
+          'border-[var(--color-brand-primary)] bg-[var(--color-brand-muted)]',
+      )}
+    >
+      {alert.timeframe && !alert.detail ? (
+        <p className="m-0 text-style-caption font-normal leading-snug text-[var(--color-text-muted)]">
+          {alert.timeframe}
+        </p>
+      ) : null}
+      <p
+        className={cn(
+          'm-0 text-style-caption font-normal leading-snug text-[var(--color-text-primary)]',
+          alert.timeframe && !alert.detail && 'mt-[var(--space-2)]',
+          compact && !alert.detail && 'min-[1024px]:line-clamp-2',
+        )}
+      >
+        {alert.level === 'warning' ? '⚠ ' : alert.level === 'success' ? '✓ ' : 'ℹ '}
+        {alert.title}
+      </p>
+      {alert.detail ? (
+        <p className="m-0 mt-[var(--space-2)] text-style-caption font-normal leading-snug text-[var(--color-text-muted)] whitespace-pre-line">
+          {alert.detail}
+        </p>
+      ) : alert.timeframe ? (
+        <p className="m-0 mt-[var(--space-2)] text-style-caption font-normal leading-snug text-[var(--color-text-muted)]">
+          {alert.timeframe}
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+function ShowcasePanelAlerts({ alerts, compact }: { alerts: ShowcasePanelAlert[]; compact?: boolean }) {
+  if (alerts.length === 0) return null;
+
+  return (
+    <ul className="m-0 flex list-none flex-col p-0 gap-[var(--space-6)]">
+      {alerts.map((alert) => (
+        <li key={`${alert.level}-${alert.title}-${alert.actor ?? ''}`}>
+          <ShowcasePanelAlertCard alert={alert} compact={compact} />
         </li>
       ))}
     </ul>
@@ -143,24 +444,66 @@ function ShowcasePanelAction({ panel }: { panel: ShowcasePanelItem }) {
 }
 
 function ShowcasePanelItemBody({ panel, expanded }: { panel: ShowcasePanelItem; expanded?: boolean }) {
+  const hasMonitoringLayout = Boolean(
+    panel.modes?.length || panel.status || panel.metrics?.length || panel.resources?.length,
+  );
+  const distributeDesktop = Boolean(hasMonitoringLayout && expanded);
+
   return (
     <div
       className={cn(
-        'flex flex-col',
-        expanded && 'min-[1024px]:h-full min-[1024px]:min-h-0 min-[1024px]:justify-between',
+        'flex min-h-0 flex-1 flex-col',
+        distributeDesktop && 'min-[1024px]:justify-between min-[1024px]:overflow-hidden',
+        !distributeDesktop && expanded && 'min-[1024px]:justify-between',
       )}
-      style={{ gap: 'var(--space-section-content-m)' }}
+      style={distributeDesktop ? undefined : { gap: 'var(--space-section-content-m)' }}
     >
-      <div className="flex flex-col min-[1024px]:gap-[var(--space-section-content-l)]" style={{ gap: 'var(--space-section-content-m)' }}>
-        <ShowcasePanelBullets bullets={panel.bullets} />
-        <ShowcasePanelInlinePreview
-          imageSrc={panel.imageSrc}
-          imageAlt={panel.imageAlt}
-          preview={panel.preview}
+      {hasMonitoringLayout ? (
+        <>
+          <div className={cn(distributeDesktop && 'shrink-0')}>
+            <ShowcasePanelMonitoringHeader
+              modes={panel.modes}
+              status={panel.status}
+              modesLabel={panel.modesLabel}
+            />
+          </div>
+          <div className={cn(distributeDesktop && 'shrink-0')}>
+            <ShowcasePanelSignals metrics={panel.metrics} resources={panel.resources} />
+          </div>
+        </>
+      ) : (
+        <div className={cn('flex flex-col', PANEL_SECTION_GAP_CLASS)}>
+          {panel.status ? <ShowcasePanelHarvestStatusPill status={panel.status} /> : null}
+          {panel.metrics?.length ? <ShowcasePanelMetrics metrics={panel.metrics} /> : null}
+        </div>
+      )}
+      {panel.alerts?.length
+        ? distributeDesktop
+          ? panel.alerts.map((alert) => (
+              <ShowcasePanelAlertCard
+                key={`${alert.level}-${alert.title}-${alert.actor ?? ''}`}
+                alert={alert}
+                compact={hasMonitoringLayout}
+              />
+            ))
+          : (
+              <ShowcasePanelAlerts alerts={panel.alerts} compact={hasMonitoringLayout} />
+            )
+        : null}
+      {panel.bullets.length ? (
+        <ShowcasePanelBullets
+          bullets={panel.bullets}
+          secondary={hasMonitoringLayout}
+          compact={hasMonitoringLayout}
         />
-      </div>
+      ) : null}
+      <ShowcasePanelInlinePreview
+        imageSrc={panel.imageSrc}
+        imageAlt={panel.imageAlt}
+        preview={panel.preview}
+      />
       {panel.action ? (
-        <div className="min-[1024px]:mt-auto min-[1024px]:pt-[var(--space-section-content-m)]">
+        <div className="shrink-0 min-[1024px]:pt-[var(--space-section-content-m)]">
           <ShowcasePanelAction panel={panel} />
         </div>
       ) : null}
@@ -207,9 +550,9 @@ export const ShowcasePanelAccordion: React.FC<ShowcasePanelAccordionProps> = ({
           <RadixAccordion.Content className={CONTENT_CLASS}>
             <div
               className={cn(
-                'px-[var(--space-inset-l)] pb-[var(--space-inset-l)]',
-                'min-[1024px]:flex min-[1024px]:h-full min-[1024px]:min-h-0 min-[1024px]:flex-1 min-[1024px]:flex-col',
-                'min-[1024px]:px-[var(--space-inset-xl)] min-[1024px]:pb-[var(--space-inset-xl)]',
+                'box-border px-[var(--space-inset-l)] pb-[var(--space-inset-l)]',
+                'min-[1024px]:flex min-[1024px]:min-h-0 min-[1024px]:flex-1 min-[1024px]:flex-col min-[1024px]:overflow-hidden',
+                'min-[1024px]:px-[var(--space-inset-l)] min-[1024px]:pb-[var(--space-inset-l)]',
               )}
             >
               <ShowcasePanelItemBody panel={panel} expanded={isOpen} />

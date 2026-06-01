@@ -8,6 +8,7 @@ import type { WhyUsBlockProps } from './WhyUsBlock';
 
 import { damiatScenarioContent, damiatDeviceIntroContent } from './damiatLandingFixtures';
 import { DamiatGasOscilloscope } from './demo-assets/DamiatGasOscilloscope';
+import { getDamiatScenarioPreview } from './demo-assets/scenario';
 
 export { damiatHeroBackgroundUrl } from './demo-assets/damiatHeroImages';
 
@@ -51,14 +52,6 @@ export function withDamiatHeroMedia(hero: HeroBlockProps): HeroBlockProps {
 
 
 
-export const damiatScenarioChartPreview = (
-
-  <DamiatMediaPlaceholder label="3 линии прогноза: рост · падение · стабильность" aspect="16/10" />
-
-);
-
-
-
 export function withDamiatScenarioMedia(
 
   content: ShowcasePanelBlockProps,
@@ -69,21 +62,11 @@ export function withDamiatScenarioMedia(
 
     ...content,
 
-    panels: content.panels.map((panel, index) => ({
+    panels: content.panels.map((panel) => ({
 
       ...panel,
 
-      preview:
-
-        index === 0 ? (
-
-          damiatScenarioChartPreview
-
-        ) : (
-
-          <DamiatMediaPlaceholder label={`Превью: ${panel.title}`} aspect="16/10" />
-
-        ),
+      preview: getDamiatScenarioPreview(panel.id) ?? panel.preview,
 
     })),
 
@@ -97,33 +80,8 @@ export const damiatScenarioWithMedia = withDamiatScenarioMedia(damiatScenarioCon
 
 
 
-export const damiatDeviceFeaturedMedia = (
-
-  <DamiatMediaPlaceholder label="Промышленный генератор этилена DAMIAT" aspect="4/3" />
-
-);
-
-
-
 export function withDamiatDeviceIntroMedia(content: WhyUsBlockProps): WhyUsBlockProps {
-
-  return {
-
-    ...content,
-
-    featured: {
-
-      ...content.featured,
-
-      media: damiatDeviceFeaturedMedia,
-
-    },
-
-  };
-
+  return content;
 }
 
-
-
 export const damiatDeviceIntroWithMedia = withDamiatDeviceIntroMedia(damiatDeviceIntroContent);
-

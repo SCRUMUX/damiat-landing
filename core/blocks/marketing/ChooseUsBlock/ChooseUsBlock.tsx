@@ -20,15 +20,16 @@ export type {
 function ChooseUsTitle({
   title,
   titleAccent,
-}: Pick<ChooseUsBlockProps, 'title' | 'titleAccent'>) {
+  titleClassName,
+}: Pick<ChooseUsBlockProps, 'title' | 'titleAccent' | 'titleClassName'>) {
   if (!titleAccent || !title?.includes(titleAccent)) {
-    return <h2 className={CHOOSE_US_TITLE_CLASS}>{title}</h2>;
+    return <h2 className={cn(CHOOSE_US_TITLE_CLASS, titleClassName)}>{title}</h2>;
   }
 
   const [before, after] = title.split(titleAccent);
 
   return (
-    <h2 className={CHOOSE_US_TITLE_CLASS}>
+    <h2 className={cn(CHOOSE_US_TITLE_CLASS, titleClassName)}>
       {before}
       <span className="text-[var(--color-brand-primary)]">{titleAccent}</span>
       {after}
@@ -39,6 +40,10 @@ function ChooseUsTitle({
 export const ChooseUsBlock: React.FC<ChooseUsBlockProps> = ({
   title = 'Почему нас выбирают',
   titleAccent = 'нас выбирают',
+  titleClassName,
+  cardTitleClassName,
+  featuredContentAlign = 'bottom',
+  featuredTitleClassName,
   cards,
   featured,
   className,
@@ -61,15 +66,23 @@ export const ChooseUsBlock: React.FC<ChooseUsBlockProps> = ({
       }}
       aria-label="Why choose us"
     >
-      <ChooseUsTitle title={title} titleAccent={titleAccent} />
+      <ChooseUsTitle title={title} titleAccent={titleAccent} titleClassName={titleClassName} />
 
       <div className={CHOOSE_US_BODY_CLASS}>
         <ul className={CHOOSE_US_CARD_LIST_CLASS}>
           {cards.map((card) => (
-            <ChooseUsCard key={card.id ?? card.title} {...card} />
+            <ChooseUsCard
+              key={card.id ?? card.title}
+              {...card}
+              titleClassName={cardTitleClassName}
+            />
           ))}
         </ul>
-        <ChooseUsFeaturedCard {...featured} />
+        <ChooseUsFeaturedCard
+          {...featured}
+          contentAlign={featuredContentAlign}
+          titleClassName={featuredTitleClassName}
+        />
       </div>
     </SectionShell>
   );

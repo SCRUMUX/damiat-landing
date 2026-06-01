@@ -10,15 +10,16 @@ import type { ChooseUsFeaturedItem } from './ChooseUsBlock.types';
 function ChooseUsFeaturedTitle({
   title,
   titleBreakBefore,
-}: Pick<ChooseUsFeaturedItem, 'title' | 'titleBreakBefore'>) {
+  titleClassName,
+}: Pick<ChooseUsFeaturedItem, 'title' | 'titleBreakBefore'> & { titleClassName?: string }) {
   if (!titleBreakBefore || !title.includes(titleBreakBefore)) {
-    return <h3 className={CHOOSE_US_FEATURED_TITLE_CLASS}>{title}</h3>;
+    return <h3 className={cn(CHOOSE_US_FEATURED_TITLE_CLASS, titleClassName)}>{title}</h3>;
   }
 
   const [before, after] = title.split(titleBreakBefore);
 
   return (
-    <h3 className={CHOOSE_US_FEATURED_TITLE_CLASS}>
+    <h3 className={cn(CHOOSE_US_FEATURED_TITLE_CLASS, titleClassName)}>
       {before}
       <br className="desktop:hidden" />
       {titleBreakBefore}
@@ -58,6 +59,8 @@ function DefaultFeaturedMedia() {
 
 export interface ChooseUsFeaturedCardProps extends ChooseUsFeaturedItem {
   className?: string;
+  contentAlign?: 'top' | 'bottom';
+  titleClassName?: string;
 }
 
 export const ChooseUsFeaturedCard: React.FC<ChooseUsFeaturedCardProps> = ({
@@ -69,8 +72,16 @@ export const ChooseUsFeaturedCard: React.FC<ChooseUsFeaturedCardProps> = ({
   imageSrcMobile,
   imageAlt = '',
   className,
+  contentAlign = 'bottom',
+  titleClassName,
 }) => (
-  <article className={cn(CHOOSE_US_FEATURED_CLASS, className)}>
+  <article
+    className={cn(
+      CHOOSE_US_FEATURED_CLASS,
+      contentAlign === 'top' ? 'justify-start' : 'justify-end',
+      className,
+    )}
+  >
     {media ? (
       <div className="absolute inset-[-1px]">{media}</div>
     ) : imageSrc || imageSrcMobile ? (
@@ -102,7 +113,11 @@ export const ChooseUsFeaturedCard: React.FC<ChooseUsFeaturedCardProps> = ({
     )}
 
     <div className="relative z-10 flex flex-col gap-[var(--space-8)] desktop:gap-[var(--space-16)]">
-      <ChooseUsFeaturedTitle title={title} titleBreakBefore={titleBreakBefore} />
+      <ChooseUsFeaturedTitle
+        title={title}
+        titleBreakBefore={titleBreakBefore}
+        titleClassName={titleClassName}
+      />
       <p className={CHOOSE_US_FEATURED_DESCRIPTION_CLASS}>{description}</p>
     </div>
   </article>

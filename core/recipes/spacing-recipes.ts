@@ -26,6 +26,7 @@ export type SpacingRecipeId =
   | 'section.support'
   | 'section.showcase-panel'
   | 'section.blog'
+  | 'section.case-studies'
   | 'section.partners'
   | 'section.contact-hero'
   | 'section.why-us'
@@ -141,6 +142,11 @@ export const SPACING_RECIPES: Record<SpacingRecipeId, SpacingRecipe> = {
     maxWidth: 'desktop',
   },
   'section.blog': {
+    sectionPaddingY: 'var(--space-section-y-l)',
+    innerGap: 'var(--space-section-content-l)',
+    maxWidth: 'desktop',
+  },
+  'section.case-studies': {
     sectionPaddingY: 'var(--space-section-y-l)',
     innerGap: 'var(--space-section-content-l)',
     maxWidth: 'desktop',

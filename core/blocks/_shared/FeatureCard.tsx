@@ -42,7 +42,7 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
     )}
     <div className="flex flex-col" style={{ gap: 'var(--space-section-stack-s)' }}>
       <h3 className="m-0 text-style-h4 font-semibold text-[var(--color-text-primary)]">{title}</h3>
-      <p className="m-0 text-style-body-sm text-[var(--color-text-secondary)]">{description}</p>
+      <p className="m-0 text-style-body-lg text-[var(--color-text-secondary)]">{description}</p>
     </div>
   </div>
 );

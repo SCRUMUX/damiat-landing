@@ -1,6 +1,7 @@
 const path = require('path');
 
-const coreConfig = require('../core/config/tailwind/tailwind.config.cjs');
+const coreRoot = path.join(__dirname, '../core');
+const coreConfig = require(path.join(coreRoot, 'config/tailwind/tailwind.config.cjs'));
 
 module.exports = {
   ...coreConfig,

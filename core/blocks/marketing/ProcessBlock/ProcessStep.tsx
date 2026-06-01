@@ -30,15 +30,21 @@ const TRACK_PROGRESS_DESKTOP_STYLE = {
 function ProcessStepTitle({
   title,
   titleBreakBefore,
-}: Pick<ProcessStepItem, 'title' | 'titleBreakBefore'>) {
+  primary,
+}: Pick<ProcessStepItem, 'title' | 'titleBreakBefore'> & { primary?: boolean }) {
+  const titleClass = cn(
+    PROCESS_STEP_TITLE_CLASS,
+    primary && 'text-[var(--color-brand-primary)]',
+  );
+
   if (!titleBreakBefore || !title.includes(titleBreakBefore)) {
-    return <h3 className={PROCESS_STEP_TITLE_CLASS}>{title}</h3>;
+    return <h3 className={titleClass}>{title}</h3>;
   }
 
   const [before, after] = title.split(titleBreakBefore);
 
   return (
-    <h3 className={PROCESS_STEP_TITLE_CLASS}>
+    <h3 className={titleClass}>
       {before}
       <br className="max-lg:hidden" />
       {titleBreakBefore}
@@ -50,6 +56,7 @@ function ProcessStepTitle({
 export interface ProcessStepProps extends ProcessStepItem {
   index: number;
   className?: string;
+  titlePrimary?: boolean;
 }
 
 export const ProcessStep: React.FC<ProcessStepProps> = ({
@@ -59,6 +66,7 @@ export const ProcessStep: React.FC<ProcessStepProps> = ({
   description,
   index,
   className,
+  titlePrimary = false,
 }) => {
   const stepNumber = number ?? String(index + 1).padStart(2, '0');
 
@@ -70,7 +78,7 @@ export const ProcessStep: React.FC<ProcessStepProps> = ({
       </div>
 
       <div className={PROCESS_STEP_CARD_CLASS}>
-        <ProcessStepTitle title={title} titleBreakBefore={titleBreakBefore} />
+        <ProcessStepTitle title={title} titleBreakBefore={titleBreakBefore} primary={titlePrimary} />
         <p className={PROCESS_STEP_DESCRIPTION_CLASS}>{description}</p>
       </div>
     </li>

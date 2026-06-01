@@ -95,7 +95,7 @@ export const DamiatCalculatorScheduleCell: React.FC<DamiatCalculatorScheduleCell
           'placeholder:text-[var(--color-text-muted)]',
           'focus:underline focus:decoration-[var(--color-border-base)] focus:underline-offset-2',
         )}
-        aria-label={kind === 'sales' ? `Реализация, месяц ${monthIndex + 1}` : `Расходы, месяц ${monthIndex + 1}`}
+        aria-label={kind === 'sales' ? `Продажи, месяц ${monthIndex + 1}` : `Расходы, месяц ${monthIndex + 1}`}
       />
     </div>
   );

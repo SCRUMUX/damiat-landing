@@ -17,6 +17,7 @@ import {
   CALC_LABEL_COL_WIDTH,
   CALC_LEGEND_SWATCH_SIZE,
   CALC_METRIC_ROW_HEIGHT,
+  CALC_METRIC_ROW_HEIGHT_STACKED,
   CALC_MONTH_ROW_HEIGHT,
   CALC_PRICE_BAR_MAX_WIDTH,
   CALC_SLOT_VIEW_WIDTH,
@@ -49,7 +50,13 @@ type RowDef = {
   format: (m: ScenarioBreakdown['months'][0]) => string;
   tone?: 'loss' | 'result' | 'stock';
   editable?: 'sales' | 'opex';
+  /** Две строки в ячейке: тонны сверху, ₽ снизу */
+  stackedCell?: boolean;
 };
+
+function metricRowHeight(row: RowDef): number {
+  return row.stackedCell ? CALC_METRIC_ROW_HEIGHT_STACKED : CALC_METRIC_ROW_HEIGHT;
+}
 
 type BarLayout = {
   label: string;
@@ -287,7 +294,7 @@ export const DamiatCalculatorHarvestChart: React.FC<DamiatCalculatorHarvestChart
       {
         key: 'price',
         label: 'Цена ₽/т',
-        labelTitle: 'Прогноз реализации за месяц. На графике шкала цены — ₽/кг.',
+        labelTitle: 'Прогноз продаж за месяц. На графике шкала цены — ₽/кг.',
         format: (m) =>
           m.priceForecast >= 1000
             ? `${Math.round(m.priceForecast / 1000)}k`
@@ -299,6 +306,7 @@ export const DamiatCalculatorHarvestChart: React.FC<DamiatCalculatorHarvestChart
         labelTitle: `Потери за месяц, сценарий ${lossLegend}`,
         format: (m) => `${formatTonsCompact(m.lossTons)} · ${formatRubCompact(m.lossRub)}`,
         tone: 'loss',
+        stackedCell: true,
       },
       {
         key: 'cum-r',
@@ -328,7 +336,7 @@ export const DamiatCalculatorHarvestChart: React.FC<DamiatCalculatorHarvestChart
     () => ({
       key: 'result',
       label: 'Итог мес.',
-      labelTitle: 'Выручка от реализации − потери − расходы на хранение и DAMIAT',
+      labelTitle: 'Выручка от продаж − потери − расходы на хранение и DAMIAT',
       format: (m) => formatRubCompact(Math.max(0, m.monthResult)),
       tone: 'result',
     }),
@@ -339,8 +347,8 @@ export const DamiatCalculatorHarvestChart: React.FC<DamiatCalculatorHarvestChart
     () => [
       {
         key: 'sales',
-        label: 'Реализация, т',
-        labelTitle: 'Плановая реализация урожая за месяц (один план для обоих сценариев)',
+        label: 'Продажи, т',
+        labelTitle: 'Плановые продажи урожая за месяц (один план для обоих сценариев)',
         format: () => '',
         editable: 'sales',
       },
@@ -381,6 +389,8 @@ export const DamiatCalculatorHarvestChart: React.FC<DamiatCalculatorHarvestChart
       ? `repeat(${monthColCount}, minmax(0, 1fr))`
       : '';
   const gridCols = monthColCount > 0 ? `${CALC_LABEL_COL_WIDTH}px ${gridMonthCols}` : `${CALC_LABEL_COL_WIDTH}px`;
+
+  const metricRowHeights = visibleRows.map((row) => `${metricRowHeight(row)}px`).join(' ');
 
   return (
     <div
@@ -460,7 +470,7 @@ export const DamiatCalculatorHarvestChart: React.FC<DamiatCalculatorHarvestChart
             className="grid w-full min-w-0 gap-x-0"
             style={{
               gridTemplateColumns: gridCols,
-              gridTemplateRows: `${CALC_CHART_HEIGHT}px ${CALC_MONTH_ROW_HEIGHT}px repeat(${visibleRows.length}, ${CALC_METRIC_ROW_HEIGHT}px)`,
+              gridTemplateRows: `${CALC_CHART_HEIGHT}px ${CALC_MONTH_ROW_HEIGHT}px ${metricRowHeights}`,
             }}
             role="grid"
             aria-label={`Динамика: ${activePageTabLabel}`}
@@ -486,7 +496,7 @@ export const DamiatCalculatorHarvestChart: React.FC<DamiatCalculatorHarvestChart
                     className="absolute right-0 whitespace-nowrap text-style-body-sm text-[var(--color-danger-base)]"
                     style={{
                       top: geometry.zeroY + geometry.hLossRub(rub) - CALC_AXIS_LABEL_OFFSET,
-                      fontSize: CALC_AXIS_FONT_SIZE - 1,
+                      fontSize: CALC_AXIS_FONT_SIZE,
                     }}
                   >
                     {formatLossTick(rub)}
@@ -540,16 +550,18 @@ export const DamiatCalculatorHarvestChart: React.FC<DamiatCalculatorHarvestChart
             ))}
 
             {/* Метрики */}
-            {visibleRows.map((row, rowIndex) => (
+            {visibleRows.map((row, rowIndex) => {
+              const rowHeight = metricRowHeight(row);
+              return (
               <React.Fragment key={row.key}>
                 <div
                   className="flex items-center whitespace-nowrap border-t border-r border-[var(--color-border-base)] pl-[var(--space-4)] pr-[var(--space-6)] text-style-body-sm font-medium leading-none text-[var(--color-text-secondary)]"
                   style={{
                     gridRow: rowIndex + 3,
                     gridColumn: 1,
-                    height: CALC_METRIC_ROW_HEIGHT,
-                    minHeight: CALC_METRIC_ROW_HEIGHT,
-                    maxHeight: CALC_METRIC_ROW_HEIGHT,
+                    height: rowHeight,
+                    minHeight: rowHeight,
+                    maxHeight: rowHeight,
                   }}
                   title={row.labelTitle}
                 >
@@ -571,9 +583,9 @@ export const DamiatCalculatorHarvestChart: React.FC<DamiatCalculatorHarvestChart
                     style={{
                       gridRow: rowIndex + 3,
                       gridColumn: i + 2,
-                      height: CALC_METRIC_ROW_HEIGHT,
-                      minHeight: CALC_METRIC_ROW_HEIGHT,
-                      maxHeight: CALC_METRIC_ROW_HEIGHT,
+                      height: rowHeight,
+                      minHeight: rowHeight,
+                      maxHeight: rowHeight,
                     }}
                     title={row.editable ? undefined : row.format(m)}
                   >
@@ -592,6 +604,11 @@ export const DamiatCalculatorHarvestChart: React.FC<DamiatCalculatorHarvestChart
                         value={opexRubByMonth[globalMonthIndex] ?? '0'}
                         onChange={onOpexCellChange}
                       />
+                    ) : row.stackedCell ? (
+                      <div className="flex flex-col items-center justify-center gap-[var(--space-2)] leading-tight">
+                        <span>{formatTonsCompact(m.lossTons)}</span>
+                        <span className="text-style-caption font-normal">{formatRubCompact(m.lossRub)}</span>
+                      </div>
                     ) : (
                       row.format(m)
                     )}
@@ -599,7 +616,8 @@ export const DamiatCalculatorHarvestChart: React.FC<DamiatCalculatorHarvestChart
                 );
                 })}
               </React.Fragment>
-            ))}
+            );
+            })}
           </div>
         </div>
       )}

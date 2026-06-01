@@ -5,19 +5,25 @@ import {
   WHY_US_CARD_CLASS,
   WHY_US_CARD_DESCRIPTION_CLASS,
   WHY_US_CARD_ICON_SLOT_CLASS,
+  WHY_US_CARD_TITLE_CLASS,
 } from '../../_shared/blockLayout';
 import type { WhyUsCardItem } from './WhyUsBlock.types';
 
 export interface WhyUsCardProps extends WhyUsCardItem {
   className?: string;
+  titleClassName?: string;
 }
 
-export const WhyUsCard: React.FC<WhyUsCardProps> = ({ title, description, icon, className }) => (
+export const WhyUsCard: React.FC<WhyUsCardProps> = ({
+  title,
+  description,
+  icon,
+  className,
+  titleClassName,
+}) => (
   <article className={cn(WHY_US_CARD_CLASS, className)}>
     <div className={WHY_US_CARD_BODY_CLASS}>
-      <div className="font-medium text-style-h4 text-[var(--color-text-primary)] min-[1024px]:text-style-body-lg">
-        {title}
-      </div>
+      <div className={cn(WHY_US_CARD_TITLE_CLASS, titleClassName)}>{title}</div>
       <p className={WHY_US_CARD_DESCRIPTION_CLASS}>{description}</p>
     </div>
     {icon ? <div className={WHY_US_CARD_ICON_SLOT_CLASS}>{icon}</div> : null}

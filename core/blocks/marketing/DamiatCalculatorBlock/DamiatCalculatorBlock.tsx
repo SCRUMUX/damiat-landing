@@ -95,8 +95,6 @@ export const DamiatCalculatorBlock: React.FC<DamiatCalculatorBlockProps> = ({
   title = 'Рассчитайте стоимость урожая и выгоду от хранения',
   subtitle,
   devicesTitle,
-  recommendationsHref = '#scenarios',
-  recommendationsLabel = 'Перейти в рекомендации',
   defaultValues,
   className,
 }) => {
@@ -237,8 +235,6 @@ export const DamiatCalculatorBlock: React.FC<DamiatCalculatorBlockProps> = ({
               onDeviceChange={(device1) => setValues((v) => ({ ...v, device1 }))}
               seasonProfitRub={seasonProfitRub}
               onResetUniformSales={onResetUniformSales}
-              recommendationsHref={recommendationsHref}
-              recommendationsLabel={recommendationsLabel}
             />
 
             <div className="flex min-h-full min-w-0 flex-col">

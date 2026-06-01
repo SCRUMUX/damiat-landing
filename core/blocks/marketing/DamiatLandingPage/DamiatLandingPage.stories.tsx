@@ -9,13 +9,12 @@ import {
 } from '../damiatDemoMedia';
 import { damiatLandingHeroBackgrounds } from '../demo-assets/damiatLandingHeroBackgrounds';
 import { withTrustFeaturedCover } from '../trustDemoMedia';
-import { withPartnersDemoMedia } from '../partnersDemoMedia';
 
 const DAMIAT_UX_PRINCIPLE = `
 **UX-воронка лендинга:**
 1. Калькулятор и сценарии — рассчитайте выгоду, выберите момент продажи.
-2. Генератор этилена — управляйте микроклиматом и потерями.
-3. Платформа и кейс «Агро холдинг» — контролируйте хранение, подтвердите доход на объёме.
+2. Генератор этилена — польза для хранилища: сохранность, дозаривание, эко без химикатов.
+3. Платформа и истории внедрения — контролируйте хранение, подтвердите доход на объёме.
 `;
 
 const damiatLandingStoryProps = {
@@ -26,7 +25,6 @@ const damiatLandingStoryProps = {
   scenario: damiatScenarioWithMedia,
   deviceIntro: damiatDeviceIntroWithMedia,
   trust: withTrustFeaturedCover(damiatLandingArgs.trust),
-  partners: withPartnersDemoMedia(damiatLandingArgs.partners),
 };
 
 const meta: Meta<typeof DamiatLandingPage> = {

@@ -1,2 +1,2 @@
 export { ShowcasePanelBlock } from './ShowcasePanelBlock';
-export type { ShowcasePanelBlockProps, ShowcasePanelItem, ShowcasePanelAction } from './ShowcasePanelBlock.types';
+export type { ShowcasePanelBlockProps, ShowcasePanelItem, ShowcasePanelAction, ShowcasePanelAlert, ShowcasePanelMetric, ShowcasePanelMetricTrend, ShowcasePanelHarvestStatus, ShowcasePanelOperationMode, ShowcasePanelResource } from './ShowcasePanelBlock.types';

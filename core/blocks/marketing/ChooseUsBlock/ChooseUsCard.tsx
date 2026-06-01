@@ -13,6 +13,7 @@ import type { ChooseUsCardItem } from './ChooseUsBlock.types';
 
 export interface ChooseUsCardProps extends ChooseUsCardItem {
   className?: string;
+  titleClassName?: string;
 }
 
 export const ChooseUsCard: React.FC<ChooseUsCardProps> = ({
@@ -21,6 +22,7 @@ export const ChooseUsCard: React.FC<ChooseUsCardProps> = ({
   size,
   icon,
   className,
+  titleClassName,
 }) => (
   <li
     className={cn(
@@ -30,7 +32,7 @@ export const ChooseUsCard: React.FC<ChooseUsCardProps> = ({
     )}
   >
     <div className={CHOOSE_US_CARD_BODY_CLASS}>
-      <h3 className={CHOOSE_US_CARD_TITLE_CLASS}>{title}</h3>
+      <h3 className={cn(CHOOSE_US_CARD_TITLE_CLASS, titleClassName)}>{title}</h3>
       <p className={CHOOSE_US_CARD_DESCRIPTION_CLASS}>{description}</p>
     </div>
     {icon ? <div className={CHOOSE_US_CARD_ICON_SLOT_CLASS}>{icon}</div> : null}
