@@ -27,7 +27,7 @@ function SummaryChipCard({ chip, withDamiat }: { chip: SummaryChip; withDamiat: 
   return (
     <div
       className={cn(
-        'flex h-full min-h-[var(--space-80)] min-w-[140px] flex-1 flex-col justify-end rounded-[var(--radius-medium)] border px-[var(--space-inset-l)] py-[var(--space-10)]',
+        'flex h-full min-h-[var(--space-80)] min-w-[calc(var(--space-120)+var(--space-20))] flex-1 flex-col justify-end rounded-[var(--radius-medium)] border px-[var(--space-inset-l)] py-[var(--space-10)]',
         isNeutral && 'border-[var(--color-border-base)] bg-[var(--color-surface-2)]',
         !isNeutral &&
           isPrimary &&
