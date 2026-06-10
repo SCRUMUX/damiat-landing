@@ -1,0 +1,59 @@
+---
+description: AICADS import rules for consumer code. Activates automatically for every .ts/.tsx file outside `node_modules/@ai-ds/core/`.
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+alwaysApply: true
+---
+
+# AICADS isolation contract (consumer side)
+
+This project consumes `@ai-ds/core`. The design system **owns** the
+behavior layer (Radix, cmdk, vaul, sonner, Floating UI, input-otp,
+class-variance-authority). Consumer code **never** imports any of those
+engines directly — always go through the AICADS semantic surface.
+
+## Allowed
+
+```ts
+import { Button, Modal, Tabs } from '@ai-ds/core/components';
+import { Modal } from '@ai-ds/core/components/Modal';
+import { toast, Toaster } from '@ai-ds/core/components/Toast';
+import { ScrollArea } from '@ai-ds/core/shared';
+import { useBreakpoint } from '@ai-ds/core/hooks';
+```
+
+## Forbidden in consumer code
+
+```ts
+import * as Dialog from '@radix-ui/react-dialog';          //  blocked
+import { Command } from 'cmdk';                            //  blocked
+import { Drawer } from 'vaul';                             //  blocked
+import { toast } from 'sonner';                            //  blocked
+import { useFloating } from '@floating-ui/react';          //  blocked
+import { OTPInput } from 'input-otp';                      //  blocked
+import { cva } from 'class-variance-authority';            //  blocked
+```
+
+Reach the same functionality via the equivalent AICADS primitive
+(`Modal`, `CommandPalette`, `Drawer`, `Toaster` + `toast()`, `Popover`,
+`PinInput`, contract-driven appearance respectively).
+
+## Why
+
+The AICADS `_internal/` adapters are the **single** place where each
+engine is touched. Bypassing them couples your consumer code to a
+specific engine, breaks the isolation contract, and prevents the design
+system from swapping engines without consumer churn.
+
+## Lint enforcement
+
+The same rule is enforced by ESLint via the shareable config at
+`@ai-ds/core/eslint-config`. Add it to your consumer project:
+
+```js
+// .eslintrc.cjs
+module.exports = {
+  extends: [require.resolve('@ai-ds/core/eslint-config')],
+};
+```

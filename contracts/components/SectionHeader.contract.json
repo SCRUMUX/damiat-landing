@@ -1,0 +1,254 @@
+{
+  "name": "@UI/SectionHeader",
+  "description": "Section header: опциональная иконка слева, лейбл, badge, иконка справа. 3 размера (sm/md/lg), 4 семантических вида (base, success, warning, danger).",
+  "variantProps": [
+    "size",
+    "appearance"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "appearance": [
+      "base",
+      "success",
+      "warning",
+      "danger"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {
+        "appearance": "base"
+      },
+      "style": {
+        "textColor": "color_text_primary",
+        "iconColor": "color_icon_on_base"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-text-primary)]",
+        "[--icon-color:var(--color-icon-on-base)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "success"
+      },
+      "style": {
+        "textColor": "color_success_base",
+        "iconColor": "color_icon_on_success"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-success-base)]",
+        "[--icon-color:var(--color-icon-on-success)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "warning"
+      },
+      "style": {
+        "textColor": "color_warning_base",
+        "iconColor": "color_icon_on_warning"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-warning-base)]",
+        "[--icon-color:var(--color-icon-on-warning)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "danger"
+      },
+      "style": {
+        "textColor": "color_danger_base",
+        "iconColor": "color_icon_on_danger"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-danger-base)]",
+        "[--icon-color:var(--color-icon-on-danger)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "paddingX": "space_4",
+        "paddingY": "space_2",
+        "gap": "space_4",
+        "textStyle": "Text/Heading/H4"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-4)]",
+        "py-[var(--space-2)]",
+        "gap-[var(--space-4)]",
+        "text-style-h4"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "paddingX": "space_6",
+        "paddingY": "space_3",
+        "gap": "space_6",
+        "textStyle": "Text/Heading/H2"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-6)]",
+        "py-[var(--space-3)]",
+        "gap-[var(--space-6)]",
+        "text-style-h2"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "paddingX": "space_8",
+        "paddingY": "space_4",
+        "gap": "space_6",
+        "textStyle": "Text/Heading/H1"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-8)]",
+        "py-[var(--space-4)]",
+        "gap-[var(--space-6)]",
+        "text-style-h1"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "paddingX": {
+      "sm": "space_4",
+      "md": "space_6",
+      "lg": "space_8"
+    },
+    "paddingY": {
+      "sm": "space_2",
+      "md": "space_3",
+      "lg": "space_4"
+    },
+    "gap": {
+      "sm": "space_4",
+      "md": "space_6",
+      "lg": "space_6"
+    },
+    "textStyle": {
+      "sm": "Text/Heading/H4",
+      "md": "Text/Heading/H2",
+      "lg": "Text/Heading/H1"
+    }
+  },
+  "element": "div",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "center",
+    "cross": "center"
+  },
+  "slots": [
+    {
+      "name": "iconLeft",
+      "figmaName": "Left icon",
+      "type": "icon",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "fixed"
+    },
+    {
+      "name": "label",
+      "figmaName": "Label",
+      "type": "text",
+      "optional": false,
+      "default": "Section",
+      "sizing": "hug"
+    },
+    {
+      "name": "badge",
+      "figmaName": "Badge",
+      "type": "component",
+      "component": "@UI/Badge",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "hug"
+    },
+    {
+      "name": "iconRight",
+      "figmaName": "Right icon",
+      "type": "icon",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "fixed"
+    }
+  ],
+  "booleanProps": [
+    {
+      "name": "showLeftIcon",
+      "figmaName": "Left icon",
+      "controls": "iconLeft",
+      "default": false
+    },
+    {
+      "name": "showBadge",
+      "figmaName": "Badge",
+      "controls": "badge",
+      "default": false
+    },
+    {
+      "name": "showRightIcon",
+      "figmaName": "Right icon",
+      "controls": "iconRight",
+      "default": false
+    }
+  ],
+  "instanceSwapProps": [
+    {
+      "name": "leftIcon",
+      "figmaName": "Left Icon",
+      "slot": "iconLeft",
+      "role": "icon"
+    },
+    {
+      "name": "rightIcon",
+      "figmaName": "Right Icon",
+      "slot": "iconRight",
+      "role": "icon"
+    }
+  ],
+  "textProps": [
+    {
+      "name": "label",
+      "figmaName": "Label",
+      "default": "Section"
+    }
+  ],
+  "styleKeys": [
+    "paddingX",
+    "paddingY",
+    "gap",
+    "textStyle",
+    "textColor",
+    "iconColor"
+  ],
+  "heightConstraint": "hug",
+  "iconSizeMap": {
+    "xs": 20,
+    "sm": 20,
+    "md": 20,
+    "lg": 24,
+    "xl": 20
+  },
+  "generatorStrategy": "template",
+  "template": "SectionHeader"
+}

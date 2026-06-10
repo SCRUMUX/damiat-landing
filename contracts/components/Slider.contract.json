@@ -1,0 +1,128 @@
+{
+  "name": "@UI/Slider",
+  "description": "Слайдер: трек с одним или двумя Thumb. 3 размера (sm, md, lg). ",
+  "variantProps": [
+    "size",
+    "thumbs"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "thumbs": [
+      "1",
+      "2"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "trackBg": "color_surface_3",
+        "fillColor": "color_brand_primary",
+        "thumbBg": "color_bg_base",
+        "thumbBorder": "color_border_strong",
+        "borderRadius": "radius_pill"
+      },
+      "tailwindClasses": [
+        "[--fill-color:var(--color-brand-primary)]",
+        "[--track-bg:var(--color-surface-3)]",
+        "[--thumb-bg:var(--color-bg-base)]",
+        "rounded-pill"
+      ]
+    },
+    {
+      "when": {
+        "thumbs": "1"
+      },
+      "style": {
+        "value": 50
+      },
+      "tailwindClasses": [
+        "[data-value=\"50\"]"
+      ]
+    },
+    {
+      "when": {
+        "thumbs": "2"
+      },
+      "style": {
+        "valueMin": 25,
+        "valueMax": 75
+      },
+      "tailwindClasses": [
+        "[data-min=\"25\"]",
+        "[data-max=\"75\"]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "trackHeight": "space_track_h_sm",
+        "trackWidth": "space_track_w_sm",
+        "thumbSize": "space_control_box_sm"
+      },
+      "tailwindClasses": [
+        "[--thumb-size:var(--space-control-box-sm)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "trackHeight": "space_track_h_md",
+        "trackWidth": "space_track_w_md",
+        "thumbSize": "space_control_box_md"
+      },
+      "tailwindClasses": [
+        "[--thumb-size:var(--space-control-box-md)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "trackHeight": "space_track_h_lg",
+        "trackWidth": "space_track_w_lg",
+        "thumbSize": "space_control_box_lg"
+      },
+      "tailwindClasses": [
+        "[--thumb-size:var(--space-control-box-lg)]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "thumbSize": {
+      "sm": "space_control_box_sm",
+      "md": "space_control_box_md",
+      "lg": "space_control_box_lg"
+    }
+  },
+  "element": "div",
+  "rootLayout": "none",
+  "customStructure": "slider",
+  "styleKeys": [
+    "trackWidth",
+    "trackHeight",
+    "thumbSize",
+    "value",
+    "valueMin",
+    "valueMax",
+    "trackBg",
+    "fillColor",
+    "thumbBg",
+    "thumbBorder"
+  ],
+  "heightConstraint": "hug",
+  "borderWidthToken": "border_width_base",
+  "generatorStrategy": "template",
+  "template": "Slider"
+}

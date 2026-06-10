@@ -1,0 +1,159 @@
+{
+  "name": "@UI/Skeleton",
+  "description": "Shared contract for the Skeleton family (Card | Chart | List | Page | Table). Drives container layout tokens (width, padding, gap, radius, surface bg) via the (component, size) axes. Per-element shape data (label widths, bar heights) remains in the .tsx as numeric props passed to SkeletonBlock, because those represent the Figma content silhouette, not spacing.",
+  "variantProps": ["component", "size"],
+  "variantAxes": {
+    "component": ["card", "chart", "list", "page", "table"],
+    "size": ["sm", "md", "lg"]
+  },
+  "variantRules": [
+    {
+      "when": { "component": "card", "size": "sm" },
+      "tailwindClasses": [
+        "w-[var(--space-320)]",
+        "p-[var(--space-6)]",
+        "gap-[var(--space-4)]",
+        "rounded-[var(--radius-default)]",
+        "bg-[var(--color-surface-2)]"
+      ]
+    },
+    {
+      "when": { "component": "card", "size": "md" },
+      "tailwindClasses": [
+        "w-[var(--space-480)]",
+        "p-[var(--space-6)]",
+        "gap-[var(--space-4)]",
+        "rounded-[var(--radius-default)]",
+        "bg-[var(--color-surface-2)]"
+      ]
+    },
+    {
+      "when": { "component": "card", "size": "lg" },
+      "tailwindClasses": [
+        "w-[var(--space-800)]",
+        "p-[var(--space-6)]",
+        "gap-[var(--space-4)]",
+        "rounded-[var(--radius-default)]",
+        "bg-[var(--color-surface-2)]"
+      ]
+    },
+
+    {
+      "when": { "component": "chart", "size": "sm" },
+      "tailwindClasses": [
+        "w-[var(--space-320)]",
+        "p-[var(--space-6)]",
+        "gap-[var(--space-12)]",
+        "rounded-[var(--radius-default)]",
+        "bg-[var(--color-surface-2)]"
+      ]
+    },
+    {
+      "when": { "component": "chart", "size": "md" },
+      "tailwindClasses": [
+        "w-[var(--space-480)]",
+        "p-[var(--space-6)]",
+        "gap-[var(--space-12)]",
+        "rounded-[var(--radius-default)]",
+        "bg-[var(--color-surface-2)]"
+      ]
+    },
+    {
+      "when": { "component": "chart", "size": "lg" },
+      "tailwindClasses": [
+        "w-[var(--space-800)]",
+        "p-[var(--space-6)]",
+        "gap-[var(--space-12)]",
+        "rounded-[var(--radius-default)]",
+        "bg-[var(--color-surface-2)]"
+      ]
+    },
+
+    {
+      "when": { "component": "list", "size": "sm" },
+      "tailwindClasses": [
+        "w-[var(--space-320)]",
+        "px-[var(--space-16)]",
+        "py-[var(--space-8)]",
+        "rounded-[var(--radius-default)]",
+        "bg-[var(--color-surface-1)]"
+      ]
+    },
+    {
+      "when": { "component": "list", "size": "md" },
+      "tailwindClasses": [
+        "w-[var(--space-480)]",
+        "px-[var(--space-16)]",
+        "py-[var(--space-8)]",
+        "rounded-[var(--radius-default)]",
+        "bg-[var(--color-surface-1)]"
+      ]
+    },
+    {
+      "when": { "component": "list", "size": "lg" },
+      "tailwindClasses": [
+        "w-[var(--space-800)]",
+        "px-[var(--space-16)]",
+        "py-[var(--space-8)]",
+        "rounded-[var(--radius-default)]",
+        "bg-[var(--color-surface-1)]"
+      ]
+    },
+
+    {
+      "when": { "component": "page", "size": "sm" },
+      "tailwindClasses": [
+        "w-[var(--space-320)]",
+        "p-[var(--space-6)]",
+        "gap-[var(--space-12)]",
+        "rounded-[var(--radius-default)]",
+        "bg-[var(--color-surface-1)]"
+      ]
+    },
+    {
+      "when": { "component": "page", "size": "md" },
+      "tailwindClasses": [
+        "w-[var(--space-480)]",
+        "p-[var(--space-6)]",
+        "gap-[var(--space-12)]",
+        "rounded-[var(--radius-default)]",
+        "bg-[var(--color-surface-1)]"
+      ]
+    },
+    {
+      "when": { "component": "page", "size": "lg" },
+      "tailwindClasses": [
+        "w-[var(--space-800)]",
+        "p-[var(--space-6)]",
+        "gap-[var(--space-12)]",
+        "rounded-[var(--radius-default)]",
+        "bg-[var(--color-surface-1)]"
+      ]
+    },
+
+    {
+      "when": { "component": "table", "size": "sm" },
+      "tailwindClasses": [
+        "w-[var(--space-320)]",
+        "rounded-[var(--radius-default)]",
+        "bg-[var(--color-surface-1)]"
+      ]
+    },
+    {
+      "when": { "component": "table", "size": "md" },
+      "tailwindClasses": [
+        "w-[var(--space-460)]",
+        "rounded-[var(--radius-default)]",
+        "bg-[var(--color-surface-1)]"
+      ]
+    },
+    {
+      "when": { "component": "table", "size": "lg" },
+      "tailwindClasses": [
+        "w-[var(--space-600)]",
+        "rounded-[var(--radius-default)]",
+        "bg-[var(--color-surface-1)]"
+      ]
+    }
+  ]
+}

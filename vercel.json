@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "npm install && npm install --prefix templates/damiat-consumer-app",
+  "buildCommand": "npm run damiat:build",
+  "outputDirectory": "templates/damiat-consumer-app/dist",
+  "framework": "vite",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}

@@ -1,0 +1,334 @@
+{
+  "name": "@UI/AutocompleteItem",
+  "description": "AutocompleteItem: пункт выпадающего списка автокомплита. Оси: size (sm/md/lg) × itemType (default/primary/danger). Всегда 7 слотов в DOM: Checkbox, Icon Left, Label, Badge 1, Badge 2, Badge 3, Icon Right. Видимость через BOOLEAN props. Используется в @UI/Autocomplete через instance swap.",
+  "variantProps": [
+    "size",
+    "itemType"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "itemType": [
+      "default",
+      "primary",
+      "danger"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "textStyle": "Text/Body/Base",
+        "itemTextColor": "color_text_primary",
+        "itemIconColor": "color_icon_on_base",
+        "itemPaddingX": "space_button_x_md",
+        "itemPaddingY": "space_button_y_md",
+        "itemGap": "space_button_gap_md"
+      },
+      "tailwindClasses": [
+        "[--item-text:var(--color-text-primary)]",
+        "[--item-icon:var(--color-icon-on-base)]",
+        "[--item-px:var(--space-button-x-md)]",
+        "[--item-py:var(--space-button-y-md)]",
+        "[--item-gap:var(--space-button-gap-md)]",
+        "text-style-body"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "textStyle": "Text/Body/SM",
+        "itemPaddingX": "space_button_x_sm",
+        "itemPaddingY": "space_button_y_sm",
+        "itemGap": "space_button_gap_sm",
+        "minWidth": "space_container_compact_min",
+        "maxWidth": "space_container_compact_max"
+      },
+      "tailwindClasses": [
+        "[--item-px:var(--space-button-x-sm)]",
+        "[--item-py:var(--space-button-y-sm)]",
+        "[--item-gap:var(--space-button-gap-sm)]",
+        "min-w-[var(--space-container-compact-min)]",
+        "max-w-[var(--space-container-compact-max)]",
+        "text-style-body-sm"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "textStyle": "Text/Body/Base",
+        "itemPaddingX": "space_button_x_md",
+        "itemPaddingY": "space_button_y_md",
+        "itemGap": "space_button_gap_md",
+        "minWidth": "space_container_content_min",
+        "maxWidth": "space_container_content_max"
+      },
+      "tailwindClasses": [
+        "[--item-px:var(--space-button-x-md)]",
+        "[--item-py:var(--space-button-y-md)]",
+        "[--item-gap:var(--space-button-gap-md)]",
+        "min-w-[var(--space-container-content-min)]",
+        "max-w-[var(--space-container-content-max)]",
+        "text-style-body"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "textStyle": "Text/Body/LG",
+        "itemPaddingX": "space_button_x_lg",
+        "itemPaddingY": "space_button_y_lg",
+        "itemGap": "space_button_gap_lg",
+        "minWidth": "space_container_wide_min",
+        "maxWidth": "space_container_wide_max"
+      },
+      "tailwindClasses": [
+        "[--item-px:var(--space-button-x-lg)]",
+        "[--item-py:var(--space-button-y-lg)]",
+        "[--item-gap:var(--space-button-gap-lg)]",
+        "min-w-[var(--space-container-wide-min)]",
+        "max-w-[var(--space-container-wide-max)]",
+        "text-style-body-lg"
+      ]
+    },
+    {
+      "when": {
+        "itemType": "default"
+      },
+      "style": {
+        "itemTextColor": "color_text_primary",
+        "itemIconColor": "color_icon_on_base"
+      },
+      "tailwindClasses": [
+        "[--item-text:var(--color-text-primary)]",
+        "[--item-icon:var(--color-icon-on-base)]"
+      ]
+    },
+    {
+      "when": {
+        "itemType": "primary"
+      },
+      "style": {
+        "itemTextColor": "color_brand_primary",
+        "itemIconColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "[--item-text:var(--color-brand-primary)]",
+        "[--item-icon:var(--color-brand-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "itemType": "danger"
+      },
+      "style": {
+        "itemTextColor": "color_danger_base",
+        "itemIconColor": "color_danger_base"
+      },
+      "tailwindClasses": [
+        "[--item-text:var(--color-danger-base)]",
+        "[--item-icon:var(--color-danger-base)]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "minWidth": {
+      "sm": "space_container_compact_min",
+      "md": "space_container_content_min",
+      "lg": "space_container_wide_min"
+    },
+    "maxWidth": {
+      "sm": "space_container_compact_max",
+      "md": "space_container_content_max",
+      "lg": "space_container_wide_max"
+    },
+    "textStyle": {
+      "sm": "Text/Body/SM",
+      "md": "Text/Body/Base",
+      "lg": "Text/Body/LG"
+    },
+    "itemPaddingX": {
+      "sm": "space_button_x_sm",
+      "md": "space_button_x_md",
+      "lg": "space_button_x_lg"
+    },
+    "itemPaddingY": {
+      "sm": "space_button_y_sm",
+      "md": "space_button_y_md",
+      "lg": "space_button_y_lg"
+    },
+    "itemGap": {
+      "sm": "space_button_gap_sm",
+      "md": "space_button_gap_md",
+      "lg": "space_button_gap_lg"
+    }
+  },
+  "element": "div",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "start",
+    "cross": "start"
+  },
+  "slots": [
+    {
+      "name": "checkbox",
+      "figmaName": "Checkbox",
+      "type": "component",
+      "component": "@UI/Checkbox",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "fixed"
+    },
+    {
+      "name": "iconLeft",
+      "figmaName": "Icon Left",
+      "type": "icon",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "fixed"
+    },
+    {
+      "name": "label",
+      "figmaName": "Label",
+      "type": "text",
+      "optional": false,
+      "default": "Option",
+      "sizing": "fill"
+    },
+    {
+      "name": "badge1",
+      "figmaName": "Badge 1",
+      "type": "component",
+      "component": "@UI/Badge",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "hug"
+    },
+    {
+      "name": "badge2",
+      "figmaName": "Badge 2",
+      "type": "component",
+      "component": "@UI/Badge",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "hug"
+    },
+    {
+      "name": "badge3",
+      "figmaName": "Badge 3",
+      "type": "component",
+      "component": "@UI/Badge",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "hug"
+    },
+    {
+      "name": "iconRight",
+      "figmaName": "Icon Right",
+      "type": "icon",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "fixed"
+    }
+  ],
+  "booleanProps": [
+    {
+      "name": "showCheckbox",
+      "figmaName": "Checkbox",
+      "controls": "checkbox",
+      "default": false
+    },
+    {
+      "name": "showIconLeft",
+      "figmaName": "Icon Left",
+      "controls": "iconLeft",
+      "default": false
+    },
+    {
+      "name": "showBadge1",
+      "figmaName": "Badge 1",
+      "controls": "badge1",
+      "default": false
+    },
+    {
+      "name": "showBadge2",
+      "figmaName": "Badge 2",
+      "controls": "badge2",
+      "default": false
+    },
+    {
+      "name": "showBadge3",
+      "figmaName": "Badge 3",
+      "controls": "badge3",
+      "default": false
+    },
+    {
+      "name": "showIconRight",
+      "figmaName": "Icon Right",
+      "controls": "iconRight",
+      "default": false
+    }
+  ],
+  "instanceSwapProps": [
+    {
+      "name": "checkboxVariant",
+      "figmaName": "Checkbox variant",
+      "slot": "checkbox",
+      "role": "checkbox"
+    },
+    {
+      "name": "iconLeft",
+      "figmaName": "Icon Left variant",
+      "slot": "iconLeft",
+      "role": "icon"
+    },
+    {
+      "name": "iconRight",
+      "figmaName": "Icon Right variant",
+      "slot": "iconRight",
+      "role": "icon"
+    }
+  ],
+  "textProps": [
+    {
+      "name": "label",
+      "figmaName": "Label",
+      "default": "Option"
+    }
+  ],
+  "styleKeys": [
+    "itemTextColor",
+    "itemIconColor",
+    "itemPaddingX",
+    "itemPaddingY",
+    "itemGap",
+    "minWidth",
+    "maxWidth",
+    "textStyle"
+  ],
+  "heightConstraint": "hug",
+  "iconSizeMap": {
+    "xs": 20,
+    "sm": 20,
+    "md": 20,
+    "lg": 24,
+    "xl": 20
+  },
+  "generatorStrategy": "template",
+  "template": "AutocompleteItem"
+}

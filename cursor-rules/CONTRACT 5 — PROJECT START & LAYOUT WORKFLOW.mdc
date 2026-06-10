@@ -1,0 +1,212 @@
+---
+description: Project startup workflow, layout prompt templates, and reference-based development process
+globs: ["**/pages/**/*.tsx", "**/pages/**/*.stories.tsx"]
+alwaysApply: false
+---
+
+# CONTRACT 5 — PROJECT START & LAYOUT WORKFLOW
+
+## 1. Trigger: "старт проекта"
+
+When the user writes "старт проекта" (or "start project"), execute the following sequence:
+
+### Step 1 — Create or confirm project
+
+Ask the user for the project name. Then run:
+
+```bash
+npm run new-project -- <project-name>
+```
+
+This creates `projects/<project-name>/` with all config files, Storybook, and cursor rules.
+
+If the project already exists, skip creation and proceed.
+
+### Step 2 — Style customization
+
+Present the user with the style tuning checklist from `packages/core/ai-ds-spec.json`:
+
+1. **Brand color**: `tokens.color.primitives.core_blue_*` — replace hex values for brand identity
+2. **Font family**: `tokens.typography.fontFamily.base` — default is "Inter"
+3. **Border radius**: `tokens.radius.default` — controls roundness (4 = sharp, 8 = soft, 12 = rounded)
+4. **Spacing scale**: `tokens.space` — adjust if needed
+5. **Dark theme overrides**: `tokens.color.backgroundSurface` dark values
+
+After user confirms changes (or skips), run:
+
+```bash
+npm run core:build
+```
+
+### Step 3 — Generate frontend and launch Storybook
+
+```bash
+cd projects/<project-name>
+npm run storybook
+```
+
+Ask the user to verify:
+- Components render correctly
+- Theme switching works (light/dark)
+- Tokens are applied
+
+### Step 4 — Layout rules briefing
+
+Tell the user:
+
+> Before we start building screens, review the layout rules that govern all layouts in this system. Key principles:
+>
+> 1. **No hardcoded values** — only tokens (var(--color-*), var(--space-*), var(--radius-*))
+> 2. **One component, one implementation** — no mobile/desktop duplicates
+> 3. **Atomic components** — every element must be a system component or extension
+> 4. **Adaptive layout** — flex-direction/grid-cols change, not component styles
+> 5. **Rhythmic symmetry** — all controls in a block share width, height, padding, radius
+> 6. **Frame parity** — mobile panel width = desktop sidebar width (358px standard)
+>
+> Full rules: CONTRACT 3 — DEFAULT LAYOUT RULES
+
+### Step 5 — Choose reference workflow
+
+Present the user with three options for building the first screen:
+
+> Choose how you want to provide the reference for layout:
+>
+> **(A) Figma MCP** — You have Figma Desktop open, I'll read the design directly
+> **(B) Figma link + screenshot** — You provide a Figma URL, I'll fetch via REST API
+> **(C) Website URL + screenshot** — You provide a live site URL, I'll analyze it
+
+After selection, use the corresponding prompt template below.
+
+### Step 6 — Calibration screen
+
+Build the first screen to calibrate the working process. After completion:
+- Verify visual accuracy against reference
+- Check responsive behavior
+- Verify dark theme
+- Confirm no hardcoded values
+
+---
+
+## 2. Prompt Templates for Reference-Based Layout
+
+### Template A: Figma MCP (Desktop Plugin)
+
+When the user selects Figma MCP or provides a Figma URL with node-id:
+
+1. Call `get_design_context` with the provided nodeId
+2. If needed, call `get_screenshot` for visual reference
+3. Decompose the design:
+
+```
+DECOMPOSITION:
+- Layout structure: [describe grid, flex, sections]
+- Components identified: [list matching primitives]
+- Components to extend: [list needed extensions]
+- New components needed: [list if any]
+- Tokens mapping: [color, spacing, typography matches]
+- Responsive strategy: [mobile-first / desktop-first]
+```
+
+4. Build the page using ONLY system components and tokens
+5. Create a `.stories.tsx` file for Storybook preview
+6. Verify in Storybook
+
+### Template B: Figma REST API + Screenshot
+
+When the user provides a Figma file URL (without MCP):
+
+1. Ask the user to provide a screenshot of the target frame
+2. Analyze the screenshot visually:
+   - Identify layout structure (grid, sidebar, header, content)
+   - Identify UI elements (buttons, inputs, cards, tables)
+   - Estimate spacing, colors, typography
+3. If the user provides a Figma REST API token, fetch node data via:
+
+```bash
+curl -H "X-Figma-Token: <token>" "https://api.figma.com/v1/files/<fileKey>/nodes?ids=<nodeId>"
+```
+
+4. Map everything to system components and tokens
+5. Build the page, create story, verify in Storybook
+
+### Template C: Website URL + Screenshot
+
+When the user provides a website URL:
+
+1. Use `WebFetch` to get the page HTML/content
+2. Ask the user to provide a screenshot (or use browser tools)
+3. Analyze:
+   - DOM structure from fetched content
+   - Visual layout from screenshot
+   - Identify components, spacing, colors, typography
+4. Map to system:
+
+```
+REFERENCE ANALYSIS:
+- Source: [URL]
+- Layout: [describe what we see]
+- Our components: [what maps to our primitives]
+- Token mapping:
+  - Colors: [reference color] → var(--color-*)
+  - Spacing: [reference px] → nearest var(--space-*)
+  - Typography: [reference font] → var(--font-*)
+  - Radius: [reference radius] → var(--radius-*)
+- Responsive: [observed breakpoints → our breakpoints]
+```
+
+5. Build the page, create story, verify in Storybook
+
+---
+
+## 3. Page Creation Protocol
+
+Every new page MUST follow this structure:
+
+```
+projects/<project>/pages/<page-name>/
+  <PageName>.tsx          ← Page component
+  <PageName>.stories.tsx  ← Storybook story
+```
+
+### Page component rules:
+
+1. Import components from core: `from '@ai-ds/core/components/Button'` (each primitive by name)
+2. Import icons from core: `from '@ai-ds/core/icons'`
+3. Use ONLY token-based styling (no hex colors, no px values outside tokens)
+4. Support light/dark themes
+5. Support responsive layout (mobile → tablet → desktop)
+6. No inline styles with hardcoded values
+
+### Story file template:
+
+```tsx
+import type { Meta, StoryObj } from '@storybook/react';
+import { PageName } from './PageName';
+
+const meta: Meta<typeof PageName> = {
+  title: 'Pages/PageName',
+  component: PageName,
+  parameters: {
+    layout: 'fullscreen',
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof PageName>;
+
+export const Default: Story = {};
+```
+
+---
+
+## 4. Completion Criteria
+
+A screen is considered complete when:
+
+- [ ] Visually matches the reference
+- [ ] All elements use system components (no custom HTML)
+- [ ] All values use tokens (no hardcoded colors, spacing, fonts)
+- [ ] Works in dark theme
+- [ ] Works at all breakpoints (mobile 320px, tablet 768px, desktop 1440px)
+- [ ] Has a Storybook story
+- [ ] No duplicate visual implementations (one component = one place)

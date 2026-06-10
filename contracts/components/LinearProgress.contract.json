@@ -1,0 +1,118 @@
+{
+  "name": "@UI/LinearProgress",
+  "description": "Линейный прогресс-бар. 3 размера (sm, md, lg), 3 состояния (25%, 50%, 75%). ",
+  "variantProps": [
+    "size",
+    "value"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "value": [
+      "25",
+      "50",
+      "75"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "trackBg": "color_surface_3",
+        "fillColor": "color_brand_primary",
+        "trackHeight": "space_track_h_sm",
+        "borderRadius": "radius_pill"
+      },
+      "tailwindClasses": [
+        "[--fill-color:var(--color-brand-primary)]",
+        "[--track-bg:var(--color-surface-3)]",
+        "rounded-pill"
+      ]
+    },
+    {
+      "when": {
+        "value": "25"
+      },
+      "style": {
+        "value": 25
+      },
+      "tailwindClasses": [
+        "[data-value=\"25\"]"
+      ]
+    },
+    {
+      "when": {
+        "value": "50"
+      },
+      "style": {
+        "value": 50
+      },
+      "tailwindClasses": [
+        "[data-value=\"50\"]"
+      ]
+    },
+    {
+      "when": {
+        "value": "75"
+      },
+      "style": {
+        "value": 75
+      },
+      "tailwindClasses": [
+        "[data-value=\"75\"]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "trackHeight": "space_track_h_sm",
+        "trackWidth": "space_track_w_sm"
+      },
+      "tailwindClasses": []
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "trackHeight": "space_track_h_md",
+        "trackWidth": "space_track_w_md"
+      },
+      "tailwindClasses": []
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "trackHeight": "space_track_h_lg",
+        "trackWidth": "space_track_w_lg"
+      },
+      "tailwindClasses": []
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "element": "div",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "fixed",
+    "cross": "fixed"
+  },
+  "customStructure": "linearProgress",
+  "styleKeys": [
+    "trackWidth",
+    "trackHeight",
+    "value",
+    "trackBg",
+    "fillColor"
+  ],
+  "heightConstraint": "hug",
+  "generatorStrategy": "template",
+  "template": "LinearProgress"
+}

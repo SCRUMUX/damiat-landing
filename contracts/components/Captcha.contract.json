@@ -1,0 +1,144 @@
+{
+  "name": "@UI/Captcha",
+  "description": "Капча: placeholder для встраивания reCAPTCHA/hCaptcha. Состояния idle, loading, success, error.",
+  "variantProps": [
+    "state"
+  ],
+  "variantAxes": {
+    "state": [
+      "idle",
+      "loading",
+      "success",
+      "error"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "paddingX": "space_captcha_inset_x",
+        "paddingY": "space_captcha_inset_y",
+        "borderRadius": "radius_medium",
+        "textStyle": "Text/Body/SM",
+        "minWidth": "space_container_compact_min",
+        "maxWidth": "space_container_compact_max"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-captcha-inset-x)]",
+        "py-[var(--space-captcha-inset-y)]",
+        "min-w-[var(--space-container-compact-min)]",
+        "max-w-[var(--space-container-compact-max)]",
+        "rounded-medium",
+        "text-style-body-sm"
+      ]
+    },
+    {
+      "when": {
+        "state": "idle"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "borderColor": "color_border_base",
+        "textColor": "color_text_muted"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "text-[var(--color-text-muted)]",
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "loading"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "borderColor": "color_border_base",
+        "textColor": "color_text_muted"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "text-[var(--color-text-muted)]",
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "success"
+      },
+      "style": {
+        "background": "color_success_surface",
+        "borderColor": "color_success_base",
+        "textColor": "color_success_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-success-surface)]",
+        "text-[var(--color-success-base)]",
+        "border",
+        "border-[var(--color-success-base)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "error"
+      },
+      "style": {
+        "background": "color_danger_surface",
+        "borderColor": "color_danger_base",
+        "textColor": "color_danger_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-danger-surface)]",
+        "text-[var(--color-danger-base)]",
+        "border",
+        "border-[var(--color-danger-base)]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "element": "div",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "center",
+    "cross": "center"
+  },
+  "slots": [
+    {
+      "name": "placeholder",
+      "figmaName": "Placeholder",
+      "type": "text",
+      "optional": false,
+      "default": "Captcha",
+      "sizing": "hug"
+    }
+  ],
+  "textProps": [
+    {
+      "name": "placeholder",
+      "figmaName": "Placeholder",
+      "default": "Captcha"
+    }
+  ],
+  "styleKeys": [
+    "minWidth",
+    "maxWidth",
+    "paddingX",
+    "paddingY",
+    "borderRadius",
+    "background",
+    "borderColor",
+    "textStyle",
+    "textColor"
+  ],
+  "heightConstraint": "hug",
+  "borderWidthToken": "border_width_base",
+  "generatorStrategy": "template",
+  "template": "Captcha"
+}

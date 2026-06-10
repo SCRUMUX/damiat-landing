@@ -1,0 +1,246 @@
+{
+  "name": "@UI/Pagination",
+  "description": "Pagination: Prev/Next + номера страниц. Размеры sm/md/lg как Button. Appearance (brand, base, ghost) для активной кнопки. Варианты: with-numbers, compact, minimal. Иконки chevron-left/right.",
+  "variantProps": [
+    "size",
+    "appearance",
+    "variant"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "appearance": [
+      "brand",
+      "base",
+      "ghost"
+    ],
+    "variant": [
+      "with-numbers",
+      "compact",
+      "minimal"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "gap": "space_4",
+        "borderRadius": "radius_default"
+      },
+      "tailwindClasses": [
+        "gap-[var(--space-4)]",
+        "rounded-default"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "paddingX": "space_button_x_sm",
+        "paddingY": "space_button_y_sm",
+        "gap": "space_button_gap_sm",
+        "textStyle": "Text/Caption/Base"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-button-x-sm)]",
+        "py-[var(--space-button-y-sm)]",
+        "gap-[var(--space-button-gap-sm)]",
+        "text-style-caption"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "paddingX": "space_button_x_md",
+        "paddingY": "space_button_y_md",
+        "gap": "space_button_gap_md",
+        "textStyle": "Text/Body/Base"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-button-x-md)]",
+        "py-[var(--space-button-y-md)]",
+        "gap-[var(--space-button-gap-md)]",
+        "text-style-body"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "paddingX": "space_button_x_lg",
+        "paddingY": "space_button_y_lg",
+        "gap": "space_button_gap_lg",
+        "textStyle": "Text/Body/LG"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-button-x-lg)]",
+        "py-[var(--space-button-y-lg)]",
+        "gap-[var(--space-button-gap-lg)]",
+        "text-style-body-lg"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "brand"
+      },
+      "style": {
+        "activeBg": "color_brand_primary",
+        "activeText": "color_text_on_brand",
+        "activeIcon": "color_icon_on_brand"
+      },
+      "tailwindClasses": [
+        "[--active-bg:var(--color-brand-primary)]",
+        "[--active-icon:var(--color-icon-on-brand)]",
+        "[--active-text:var(--color-text-on-brand)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "base"
+      },
+      "style": {
+        "activeBg": "color_surface_2",
+        "activeText": "color_text_primary",
+        "activeIcon": "color_icon_on_base"
+      },
+      "tailwindClasses": [
+        "[--active-bg:var(--color-surface-2)]",
+        "[--active-icon:var(--color-icon-on-base)]",
+        "[--active-text:var(--color-text-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "ghost"
+      },
+      "style": {
+        "activeBg": "color_bg_muted",
+        "activeText": "color_text_primary",
+        "activeIcon": "color_icon_on_ghost",
+        "activeBorder": "color_border_base"
+      },
+      "tailwindClasses": [
+        "[--active-bg:var(--color-bg-muted)]",
+        "[--active-border:var(--color-border-base)]",
+        "[--active-icon:var(--color-icon-on-ghost)]",
+        "[--active-text:var(--color-text-primary)]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "paddingX": {
+      "sm": "space_button_x_sm",
+      "md": "space_button_x_md",
+      "lg": "space_button_x_lg"
+    },
+    "paddingY": {
+      "sm": "space_button_y_sm",
+      "md": "space_button_y_md",
+      "lg": "space_button_y_lg"
+    },
+    "gap": {
+      "sm": "space_button_gap_sm",
+      "md": "space_button_gap_md",
+      "lg": "space_button_gap_lg"
+    },
+    "textStyle": {
+      "sm": "Text/Caption/Base",
+      "md": "Text/Body/Base",
+      "lg": "Text/Body/LG"
+    }
+  },
+  "element": "nav",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "center",
+    "cross": "center"
+  },
+  "conditionalSlots": {
+    "variantAxis": "variant",
+    "variants": {
+      "minimal": [
+        {
+          "name": "prevButton",
+          "type": "icon",
+          "optional": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "nextButton",
+          "type": "icon",
+          "optional": false,
+          "sizing": "fixed"
+        }
+      ],
+      "compact": [
+        {
+          "name": "prevButton",
+          "type": "icon",
+          "optional": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "pageInfo",
+          "type": "text",
+          "optional": false,
+          "default": "2 / 5",
+          "sizing": "hug"
+        },
+        {
+          "name": "nextButton",
+          "type": "icon",
+          "optional": false,
+          "sizing": "fixed"
+        }
+      ],
+      "with-numbers": [
+        {
+          "name": "prevButton",
+          "type": "icon",
+          "optional": false,
+          "sizing": "fixed"
+        },
+        {
+          "name": "pages",
+          "type": "pageButtons",
+          "optional": false,
+          "sizing": "hug"
+        },
+        {
+          "name": "nextButton",
+          "type": "icon",
+          "optional": false,
+          "sizing": "fixed"
+        }
+      ]
+    }
+  },
+  "styleKeys": [
+    "gap",
+    "borderRadius",
+    "textStyle"
+  ],
+  "heightConstraint": "hug",
+  "iconSizeMap": {
+    "xs": 20,
+    "sm": 20,
+    "md": 20,
+    "lg": 24,
+    "xl": 20
+  },
+  "generatorStrategy": "template",
+  "template": "Pagination"
+}

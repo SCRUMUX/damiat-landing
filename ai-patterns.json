@@ -1,0 +1,725 @@
+{
+  "$schema": "./schemas/ai-patterns-v1.schema.json",
+  "name": "@ai-ds/core",
+  "version": "0.7.6",
+  "description": "AICADS pattern manifest — distributable blocks, spacing recipes, and page templates for AI/Replit assemblers.",
+  "conventions": {
+    "blockImport": "import { HeroBlock } from '@ai-ds/core/blocks/HeroBlock'",
+    "pageImport": "import { LandingPageTemplate } from '@ai-ds/core/blocks/LandingPageTemplate'",
+    "recipeImport": "import { resolveRecipe, SPACING_RECIPES } from '@ai-ds/core/recipes'",
+    "patternsJson": "import patterns from '@ai-ds/core/patterns' assert { type: 'json' }"
+  },
+  "patterns": {
+    "marketing.hero.centered": {
+      "block": "HeroBlock",
+      "recipe": "section.hero",
+      "category": "marketing",
+      "primitives": [
+        "SectionHeader",
+        "Button",
+        "Paragraph",
+        "Badge"
+      ],
+      "storyReference": "Blocks/Marketing/HeroBlock",
+      "uxReference": "shadcn:hero-01",
+      "whenToUse": "Landing page above-the-fold with primary and secondary CTA"
+    },
+    "marketing.hero.split": {
+      "block": "HeroBlock",
+      "recipe": "section.hero",
+      "category": "marketing",
+      "primitives": [
+        "SectionHeader",
+        "Button",
+        "Paragraph",
+        "Badge",
+        "Image"
+      ],
+      "storyReference": "Blocks/Marketing/HeroBlock",
+      "uxReference": "shadcn:hero-02",
+      "whenToUse": "Split hero with media column and optional stats row"
+    },
+    "marketing.hero.enterprise": {
+      "block": "HeroBlock",
+      "recipe": "section.hero",
+      "category": "marketing",
+      "variant": "enterprise",
+      "primitives": [
+        "SectionHeader",
+        "Button",
+        "Paragraph",
+        "Badge"
+      ],
+      "storyReference": "Blocks/Marketing/HeroBlock/Enterprise",
+      "uxReference": "cortel.cloud",
+      "whenToUse": "B2B enterprise above-fold — split stage (headline + CTA + media), bottom metrics band with inline description (Cortel-style)"
+    },
+    "marketing.hero.page": {
+      "block": "HeroBlock",
+      "recipe": "section.hero.page",
+      "category": "marketing",
+      "variant": "page",
+      "primitives": [
+        "Breadcrumb",
+        "Badge",
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/HeroBlock/Page",
+      "uxReference": "cortel.cloud",
+      "whenToUse": "Inner page hero — breadcrumb trail, category badge, and display title on brand band (case study / detail pages)"
+    },
+    "marketing.navbar.sticky": {
+      "block": "NavbarBlock",
+      "recipe": "section.navbar",
+      "category": "marketing",
+      "primitives": [
+        "Link",
+        "Button"
+      ],
+      "storyReference": "Blocks/Marketing/NavbarBlock",
+      "whenToUse": "Top navigation with logo, links, and optional CTA"
+    },
+    "marketing.navbar.enterprise": {
+      "block": "NavbarBlock",
+      "recipe": "section.navbar",
+      "category": "marketing",
+      "variant": "enterprise",
+      "primitives": [
+        "Button",
+        "Tabs",
+        "Tab",
+        "Drawer"
+      ],
+      "storyReference": "Blocks/Marketing/NavbarBlock/ServicesMenuOpen",
+      "whenToUse": "Sticky overlay navbar with phone block, account/lead CTAs, static social rail below header, and tabbed services mega menu (desktop/tablet/mobile drawer)"
+    },
+    "marketing.logos.cloud": {
+      "block": "LogoCloudBlock",
+      "recipe": "section.logos",
+      "category": "marketing",
+      "primitives": [
+        "Paragraph"
+      ],
+      "storyReference": "Blocks/Marketing/LogoCloudBlock",
+      "whenToUse": "Social proof logo strip below hero"
+    },
+    "marketing.stats.band": {
+      "block": "StatsBlock",
+      "recipe": "section.stats",
+      "category": "marketing",
+      "primitives": [
+        "Paragraph"
+      ],
+      "storyReference": "Blocks/Marketing/StatsBlock",
+      "whenToUse": "Key metrics band on brand background"
+    },
+    "marketing.features.grid": {
+      "block": "FeaturesBlock",
+      "recipe": "section.features",
+      "category": "marketing",
+      "primitives": [
+        "SectionHeader",
+        "Card",
+        "GridContainer",
+        "GridItem",
+        "Paragraph"
+      ],
+      "storyReference": "Blocks/Marketing/FeaturesBlock",
+      "uxReference": "shadcn:features-01",
+      "whenToUse": "Feature grid with 2 or 3 columns and optional icons"
+    },
+    "marketing.steps.three": {
+      "block": "HowItWorksBlock",
+      "recipe": "section.steps",
+      "category": "marketing",
+      "primitives": [
+        "Paragraph"
+      ],
+      "storyReference": "Blocks/Marketing/HowItWorksBlock",
+      "whenToUse": "Numbered how-it-works steps (3–4 columns)"
+    },
+    "marketing.pricing.three-tier": {
+      "block": "PricingBlock",
+      "recipe": "section.pricing",
+      "category": "marketing",
+      "primitives": [
+        "SectionHeader",
+        "Card",
+        "Button",
+        "Badge",
+        "Divider"
+      ],
+      "storyReference": "Blocks/Marketing/PricingBlock",
+      "uxReference": "shadcn:pricing-01",
+      "whenToUse": "Three-tier pricing comparison with highlighted plan"
+    },
+    "marketing.testimonials.grid": {
+      "block": "TestimonialsBlock",
+      "recipe": "section.testimonials",
+      "category": "marketing",
+      "primitives": [
+        "Paragraph",
+        "Card"
+      ],
+      "storyReference": "Blocks/Marketing/TestimonialsBlock",
+      "whenToUse": "Customer quotes in a responsive grid"
+    },
+    "marketing.faq.accordion": {
+      "block": "FAQBlock",
+      "recipe": "section.faq",
+      "category": "marketing",
+      "primitives": [
+        "Accordion",
+        "Paragraph"
+      ],
+      "storyReference": "Blocks/Marketing/FAQBlock",
+      "whenToUse": "FAQ section with collapsible answers — default compact accordion"
+    },
+    "marketing.faq.enterprise": {
+      "block": "FAQBlock",
+      "recipe": "section.faq",
+      "category": "marketing",
+      "primitives": [
+        "Accordion",
+        "Paragraph"
+      ],
+      "storyReference": "Blocks/Marketing/FAQBlock",
+      "uxReference": "cortel.cloud/importozameshhenie-vmware",
+      "whenToUse": "FAQ card accordion — muted rounded items, plus toggle button, Cortel vmware landing"
+    },
+    "marketing.cta.banner": {
+      "block": "CTABlock",
+      "recipe": "section.cta",
+      "category": "marketing",
+      "primitives": [
+        "SectionHeader",
+        "Card",
+        "Button",
+        "Paragraph"
+      ],
+      "storyReference": "Blocks/Marketing/CTABlock",
+      "uxReference": "shadcn:cta-01",
+      "whenToUse": "Mid-page or pre-footer call-to-action card"
+    },
+    "marketing.cta.band": {
+      "block": "CTABlock",
+      "recipe": "section.cta",
+      "category": "marketing",
+      "primitives": [
+        "SectionHeader",
+        "Button",
+        "Paragraph"
+      ],
+      "storyReference": "Blocks/Marketing/CTABlock",
+      "whenToUse": "Full-width brand CTA band before footer"
+    },
+    "marketing.newsletter.inline": {
+      "block": "NewsletterBlock",
+      "recipe": "section.newsletter",
+      "category": "marketing",
+      "primitives": [
+        "Input",
+        "Button",
+        "Paragraph"
+      ],
+      "storyReference": "Blocks/Marketing/NewsletterBlock",
+      "whenToUse": "Email capture with inline input and submit"
+    },
+    "marketing.events.featured": {
+      "block": "EventsBlock",
+      "recipe": "section.events",
+      "category": "marketing",
+      "primitives": [
+        "Tag",
+        "Button",
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/EventsBlock",
+      "whenToUse": "Brand band after hero — split layout with carousel nav, format/date tags, and event title"
+    },
+    "marketing.services.catalog": {
+      "block": "ServicesBlock",
+      "recipe": "section.services",
+      "category": "marketing",
+      "primitives": [
+        "Tab",
+        "Card",
+        "Button",
+        "Image",
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/ServicesBlock",
+      "uxReference": "cortel.cloud",
+      "whenToUse": "Services/practices catalog — sticky title + category tabs, 3-card grid, show-more pagination, hover lift cards"
+    },
+    "marketing.solutions.showcase": {
+      "block": "SolutionsBlock",
+      "recipe": "section.solutions",
+      "category": "marketing",
+      "primitives": [
+        "Card",
+        "Button",
+        "Badge",
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/SolutionsBlock",
+      "uxReference": "cortel.cloud",
+      "whenToUse": "Case study showcase — muted band, 2-row mosaic grid (3 equal + 6/3/3), mobile scroll strip, inverse hover reveal with brand gradient cover"
+    },
+    "marketing.solutions.grid": {
+      "block": "SolutionsBlock",
+      "recipe": "section.solutions",
+      "category": "marketing",
+      "primitives": [
+        "Card",
+        "Button",
+        "Badge",
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/SolutionsBlock",
+      "uxReference": "cortel.cloud/importozameshhenie-vmware-podderzhka-i-obsluzhivanie-spacevm",
+      "whenToUse": "Case detail related projects — equal 3-col SolutionCard grid with category/client/date meta, no mosaic spans"
+    },
+    "marketing.solutions.catalog": {
+      "block": "SolutionsBlock",
+      "recipe": "section.solutions",
+      "category": "marketing",
+      "primitives": [
+        "Card",
+        "Link",
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/SolutionsBlock",
+      "uxReference": "cortel.cloud/solutions",
+      "whenToUse": "Solutions catalog page — hero muted panel (variant solutions) + equal 3-col bordered cards with icon, title, description, arrow CTA on hover"
+    },
+    "marketing.trust.security": {
+      "block": "TrustBlock",
+      "recipe": "section.trust",
+      "category": "marketing",
+      "primitives": [
+        "Card",
+        "Link",
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/TrustBlock",
+      "uxReference": "cortel.cloud",
+      "whenToUse": "Reliability band — featured brand pillar + 3 white cards, gradient divider, sidebar + 3-col standards link grid"
+    },
+    "marketing.support.always-on": {
+      "block": "SupportBlock",
+      "recipe": "section.support",
+      "category": "marketing",
+      "primitives": [
+        "Card",
+        "Link",
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/SupportBlock",
+      "uxReference": "cortel.cloud",
+      "whenToUse": "Support band — split header, image stat cards (featured + 2 side), contact channel rows; mobile stacked stats hero"
+    },
+    "marketing.showcase.panel": {
+      "block": "ShowcasePanelBlock",
+      "recipe": "section.showcase-panel",
+      "category": "marketing",
+      "primitives": [
+        "Accordion",
+        "Button",
+        "SectionHeader",
+        "Image"
+      ],
+      "storyReference": "Blocks/Marketing/ShowcasePanelBlock",
+      "uxReference": "cortel.cloud",
+      "whenToUse": "Interactive product panel — flex accordion cards on the left (expand/push in fixed frame), crossfade UI preview on the right; mobile inline preview per panel"
+    },
+    "marketing.blog.slider": {
+      "block": "BlogBlock",
+      "recipe": "section.blog",
+      "category": "marketing",
+      "primitives": [
+        "Card",
+        "Link",
+        "SectionHeader",
+        "Image"
+      ],
+      "storyReference": "Blocks/Marketing/BlogBlock",
+      "uxReference": "cortel.cloud",
+      "whenToUse": "Blog band — split header with view-all + prev/next, horizontal card slider with image, excerpt fade, date pill and arrow link; mobile edge-bleed scroll"
+    },
+    "marketing.partners.marquee": {
+      "block": "PartnersBlock",
+      "recipe": "section.partners",
+      "category": "marketing",
+      "primitives": [
+        "Image",
+        "Link"
+      ],
+      "storyReference": "Blocks/Marketing/PartnersBlock",
+      "uxReference": "cortel.cloud",
+      "whenToUse": "Strategic partners band — centered title, dual infinite marquee rows (opposite directions), white logo tiles with grayscale-to-color hover, edge gradient fades"
+    },
+    "marketing.contact.hero": {
+      "block": "ContactHeroBlock",
+      "recipe": "section.contact-hero",
+      "category": "marketing",
+      "primitives": [
+        "Button",
+        "Checkbox",
+        "Input"
+      ],
+      "storyReference": "Blocks/Marketing/ContactHeroBlock",
+      "uxReference": "cortel.cloud",
+      "whenToUse": "Brand contact hero — parallax background, split title + glass form (name, phone, company), white submit CTA, consent checkbox"
+    },
+    "marketing.auth.login": {
+      "block": "LoginBlock",
+      "recipe": "section.auth.login",
+      "category": "marketing",
+      "primitives": [
+        "Input",
+        "Button",
+        "Checkbox",
+        "Link",
+        "Alert"
+      ],
+      "storyReference": "Blocks/Marketing/LoginBlock",
+      "uxReference": "console.cortel.cloud",
+      "whenToUse": "Auth login — Cortel console split-screen: brand decor panel + white form panel, left-aligned logo/title, login/password, remember+forgot row, submit, registration hint, legal footer links"
+    },
+    "marketing.app-shell": {
+      "block": "AppShellBlock",
+      "recipe": "section.app-shell",
+      "category": "marketing",
+      "primitives": [],
+      "storyReference": "Blocks/Marketing/AppShellBlock",
+      "whenToUse": "Dashboard app shell — fixed sidebar nav + top bar (storage context, user) + scrollable main; mobile horizontal nav pills"
+    },
+    "marketing.monitoring.workspace": {
+      "block": "MonitoringWorkspaceBlock",
+      "recipe": "section.app-shell",
+      "category": "marketing",
+      "primitives": [],
+      "storyReference": "Blocks/Marketing/MonitoringWorkspaceBlock",
+      "whenToUse": "LK monitoring panel — full-width ShowcasePanel monitoring UI (modes, metrics, resources, alerts) without marketing accordion"
+    },
+    "marketing.cabinet.stats-strip": {
+      "block": "CabinetStatsStrip",
+      "recipe": "section.app-shell",
+      "category": "marketing",
+      "primitives": [],
+      "storyReference": "Blocks/Marketing/CabinetStatsStrip",
+      "whenToUse": "Cabinet KPI row — compact 4-tile telemetry strip (surface-2 cards) for overview dashboard"
+    },
+    "marketing.admin.content-list": {
+      "block": "AdminContentListBlock",
+      "recipe": "section.app-shell",
+      "category": "marketing",
+      "primitives": ["Input", "Button", "Table", "Chip"],
+      "storyReference": "Screens/DAMIAT Admin",
+      "whenToUse": "Admin content index — searchable table of cases or events with create/edit/delete actions"
+    },
+    "marketing.admin.content-editor": {
+      "block": "AdminContentEditorBlock",
+      "recipe": "section.app-shell",
+      "category": "marketing",
+      "primitives": ["Input", "Textarea", "Select", "Button"],
+      "storyReference": "Screens/DAMIAT Admin",
+      "whenToUse": "Shared schema editor — anchor-nav sections for case (hero/intro/stats/narrative) or event (card/body) drafts"
+    },
+    "marketing.admin.users": {
+      "block": "AdminUsersWorkspaceBlock",
+      "recipe": "section.app-shell",
+      "category": "marketing",
+      "primitives": ["Table", "Modal", "Input", "Select", "Button", "Toast"],
+      "storyReference": "Screens/DAMIAT Admin",
+      "whenToUse": "Admin user management — generate/change/send passwords, add users (front-only mock)"
+    },
+    "marketing.admin.partners": {
+      "block": "AdminPartnersWorkspaceBlock",
+      "recipe": "section.app-shell",
+      "category": "marketing",
+      "primitives": ["FileUpload", "Input", "Button", "Toast"],
+      "storyReference": "Screens/DAMIAT Admin",
+      "whenToUse": "Partner logo CRUD — upload preview grid with add/remove (local state only)"
+    },
+    "marketing.case-detail.intro": {
+      "block": "CaseStudyIntroBlock",
+      "recipe": "section.case-intro",
+      "category": "marketing",
+      "primitives": [
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/CaseStudyIntroBlock",
+      "uxReference": "cortel.cloud/importozameshhenie-vmware-podderzhka-i-obsluzhivanie-spacevm",
+      "whenToUse": "Case study intro — lead prose, 2-col highlight metrics, trail paragraph (embedded in article shell on detail page)"
+    },
+    "marketing.case-detail.inline-stats": {
+      "block": "CaseStudyInlineStatsBlock",
+      "recipe": "section.case-article",
+      "category": "marketing",
+      "primitives": [
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/CaseStudyInlineStatsBlock",
+      "uxReference": "cortel.cloud/importozameshhenie-vmware-podderzhka-i-obsluzhivanie-spacevm",
+      "whenToUse": "Case study business results — h2 + gray stat cards in 2-col grid inside article column"
+    },
+    "marketing.case-detail.implemented": {
+      "block": "CaseStudyImplementedBlock",
+      "recipe": "section.case-article",
+      "category": "marketing",
+      "primitives": [
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/CaseStudyImplementedBlock",
+      "uxReference": "cortel.cloud/importozameshhenie-vmware-podderzhka-i-obsluzhivanie-spacevm",
+      "whenToUse": "Case study implemented list — h2 + intro paragraph + plain bullet list, no feature cards"
+    },
+    "marketing.case-detail.sections": {
+      "block": "CaseStudySectionsBlock",
+      "recipe": "section.case-sections",
+      "category": "marketing",
+      "primitives": [
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/CaseStudySectionsBlock",
+      "uxReference": "cortel.cloud/importozameshhenie-vmware-podderzhka-i-obsluzhivanie-spacevm",
+      "whenToUse": "Case study narrative — repeatable h2 sections with prose, bullet lists, pull quotes"
+    },
+    "marketing.case-detail.anchor-nav": {
+      "block": "CaseStudyAnchorNav",
+      "recipe": "section.case-article",
+      "category": "marketing",
+      "primitives": [
+        "Link"
+      ],
+      "storyReference": "Blocks/Marketing/CaseStudyAnchorNav",
+      "uxReference": "cortel.cloud/importozameshhenie-vmware-podderzhka-i-obsluzhivanie-spacevm",
+      "whenToUse": "Case study sticky anchor nav — left column pill links with scroll-spy active state (desktop)"
+    },
+    "marketing.case-detail.contact": {
+      "block": "CaseStudyContactBlock",
+      "recipe": "section.case-contact",
+      "category": "marketing",
+      "primitives": [
+        "Input",
+        "Button",
+        "Checkbox"
+      ],
+      "storyReference": "Blocks/Marketing/CaseStudyContactBlock",
+      "uxReference": "cortel.cloud/importozameshhenie-vmware-podderzhka-i-obsluzhivanie-spacevm",
+      "whenToUse": "Case study bottom CTA — muted split layout, title + description + white form (name + company only)"
+    },
+    "marketing.why-us.grid": {
+      "block": "WhyUsBlock",
+      "recipe": "section.why-us",
+      "category": "marketing",
+      "primitives": [
+        "Card",
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/WhyUsBlock",
+      "uxReference": "cortel.cloud/importozameshhenie-vmware",
+      "whenToUse": "Credibility grid — title with break, row1 (2 bordered cards + 2fr featured media), row2 (3 cards + mobile featured), muted-to-white section bg"
+    },
+    "marketing.choose-us.mosaic": {
+      "block": "ChooseUsBlock",
+      "recipe": "section.choose-us",
+      "category": "marketing",
+      "primitives": [
+        "Card",
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/ChooseUsBlock",
+      "uxReference": "cortel.cloud/company",
+      "whenToUse": "Company credibility mosaic — title with brand accent, 5-card wrap (2 wide + 3 narrow) + featured support panel on muted bg"
+    },
+    "marketing.process.timeline": {
+      "block": "ProcessBlock",
+      "recipe": "section.process",
+      "category": "marketing",
+      "primitives": [
+        "Card",
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/ProcessBlock",
+      "uxReference": "cortel.cloud/importozameshhenie-vmware",
+      "whenToUse": "Process timeline — numbered steps with dot markers, bordered cards, vertical mobile / horizontal desktop with gradient track"
+    },
+    "marketing.calculator.damiat": {
+      "block": "DamiatCalculatorBlock",
+      "recipe": "section.calculator",
+      "category": "marketing",
+      "primitives": [
+        "Input",
+        "Select",
+        "Switch",
+        "Button",
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/DamiatCalculatorBlock",
+      "whenToUse": "DAMIAT Index calculator — crop inputs, Rosstat market layer, device toggles, forecast metrics"
+    },
+    "marketing.footer.minimal": {
+      "block": "FooterBlock",
+      "recipe": "section.footer",
+      "category": "marketing",
+      "primitives": [
+        "Link",
+        "Paragraph",
+        "Divider"
+      ],
+      "storyReference": "Blocks/Marketing/FooterBlock",
+      "uxReference": "shadcn:footer-01",
+      "whenToUse": "Site footer with link columns, social links, and copyright"
+    },
+    "marketing.footer.enterprise": {
+      "block": "FooterBlock",
+      "recipe": "section.footer",
+      "category": "marketing",
+      "primitives": [
+        "Link",
+        "Paragraph"
+      ],
+      "storyReference": "Blocks/Marketing/FooterBlock",
+      "uxReference": "cortel.cloud",
+      "whenToUse": "Brand footer after contact hero — gradient divider, logo column, 3-col nav/contacts/legal grid, back-to-top"
+    }
+  },
+  "pageTemplates": {
+    "marketing.landing.default": {
+      "description": "Standard SaaS landing page section order",
+      "sections": [
+        "marketing.hero.centered",
+        "marketing.features.grid",
+        "marketing.pricing.three-tier",
+        "marketing.cta.banner",
+        "marketing.footer.minimal"
+      ],
+      "component": "LandingPageTemplate"
+    },
+    "marketing.landing.saas": {
+      "description": "Full SaaS landing with navbar, social proof, FAQ, and newsletter",
+      "sections": [
+        "marketing.navbar.sticky",
+        "marketing.hero.split",
+        "marketing.logos.cloud",
+        "marketing.stats.band",
+        "marketing.features.grid",
+        "marketing.steps.three",
+        "marketing.pricing.three-tier",
+        "marketing.testimonials.grid",
+        "marketing.faq.accordion",
+        "marketing.cta.band",
+        "marketing.newsletter.inline",
+        "marketing.footer.minimal"
+      ],
+      "component": "LandingPageTemplate"
+    },
+    "marketing.landing.enterprise": {
+      "description": "Enterprise AICADS showcase landing — overlay navbar, brand hero, events, features, CTA, footer",
+      "sections": [
+        "marketing.navbar.enterprise",
+        "marketing.hero.enterprise",
+        "marketing.events.featured",
+        "marketing.solutions.showcase",
+        "marketing.solutions.catalog",
+        "marketing.services.catalog",
+        "marketing.support.always-on",
+        "marketing.choose-us.mosaic",
+        "marketing.trust.security",
+        "marketing.showcase.panel",
+        "marketing.partners.marquee",
+        "marketing.blog.slider",
+        "marketing.features.grid",
+        "marketing.cta.band",
+        "marketing.why-us.grid",
+        "marketing.process.timeline",
+        "marketing.faq.enterprise",
+        "marketing.contact.hero",
+        "marketing.footer.enterprise"
+      ],
+      "component": "LandingPageTemplate",
+      "fixtureReference": "aicadsProNavbarFixture",
+      "notes": "Use LandingPageTemplate with navbar.overlay=true; hero.appearance auto-coerces to brand when overlay is set."
+    },
+    "marketing.landing.damiat": {
+      "description": "DAMIAT product landing — yield preservation, ethylene generator, platform, case study",
+      "sections": [
+        "marketing.navbar.enterprise",
+        "marketing.hero.enterprise",
+        "marketing.events.featured",
+        "marketing.features.grid",
+        "marketing.calculator.damiat",
+        "marketing.showcase.panel",
+        "marketing.why-us.grid",
+        "marketing.process.timeline",
+        "marketing.features.grid",
+        "marketing.stats.band",
+        "marketing.features.grid",
+        "marketing.process.timeline",
+        "marketing.stats.band",
+        "marketing.features.grid",
+        "marketing.trust.security",
+        "marketing.partners.marquee",
+        "marketing.logos.cloud",
+        "marketing.cta.band",
+        "marketing.footer.enterprise"
+      ],
+      "component": "DamiatLandingPage",
+      "fixtureReference": "damiatLandingArgs",
+      "notes": "Storybook: Screens/DAMIAT Product Landing. UX: calculator → scenarios → device → platform → case (Agro holding)."
+    },
+    "marketing.auth.login.damiat": {
+      "description": "DAMIAT login page — Cortel console split-screen, brand decor left + white form right",
+      "sections": [
+        "marketing.auth.login"
+      ],
+      "component": "DamiatLoginPage",
+      "fixtureReference": "damiatLoginArgs",
+      "notes": "Storybook: Screens/DAMIAT Login. Split 50/50 desktop; login + password, remember/forgot row, registration hint, legal footer."
+    },
+    "marketing.case-detail.damiat": {
+      "description": "DAMIAT case detail page — Cortel long-read with anchor nav and landing closing band",
+      "sections": [
+        "marketing.hero.page",
+        "marketing.case-detail.intro",
+        "marketing.case-detail.anchor-nav",
+        "marketing.case-detail.inline-stats",
+        "marketing.case-detail.implemented",
+        "marketing.case-detail.sections",
+        "marketing.solutions.grid",
+        "marketing.contact.hero",
+        "marketing.footer.enterprise"
+      ],
+      "component": "DamiatCaseDetailPage",
+      "fixtureReference": "damiatCaseDetailArgs",
+      "notes": "Storybook: Screens/DAMIAT Case Detail. Photo-hero above-fold (backgrounds.case) + overlay navbar, white intro with brand highlight metrics (no badge), sticky anchor nav + split body, gray stat cards, landing BrandPhotoHeroSection closing with damiatContactHeroContent + damiatFooterContent."
+    },
+    "marketing.cabinet.damiat": {
+      "description": "DAMIAT user cabinet — app-shell monitoring from landing scenarios + telemetry",
+      "sections": [
+        "marketing.app-shell",
+        "marketing.cabinet.stats-strip",
+        "marketing.monitoring.workspace"
+      ],
+      "component": "DamiatCabinetPage",
+      "fixtureReference": "damiatCabinetArgs",
+      "notes": "Storybook: Screens/DAMIAT Cabinet. Sidebar: Overview + Ethylene/CO2/Climate; overview KPI strip + scenario summary cards; scenario views use MonitoringWorkspaceBlock. Landing unchanged."
+    },
+    "marketing.admin.damiat": {
+      "description": "DAMIAT admin panel — cases/events content editor, users/passwords, partner logos",
+      "sections": [
+        "marketing.app-shell",
+        "marketing.admin.content-list",
+        "marketing.admin.content-editor",
+        "marketing.admin.users",
+        "marketing.admin.partners"
+      ],
+      "component": "DamiatAdminPage",
+      "fixtureReference": "damiatAdminArgs",
+      "notes": "Storybook: Screens/DAMIAT Admin. Front-only local state; shared schema editor for cases and events; password modals + partner logo CRUD. No API or routing."
+    }
+  }
+}

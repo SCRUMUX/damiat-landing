@@ -1,0 +1,9 @@
+{
+  "name": "AI DS Generator",
+  "id": "ai-ds-generator",
+  "api": "1.0.0",
+  "main": "figma-ai-ds-code.js",
+  "ui": "figma-ai-ds-ui.html",
+  "editorType": ["figma", "figjam"]
+}
+

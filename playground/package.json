@@ -1,0 +1,42 @@
+{
+  "private": true,
+  "name": "aicads-playground",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "prestorybook": "node ../scripts/storybook-prep.mjs",
+    "prebuild-storybook": "node ../scripts/storybook-prep.mjs",
+    "storybook": "node ../scripts/storybook-dev.mjs",
+    "build-storybook": "storybook build",
+    "test-storybook": "test-storybook --url http://127.0.0.1:6016",
+    "chromatic": "chromatic --exit-zero-on-changes --build-script-name build-storybook"
+  },
+  "dependencies": {
+    "@ai-ds/core": "file:..",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "8.6.18",
+    "@storybook/addon-viewport": "^8.6.18",
+    "@storybook/blocks": "8.6.14",
+    "@storybook/react": "8.6.18",
+    "@storybook/react-vite": "8.6.18",
+    "@storybook/test-runner": "0.21.0",
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "@vitejs/plugin-react": "4.3.4",
+    "autoprefixer": "10.4.20",
+    "chromatic": "11.20.0",
+    "playwright": "1.49.0",
+    "postcss": "8.4.49",
+    "sonner": "2.0.7",
+    "storybook": "8.6.18",
+    "tailwindcss": "3.4.16",
+    "typescript": "5.7.2",
+    "vaul": "1.1.2",
+    "vite": "5.4.11"
+  }
+}

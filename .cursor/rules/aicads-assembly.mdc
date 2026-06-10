@@ -1,0 +1,56 @@
+---
+description: AICADS primitive assembly canon — contract-driven class composition for components/primitives.
+globs:
+  - "components/primitives/**/*.tsx"
+  - "contracts/components/*.contract.json"
+alwaysApply: false
+---
+
+# AICADS assembly canon
+
+Reference: [ARCHITECTURE.md](../../ARCHITECTURE.md), [aicads-imports.mdc](./aicads-imports.mdc).
+
+Styling flow: **tokens.css → contract.json → findClasses → cn()**.
+
+## Invariants
+
+1. **SIZE_CLASSES** (or SIZE_CONFIG dimensions) in `.tsx` — layout + typography only (`text-style-*`, padding, gap, radius, min/max).
+2. **findClasses(rules, args)** — semantic axes only (`appearance`, `state`, `itemType`, `thumbs`, `interaction`). Do **not** pass `size` when contract size rules emit `text-style-*` or colors.
+3. **cn() order:** `BASE` → `SIZE_CLASSES[size]` → `...appearanceClasses` → `focusRing` → `className`.
+4. Colors only via `text-[var(--color-*)]` / `bg-[var(--color-*)]` from contract — no hardcoded hex in primitives.
+5. Radix/cmdk/vaul/sonner — only in `_internal/`.
+6. Tailwind JIT: `data-[state=*]:*` classes must be **static string literals** (see `Tab/tab-data-state-classes.ts`), never `` `data-[state=active]:${c}` ``.
+7. **Portal:** Popover content does not inherit trigger CSS vars — pass `contentPadding` / inline vars explicitly.
+8. **twMerge:** `text-style-*` must not strip `text-[var(...)]` — configured in `_shared/utils.ts` via `extendTailwindMerge`.
+
+## Correct (Button pattern)
+
+```tsx
+const appearanceClasses = findClasses(rules, { appearance, state: stateKey });
+
+className={cn(
+  'flex ...',
+  SIZE_CLASSES[size],
+  ...appearanceClasses,
+  !disabled && focusRing,
+  className,
+)}
+```
+
+## Incorrect
+
+```tsx
+// BAD: size rules append text-style-* AFTER color classes → twMerge drops text color
+const vc = findClasses(rules, { appearance, size, state });
+
+// BAD: dynamic Tailwind — JIT never generates these
+const c = buildDataStateClasses(appearance);
+```
+
+## Portal + click-outside
+
+When using Radix Portal for menus, include **both** trigger container and popover content refs:
+
+```tsx
+useClickOutside([containerRef, popoverRef], close, isOpen);
+```

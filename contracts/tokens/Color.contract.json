@@ -1,0 +1,105 @@
+{
+  "tokenCategory": "Color",
+  "description": "Color tokens for the design system. Source of truth: @color.pdf. Covers Background/Surface, Text, Brand/Link/Focus, Border/Divider, SemanticStates, DataVisualization.",
+  "sourceDocument": "@color.pdf",
+  "modeMapping": {
+    "light": "Default mode",
+    "dark": "Dark mode override"
+  },
+  "tokenGroups": {
+    "backgroundSurface": {
+      "description": "Page and container backgrounds",
+      "tokens": {
+        "color_bg_base":     { "aliasLight": "core_white",    "aliasDark": "core_gray_90",  "hexLight": "#FFFFFF", "hexDark": "#161E28" },
+        "color_bg_muted":    { "aliasLight": "core_gray_5",   "aliasDark": "core_gray_87",  "hexLight": "#E2EBFF", "hexDark": "#1B2B47" },
+        "color_surface_1":   { "aliasLight": "core_white",    "aliasDark": "core_gray_80",  "hexLight": "#FFFFFF", "hexDark": "#1A2330" },
+        "color_surface_2":   { "aliasLight": "core_gray_5",   "aliasDark": "core_gray_75",  "hexLight": "#F7F8FA", "hexDark": "#243041" },
+        "color_surface_3":   { "aliasLight": "core_gray_20",  "aliasDark": "core_gray_70",  "hexLight": "#EDF2F8", "hexDark": "#2A3547" },
+        "color_bg_disabled": { "aliasLight": "core_gray_10",  "aliasDark": "core_gray_85",  "hexLight": "#F3F4F6", "hexDark": "#1B2B47" }
+      }
+    },
+    "text": {
+      "description": "Typography colors",
+      "tokens": {
+        "color_text_primary":  { "aliasLight": "core_gray_95", "aliasDark": "core_gray_10", "hexLight": "#353535", "hexDark": "#E6EEF8" },
+        "color_text_muted":    { "aliasLight": "core_gray_60", "aliasDark": "core_gray_50", "hexLight": "#6B7280", "hexDark": "#9AA6B2" },
+        "color_text_disabled": { "aliasLight": "core_gray_40", "aliasDark": "core_gray_50", "hexLight": "#9CA3AF", "hexDark": "#6B7280" },
+        "color_text_on_brand": { "aliasLight": "core_white",   "aliasDark": "core_white",   "hexLight": "#FFFFFF", "hexDark": "#FFFFFF" }
+      }
+    },
+    "brandLinkFocus": {
+      "description": "Brand colors, interactive states, links, focus indicators",
+      "tokens": {
+        "color_brand_primary": { "aliasLight": "core_blue_50",   "aliasDark": "core_blue_50",   "hexLight": "#5B9CFF", "hexDark": "#5B9CFF" },
+        "color_brand_hover":   { "aliasLight": "core_blue_60",   "aliasDark": "core_blue_60",   "hexLight": "#4A8AE6", "hexDark": "#4A8AE6" },
+        "color_brand_pressed": { "aliasLight": "core_blue_70",   "aliasDark": "core_blue_70",   "hexLight": "#3578D4", "hexDark": "#3578D4" },
+        "color_brand_muted":   { "aliasLight": "core_blue_5",    "aliasDark": "core_gray_80",   "hexLight": "#E7F0FF", "hexDark": "#1B2B47" },
+        "color_link_default":  { "aliasLight": "core_blue_50",   "aliasDark": "core_blue_50",   "hexLight": "#5B9CFF", "hexDark": "#5B9CFF" },
+        "color_link_hover":    { "aliasLight": "core_blue_60",   "aliasDark": "core_blue_60",   "hexLight": "#4A8AE6", "hexDark": "#4A8AE6" },
+        "color_focus_outline": { "aliasLight": "core_blue_50",   "aliasDark": "core_blue_50",   "hexLight": "#5B9CFF", "hexDark": "#5B9CFF" },
+        "color_active":        { "aliasLight": "core_violet_50", "aliasDark": "core_violet_50", "hexLight": "#6B5BFF", "hexDark": "#6B5BFF" }
+      }
+    },
+    "borderDivide": {
+      "description": "Borders and dividers",
+      "tokens": {
+        "color_border_base":   { "aliasLight": "core_gray_15",  "aliasDark": "core_gray_75", "hexLight": "#E5E7EB", "hexDark": "#243041" },
+        "color_border_strong": { "aliasLight": "core_gray_25",  "aliasDark": "core_gray_65", "hexLight": "#CBD5E1", "hexDark": "#485B76" },
+        "color_divider":       { "aliasLight": "core_gray_15",  "aliasDark": "core_gray_80", "hexLight": "#E5E7EB", "hexDark": "#243041" }
+      }
+    },
+    "semanticStates": {
+      "description": "Feedback and status colors: success, warning, danger, info",
+      "tokens": {
+        "color_success_base":    { "aliasLight": "core_green_50",  "aliasDark": "core_green_50",  "hexLight": "#1DB954", "hexDark": "#1DB954" },
+        "color_success_surface": { "aliasLight": "core_green_5",   "aliasDark": "core_green_99",  "hexLight": "#D9F5E5", "hexDark": "#11261B" },
+        "color_success_text":    { "aliasLight": "core_white",     "aliasDark": "core_gray_10",   "hexLight": "#FFFFFF", "hexDark": "#E6EEF8" },
+        "color_warning_base":    { "aliasLight": "core_yellow_50", "aliasDark": "core_yellow_50", "hexLight": "#FFB020", "hexDark": "#FFB020" },
+        "color_warning_surface": { "aliasLight": "core_yellow_5",  "aliasDark": "core_yellow_99", "hexLight": "#FAECD1", "hexDark": "#2A210E" },
+        "color_warning_text":    { "aliasLight": "core_gray_95",   "aliasDark": "core_gray_10",   "hexLight": "#353535", "hexDark": "#E6EEF8" },
+        "color_danger_base":     { "aliasLight": "core_red_50",    "aliasDark": "core_red_50",    "hexLight": "#FF4D4F", "hexDark": "#FF4D4F" },
+        "color_danger_surface":  { "aliasLight": "core_red_5",     "aliasDark": "core_red_99",    "hexLight": "#FEE5E5", "hexDark": "#2A1314" },
+        "color_danger_text":     { "aliasLight": "core_white",     "aliasDark": "core_gray_10",   "hexLight": "#FFFFFF", "hexDark": "#E6EEF8" },
+        "color_info_base":       { "aliasLight": "core_cyan_50",   "aliasDark": "core_cyan_50",   "hexLight": "#06B6D4", "hexDark": "#06B6D4" },
+        "color_info_surface":    { "aliasLight": "core_cyan_5",    "aliasDark": "core_gray_90",   "hexLight": "#D9F5F5", "hexDark": "#07252B" },
+        "color_info_text":       { "aliasLight": "core_white",     "aliasDark": "core_gray_10",   "hexLight": "#FFFFFF", "hexDark": "#E6EEF8" }
+      }
+    },
+    "dataVisualization": {
+      "description": "Chart and data visualization categorical palette",
+      "tokens": {
+        "color_viz_categorical_1": { "aliasLight": "core_blue_50",   "aliasDark": "core_blue_50",   "hexLight": "#5B9CFF", "hexDark": "#5B9CFF" },
+        "color_viz_categorical_2": { "aliasLight": "core_cyan_50",   "aliasDark": "core_cyan_50",   "hexLight": "#06B6D4", "hexDark": "#06B6D4" },
+        "color_viz_categorical_3": { "aliasLight": "core_red_50",    "aliasDark": "core_red_50",    "hexLight": "#FF4D4F", "hexDark": "#FF4D4F" },
+        "color_viz_categorical_4": { "aliasLight": "core_yellow_50", "aliasDark": "core_yellow_50", "hexLight": "#FFB020", "hexDark": "#FFB020" },
+        "color_viz_categorical_5": { "aliasLight": "core_green_50",  "aliasDark": "core_green_50",  "hexLight": "#1DB954", "hexDark": "#1DB954" },
+        "color_viz_categorical_6": { "aliasLight": "core_violet_50", "aliasDark": "core_violet_50", "hexLight": "#8B5CF6", "hexDark": "#8B5CF6" },
+        "color_viz_categorical_7": { "aliasLight": "core_teal_10",   "aliasDark": "core_teal_10",   "hexLight": "#14B8A6", "hexDark": "#14B8A6" },
+        "color_viz_categorical_8": { "aliasLight": "core_rose_60",   "aliasDark": "core_rose_60",   "hexLight": "#E11D48", "hexDark": "#E11D48" }
+      }
+    },
+    "scrim": {
+      "description": "Overlay / scrim colors for modals and dialogs",
+      "tokens": {
+        "color_scrim_light":  { "hexLight": "rgba(0,0,0,0.3)",  "hexDark": "rgba(0,0,0,0.45)" },
+        "color_scrim_strong": { "hexLight": "rgba(0,0,0,0.45)", "hexDark": "rgba(0,0,0,0.6)" }
+      }
+    }
+  },
+  "usageRules": {
+    "interactiveStates": {
+      "description": "For interactive elements, use the following token pairs only",
+      "primaryButton":   { "default": "color_brand_primary", "hover": "color_brand_hover", "pressed": "color_brand_pressed", "disabled": "color_bg_disabled" },
+      "secondaryButton": { "default": "color_surface_2",     "hover": "color_surface_3",   "pressed": "color_surface_3",     "disabled": "color_bg_disabled" },
+      "dangerButton":    { "default": "color_danger_base",   "hover": "color_danger_base",  "pressed": "color_danger_base",   "disabled": "color_bg_disabled" },
+      "link":            { "default": "color_link_default",  "hover": "color_link_hover" }
+    },
+    "focus": {
+      "description": "Focus rings must use effect tokens that reference color_focus_outline or color_danger_base"
+    }
+  },
+  "constraints": {
+    "noHardcodedColors": "All colors must come from this contract. Do not invent new color values.",
+    "semanticOnly": "Use semantic token names (e.g. color_brand_primary), not primitive aliases (e.g. core_blue_50)."
+  }
+}

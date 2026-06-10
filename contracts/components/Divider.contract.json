@@ -1,0 +1,128 @@
+{
+  "name": "@UI/Divider",
+  "description": "Divider: горизонтальная или вертикальная линия-разделитель. 3 размера (sm, md, lg), вид base или strong.",
+  "variantProps": [
+    "orientation",
+    "size",
+    "appearance"
+  ],
+  "variantAxes": {
+    "orientation": [
+      "horizontal",
+      "vertical"
+    ],
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "appearance": [
+      "base",
+      "strong"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "lineColor": "color_divider",
+        "lineThickness": "space_track_h_md",
+        "lineLength": "space_track_w_md",
+        "borderRadius": "radius_none"
+      },
+      "tailwindClasses": [
+        "[--line-color:var(--color-divider)]",
+        "[--line-thickness:var(--space-track-h-md)]",
+        "[--line-length:var(--space-track-w-md)]",
+        "rounded-none"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "lineThickness": "space_track_h_sm",
+        "lineLength": "space_track_w_sm"
+      },
+      "tailwindClasses": [
+        "[--line-thickness:var(--space-track-h-sm)]",
+        "[--line-length:var(--space-track-w-sm)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "lineThickness": "space_track_h_md",
+        "lineLength": "space_track_w_md"
+      },
+      "tailwindClasses": [
+        "[--line-thickness:var(--space-track-h-md)]",
+        "[--line-length:var(--space-track-w-md)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "lineThickness": "space_track_h_lg",
+        "lineLength": "space_track_w_lg"
+      },
+      "tailwindClasses": [
+        "[--line-thickness:var(--space-track-h-lg)]",
+        "[--line-length:var(--space-track-w-lg)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "base"
+      },
+      "style": {
+        "lineColor": "color_divider"
+      },
+      "tailwindClasses": [
+        "[--line-color:var(--color-divider)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "strong"
+      },
+      "style": {
+        "lineColor": "color_border_strong"
+      },
+      "tailwindClasses": [
+        "[--line-color:var(--color-border-strong)]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "lineThickness": {
+      "sm": "space_track_h_sm",
+      "md": "space_track_h_md",
+      "lg": "space_track_h_lg"
+    },
+    "lineLength": {
+      "sm": "space_track_w_sm",
+      "md": "space_track_w_md",
+      "lg": "space_track_w_lg"
+    }
+  },
+  "element": "div",
+  "rootLayout": "none",
+  "customStructure": "divider",
+  "styleKeys": [
+    "lineThickness",
+    "lineLength",
+    "lineColor",
+    "borderRadius"
+  ],
+  "heightConstraint": "hug",
+  "generatorStrategy": "template",
+  "template": "Divider"
+}

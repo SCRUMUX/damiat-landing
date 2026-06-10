@@ -1,0 +1,122 @@
+{
+  "tokenCategory": "Effect",
+  "description": "Effect tokens for the design system. Source of truth: @Effect.pdf. Covers Elevation, Focus, Scrim, Blur. Colors reference Color.contract tokens for centralized control.",
+  "sourceDocument": "@Effect.pdf",
+  "tokenGroups": {
+    "elevation": {
+      "description": "Drop shadows for layering and depth",
+      "tokens": {
+        "effect_elevation_1": {
+          "usage": "Badge, Tooltip, Dropdown",
+          "layers": [
+            { "type": "DROP_SHADOW", "offsetX": 0, "offsetY": 1, "blur": 3, "spread": 0, "color": "#000000", "opacity": 0.12 }
+          ]
+        },
+        "effect_elevation_2": {
+          "usage": "Cards, dropdown panels",
+          "layers": [
+            { "type": "DROP_SHADOW", "offsetX": 0, "offsetY": 4, "blur": 8, "spread": 0, "color": "#000000", "opacity": 0.12 },
+            { "type": "DROP_SHADOW", "offsetX": 0, "offsetY": 2, "blur": 4, "spread": 0, "color": "#000000", "opacity": 0.08 }
+          ]
+        },
+        "effect_elevation_3": {
+          "usage": "Modals, dialogs",
+          "layers": [
+            { "type": "DROP_SHADOW", "offsetX": 0, "offsetY": 8, "blur": 16, "spread": 0, "color": "#000000", "opacity": 0.14 },
+            { "type": "DROP_SHADOW", "offsetX": 0, "offsetY": 4, "blur": 6, "spread": 0, "color": "#000000", "opacity": 0.10 }
+          ]
+        },
+        "effect_elevation_glow": {
+          "usage": "Glow effects for brand emphasis",
+          "layers": [
+            { "type": "DROP_SHADOW", "offsetX": 0, "offsetY": 0, "blur": 12, "spread": 0, "colorTokenRef": "color_brand_primary", "opacity": 0.35 }
+          ]
+        }
+      }
+    },
+    "focus": {
+      "description": "Focus ring indicators for accessibility",
+      "tokens": {
+        "effect_focus_brand": {
+          "usage": "Buttons, inputs, selects",
+          "layers": [
+            { "type": "DROP_SHADOW", "offsetX": 0, "offsetY": 0, "blur": 0, "spread": 1, "colorTokenRef": "color_focus_outline", "opacity": 1.0 }
+          ]
+        },
+        "effect_focus_danger": {
+          "usage": "Error-state fields",
+          "layers": [
+            { "type": "DROP_SHADOW", "offsetX": 0, "offsetY": 0, "blur": 0, "spread": 1, "colorTokenRef": "color_danger_base", "opacity": 1.0 }
+          ]
+        },
+        "effect_focus_success": {
+          "usage": "Success-state fields",
+          "layers": [
+            { "type": "DROP_SHADOW", "offsetX": 0, "offsetY": 0, "blur": 0, "spread": 1, "colorTokenRef": "color_success_base", "opacity": 1.0 }
+          ]
+        },
+        "effect_focus_warning": {
+          "usage": "Warning-state fields",
+          "layers": [
+            { "type": "DROP_SHADOW", "offsetX": 0, "offsetY": 0, "blur": 0, "spread": 1, "colorTokenRef": "color_warning_base", "opacity": 1.0 }
+          ]
+        }
+      }
+    },
+    "scrim": {
+      "description": "Overlay backdrops for modals and dialogs",
+      "tokens": {
+        "effect_scrim_light": {
+          "usage": "Backdrop under standard modals",
+          "fill": "#000000",
+          "opacity": 0.30
+        },
+        "effect_scrim_strong": {
+          "usage": "Backdrop for critical dialogs (delete confirmation, etc.)",
+          "fill": "#000000",
+          "opacity": 0.45
+        }
+      }
+    },
+    "blur": {
+      "description": "Background blur and glass fill effects",
+      "tokens": {
+        "effect_blur_background": {
+          "usage": "Legacy blur radius alias — prefer effect_glass_* fill tokens",
+          "backdropBlur": 8,
+          "unit": "px",
+          "backgroundFill": "#FFFFFF",
+          "backgroundOpacity": 0.20
+        },
+        "effect_glass_chrome": {
+          "usage": "Sticky headers, floating panels over content (navbar solid, showcase preview)",
+          "backdropBlur": 8,
+          "unit": "px",
+          "backgroundFillToken": "color_surface_1",
+          "backgroundOpacity": 0.95
+        },
+        "effect_glass_scrim": {
+          "usage": "Modal/drawer backdrop with blur (navbar mobile overlay)",
+          "backdropBlur": 8,
+          "unit": "px",
+          "backgroundFill": "#FFFFFF",
+          "backgroundOpacity": 0.20
+        }
+      }
+    }
+  },
+  "colorTokenReferences": {
+    "description": "Effect tokens that reference color tokens via colorTokenRef. When the color token changes, the effect automatically updates.",
+    "references": {
+      "effect_elevation_glow": "color_brand_primary",
+      "effect_focus_brand": "color_focus_outline",
+      "effect_focus_danger": "color_danger_base",
+      "effect_focus_success": "color_success_base",
+      "effect_focus_warning": "color_warning_base"
+    }
+  },
+  "constraints": {
+    "noHardcodedEffects": "All shadows, focus rings, and overlays must come from this contract.",
+    "colorFromTokens": "Effect colors that reference a design token must use colorTokenRef, not a raw hex value."
+  }
+}

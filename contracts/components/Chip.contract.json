@@ -1,0 +1,379 @@
+{
+  "name": "@UI/Chip",
+  "description": "Chip: фильтр/тег с возможностью удаления. 2 варианта (base/brand), 3 размера (sm/md/lg), 3 состояния (base/selected/disabled). Иконка close видима по умолчанию. Опционально: иконка слева. Использует те же size-токены что Tag.",
+  "variantProps": [
+    "appearance",
+    "size",
+    "state"
+  ],
+  "variantAxes": {
+    "appearance": [
+      "base",
+      "brand"
+    ],
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "state": [
+      "base",
+      "selected",
+      "disabled",
+      "exclude"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {
+        "appearance": "base",
+        "state": "base"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "textColor": "color_text_primary",
+        "borderColor": "color_border_base",
+        "iconColor": "color_icon_on_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "text-[var(--color-text-primary)]",
+        "[--icon-color:var(--color-icon-on-base)]",
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "base",
+        "state": "selected"
+      },
+      "style": {
+        "background": "color_brand_primary",
+        "textColor": "color_text_on_brand",
+        "borderColor": "color_brand_primary",
+        "iconColor": "color_icon_on_brand"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-brand-primary)]",
+        "text-[var(--color-text-on-brand)]",
+        "[--icon-color:var(--color-icon-on-brand)]",
+        "border",
+        "border-[var(--color-brand-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "base",
+        "state": "disabled"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "textColor": "color_text_primary",
+        "borderColor": "color_border_base",
+        "iconColor": "color_icon_on_base",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "text-[var(--color-text-primary)]",
+        "[--icon-color:var(--color-icon-on-base)]",
+        "border",
+        "border-[var(--color-border-base)]",
+        "opacity-[var(--opacity-disabled)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "brand",
+        "state": "base"
+      },
+      "style": {
+        "background": "color_brand_primary",
+        "textColor": "color_text_on_brand",
+        "borderColor": "color_brand_primary",
+        "iconColor": "color_icon_on_brand"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-brand-primary)]",
+        "text-[var(--color-text-on-brand)]",
+        "[--icon-color:var(--color-icon-on-brand)]",
+        "border",
+        "border-[var(--color-brand-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "brand",
+        "state": "selected"
+      },
+      "style": {
+        "background": "color_brand_pressed",
+        "textColor": "color_text_on_brand",
+        "borderColor": "color_brand_pressed",
+        "iconColor": "color_icon_on_brand"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-brand-pressed)]",
+        "text-[var(--color-text-on-brand)]",
+        "[--icon-color:var(--color-icon-on-brand)]",
+        "border",
+        "border-[var(--color-brand-pressed)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "base",
+        "state": "exclude"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "textColor": "color_text_primary",
+        "borderColor": "color_border_strong",
+        "iconColor": "color_icon_on_base",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "text-[var(--color-text-primary)]",
+        "[--icon-color:var(--color-icon-on-base)]",
+        "border",
+        "border-dashed",
+        "border-[var(--color-border-strong)]",
+        "opacity-60"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "brand",
+        "state": "exclude"
+      },
+      "style": {
+        "background": "color_brand_primary",
+        "textColor": "color_text_on_brand",
+        "borderColor": "color_border_strong",
+        "iconColor": "color_icon_on_brand",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-brand-primary)]",
+        "text-[var(--color-text-on-brand)]",
+        "[--icon-color:var(--color-icon-on-brand)]",
+        "border",
+        "border-dashed",
+        "border-[var(--color-border-strong)]",
+        "opacity-60"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "brand",
+        "state": "disabled"
+      },
+      "style": {
+        "background": "color_brand_primary",
+        "textColor": "color_text_on_brand",
+        "borderColor": "color_brand_primary",
+        "iconColor": "color_icon_on_brand",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-brand-primary)]",
+        "text-[var(--color-text-on-brand)]",
+        "[--icon-color:var(--color-icon-on-brand)]",
+        "border",
+        "border-[var(--color-brand-primary)]",
+        "opacity-[var(--opacity-disabled)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "paddingX": "space_tag_x_sm",
+        "paddingY": "space_tag_y_sm",
+        "gap": "space_tag_gap",
+        "textStyle": "Text/Caption/XS",
+        "borderRadius": "radius_pill"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-tag-x-sm)]",
+        "py-[var(--space-tag-y-sm)]",
+        "gap-[var(--space-tag-gap)]",
+        "rounded-pill",
+        "text-style-caption-xs"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "paddingX": "space_tag_x_md",
+        "paddingY": "space_tag_y_md",
+        "gap": "space_tag_gap",
+        "textStyle": "Text/Caption/Base",
+        "borderRadius": "radius_pill"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-tag-x-md)]",
+        "py-[var(--space-tag-y-md)]",
+        "gap-[var(--space-tag-gap)]",
+        "rounded-pill",
+        "text-style-caption"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "paddingX": "space_tag_x_lg",
+        "paddingY": "space_tag_y_lg",
+        "gap": "space_tag_gap",
+        "textStyle": "Text/Body/Base",
+        "borderRadius": "radius_pill"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-tag-x-lg)]",
+        "py-[var(--space-tag-y-lg)]",
+        "gap-[var(--space-tag-gap)]",
+        "rounded-pill",
+        "text-style-body"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "paddingX": {
+      "sm": "space_tag_x_sm",
+      "md": "space_tag_x_md",
+      "lg": "space_tag_x_lg"
+    },
+    "paddingY": {
+      "sm": "space_tag_y_sm",
+      "md": "space_tag_y_md",
+      "lg": "space_tag_y_lg"
+    },
+    "gap": {
+      "sm": "space_tag_gap",
+      "md": "space_tag_gap",
+      "lg": "space_tag_gap"
+    },
+    "textStyle": {
+      "sm": "Text/Caption/XS",
+      "md": "Text/Caption/Base",
+      "lg": "Text/Body/Base"
+    },
+    "borderRadius": {
+      "sm": "radius_pill",
+      "md": "radius_pill",
+      "lg": "radius_pill"
+    },
+    "minHeight": {
+      "sm": "space_22",
+      "md": "space_24",
+      "lg": "space_32"
+    }
+  },
+  "element": "button",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "center",
+    "cross": "center"
+  },
+  "sizeHeightMap": {
+    "sm": "space_22",
+    "md": "space_24",
+    "lg": "space_32"
+  },
+  "slots": [
+    {
+      "name": "iconLeft",
+      "figmaName": "Left icon",
+      "type": "icon",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "fixed"
+    },
+    {
+      "name": "label",
+      "figmaName": "Label",
+      "type": "text",
+      "optional": false,
+      "default": "Chip",
+      "sizing": "hug"
+    },
+    {
+      "name": "closeIcon",
+      "figmaName": "Close icon",
+      "type": "icon",
+      "optional": true,
+      "defaultVisible": true,
+      "sizing": "fixed"
+    }
+  ],
+  "booleanProps": [
+    {
+      "name": "showLeftIcon",
+      "figmaName": "Left icon",
+      "controls": "iconLeft",
+      "default": false
+    },
+    {
+      "name": "showCloseIcon",
+      "figmaName": "Close icon",
+      "controls": "closeIcon",
+      "default": true
+    }
+  ],
+  "instanceSwapProps": [
+    {
+      "name": "leftIcon",
+      "figmaName": "Left Icon variant",
+      "slot": "iconLeft",
+      "role": "icon"
+    },
+    {
+      "name": "closeIcon",
+      "figmaName": "Close Icon variant",
+      "slot": "closeIcon",
+      "role": "close"
+    }
+  ],
+  "textProps": [
+    {
+      "name": "label",
+      "figmaName": "Label",
+      "default": "Chip"
+    }
+  ],
+  "styleKeys": [
+    "paddingX",
+    "paddingY",
+    "gap",
+    "borderRadius",
+    "background",
+    "borderColor",
+    "textStyle",
+    "textColor",
+    "iconColor",
+    "opacityToken"
+  ],
+  "heightConstraint": "fixed",
+  "iconSizeMap": {
+    "xs": 16,
+    "sm": 16,
+    "md": 16,
+    "lg": 20,
+    "xl": 16
+  },
+  "generatorStrategy": "template",
+  "template": "Chip"
+}

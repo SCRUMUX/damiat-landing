@@ -1,0 +1,40 @@
+{
+  "name": "@UI/Toast",
+  "description": "Toast: auto-dismiss notification with appearance variants (info, success, warning, danger). Includes Toaster container and global toast() function.",
+  "variantProps": [],
+  "variantAxes": {},
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "background": "color_surface_1",
+        "textColor": "color_text_primary",
+        "borderColor": "color_border_base",
+        "borderRadius": "radius_default",
+        "padding": "space_12",
+        "gap": "space_8"
+      },
+      "tailwindClasses": [
+        "flex items-start gap-[var(--space-8)] p-[var(--space-12)]",
+        "border border-solid border-[var(--border-width-base)] border-[var(--color-border-base)]",
+        "rounded-[var(--radius-default)] shadow-elevation-2",
+        "bg-[var(--color-surface-1)] text-[var(--color-text-primary)]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "element": "div",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "start",
+    "cross": "start"
+  },
+  "heightConstraint": "hug",
+  "generatorStrategy": "template",
+  "template": "Toast"
+}

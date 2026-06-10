@@ -1,0 +1,42 @@
+{
+  "name": "@UI/Popover",
+  "description": "Popover: positioned floating panel anchored to a reference element. Handles viewport flip detection and animation.",
+  "variantProps": [],
+  "variantAxes": {},
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "background": "color_surface_1",
+        "borderColor": "color_border_base",
+        "borderRadius": "radius_default",
+        "elevationToken": "effect_elevation_2",
+        "itemGap": "space_4"
+      },
+      "tailwindClasses": [
+        "z-popover",
+        "rounded-[var(--popover-radius,var(--radius-default))]",
+        "border border-solid border-[var(--border-width-base)] border-[var(--popover-border,var(--color-border-base))]",
+        "bg-[var(--popover-bg,var(--color-surface-1))]",
+        "shadow-elevation-2",
+        "overflow-y-auto",
+        "flex flex-col gap-[var(--item-gap,4px)]",
+        "animate-dropdown-in"
+      ]
+    }
+  ],
+  "element": "div",
+  "rootLayout": "vertical",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "fill"
+  },
+  "rootAlign": {
+    "main": "start",
+    "cross": "start"
+  },
+  "slots": [],
+  "heightConstraint": "hug",
+  "generatorStrategy": "template",
+  "template": "Popover"
+}

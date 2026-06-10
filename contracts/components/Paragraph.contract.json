@@ -1,0 +1,163 @@
+{
+  "name": "@UI/Paragraph",
+  "description": "Параграф: 3 размера шрифта (sm, md, lg), 4 варианта ширины по breakpoint с min/max: mobile 200–320, tablet 360–480, desktop-sm 460–640, desktop-lg 600–800.",
+  "variantProps": [
+    "size",
+    "breakpoint"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "breakpoint": [
+      "mobile",
+      "tablet",
+      "desktop-sm",
+      "desktop-lg"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "paddingBottom": "space_paragraph_bottom"
+      },
+      "tailwindClasses": [
+        "pb-[var(--space-paragraph-bottom)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "textStyle": "Text/Body/SM"
+      },
+      "tailwindClasses": [
+        "text-style-body-sm"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "textStyle": "Text/Body/Base"
+      },
+      "tailwindClasses": [
+        "text-style-body"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "textStyle": "Text/Body/LG"
+      },
+      "tailwindClasses": [
+        "text-style-body-lg"
+      ]
+    },
+    {
+      "when": {
+        "breakpoint": "mobile"
+      },
+      "style": {
+        "minWidth": "space_paragraph_min_mobile",
+        "maxWidth": "space_paragraph_max_mobile"
+      },
+      "tailwindClasses": [
+        "min-w-[var(--space-paragraph-min-mobile)]",
+        "max-w-[var(--space-paragraph-max-mobile)]"
+      ]
+    },
+    {
+      "when": {
+        "breakpoint": "tablet"
+      },
+      "style": {
+        "minWidth": "space_paragraph_min_tablet",
+        "maxWidth": "space_paragraph_max_tablet"
+      },
+      "tailwindClasses": [
+        "min-w-[var(--space-paragraph-min-tablet)]",
+        "max-w-[var(--space-paragraph-max-tablet)]"
+      ]
+    },
+    {
+      "when": {
+        "breakpoint": "desktop-sm"
+      },
+      "style": {
+        "minWidth": "space_paragraph_min_desktop_sm",
+        "maxWidth": "space_paragraph_max_desktop_sm"
+      },
+      "tailwindClasses": [
+        "min-w-[var(--space-paragraph-min-desktop-sm)]",
+        "max-w-[var(--space-paragraph-max-desktop-sm)]"
+      ]
+    },
+    {
+      "when": {
+        "breakpoint": "desktop-lg"
+      },
+      "style": {
+        "minWidth": "space_paragraph_min_desktop_lg",
+        "maxWidth": "space_paragraph_max_desktop_lg"
+      },
+      "tailwindClasses": [
+        "min-w-[var(--space-paragraph-min-desktop-lg)]",
+        "max-w-[var(--space-paragraph-max-desktop-lg)]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "textStyle": {
+      "sm": "Text/Body/SM",
+      "md": "Text/Body/Base",
+      "lg": "Text/Body/LG"
+    }
+  },
+  "defaultContent": "Machine-readable layout — structured interface markup that can be parsed by algorithms and AI. AICA DS (AI Component Architecture Design System) ensures consistency of components and tokens for automated generation and maintenance of design systems.",
+  "element": "div",
+  "rootLayout": "vertical",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "fixed"
+  },
+  "rootAlign": {
+    "main": "start",
+    "cross": "start"
+  },
+  "slots": [
+    {
+      "name": "content",
+      "figmaName": "Content",
+      "type": "text",
+      "optional": false,
+      "default": "Paragraph text",
+      "sizing": "fill"
+    }
+  ],
+  "textProps": [
+    {
+      "name": "content",
+      "figmaName": "Content",
+      "default": "Paragraph text"
+    }
+  ],
+  "styleKeys": [
+    "paddingBottom",
+    "minWidth",
+    "maxWidth",
+    "textStyle"
+  ],
+  "heightConstraint": "hug",
+  "generatorStrategy": "template",
+  "template": "Paragraph"
+}

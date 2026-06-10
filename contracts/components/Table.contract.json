@@ -1,0 +1,146 @@
+{
+  "name": "@UI/Table",
+  "description": "Таблица: HeaderRow + 4 Row. Варианты: size (sm/md/lg), appearance (base/striped/bordered). Внешний бордер radius_medium. Опирается на @UI/Table/HeaderRow и @UI/Table/Row.",
+  "variantProps": [
+    "size",
+    "appearance"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "appearance": [
+      "base",
+      "striped",
+      "bordered"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {
+        "appearance": "base"
+      },
+      "style": {
+        "background": "color_bg_base",
+        "borderColor": "color_border_base",
+        "borderRadius": "radius_medium",
+        "rowStripedBg": null
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-base)]",
+        "border",
+        "border-[var(--color-border-base)]",
+        "rounded-medium"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "striped"
+      },
+      "style": {
+        "background": "color_bg_base",
+        "borderColor": "color_border_base",
+        "borderRadius": "radius_medium",
+        "rowStripedBg": "color_surface_1"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-base)]",
+        "border",
+        "border-[var(--color-border-base)]",
+        "rounded-medium"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "bordered"
+      },
+      "style": {
+        "background": "color_bg_base",
+        "borderColor": "color_border_strong",
+        "borderRadius": "radius_medium",
+        "rowBorderBottom": "color_border_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-base)]",
+        "border",
+        "border-[var(--color-border-strong)]",
+        "rounded-medium"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "minWidth": "space_table_min_sm"
+      },
+      "tailwindClasses": [
+        "min-w-[var(--space-table-min-sm)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "minWidth": "space_table_min_md"
+      },
+      "tailwindClasses": [
+        "min-w-[var(--space-table-min-md)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "minWidth": "space_table_min_lg"
+      },
+      "tailwindClasses": [
+        "min-w-[var(--space-table-min-lg)]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "minWidth": {
+      "sm": "space_table_min_sm",
+      "md": "space_table_min_md",
+      "lg": "space_table_min_lg"
+    }
+  },
+  "element": "div",
+  "rootLayout": "vertical",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "fixed"
+  },
+  "rootAlign": {
+    "main": "start",
+    "cross": "start"
+  },
+  "composite": true,
+  "defaultWidth": 560,
+  "booleanProps": [
+    {
+      "name": "showCheckboxColumn",
+      "figmaName": "Checkbox Column",
+      "controls": "checkboxColumn",
+      "default": false
+    }
+  ],
+  "styleKeys": [
+    "background",
+    "borderColor",
+    "borderRadius"
+  ],
+  "headerComponent": "@UI/Table/HeaderRow",
+  "rowComponent": "@UI/Table/Row",
+  "rowCount": 4,
+  "heightConstraint": "hug",
+  "generatorStrategy": "template",
+  "template": "Table"
+}

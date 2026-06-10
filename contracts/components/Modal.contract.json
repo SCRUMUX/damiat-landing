@@ -1,0 +1,272 @@
+{
+  "name": "@UI/Modal",
+  "description": "Modal: overlay + панель диалога. Заголовок, контент, футер с кнопками Ghost и Primary. Варианты variant (base/danger/warning/success), showClose, showFooter.",
+  "variantProps": [
+    "variant",
+    "showClose",
+    "showFooter"
+  ],
+  "variantAxes": {
+    "variant": [
+      "base",
+      "danger",
+      "warning",
+      "success"
+    ],
+    "showClose": [
+      "true",
+      "false"
+    ],
+    "showFooter": [
+      "true",
+      "false"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "overlayToken": "effect_scrim_light",
+        "paddingX": "space_inset_l",
+        "paddingY": "space_inset_l",
+        "gap": "space_24",
+        "borderRadius": "radius_large",
+        "minWidth": "space_container_content_min",
+        "maxWidth": "space_container_content_max",
+        "background": "color_surface_1",
+        "borderColor": "color_border_base",
+        "elevationToken": "effect_elevation_2",
+        "titleStyle": "Text/Heading/H4",
+        "contentStyle": "Text/Body/SM"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-1)]",
+        "border",
+        "border-[var(--color-border-base)]",
+        "px-[var(--space-inset-l)]",
+        "py-[var(--space-inset-l)]",
+        "gap-[var(--space-24)]",
+        "min-w-[var(--space-container-content-min)]",
+        "max-w-[var(--space-container-content-max)]",
+        "rounded-large",
+        "[--title-text-class:text-style-h4]",
+        "shadow-elevation-2"
+      ]
+    },
+    {
+      "when": {
+        "variant": "base"
+      },
+      "style": {
+        "background": "color_surface_1",
+        "borderColor": "color_border_base",
+        "headerFill": "color_surface_2",
+        "overlayToken": "effect_scrim_light"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-1)]",
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "variant": "danger"
+      },
+      "style": {
+        "background": "color_danger_surface",
+        "borderColor": "color_danger_base",
+        "headerFill": "color_danger_hover_bg",
+        "closeIconColor": "color_danger_base",
+        "contentColor": "color_text_primary",
+        "overlayToken": "effect_scrim_strong",
+        "titleColor": "color_danger_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-danger-surface)]",
+        "[--title-color:var(--color-danger-base)]",
+        "[--close-icon:var(--color-danger-base)]",
+        "border",
+        "border-[var(--color-danger-base)]"
+      ]
+    },
+    {
+      "when": {
+        "variant": "warning"
+      },
+      "style": {
+        "background": "color_warning_surface",
+        "borderColor": "color_warning_base",
+        "headerFill": "color_warning_hover_bg",
+        "closeIconColor": "color_warning_base",
+        "contentColor": "color_text_primary",
+        "overlayToken": "effect_scrim_strong",
+        "titleColor": "color_warning_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-warning-surface)]",
+        "[--title-color:var(--color-warning-base)]",
+        "[--close-icon:var(--color-warning-base)]",
+        "border",
+        "border-[var(--color-warning-base)]"
+      ]
+    },
+    {
+      "when": {
+        "variant": "success"
+      },
+      "style": {
+        "background": "color_success_surface",
+        "borderColor": "color_success_base",
+        "headerFill": "color_success_hover_bg",
+        "closeIconColor": "color_success_base",
+        "contentColor": "color_text_primary",
+        "overlayToken": "effect_scrim_light",
+        "titleColor": "color_success_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-success-surface)]",
+        "[--title-color:var(--color-success-base)]",
+        "[--close-icon:var(--color-success-base)]",
+        "border",
+        "border-[var(--color-success-base)]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "defaultContent": "Modal content. Описание или форма.",
+  "element": "div",
+  "rootLayout": "vertical",
+  "rootSizing": {
+    "main": "fixed",
+    "cross": "fixed"
+  },
+  "rootAlign": {
+    "main": "start",
+    "cross": "start"
+  },
+  "slots": [
+    {
+      "name": "overlay",
+      "figmaName": "Overlay",
+      "type": "overlay",
+      "optional": false,
+      "sizing": "fixed"
+    },
+    {
+      "name": "panel",
+      "figmaName": "Panel",
+      "type": "frame",
+      "optional": false,
+      "sizing": "hug",
+      "layout": "vertical",
+      "children": [
+        {
+          "name": "header",
+          "figmaName": "Header",
+          "type": "frame",
+          "sizing": "fill",
+          "layout": "horizontal",
+          "children": [
+            {
+              "name": "title",
+              "figmaName": "Title",
+              "type": "text",
+              "default": "Modal Title",
+              "sizing": "fill"
+            },
+            {
+              "name": "closeButton",
+              "figmaName": "Close",
+              "type": "icon",
+              "optional": true,
+              "sizing": "fixed"
+            }
+          ]
+        },
+        {
+          "name": "content",
+          "figmaName": "Content",
+          "type": "text",
+          "default": "Modal content",
+          "sizing": "fill"
+        },
+        {
+          "name": "footer",
+          "figmaName": "Footer",
+          "type": "frame",
+          "optional": true,
+          "sizing": "hug",
+          "layout": "horizontal",
+          "children": [
+            {
+              "name": "cancelButton",
+              "figmaName": "Cancel",
+              "type": "component",
+              "component": "@UI/Button",
+              "optional": true,
+              "sizing": "hug"
+            },
+            {
+              "name": "confirmButton",
+              "figmaName": "Confirm",
+              "type": "component",
+              "component": "@UI/Button",
+              "optional": true,
+              "sizing": "hug"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "textProps": [
+    {
+      "name": "title",
+      "figmaName": "Title",
+      "default": "Modal Title"
+    },
+    {
+      "name": "content",
+      "figmaName": "Content",
+      "default": "Modal content"
+    },
+    {
+      "name": "cancelLabel",
+      "figmaName": "Cancel label",
+      "default": "Cancel"
+    },
+    {
+      "name": "confirmLabel",
+      "figmaName": "Confirm label",
+      "default": "Confirm"
+    }
+  ],
+  "styleKeys": [
+    "overlayToken",
+    "minWidth",
+    "maxWidth",
+    "paddingX",
+    "paddingY",
+    "gap",
+    "titleStyle",
+    "titleColor",
+    "textColor",
+    "contentStyle",
+    "background",
+    "borderColor",
+    "borderRadius",
+    "elevationToken"
+  ],
+  "heightConstraint": "hug",
+  "borderWidthToken": "border_width_base",
+  "generatorStrategy": "template",
+  "template": "Modal",
+  "enhancements": [
+    "portal",
+    "escapeKey",
+    "focusTrap",
+    "backdrop"
+  ]
+}

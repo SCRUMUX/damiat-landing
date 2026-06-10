@@ -1,0 +1,91 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    name: Lint + manifest + API freeze
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install root deps
+        run: npm ci
+
+      - name: Lint (no-restricted-imports + no-hardcoded-tokens)
+        run: npm run lint
+
+      - name: Manifest sync check
+        run: npm run manifest:check
+
+      - name: Tokens sync check
+        run: npm run tokens:check
+
+      - name: Patterns sync check
+        run: npm run patterns:check
+
+      - name: Public API surface check
+        run: npm run api:check
+
+  storybook:
+    name: Storybook build (playground)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install root deps
+        run: npm ci
+
+      - name: Install playground deps
+        working-directory: playground
+        run: npm ci
+
+      - name: Build Storybook
+        working-directory: playground
+        run: npm run build-storybook
+
+  storybook-consumer:
+    name: Storybook build (consumer fixture)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install root deps
+        run: npm ci
+
+      - name: Install consumer fixture deps
+        working-directory: templates/consumer-storybook/fixture
+        run: npm install
+
+      - name: Build consumer Storybook
+        working-directory: templates/consumer-storybook/fixture
+        run: npm run build-storybook
+
+  # VRT runs in a dedicated workflow (.github/workflows/chromatic.yml) because
+  # it requires the CHROMATIC_PROJECT_TOKEN secret and a separate Storybook
+  # build, which would slow down the fast guard pipeline above.

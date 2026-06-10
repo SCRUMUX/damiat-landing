@@ -1,0 +1,84 @@
+{
+  "tokenCategory": "Space",
+  "description": "Space tokens for the design system. Source of truth: @Space.pdf.",
+  "sourceDocument": "@Space.pdf",
+  "primitives": {
+    "space_1":  { "value": 1,  "unit": "px" },
+    "space_2":  { "value": 2,  "unit": "px" },
+    "space_3":  { "value": 3,  "unit": "px" },
+    "space_4":  { "value": 4,  "unit": "px" },
+    "space_6":  { "value": 6,  "unit": "px" },
+    "space_8":  { "value": 8,  "unit": "px" },
+    "space_9":  { "value": 9,  "unit": "px" },
+    "space_12": { "value": 12, "unit": "px" },
+    "space_16": { "value": 16, "unit": "px" },
+    "space_24": { "value": 24, "unit": "px" },
+    "space_32": { "value": 32, "unit": "px" }
+  },
+  "semantic": {
+    "layout": {
+      "description": "Section-level margins and structure spacing",
+      "tokens": {
+        "space_layout_xs": { "alias": "space_1" },
+        "space_layout_s":  { "alias": "space_2" },
+        "space_layout_m":  { "alias": "space_3" },
+        "space_layout_l":  { "alias": "space_6" },
+        "space_layout_xl": { "alias": "space_9" }
+      },
+      "cssUsage": "margin"
+    },
+    "content": {
+      "description": "Internal content gaps",
+      "tokens": {
+        "space_content_xs": { "alias": "space_2" },
+        "space_content_s":  { "alias": "space_4" },
+        "space_content_m":  { "alias": "space_6" },
+        "space_content_l":  { "alias": "space_9" }
+      },
+      "cssUsage": "gap"
+    },
+    "control": {
+      "description": "Button and input internal spacing",
+      "tokens": {
+        "space_control_xs": { "alias": "space_1" },
+        "space_control_s":  { "alias": "space_2" },
+        "space_control_m":  { "alias": "space_3" },
+        "space_control_l":  { "alias": "space_4" }
+      },
+      "cssUsage": "padding, gap"
+    },
+    "inset": {
+      "description": "Container padding",
+      "tokens": {
+        "space_inset_xs": { "alias": "space_4" },
+        "space_inset_s":  { "alias": "space_6" },
+        "space_inset_m":  { "alias": "space_9" },
+        "space_inset_l":  { "alias": "space_12" },
+        "space_inset_xl": { "alias": "space_16" }
+      },
+      "cssUsage": "padding"
+    },
+    "section": {
+      "description": "Marketing page section rhythm — vertical padding and internal stacks (pattern blocks only)",
+      "tokens": {
+        "space_section_y_xs": { "alias": "space_32" },
+        "space_section_y_s":  { "alias": "space_48" },
+        "space_section_y_m":  { "alias": "space_64" },
+        "space_section_y_l":  { "alias": "space_80" },
+        "space_section_y_xl": { "alias": "space_96" },
+        "space_section_content_s":  { "alias": "space_12" },
+        "space_section_content_m":  { "alias": "space_16" },
+        "space_section_content_l":  { "alias": "space_24" },
+        "space_section_content_xl": { "alias": "space_32" },
+        "space_section_stack_s":  { "alias": "space_12" },
+        "space_section_stack_m":  { "alias": "space_16" },
+        "space_section_stack_l":  { "alias": "space_24" }
+      },
+      "cssUsage": "padding, gap"
+    }
+  },
+  "constraints": {
+    "noHardcodedSpacing": "All spacing must come from this contract.",
+    "semanticOnly": "Use semantic names (e.g. space_inset_m), not primitives (e.g. space_9) in components."
+  }
+}

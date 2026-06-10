@@ -1,0 +1,11 @@
+/**
+ * DAMIAT product landing — 16px minimum for secondary copy.
+ * Scoped to landing root; global design tokens unchanged.
+ */
+[data-damiat-landing-scroll] .text-style-body-sm,
+[data-damiat-landing-scroll] .text-style-caption,
+[data-damiat-landing-scroll] .text-style-caption-xs,
+[data-damiat-landing-scroll] .text-style-body {
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-24);
+}

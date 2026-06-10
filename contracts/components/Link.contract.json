@@ -1,0 +1,251 @@
+{
+  "name": "@UI/Link",
+  "description": "Ссылка: опциональный лейбл, опциональная правая иконка (link-45deg). 3 размера (sm, md, lg). Состояния: base, hover, visited, disabled.",
+  "variantProps": [
+    "size",
+    "state"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "state": [
+      "base",
+      "hover",
+      "visited",
+      "disabled"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "gap": "space_2",
+        "textStyle": "Text/Body/Base",
+        "textColor": "color_link_default",
+        "iconColor": "color_link_default"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-link-default)]",
+        "[--icon-color:var(--color-link-default)]",
+        "gap-[var(--space-2)]",
+        "text-style-body"
+      ]
+    },
+    {
+      "when": {
+        "state": "base"
+      },
+      "style": {
+        "textColor": "color_link_default",
+        "iconColor": "color_link_default"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-link-default)]",
+        "[--icon-color:var(--color-link-default)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "hover"
+      },
+      "style": {
+        "textColor": "color_link_hover",
+        "iconColor": "color_link_hover"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-link-hover)]",
+        "[--icon-color:var(--color-link-hover)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "visited"
+      },
+      "style": {
+        "textColor": "color_link_visited",
+        "iconColor": "color_link_visited"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-link-visited)]",
+        "[--icon-color:var(--color-link-visited)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "disabled"
+      },
+      "style": {
+        "textColor": "color_text_disabled",
+        "iconColor": "color_text_disabled",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-text-disabled)]",
+        "[--icon-color:var(--color-text-disabled)]",
+        "opacity-[var(--opacity-disabled)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "gap": "space_2",
+        "textStyle": "Text/Caption/Base"
+      },
+      "tailwindClasses": [
+        "gap-[var(--space-2)]",
+        "text-style-caption"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "gap": "space_4",
+        "textStyle": "Text/Body/Base"
+      },
+      "tailwindClasses": [
+        "gap-[var(--space-4)]",
+        "text-style-body"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "gap": "space_6",
+        "textStyle": "Text/Body/LG"
+      },
+      "tailwindClasses": [
+        "gap-[var(--space-6)]",
+        "text-style-body-lg"
+      ]
+    }
+  ],
+  "stateMachine": {
+    "initial": "base",
+    "stateAxis": "state",
+    "states": [
+      "base",
+      "hover",
+      "visited",
+      "disabled"
+    ],
+    "transitions": [
+      {
+        "from": "base",
+        "to": "hover",
+        "trigger": "mouseenter"
+      },
+      {
+        "from": "hover",
+        "to": "base",
+        "trigger": "mouseleave"
+      },
+      {
+        "from": "base",
+        "to": "focus",
+        "trigger": "focus"
+      },
+      {
+        "from": "focus",
+        "to": "base",
+        "trigger": "blur"
+      }
+    ]
+  },
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "gap": {
+      "sm": "space_2",
+      "md": "space_4",
+      "lg": "space_6"
+    },
+    "textStyle": {
+      "sm": "Text/Caption/Base",
+      "md": "Text/Body/Base",
+      "lg": "Text/Body/LG"
+    }
+  },
+  "element": "a",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "center",
+    "cross": "center"
+  },
+  "slots": [
+    {
+      "name": "label",
+      "figmaName": "Label",
+      "type": "text",
+      "optional": false,
+      "default": "Link",
+      "sizing": "hug"
+    },
+    {
+      "name": "iconRight",
+      "figmaName": "Right icon",
+      "type": "icon",
+      "optional": true,
+      "defaultVisible": true,
+      "sizing": "fixed"
+    }
+  ],
+  "booleanProps": [
+    {
+      "name": "showLabel",
+      "figmaName": "Text",
+      "controls": "label",
+      "default": true
+    },
+    {
+      "name": "showRightIcon",
+      "figmaName": "Right icon",
+      "controls": "iconRight",
+      "default": true
+    }
+  ],
+  "instanceSwapProps": [
+    {
+      "name": "rightIcon",
+      "figmaName": "Right Icon",
+      "slot": "iconRight",
+      "role": "link"
+    }
+  ],
+  "textProps": [
+    {
+      "name": "label",
+      "figmaName": "Label",
+      "default": "Link"
+    }
+  ],
+  "styleKeys": [
+    "gap",
+    "textStyle",
+    "textColor",
+    "iconColor",
+    "opacityToken"
+  ],
+  "heightConstraint": "hug",
+  "iconSizeMap": {
+    "xs": 20,
+    "sm": 20,
+    "md": 20,
+    "lg": 24,
+    "xl": 20
+  },
+  "generatorStrategy": "template",
+  "template": "Link"
+}

@@ -1,0 +1,294 @@
+{
+  "name": "@UI/Badge",
+  "description": "Badge: appearance (brand, base, ghost, outline + success, warning, danger, info). 3 размера. Smallest typography. Symbol/short text only. Light/dark via color tokens.",
+  "variantProps": [
+    "appearance",
+    "size"
+  ],
+  "variantAxes": {
+    "appearance": [
+      "brand",
+      "base",
+      "ghost",
+      "outline",
+      "success",
+      "warning",
+      "danger",
+      "info"
+    ],
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {
+        "appearance": "brand"
+      },
+      "style": {
+        "background": "color_brand_primary",
+        "textColor": "color_text_on_brand",
+        "borderColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-brand-primary)]",
+        "text-[var(--color-text-on-brand)]",
+        "border",
+        "border-[var(--color-brand-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "base"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "textColor": "color_text_primary",
+        "borderColor": "color_border_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "text-[var(--color-text-primary)]",
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "ghost"
+      },
+      "style": {
+        "background": "transparent",
+        "textColor": "color_text_primary",
+        "borderSide": "none"
+      },
+      "tailwindClasses": [
+        "bg-transparent",
+        "text-[var(--color-text-primary)]",
+        "border",
+        "border-transparent"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "outline"
+      },
+      "style": {
+        "background": "color_bg_base",
+        "textColor": "color_brand_primary",
+        "borderColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-base)]",
+        "text-[var(--color-brand-primary)]",
+        "border",
+        "border-[var(--color-brand-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "success"
+      },
+      "style": {
+        "background": "color_success_base",
+        "textColor": "color_success_text",
+        "borderColor": "color_success_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-success-base)]",
+        "text-[var(--color-success-text)]",
+        "border",
+        "border-[var(--color-success-base)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "warning"
+      },
+      "style": {
+        "background": "color_warning_base",
+        "textColor": "color_warning_text",
+        "borderColor": "color_warning_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-warning-base)]",
+        "text-[var(--color-warning-text)]",
+        "border",
+        "border-[var(--color-warning-base)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "danger"
+      },
+      "style": {
+        "background": "color_danger_base",
+        "textColor": "color_danger_text",
+        "borderColor": "color_danger_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-danger-base)]",
+        "text-[var(--color-danger-text)]",
+        "border",
+        "border-[var(--color-danger-base)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "info"
+      },
+      "style": {
+        "background": "color_info_base",
+        "textColor": "color_info_text",
+        "borderColor": "color_info_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-info-base)]",
+        "text-[var(--color-info-text)]",
+        "border",
+        "border-[var(--color-info-base)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "paddingX": "space_4",
+        "paddingY": "space_2",
+        "textStyle": "Text/Caption/XS",
+        "borderRadius": "radius_pill",
+        "minWidth": "space_badge_min_sm",
+        "minHeight": "space_badge_min_sm"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-4)]",
+        "py-[var(--space-2)]",
+        "min-h-[var(--space-badge-min-sm)]",
+        "rounded-pill",
+        "text-style-caption-xs"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "paddingX": "space_6",
+        "paddingY": "space_3",
+        "textStyle": "Text/Caption/Base",
+        "borderRadius": "radius_pill",
+        "minWidth": "space_badge_min_md",
+        "minHeight": "space_badge_min_md"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-6)]",
+        "py-[var(--space-3)]",
+        "min-h-[var(--space-badge-min-md)]",
+        "rounded-pill",
+        "text-style-caption"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "paddingX": "space_8",
+        "paddingY": "space_4",
+        "textStyle": "Text/Body/Base",
+        "borderRadius": "radius_pill",
+        "minWidth": "space_badge_min_lg",
+        "minHeight": "space_badge_min_lg"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-8)]",
+        "py-[var(--space-4)]",
+        "min-h-[var(--space-badge-min-lg)]",
+        "rounded-pill",
+        "text-style-body"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "focusRingSuccess": "focus-visible:outline-none focus-visible:shadow-focus-success focus-visible:border-transparent",
+  "focusRingWarning": "focus-visible:outline-none focus-visible:shadow-focus-warning focus-visible:border-transparent",
+  "responsiveProps": {
+    "paddingX": {
+      "sm": "space_4",
+      "md": "space_6",
+      "lg": "space_8"
+    },
+    "paddingY": {
+      "sm": "space_2",
+      "md": "space_3",
+      "lg": "space_4"
+    },
+    "minHeight": {
+      "sm": "space_badge_min_sm",
+      "md": "space_badge_min_md",
+      "lg": "space_badge_min_lg"
+    },
+    "minWidth": {
+      "sm": "space_badge_min_sm",
+      "md": "space_badge_min_md",
+      "lg": "space_badge_min_lg"
+    },
+    "textStyle": {
+      "sm": "Text/Caption/XS",
+      "md": "Text/Caption/Base",
+      "lg": "Text/Body/Base"
+    },
+    "borderRadius": {
+      "sm": "radius_pill",
+      "md": "radius_pill",
+      "lg": "radius_pill"
+    }
+  },
+  "element": "span",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "center",
+    "cross": "center"
+  },
+  "slots": [
+    {
+      "name": "label",
+      "figmaName": "Label",
+      "type": "text",
+      "optional": false,
+      "default": "99",
+      "sizing": "hug"
+    }
+  ],
+  "textProps": [
+    {
+      "name": "label",
+      "figmaName": "Label",
+      "default": "99"
+    }
+  ],
+  "styleKeys": [
+    "paddingX",
+    "paddingY",
+    "borderRadius",
+    "minWidth",
+    "minHeight",
+    "background",
+    "borderColor",
+    "borderSide",
+    "textStyle",
+    "textColor"
+  ],
+  "heightConstraint": "hug",
+  "borderWidthToken": "border_width_base",
+  "generatorStrategy": "template",
+  "template": "Badge"
+}

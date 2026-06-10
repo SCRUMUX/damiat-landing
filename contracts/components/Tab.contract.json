@@ -1,0 +1,719 @@
+{
+  "name": "@UI/Tab",
+  "description": "Tab: визуально согласован с @UI/Button. Полная матрица 5×3×5 (appearance×size×state): Ghost — как ghost‑кнопка, Brand — как brand‑кнопка, Base — underline с нижней границей, Outline — outline без нижней границы, Ticket — «билет» с обводкой сверху/сбоку без низа (идеален в горизонтальном ряду).",
+  "variantProps": [
+    "appearance",
+    "size",
+    "state"
+  ],
+  "variantAxes": {
+    "appearance": [
+      "brand",
+      "base",
+      "ghost",
+      "outline",
+      "ticket"
+    ],
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "state": [
+      "base",
+      "hover",
+      "active",
+      "focus",
+      "disabled"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {
+        "appearance": "brand",
+        "state": "base"
+      },
+      "style": {
+        "background": "color_brand_primary",
+        "textColor": "color_text_on_brand",
+        "borderColor": "color_brand_primary",
+        "underlineColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-brand-primary)]",
+        "text-[var(--color-text-on-brand)]",
+        "[--underline-color:var(--color-brand-primary)]",
+        "border",
+        "border-[var(--color-brand-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "brand",
+        "state": "hover"
+      },
+      "style": {
+        "background": "color_brand_hover_bg",
+        "textColor": "color_brand_primary",
+        "borderColor": "color_brand_primary",
+        "underlineColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-brand-hover-bg)]",
+        "text-[var(--color-brand-primary)]",
+        "[--underline-color:var(--color-brand-primary)]",
+        "border",
+        "border-[var(--color-brand-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "brand",
+        "state": "active"
+      },
+      "style": {
+        "background": "color_brand_pressed",
+        "textColor": "color_text_on_brand",
+        "borderColor": "color_brand_primary",
+        "underlineColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-brand-pressed)]",
+        "text-[var(--color-text-on-brand)]",
+        "[--underline-color:var(--color-brand-primary)]",
+        "border",
+        "border-[var(--color-brand-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "brand",
+        "state": "disabled"
+      },
+      "style": {
+        "background": "color_brand_primary",
+        "textColor": "color_text_on_brand",
+        "borderColor": "color_brand_primary",
+        "underlineColor": "color_brand_primary",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-brand-primary)]",
+        "text-[var(--color-text-on-brand)]",
+        "[--underline-color:var(--color-brand-primary)]",
+        "border",
+        "border-[var(--color-brand-primary)]",
+        "opacity-[var(--opacity-disabled)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "base",
+        "state": "base"
+      },
+      "style": {
+        "background": "color_surface_1",
+        "textColor": "color_text_primary",
+        "borderColor": "color_border_base",
+        "underlineColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-1)]",
+        "text-[var(--color-text-primary)]",
+        "[--underline-color:var(--color-brand-primary)]",
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "base",
+        "state": "hover"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "textColor": "color_text_primary",
+        "borderColor": "color_border_strong",
+        "underlineColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "text-[var(--color-text-primary)]",
+        "[--underline-color:var(--color-brand-primary)]",
+        "border",
+        "border-[var(--color-border-strong)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "base",
+        "state": "active"
+      },
+      "style": {
+        "background": "color_surface_3",
+        "textColor": "color_brand_primary",
+        "borderColor": "color_border_strong",
+        "underlineColor": "color_brand_primary"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-3)]",
+        "text-[var(--color-brand-primary)]",
+        "[--underline-color:var(--color-brand-primary)]",
+        "border",
+        "border-[var(--color-border-strong)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "base",
+        "state": "disabled"
+      },
+      "style": {
+        "background": "color_bg_disabled",
+        "textColor": "color_text_disabled",
+        "borderColor": "color_border_disabled",
+        "underlineColor": "color_border_disabled",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-disabled)]",
+        "text-[var(--color-text-disabled)]",
+        "[--underline-color:var(--color-border-disabled)]",
+        "border",
+        "border-[var(--color-border-disabled)]",
+        "opacity-[var(--opacity-disabled)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "ghost",
+        "state": "base"
+      },
+      "style": {
+        "background": "transparent",
+        "textColor": "color_text_primary",
+        "borderSide": "none"
+      },
+      "tailwindClasses": [
+        "bg-transparent",
+        "text-[var(--color-text-primary)]",
+        "border",
+        "border-transparent"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "ghost",
+        "state": "hover"
+      },
+      "style": {
+        "background": "color_bg_muted",
+        "textColor": "color_text_primary",
+        "borderColor": "color_border_base",
+        "underlineColor": "color_border_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-muted)]",
+        "text-[var(--color-text-primary)]",
+        "[--underline-color:var(--color-border-base)]",
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "ghost",
+        "state": "active"
+      },
+      "style": {
+        "background": "color_bg_muted",
+        "textColor": "color_text_primary",
+        "borderColor": "color_border_strong",
+        "underlineColor": "color_border_strong"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-muted)]",
+        "text-[var(--color-text-primary)]",
+        "[--underline-color:var(--color-border-strong)]",
+        "border",
+        "border-[var(--color-border-strong)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "ghost",
+        "state": "disabled"
+      },
+      "style": {
+        "background": "color_bg_base",
+        "textColor": "color_text_primary",
+        "borderColor": "color_border_base",
+        "underlineColor": "color_border_base",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-base)]",
+        "text-[var(--color-text-primary)]",
+        "[--underline-color:var(--color-border-base)]",
+        "border",
+        "border-[var(--color-border-base)]",
+        "opacity-[var(--opacity-disabled)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "outline",
+        "state": "base"
+      },
+      "style": {
+        "background": "color_bg_base",
+        "textColor": "color_brand_primary",
+        "borderColor": "color_border_base",
+        "underlineColor": "color_border_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-base)]",
+        "text-[var(--color-brand-primary)]",
+        "[--underline-color:var(--color-border-base)]",
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "outline",
+        "state": "hover"
+      },
+      "style": {
+        "background": "color_surface_1",
+        "textColor": "color_brand_primary",
+        "borderColor": "color_border_strong",
+        "underlineColor": "color_border_strong"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-1)]",
+        "text-[var(--color-brand-primary)]",
+        "[--underline-color:var(--color-border-strong)]",
+        "border",
+        "border-[var(--color-border-strong)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "outline",
+        "state": "active"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "textColor": "color_brand_primary",
+        "borderColor": "color_border_strong",
+        "underlineColor": "color_border_strong"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "text-[var(--color-brand-primary)]",
+        "[--underline-color:var(--color-border-strong)]",
+        "border",
+        "border-[var(--color-border-strong)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "outline",
+        "state": "disabled"
+      },
+      "style": {
+        "background": "color_bg_disabled",
+        "textColor": "color_text_disabled",
+        "borderColor": "color_border_disabled",
+        "underlineColor": "color_border_disabled",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-disabled)]",
+        "text-[var(--color-text-disabled)]",
+        "[--underline-color:var(--color-border-disabled)]",
+        "border",
+        "border-[var(--color-border-disabled)]",
+        "opacity-[var(--opacity-disabled)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "ticket",
+        "state": "base"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "textColor": "color_text_primary",
+        "borderColor": "color_border_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "text-[var(--color-text-primary)]",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "ticket",
+        "state": "hover"
+      },
+      "style": {
+        "background": "color_surface_3",
+        "textColor": "color_text_primary",
+        "borderColor": "color_border_strong"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-3)]",
+        "text-[var(--color-text-primary)]",
+        "border-[var(--color-border-strong)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "ticket",
+        "state": "active"
+      },
+      "style": {
+        "background": "color_surface_1",
+        "textColor": "color_brand_primary",
+        "borderColor": "color_border_strong"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-1)]",
+        "text-[var(--color-brand-primary)]",
+        "border-[var(--color-border-strong)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "ticket",
+        "state": "disabled"
+      },
+      "style": {
+        "background": "color_bg_disabled",
+        "textColor": "color_text_disabled",
+        "borderColor": "color_border_disabled",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-bg-disabled)]",
+        "text-[var(--color-text-disabled)]",
+        "border-[var(--color-border-disabled)]",
+        "opacity-[var(--opacity-disabled)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "paddingX": "space_4",
+        "paddingY": "space_2",
+        "textStyle": "Text/Caption/XS",
+        "underlineHeight": "space_underline"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-4)]",
+        "py-[var(--space-2)]",
+        "text-style-caption-xs"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "paddingX": "space_6",
+        "paddingY": "space_3",
+        "textStyle": "Text/Caption/Base",
+        "underlineHeight": "space_underline"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-6)]",
+        "py-[var(--space-3)]",
+        "text-style-caption"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "paddingX": "space_8",
+        "paddingY": "space_4",
+        "textStyle": "Text/Body/Base",
+        "underlineHeight": "space_underline"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-8)]",
+        "py-[var(--space-4)]",
+        "text-style-body"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "ghost"
+      },
+      "style": {
+        "tabKind": "base",
+        "showUnderline": false,
+        "showBackground": false,
+        "showTicket": false,
+        "hasPadding": true
+      },
+      "tailwindClasses": []
+    },
+    {
+      "when": {
+        "appearance": "brand"
+      },
+      "style": {
+        "tabKind": "solid",
+        "showUnderline": false,
+        "showBackground": true,
+        "showTicket": false,
+        "hasPadding": true,
+        "borderRadius": "radius_button"
+      },
+      "tailwindClasses": [
+        "rounded-pill"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "base"
+      },
+      "style": {
+        "tabKind": "underline",
+        "showUnderline": true,
+        "underlineSide": "bottom",
+        "showBackground": false,
+        "showTicket": false,
+        "hasPadding": false
+      },
+      "tailwindClasses": [
+        "[data-underline-side=\"bottom\"]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "outline"
+      },
+      "style": {
+        "tabKind": "outline",
+        "showUnderline": false,
+        "showBackground": false,
+        "showTicket": false,
+        "hasPadding": true
+      },
+      "tailwindClasses": []
+    },
+    {
+      "when": {
+        "appearance": "ticket"
+      },
+      "style": {
+        "tabKind": "ticket",
+        "showUnderline": false,
+        "showBackground": true,
+        "showTicket": true,
+        "hasPadding": true,
+        "ticketBorderRadius": "radius_default",
+        "borderRadius": "radius_default"
+      },
+      "tailwindClasses": [
+        "rounded-t-[var(--radius-default)]",
+        "border border-solid border-b-0"
+      ]
+    },
+    {
+      "when": {
+        "state": "focus"
+      },
+      "style": {
+        "focusRing": "effect_focus_brand"
+      },
+      "tailwindClasses": []
+    }
+  ],
+  "stateMachine": {
+    "initial": "base",
+    "stateAxis": "state",
+    "states": [
+      "base",
+      "hover",
+      "active",
+      "focus",
+      "disabled"
+    ],
+    "transitions": [
+      {
+        "from": "base",
+        "to": "hover",
+        "trigger": "mouseenter"
+      },
+      {
+        "from": "hover",
+        "to": "base",
+        "trigger": "mouseleave"
+      },
+      {
+        "from": "base",
+        "to": "focus",
+        "trigger": "focus"
+      },
+      {
+        "from": "focus",
+        "to": "base",
+        "trigger": "blur"
+      },
+      {
+        "from": "hover",
+        "to": "active",
+        "trigger": "mousedown"
+      },
+      {
+        "from": "active",
+        "to": "hover",
+        "trigger": "mouseup"
+      }
+    ]
+  },
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "paddingX": {
+      "sm": "space_4",
+      "md": "space_6",
+      "lg": "space_8"
+    },
+    "paddingY": {
+      "sm": "space_2",
+      "md": "space_3",
+      "lg": "space_4"
+    },
+    "textStyle": {
+      "sm": "Text/Caption/XS",
+      "md": "Text/Caption/Base",
+      "lg": "Text/Body/Base"
+    }
+  },
+  "element": "button",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "center",
+    "cross": "center"
+  },
+  "slots": [
+    {
+      "name": "iconLeft",
+      "figmaName": "Left icon",
+      "type": "icon",
+      "optional": true,
+      "defaultVisible": true,
+      "sizing": "fixed"
+    },
+    {
+      "name": "label",
+      "figmaName": "Label",
+      "type": "text",
+      "optional": false,
+      "default": "Tab",
+      "sizing": "hug"
+    },
+    {
+      "name": "badge",
+      "figmaName": "Badge",
+      "type": "component",
+      "component": "@UI/Badge",
+      "optional": true,
+      "defaultVisible": true,
+      "sizing": "hug"
+    },
+    {
+      "name": "iconRight",
+      "figmaName": "Right icon",
+      "type": "icon",
+      "optional": true,
+      "defaultVisible": true,
+      "sizing": "fixed"
+    }
+  ],
+  "booleanProps": [
+    {
+      "name": "showLeftIcon",
+      "figmaName": "Left icon",
+      "controls": "iconLeft",
+      "default": true
+    },
+    {
+      "name": "showBadge",
+      "figmaName": "Badge",
+      "controls": "badge",
+      "default": true
+    },
+    {
+      "name": "showRightIcon",
+      "figmaName": "Right icon",
+      "controls": "iconRight",
+      "default": true
+    }
+  ],
+  "instanceSwapProps": [
+    {
+      "name": "leftIcon",
+      "figmaName": "Left Icon",
+      "slot": "iconLeft",
+      "role": "icon"
+    },
+    {
+      "name": "rightIcon",
+      "figmaName": "Right Icon",
+      "slot": "iconRight",
+      "role": "icon"
+    },
+    {
+      "name": "badgeVariant",
+      "figmaName": "Badge Variant",
+      "slot": "badge",
+      "role": "badge"
+    }
+  ],
+  "textProps": [
+    {
+      "name": "label",
+      "figmaName": "Label",
+      "default": "Tab"
+    }
+  ],
+  "styleKeys": [
+    "paddingX",
+    "paddingY",
+    "borderRadius",
+    "background",
+    "borderColor",
+    "underlineColor",
+    "underlineSide",
+    "textStyle",
+    "textColor",
+    "filledTextColor",
+    "iconColor",
+    "opacityToken"
+  ],
+  "heightConstraint": "hug",
+  "iconSizeMap": {
+    "xs": 20,
+    "sm": 20,
+    "md": 20,
+    "lg": 24,
+    "xl": 20
+  },
+  "generatorStrategy": "template",
+  "template": "Tab"
+}

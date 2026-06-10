@@ -1,0 +1,178 @@
+{
+  "name": "@UI/PinInput",
+  "description": "PinInput: ряд округлых ячеек с точкой внутри. Состояния: незаполнен, заполнен, заполнен неправильно (error), disabled. 3 размера (sm, md, lg). ",
+  "variantProps": [
+    "size",
+    "state"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "state": [
+      "unfilled",
+      "filled",
+      "error",
+      "disabled"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "gap": "space_4",
+        "cellCount": 6,
+        "cellBorderColor": "color_border_base",
+        "cellDotColor": "color_text_primary",
+        "cellBg": "color_bg_base"
+      },
+      "tailwindClasses": [
+        "gap-[var(--space-4)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "unfilled"
+      },
+      "style": {
+        "cellBorderColor": "color_border_base",
+        "cellDotColor": "color_border_base",
+        "cellDotOpacity": 0.12
+      },
+      "tailwindClasses": [
+        "[--cell-border:var(--color-border-base)]",
+        "[--cell-dot:var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "filled"
+      },
+      "style": {
+        "cellBorderColor": "color_border_strong",
+        "cellDotColor": "color_text_muted",
+        "cellDotOpacity": 1
+      },
+      "tailwindClasses": [
+        "[--cell-border:var(--color-border-strong)]",
+        "[--cell-dot:var(--color-text-muted)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "error"
+      },
+      "style": {
+        "cellBorderColor": "color_danger_base",
+        "cellDotColor": "color_danger_base",
+        "cellDotOpacity": 1
+      },
+      "tailwindClasses": [
+        "[--cell-border:var(--color-danger-base)]",
+        "[--cell-dot:var(--color-danger-base)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "disabled"
+      },
+      "style": {
+        "cellBorderColor": "color_border_disabled",
+        "cellDotColor": "color_text_disabled",
+        "cellDotOpacity": 0.25,
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "[--cell-border:var(--color-border-disabled)]",
+        "[--cell-dot:var(--color-text-disabled)]",
+        "opacity-[var(--opacity-disabled)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "gap": "space_2",
+        "cellSize": "space_pin_cell_sm"
+      },
+      "tailwindClasses": [
+        "gap-[var(--space-2)]",
+        "[--cell-size:var(--space-pin-cell-sm)]",
+        "[--cell-radius:var(--radius-default)]",
+        "[--dot-size:var(--space-8)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "gap": "space_4",
+        "cellSize": "space_pin_cell_md"
+      },
+      "tailwindClasses": [
+        "gap-[var(--space-4)]",
+        "[--cell-size:var(--space-pin-cell-md)]",
+        "[--cell-radius:var(--radius-medium)]",
+        "[--dot-size:var(--space-10)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "gap": "space_6",
+        "cellSize": "space_pin_cell_lg"
+      },
+      "tailwindClasses": [
+        "gap-[var(--space-6)]",
+        "[--cell-size:var(--space-pin-cell-lg)]",
+        "[--cell-radius:var(--radius-medium)]",
+        "[--dot-size:var(--space-12)]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "gap": {
+      "sm": "space_2",
+      "md": "space_4",
+      "lg": "space_6"
+    },
+    "cellSize": {
+      "sm": "space_pin_cell_sm",
+      "md": "space_pin_cell_md",
+      "lg": "space_pin_cell_lg"
+    }
+  },
+  "element": "div",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "center",
+    "cross": "center"
+  },
+  "customStructure": "pinInput",
+  "styleKeys": [
+    "cellCount",
+    "cellSize",
+    "gap",
+    "cellDotOpacity",
+    "cellBorderColor",
+    "cellDotColor",
+    "cellBg",
+    "opacityToken"
+  ],
+  "heightConstraint": "hug",
+  "borderWidthToken": "border_width_base",
+  "generatorStrategy": "template",
+  "template": "PinInput"
+}

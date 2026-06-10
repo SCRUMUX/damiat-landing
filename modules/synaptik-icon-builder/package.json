@@ -1,0 +1,52 @@
+{
+  "name": "@ai-ds/synaptik",
+  "version": "0.7.6",
+  "description": "Synaptik AI Icon Builder — CLI and pipeline for raster icon sets (companion to @ai-ds/core, not bundled in core npm tarball).",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SCRUMUX/AICADS-PRO.git",
+    "directory": "modules/synaptik-icon-builder"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "bin": {
+    "synaptik": "./dist/cli/index.js"
+  },
+  "exports": {
+    ".": "./dist/cli/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "@ai-ds/core": ">=0.7.0"
+  },
+  "peerDependenciesMeta": {
+    "@ai-ds/core": {
+      "optional": true
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "dev": "tsx src/cli/index.ts",
+    "test": "node --import tsx --test src/icon-set-styles/icon-set-styles.test.ts src/pipeline/build-prompt.test.ts src/pipeline/build-prompt-style.test.ts src/pipeline/concepts.test.ts src/pipeline/prompt-audit.test.ts src/pipeline/icon-style-bible.test.ts src/pipeline/catalog-reconcile.test.ts src/pipeline/publish-ready.test.ts src/pipeline/prune-safe.test.ts src/pipeline/publish-repair.test.ts src/adapters/icon-composition.test.ts src/adapters/icon-qa.test.ts src/adapters/playwright-capture.test.ts src/workspace-root.test.ts src/utils/catalog-status.test.ts src/utils/merge-content.test.ts src/utils/page-url.test.ts src/utils/render-dir.test.ts src/utils/ensure-unique-content.test.ts src/utils/render-versions.test.ts src/session/delete-session.test.ts src/synaptik-config.test.ts"
+  },
+  "dependencies": {
+    "@fal-ai/client": "^1.2.0",
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.7",
+    "playwright": "^1.49.1",
+    "sharp": "^0.33.5",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

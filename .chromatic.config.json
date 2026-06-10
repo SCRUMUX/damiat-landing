@@ -1,0 +1,11 @@
+{
+  "$schema": "https://www.chromatic.com/config-file.schema.json",
+  "projectId": "PUT-CHROMATIC-PROJECT-ID-HERE",
+  "buildScriptName": "build-storybook",
+  "storybookBuildDir": "playground/storybook-static",
+  "diffThreshold": 0.002,
+  "diffIncludeAntiAliasing": false,
+  "exitZeroOnChanges": true,
+  "onlyChanged": true,
+  "skip": "renovate/**"
+}

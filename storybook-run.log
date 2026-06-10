@@ -1,0 +1,116 @@
+﻿
+> aicads-playground@0.0.0 prestorybook
+> node ../scripts/storybook-prep.mjs
+
+Storybook prerequisites OK (.)
+
+> aicads-playground@0.0.0 storybook
+> node ../scripts/storybook-dev.mjs
+
+Starting Storybook in C:\Users\user\Desktop\Project\DAMIAT\DAMIAT\playground
+Local: http://localhost:6016/
+@storybook/core v8.6.18
+
+info Found existing addon "@storybook/addon-viewport", skipping.
+info Found existing addon "@storybook/addon-viewport", skipping.
+info => Starting manager..
+WARN No story files found for the specified pattern: src\**\*.stories.@(ts|tsx)
+WARN No story files found for the specified pattern: ..\layout\**\*.stories.@(ts|tsx)
+CSF Parsing error: Expected 'ObjectExpression' but found 'CallExpression' instead in 'CallExpression'.
+CSF Parsing error: Expected 'ObjectExpression' but found 'CallExpression' instead in 'CallExpression'.
+info => Starting preview..
+тХнтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтХо
+тФВ                                                                     тФВ
+тФВ   [38;2;162;224;94mStorybook 8.6.18 for react-vite started[39m                           тФВ
+тФВ   1.61 s for manager and 1.02 s for preview                         тФВ
+тФВ                                                                     тФВ
+тФВ   Local:            http://localhost:6016/                          тФВ
+тФВ   On your network:  http://172.28.32.1:6016/                        тФВ
+тФВ                                                                     тФВ
+тФВ   [38;2;243;173;56mA new version (10.4.0) is available![39m                              тФВ
+тФВ                                                                     тФВ
+тФВ   Upgrade now: [38;2;162;224;94mnpx storybook@latest upgrade[39m                         тФВ
+тФВ                                                                     тФВ
+тФВ   Read full changelog:                                              тФВ
+тФВ   https://github.com/storybookjs/storybook/blob/main/CHANGELOG.md   тФВ
+тФВ                                                                     тФВ
+тХ░тФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтХп
+CSF Parsing error: Expected 'ObjectExpression' but found 'CallExpression' instead in 'CallExpression'.
+15:42:09 [vite] hmr update /src/index.css, /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/_shared/SectionShell.tsx
+15:42:09 [vite] hmr update /src/index.css, /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/_shared/SectionShell.tsx
+15:44:43 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/DamiatCaseStudiesBlock.tsx, /src/index.css
+15:44:46 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/DamiatCaseStudiesBlock.tsx, /src/index.css
+15:44:47 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/DamiatCaseStudiesBlock.tsx, /src/index.css
+15:44:50 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/CaseStudyCard.tsx, /src/index.css
+15:46:13 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/CaseStudyCard.tsx, /src/index.css
+15:46:14 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+15:46:21 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+15:46:21 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+15:48:08 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/CaseStudyCard.tsx, /src/index.css
+15:48:19 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/CaseStudyCard.tsx, /src/index.css
+15:49:37 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/DamiatCaseStudiesBlock.types.ts
+15:49:43 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/CaseStudyCard.tsx, /src/index.css
+15:49:47 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+15:49:58 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+15:49:59 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+15:50:00 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+15:50:01 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+15:50:02 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+15:50:07 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+15:50:13 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/demo-assets/damiatCaseStudyImages.ts
+15:50:51 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/CaseStudyCard.tsx, /src/index.css
+15:50:51 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/CaseStudyCard.tsx, /src/index.css
+15:50:52 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/CaseStudyCard.tsx, /src/index.css
+15:50:52 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/CaseStudyCard.tsx, /src/index.css
+15:50:54 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/DamiatCaseStudiesBlock.tsx, /src/index.css
+15:51:04 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/DamiatCaseStudiesBlock.tsx, /src/index.css
+15:51:04 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/DamiatCaseStudiesBlock.tsx, /src/index.css
+15:51:05 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/DamiatCaseStudiesBlock.tsx, /src/index.css
+15:51:23 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/CaseStudyCard.tsx, /src/index.css
+15:51:24 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+15:51:54 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/CaseStudyCard.tsx, /src/index.css
+15:51:54 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatCaseStudiesBlock/CaseStudyCard.tsx, /src/index.css
+15:57:23 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+15:57:30 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+15:57:30 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+15:57:32 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatLandingPage/DamiatLandingPage.tsx, /src/index.css
+15:57:36 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatLandingPage/DamiatLandingPage.tsx, /src/index.css
+15:57:37 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatLandingPage/DamiatLandingPage.tsx, /src/index.css
+15:57:38 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatLandingPage/DamiatLandingPage.tsx, /src/index.css
+15:57:38 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatLandingPage/DamiatLandingPage.tsx, /src/index.css
+15:57:41 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatLandingPage/DamiatLandingPage.stories.tsx
+CSF Parsing error: Expected 'ObjectExpression' but found 'CallExpression' instead in 'CallExpression'.
+15:58:23 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatLandingPage/DamiatLandingPage.tsx, /src/index.css
+16:18:30 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+16:18:30 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+16:18:34 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatLandingPage/DamiatLandingPage.tsx, /src/index.css
+16:18:34 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatLandingPage/DamiatLandingPage.tsx, /src/index.css
+16:18:35 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatLandingPage/DamiatLandingPage.tsx, /src/index.css
+16:18:35 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatLandingPage/DamiatLandingPage.stories.tsx
+CSF Parsing error: Expected 'ObjectExpression' but found 'CallExpression' instead in 'CallExpression'.
+16:18:46 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatLandingPage/DamiatLandingPage.tsx, /src/index.css
+16:21:22 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/ChooseUsBlock/ChooseUsBlock.types.ts
+16:21:22 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/ChooseUsBlock/ChooseUsCard.tsx, /src/index.css
+16:21:22 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/ChooseUsBlock/ChooseUsCard.tsx, /src/index.css
+16:21:23 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/ChooseUsBlock/ChooseUsFeaturedCard.tsx, /src/index.css
+16:21:24 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/ChooseUsBlock/ChooseUsFeaturedCard.tsx, /src/index.css
+16:21:25 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/ChooseUsBlock/ChooseUsBlock.tsx, /src/index.css
+16:21:25 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/ChooseUsBlock/ChooseUsFeaturedCard.tsx, /src/index.css
+16:21:27 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/ChooseUsBlock/ChooseUsBlock.tsx, /src/index.css
+16:21:27 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+16:22:47 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatLandingPage/DamiatLandingPage.tsx, /src/index.css
+16:29:59 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+16:30:01 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+16:30:02 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+16:30:08 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatLandingPage/DamiatLandingPage.tsx, /src/index.css
+16:30:09 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatLandingPage/DamiatLandingPage.tsx, /src/index.css
+16:30:10 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatLandingPage/DamiatLandingPage.tsx, /src/index.css
+16:30:10 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatLandingPage/DamiatLandingPage.tsx, /src/index.css
+16:30:10 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatLandingPage/DamiatLandingPage.tsx, /src/index.css
+16:30:15 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+16:31:38 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatVolumeBenefitBlock/DamiatVolumeBenefitBlock.types.ts
+16:31:39 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatVolumeBenefitBlock/DamiatVolumeBenefitBlock.tsx, /src/index.css
+16:31:41 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts
+16:31:46 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatVolumeBenefitBlock/DamiatVolumeBenefitBlock.tsx, /src/index.css
+16:33:01 [vite] hmr update /@fs/C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/DamiatVolumeBenefitBlock/DamiatVolumeBenefitBlock.tsx, /src/index.css
+16:33:02 [vite] page reload C:/Users/user/Desktop/Project/DAMIAT/DAMIAT/blocks/marketing/damiatLandingFixtures.ts

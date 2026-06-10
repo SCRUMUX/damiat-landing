@@ -1,0 +1,302 @@
+{
+  "name": "@UI/Textarea",
+  "description": "Textarea: многострочное поле. 3 размера (sm/md/lg) по ритмике (compact/content/wide), состояния base/hover/focus/disabled. Иконка Resizer в правом нижнем углу.",
+  "variantProps": [
+    "size",
+    "state"
+  ],
+  "variantAxes": {
+    "size": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "state": [
+      "base",
+      "hover",
+      "focus",
+      "disabled"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {
+        "state": "base"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "textColor": "color_text_primary",
+        "borderColor": "color_border_base",
+        "iconColor": "color_icon_on_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "text-[var(--color-text-primary)]",
+        "[--icon-color:var(--color-icon-on-base)]",
+        "border",
+        "border-[var(--color-border-base)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "hover"
+      },
+      "style": {
+        "background": "color_surface_3",
+        "textColor": "color_text_primary",
+        "borderColor": "color_border_strong",
+        "iconColor": "color_icon_on_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-3)]",
+        "text-[var(--color-text-primary)]",
+        "[--icon-color:var(--color-icon-on-base)]",
+        "border",
+        "border-[var(--color-border-strong)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "focus"
+      },
+      "style": {
+        "background": "color_surface_3",
+        "textColor": "color_text_primary",
+        "borderColor": "color_border_strong",
+        "iconColor": "color_icon_on_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-3)]",
+        "text-[var(--color-text-primary)]",
+        "[--icon-color:var(--color-icon-on-base)]",
+        "border",
+        "border-[var(--color-border-strong)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "disabled"
+      },
+      "style": {
+        "background": "color_surface_2",
+        "textColor": "color_text_disabled",
+        "borderColor": "color_border_base",
+        "iconColor": "color_icon_on_base",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-2)]",
+        "text-[var(--color-text-disabled)]",
+        "[--icon-color:var(--color-icon-on-base)]",
+        "border",
+        "border-[var(--color-border-base)]",
+        "opacity-[var(--opacity-disabled)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "paddingX": "space_button_x_sm",
+        "paddingY": "space_button_y_sm",
+        "gap": "space_4",
+        "textStyle": "Text/Caption/Base",
+        "borderRadius": "radius_default",
+        "minWidth": "space_container_compact_min",
+        "maxWidth": "space_container_compact_max",
+        "minHeight": "space_64"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-button-x-sm)]",
+        "py-[var(--space-button-y-sm)]",
+        "gap-[var(--space-4)]",
+        "min-w-[var(--space-container-compact-min)]",
+        "max-w-[var(--space-container-compact-max)]",
+        "min-h-[var(--space-64)]",
+        "rounded-default",
+        "text-style-caption"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "paddingX": "space_button_x_md",
+        "paddingY": "space_button_y_md",
+        "gap": "space_6",
+        "textStyle": "Text/Body/Base",
+        "borderRadius": "radius_default",
+        "minWidth": "space_container_content_min",
+        "maxWidth": "space_container_content_max",
+        "minHeight": "space_96"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-button-x-md)]",
+        "py-[var(--space-button-y-md)]",
+        "gap-[var(--space-6)]",
+        "min-w-[var(--space-container-content-min)]",
+        "max-w-[var(--space-container-content-max)]",
+        "min-h-[var(--space-96)]",
+        "rounded-default",
+        "text-style-body"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "paddingX": "space_button_x_lg",
+        "paddingY": "space_button_y_lg",
+        "gap": "space_8",
+        "textStyle": "Text/Body/LG",
+        "borderRadius": "radius_default",
+        "minWidth": "space_container_wide_min",
+        "maxWidth": "space_container_wide_max",
+        "minHeight": "space_120"
+      },
+      "tailwindClasses": [
+        "px-[var(--space-button-x-lg)]",
+        "py-[var(--space-button-y-lg)]",
+        "gap-[var(--space-8)]",
+        "min-w-[var(--space-container-wide-min)]",
+        "max-w-[var(--space-container-wide-max)]",
+        "min-h-[var(--space-120)]",
+        "rounded-default",
+        "text-style-body-lg"
+      ]
+    }
+  ],
+  "stateMachine": {
+    "initial": "base",
+    "stateAxis": "state",
+    "states": [
+      "base",
+      "hover",
+      "focus",
+      "disabled"
+    ],
+    "transitions": [
+      {
+        "from": "base",
+        "to": "hover",
+        "trigger": "mouseenter"
+      },
+      {
+        "from": "hover",
+        "to": "base",
+        "trigger": "mouseleave"
+      },
+      {
+        "from": "base",
+        "to": "focus",
+        "trigger": "focus"
+      },
+      {
+        "from": "focus",
+        "to": "base",
+        "trigger": "blur"
+      }
+    ]
+  },
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "paddingX": {
+      "sm": "space_button_x_sm",
+      "md": "space_button_x_md",
+      "lg": "space_button_x_lg"
+    },
+    "paddingY": {
+      "sm": "space_button_y_sm",
+      "md": "space_button_y_md",
+      "lg": "space_button_y_lg"
+    },
+    "gap": {
+      "sm": "space_4",
+      "md": "space_6",
+      "lg": "space_8"
+    },
+    "minHeight": {
+      "sm": "space_64",
+      "md": "space_96",
+      "lg": "space_120"
+    },
+    "minWidth": {
+      "sm": "space_container_compact_min",
+      "md": "space_container_content_min",
+      "lg": "space_container_wide_min"
+    },
+    "maxWidth": {
+      "sm": "space_container_compact_max",
+      "md": "space_container_content_max",
+      "lg": "space_container_wide_max"
+    },
+    "textStyle": {
+      "sm": "Text/Caption/Base",
+      "md": "Text/Body/Base",
+      "lg": "Text/Body/LG"
+    },
+    "borderRadius": {
+      "sm": "radius_default",
+      "md": "radius_default",
+      "lg": "radius_default"
+    }
+  },
+  "element": "div",
+  "rootLayout": "vertical",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "start",
+    "cross": "start"
+  },
+  "htmlInput": true,
+  "inputType": "textarea",
+  "slots": [
+    {
+      "name": "content",
+      "figmaName": "Content",
+      "type": "textarea",
+      "optional": false,
+      "default": "Enter text...",
+      "sizing": "fill"
+    }
+  ],
+  "textProps": [
+    {
+      "name": "placeholder",
+      "figmaName": "Label",
+      "default": "Enter text..."
+    }
+  ],
+  "styleKeys": [
+    "minWidth",
+    "maxWidth",
+    "minHeight",
+    "paddingX",
+    "paddingY",
+    "gap",
+    "borderRadius",
+    "background",
+    "borderColor",
+    "textStyle",
+    "textColor",
+    "opacityToken"
+  ],
+  "heightConstraint": "hug",
+  "borderWidthToken": "border_width_base",
+  "iconSizeMap": {
+    "xs": 20,
+    "sm": 20,
+    "md": 20,
+    "lg": 24,
+    "xl": 20
+  },
+  "generatorStrategy": "template",
+  "template": "Textarea"
+}

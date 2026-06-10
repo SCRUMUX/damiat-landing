@@ -1,0 +1,48 @@
+name: Chromatic VRT
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  chromatic:
+    name: Visual regression (Chromatic)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Chromatic needs full history for baseline diffing.
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install root deps
+        run: npm ci
+
+      - name: Install playground deps
+        working-directory: playground
+        run: npm ci
+
+      - name: Build Storybook
+        working-directory: playground
+        run: npm run build-storybook
+
+      - name: Run Chromatic
+        working-directory: playground
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        run: |
+          if [ -z "$CHROMATIC_PROJECT_TOKEN" ]; then
+            echo "::warning title=Chromatic skipped::CHROMATIC_PROJECT_TOKEN is not set in repository secrets. VRT is disabled until you add a token — see docs/vrt.md"
+            exit 0
+          fi
+          npx chromatic --exit-zero-on-changes --build-script-name build-storybook --storybook-build-dir storybook-static

@@ -1,0 +1,37 @@
+{
+  "name": "@synaptik/icon-builder-ui",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev-preflight.mjs && concurrently -k \"npm run server\" \"npm run client:wait\"",
+    "client:wait": "node scripts/wait-api.mjs && vite",
+    "dev:reset": "node scripts/free-dev-ports.mjs && npm run dev",
+    "test": "node --import tsx --test src/api/client.test.ts src/utils/deriveFlowStep.test.ts src/utils/storybookLink.test.ts src/utils/hydrateCardUi.test.ts src/utils/filterCards.test.ts src/utils/groupCards.test.ts",
+    "client": "vite",
+    "server": "tsx server/index.ts",
+    "build": "vite build",
+    "lint": "eslint src --ext .ts,.tsx --rulesdir ../../../eslint-rules"
+  },
+  "dependencies": {
+    "@ai-ds/core": "file:../../..",
+    "express": "^4.21.2",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "@typescript-eslint/parser": "^7.18.0",
+    "@vitejs/plugin-react": "4.3.4",
+    "autoprefixer": "10.4.20",
+    "concurrently": "^9.1.2",
+    "eslint": "^8.57.0",
+    "postcss": "8.4.49",
+    "tailwindcss": "3.4.16",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vite": "6.0.3"
+  }
+}

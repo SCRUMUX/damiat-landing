@@ -1,0 +1,16 @@
+/**
+ * Storybook canvas fullscreen — unlock nested preview shells for window scroll.
+ * Window/body overflow rules live in damiatLandingScroll.css (shipped with landing).
+ */
+html[data-scroll-root-window][data-damiat-landing-active] .sb-show-main {
+  overflow: visible !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+html[data-scroll-root-window][data-damiat-landing-active] #storybook-root,
+html[data-scroll-root-window][data-damiat-landing-active] #storybook-root > div {
+  overflow: visible !important;
+  height: auto !important;
+  min-height: 100%;
+}

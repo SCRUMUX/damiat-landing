@@ -1,0 +1,236 @@
+{
+  "name": "@UI/Avatar",
+  "description": "Avatar: 3 типа (guest, registered-no-photo, registered-with-photo), 5 размеров (xs, sm, md, lg, xl). Опциональный badge в правом нижнем углу. ",
+  "variantProps": [
+    "variant",
+    "size",
+    "badge"
+  ],
+  "variantAxes": {
+    "variant": [
+      "guest",
+      "registered-no-photo",
+      "registered-with-photo"
+    ],
+    "size": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl"
+    ],
+    "badge": [
+      "false",
+      "true"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "bg": "color_surface_3",
+        "borderRadius": "radius_full",
+        "textStyle": "Text/Caption/Base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-3)]",
+        "rounded-[var(--radius-full)]",
+        "text-style-caption"
+      ]
+    },
+    {
+      "when": {
+        "variant": "guest"
+      },
+      "style": {
+        "bg": "color_surface_3",
+        "icon": "user",
+        "iconColor": "color_text_muted"
+      },
+      "tailwindClasses": [
+        "[--icon-color:var(--color-text-muted)]",
+        "bg-[var(--color-surface-3)]",
+        "[data-icon=\"user\"]"
+      ]
+    },
+    {
+      "when": {
+        "variant": "registered-no-photo"
+      },
+      "style": {
+        "bg": "color_brand_primary",
+        "initialsColor": "color_text_on_brand",
+        "initials": "VK"
+      },
+      "tailwindClasses": [
+        "[--initials-color:var(--color-text-on-brand)]",
+        "bg-[var(--color-brand-primary)]"
+      ]
+    },
+    {
+      "when": {
+        "variant": "registered-with-photo"
+      },
+      "style": {
+        "bg": "color_surface_3"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-3)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "xs"
+      },
+      "style": {
+        "boxSize": "space_avatar_xs",
+        "badgeSize": "space_8"
+      },
+      "tailwindClasses": [
+        "w-[var(--space-avatar-xs)]",
+        "h-[var(--space-avatar-xs)]",
+        "[--badge-size:var(--space-8)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "boxSize": "space_avatar_sm",
+        "badgeSize": "space_8"
+      },
+      "tailwindClasses": [
+        "w-[var(--space-avatar-sm)]",
+        "h-[var(--space-avatar-sm)]",
+        "[--badge-size:var(--space-8)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "boxSize": "space_avatar_md",
+        "badgeSize": "space_10"
+      },
+      "tailwindClasses": [
+        "w-[var(--space-avatar-md)]",
+        "h-[var(--space-avatar-md)]",
+        "[--badge-size:var(--space-10)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "boxSize": "space_avatar_lg",
+        "badgeSize": "space_12"
+      },
+      "tailwindClasses": [
+        "w-[var(--space-avatar-lg)]",
+        "h-[var(--space-avatar-lg)]",
+        "[--badge-size:var(--space-12)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "xl"
+      },
+      "style": {
+        "boxSize": "space_avatar_xl",
+        "badgeSize": "space_14"
+      },
+      "tailwindClasses": [
+        "w-[var(--space-avatar-xl)]",
+        "h-[var(--space-avatar-xl)]",
+        "[--badge-size:var(--space-14)]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "boxSize": {
+      "xs": "space_avatar_xs",
+      "sm": "space_avatar_sm",
+      "md": "space_avatar_md",
+      "lg": "space_avatar_lg",
+      "xl": "space_avatar_xl"
+    },
+    "badgeSize": {
+      "xs": "space_8",
+      "sm": "space_8",
+      "md": "space_10",
+      "lg": "space_12",
+      "xl": "space_14"
+    }
+  },
+  "element": "div",
+  "rootLayout": "none",
+  "customStructure": "avatar",
+  "booleanProps": [
+    {
+      "name": "showBadge",
+      "figmaName": "Badge",
+      "controls": "badge",
+      "default": true
+    }
+  ],
+  "textProps": [
+    {
+      "name": "initials",
+      "figmaName": "Initials",
+      "default": "VK"
+    }
+  ],
+  "conditionalSlots": {
+    "variantAxis": "type",
+    "variants": {
+      "guest": [
+        {
+          "name": "background",
+          "type": "circle",
+          "sizing": "fixed"
+        },
+        {
+          "name": "userIcon",
+          "type": "icon",
+          "sizing": "fixed"
+        }
+      ],
+      "registered-no-photo": [
+        {
+          "name": "background",
+          "type": "circle",
+          "sizing": "fixed"
+        },
+        {
+          "name": "initials",
+          "type": "text",
+          "default": "VK",
+          "sizing": "fixed"
+        }
+      ],
+      "registered-with-photo": [
+        {
+          "name": "photo",
+          "type": "image",
+          "sizing": "fixed"
+        }
+      ]
+    }
+  },
+  "styleKeys": [
+    "boxSize",
+    "badgeSize",
+    "bg",
+    "iconColor",
+    "initialsColor",
+    "initials"
+  ],
+  "heightConstraint": "hug",
+  "generatorStrategy": "template",
+  "template": "Avatar"
+}

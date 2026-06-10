@@ -1,0 +1,161 @@
+---
+description: Safe JSON change process, manual component protection, and Figma sync strategy
+globs: ["ai-ds-spec.json", "**/*.contract.json", "figma-ai-ds-*.{js,html,json}"]
+alwaysApply: false
+---
+
+# CONTRACT 4 — Safe JSON Changes & Manual Component Protection
+
+## 1. What CAN Be Changed via JSON Safely
+
+### Token-level changes (fully safe — no code changes needed)
+
+All tokens flow through CSS variables. After editing `ai-ds-spec.json`:
+
+```bash
+npm run tokens:build
+```
+
+**Safe operations:**
+- Change any color value (e.g., `core_blue_50` → `core_red_50`)
+- Change spacing values (e.g., `space_button_x_sm` from `8px` to `12px`)
+- Change radius values
+- Change typography values (font sizes, weights, line heights)
+- Change effect values (shadows, focus rings)
+- Add new token values (new color primitives, new space steps)
+- Add new semantic color groups
+
+**Why safe:** Components reference `var(--color-brand-primary)`, not the hex value.
+The CSS variable definition changes, but all class names stay identical.
+
+### Adding new variant axes or values (safe for auto-generated components)
+
+Adding a new `appearance: 'info'` to Button:
+
+```json
+"variantAxes": {
+  "appearance": ["brand", "base", "ghost", "outline", "info"]  // ← added "info"
+}
+```
+
+Then run:
+```bash
+npm run contracts:generate && npm run components:generate
+```
+
+**Important:** Only auto-generated components (without `generatorStrategy: "preserve"`) 
+are updated. Manual components need their contract updated, but the `.tsx` is NOT touched.
+
+### Figma variable updates (safe)
+
+After spec changes:
+1. Open Figma → run the AI DS plugin
+2. Paste updated `ai-ds-spec.json`
+3. Click "Generate Tokens" → updates all Figma Variables
+4. Click "Generate Components" → regenerates component sets
+
+**What is NOT affected:** Custom frames, prototypes, and presentations that reference
+Figma variables inherit new values automatically. Only the "Tokens/Color" collection
+and `@UI/*` component sets are touched.
+
+## 2. What CANNOT Be Changed via JSON Without Risk
+
+| Change type                              | Risk level | Impact                                           |
+|------------------------------------------|------------|--------------------------------------------------|
+| Removing existing variant values         | HIGH       | Components referencing removed values break      |
+| Renaming token keys                      | HIGH       | All `var(--old-name)` references break           |
+| Changing component structure/slot order  | MEDIUM     | Manual components depend on DOM structure         |
+| Changing `variantRules` style mappings   | LOW–MEDIUM | Manual components may override these              |
+| Changing `generatorStrategy`             | MEDIUM     | May overwrite manual component code               |
+
+## 3. Manual Component Protection
+
+### What is a "preserve" component?
+
+Components with `"generatorStrategy": "preserve"` in `ai-ds-spec.json` are
+**never overwritten** by `components:generate`. Their `.tsx` files contain
+hand-written logic beyond what the generator produces.
+
+### Current preserve components:
+- **Checkbox** — tri-state cycle (exclude state), manual icon rendering
+- **RadioButton** — contract-based visual styles, manual inner dot logic
+- **Dropdown** — chip overflow, tri-state exclude, keyboard navigation
+- **Autocomplete** — search filtering, chip overflow, tri-state exclude
+- **ListItem** — manual hover management, variant-based slot selection
+
+### Protection rules:
+
+1. **Flag manual components** in `ai-ds-spec.json`:
+   ```json
+   "generatorStrategy": "preserve",
+   "manualImplementation": true
+   ```
+
+2. **Keep manual overrides in `.tsx`**, not in contract JSON.
+   The contract provides the baseline via `findClasses(rules, { ... })`.
+   The component code adds behavior on top.
+
+3. **Document manual deviations** at the top of each preserved component:
+   ```tsx
+   // MANUAL OVERRIDES:
+   // - Tri-state checkbox cycle (exclude state)
+   // - Dynamic chip overflow with useOverflowCounter
+   // - Keyboard navigation (ArrowUp/Down/Home/End)
+   ```
+
+4. **Pre-generate safety check:**
+   Before running `components:generate`, the script checks
+   `generatorStrategy` and skips `"preserve"` components,
+   logging a warning if their contract has changed.
+
+## 4. Safe Change Workflow
+
+### Step 1: Edit `ai-ds-spec.json`
+
+Make your token or variant rule changes in the spec.
+
+### Step 2: Regenerate artifacts
+
+```bash
+# Always safe:
+npm run tokens:build
+
+# Safe for auto-generated components:
+npm run contracts:generate
+npm run components:generate   # skips "preserve" components
+
+# Visual verification:
+npm run storybook
+```
+
+### Step 3: Review preserve components
+
+If you changed variant rules that affect a preserve component:
+1. Check the updated `.contract.json`
+2. Verify the component's `findClasses()` call picks up new classes
+3. If the component hardcodes styles that conflict, update the `.tsx` manually
+
+### Step 4: Sync Figma
+
+1. Open the Figma plugin
+2. Paste the updated `ai-ds-spec.json`
+3. Generate Tokens → Generate Components
+4. Verify in Figma that designs look correct
+
+## 5. Adding a New Component Safely
+
+1. Add the component definition to `ai-ds-spec.json` under `components`
+2. Run `npm run build` to generate contract + component + story
+3. If the auto-generated component needs manual enhancements:
+   - Set `"generatorStrategy": "preserve"` in the spec
+   - Edit the generated `.tsx` to add custom logic
+   - The generator will never overwrite it again
+
+## 6. Removing a Component or Variant
+
+**Never remove blindly.** Follow this process:
+
+1. Search the codebase for usage: `grep -r "ComponentName" frontend-core/pages/`
+2. If used: add `@deprecated` JSDoc tag and `console.warn` in dev mode
+3. Wait one release cycle
+4. Then remove from spec and delete files

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://synaptik.dev/schemas/style-dna.json",
+  "title": "StyleDNA",
+  "type": "object",
+  "required": [
+    "projectSlug",
+    "industry",
+    "rendering",
+    "materials",
+    "palette",
+    "lighting",
+    "background",
+    "createdAt"
+  ],
+  "properties": {
+    "projectSlug": { "type": "string", "minLength": 1 },
+    "industry": { "type": "string", "minLength": 1 },
+    "rendering": { "type": "string" },
+    "materials": { "type": "array", "items": { "type": "string" } },
+    "palette": { "type": "array", "items": { "type": "string" } },
+    "lighting": { "type": "string" },
+    "background": { "type": "string" },
+    "brandCharacter": { "type": "string" },
+    "styleLabel": { "type": "string" },
+    "createdAt": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

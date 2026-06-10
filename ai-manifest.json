@@ -1,0 +1,349 @@
+{
+  "$schema": "https://aicads.dev/schema/ai-manifest-v1.json",
+  "name": "@ai-ds/core",
+  "version": "0.7.6",
+  "description": "AICADS semantic AI manifest. Maps each public AICADS primitive to its semantic role, the backing behavior engine, and the contract files that drive its tokenized styling. Consumed by AI code generators, the Figma plugin and Replit-style automated assemblers.",
+  "conventions": {
+    "publicImport": "import { <Name> } from '@ai-ds/core/components/<Name>'",
+    "barrel": "@ai-ds/core/components",
+    "tokens": "@ai-ds/core/tokens (config/css-variables/tokens.css)",
+    "contracts": "@ai-ds/core/contracts/<Name> (contracts/components/<Name>.contract.json)",
+    "internal": "components/primitives/_internal/** is the ONLY place where behavior libraries (Radix UI, cmdk, vaul, sonner) may be imported. Never reference _internal from generated code."
+  },
+  "behaviorEngines": {
+    "@radix-ui/react-popover": "Floating panel positioning, viewport flip, dismissal.",
+    "@radix-ui/react-tooltip": "Hover/focus delayed tooltip with arrow.",
+    "@radix-ui/react-dialog": "Modal dialog with overlay, focus trap, escape/scroll handling.",
+    "@radix-ui/react-checkbox": "Tri-state checkbox with keyboard a11y.",
+    "@radix-ui/react-radio-group": "Mutually exclusive radio group.",
+    "@radix-ui/react-switch": "Two-state toggle with `aria-checked`.",
+    "@radix-ui/react-slider": "Single/multi-thumb slider with full keyboard nav.",
+    "@radix-ui/react-select": "Listbox/dropdown selection with keyboard nav.",
+    "@radix-ui/react-accordion": "Collapsible disclosure panel.",
+    "@radix-ui/react-tabs": "Tab list / tab panels with roving focus.",
+    "@radix-ui/react-scroll-area": "Cross-browser styled scrollbar.",
+    "cmdk": "Command palette / fuzzy search filtering and keyboard nav.",
+    "vaul": "Bottom-sheet / drawer with gesture support.",
+    "sonner": "Toast notification stack.",
+    "custom": "Pure AICADS implementation, no external behavior dependency."
+  },
+  "components": {
+    "Button": {
+      "role": "action.button",
+      "engine": "custom",
+      "contract": "Button.contract.json"
+    },
+    "Input": {
+      "role": "form.text-input",
+      "engine": "custom",
+      "contract": "Input.contract.json"
+    },
+    "Textarea": {
+      "role": "form.text-input.multiline",
+      "engine": "custom",
+      "contract": "Textarea.contract.json"
+    },
+    "Checkbox": {
+      "role": "form.checkbox",
+      "engine": "@radix-ui/react-checkbox",
+      "contract": "Checkbox.contract.json"
+    },
+    "RadioButton": {
+      "role": "form.radio.item",
+      "engine": "@radix-ui/react-radio-group",
+      "contract": "RadioButton.contract.json"
+    },
+    "RadioGroup": {
+      "role": "form.radio.group",
+      "engine": "@radix-ui/react-radio-group",
+      "contract": null
+    },
+    "Switch": {
+      "role": "form.switch",
+      "engine": "@radix-ui/react-switch",
+      "contract": "Switch.contract.json"
+    },
+    "Slider": {
+      "role": "form.slider",
+      "engine": "@radix-ui/react-slider",
+      "contract": "Slider.contract.json"
+    },
+    "RangeSlider": {
+      "role": "form.slider.range",
+      "engine": "@radix-ui/react-slider",
+      "contract": "RangeSlider.contract.json"
+    },
+    "Select": {
+      "role": "form.select",
+      "engine": "@radix-ui/react-select",
+      "contract": "Select.contract.json"
+    },
+    "PinInput": {
+      "role": "form.pin",
+      "engine": "custom",
+      "contract": "PinInput.contract.json"
+    },
+    "FileUpload": {
+      "role": "form.file",
+      "engine": "custom",
+      "contract": "FileUpload.contract.json"
+    },
+    "Rating": {
+      "role": "form.rating",
+      "engine": "custom",
+      "contract": "Rating.contract.json"
+    },
+    "Captcha": {
+      "role": "form.captcha",
+      "engine": "custom",
+      "contract": "Captcha.contract.json"
+    },
+    "FormHint": {
+      "role": "form.hint",
+      "engine": "custom",
+      "contract": "FormHint.contract.json"
+    },
+    "Autocomplete": {
+      "role": "combobox.autocomplete",
+      "engine": "cmdk",
+      "contract": "Autocomplete.contract.json"
+    },
+    "AutocompleteItem": {
+      "role": "combobox.item",
+      "engine": "custom",
+      "contract": "AutocompleteItem.contract.json"
+    },
+    "Dropdown": {
+      "role": "combobox.dropdown",
+      "engine": "@radix-ui/react-popover",
+      "contract": "Dropdown.contract.json"
+    },
+    "DropdownItem": {
+      "role": "combobox.item",
+      "engine": "custom",
+      "contract": "DropdownItem.contract.json"
+    },
+    "CommandPalette": {
+      "role": "navigation.command",
+      "engine": "cmdk + @radix-ui/react-dialog",
+      "contract": "CommandPalette.contract.json"
+    },
+    "Popover": {
+      "role": "overlay.popover",
+      "engine": "@radix-ui/react-popover",
+      "contract": "Popover.contract.json"
+    },
+    "Tooltip": {
+      "role": "overlay.tooltip",
+      "engine": "@radix-ui/react-tooltip",
+      "contract": "Tooltip.contract.json"
+    },
+    "TooltipBubble": {
+      "role": "overlay.tooltip.bubble",
+      "engine": "custom",
+      "contract": null
+    },
+    "Modal": {
+      "role": "overlay.modal",
+      "engine": "@radix-ui/react-dialog",
+      "contract": "Modal.contract.json"
+    },
+    "Drawer": {
+      "role": "overlay.drawer",
+      "engine": "vaul",
+      "contract": "Drawer.contract.json"
+    },
+    "Toaster": {
+      "role": "overlay.toast.host",
+      "engine": "sonner",
+      "contract": null
+    },
+    "Accordion": {
+      "role": "disclosure.accordion",
+      "engine": "@radix-ui/react-accordion",
+      "contract": "Accordion.contract.json"
+    },
+    "Tab": {
+      "role": "navigation.tab.item",
+      "engine": "@radix-ui/react-tabs",
+      "contract": "Tab.contract.json"
+    },
+    "Tabs": {
+      "role": "navigation.tab.group",
+      "engine": "@radix-ui/react-tabs",
+      "contract": null
+    },
+    "TabList": {
+      "role": "navigation.tab.list",
+      "engine": "@radix-ui/react-tabs",
+      "contract": null
+    },
+    "TabPanel": {
+      "role": "navigation.tab.panel",
+      "engine": "@radix-ui/react-tabs",
+      "contract": null
+    },
+    "Breadcrumb": {
+      "role": "navigation.breadcrumb",
+      "engine": "custom",
+      "contract": "Breadcrumb.contract.json"
+    },
+    "Pagination": {
+      "role": "navigation.pagination",
+      "engine": "custom",
+      "contract": "Pagination.contract.json"
+    },
+    "Link": {
+      "role": "navigation.link",
+      "engine": "custom",
+      "contract": "Link.contract.json"
+    },
+    "Alert": {
+      "role": "feedback.alert",
+      "engine": "custom",
+      "contract": "Alert.contract.json"
+    },
+    "EmptyState": {
+      "role": "feedback.empty",
+      "engine": "custom",
+      "contract": "EmptyState.contract.json"
+    },
+    "Spinner": {
+      "role": "feedback.progress.indeterminate",
+      "engine": "custom",
+      "contract": "Spinner.contract.json"
+    },
+    "CircularProgress": {
+      "role": "feedback.progress.circular",
+      "engine": "custom",
+      "contract": "CircularProgress.contract.json"
+    },
+    "LinearProgress": {
+      "role": "feedback.progress.linear",
+      "engine": "custom",
+      "contract": "LinearProgress.contract.json"
+    },
+    "Avatar": {
+      "role": "display.avatar",
+      "engine": "custom",
+      "contract": "Avatar.contract.json"
+    },
+    "Badge": {
+      "role": "display.badge",
+      "engine": "custom",
+      "contract": "Badge.contract.json"
+    },
+    "Chip": {
+      "role": "display.chip",
+      "engine": "custom",
+      "contract": "Chip.contract.json"
+    },
+    "Tag": {
+      "role": "display.tag",
+      "engine": "custom",
+      "contract": "Tag.contract.json"
+    },
+    "TagRow": {
+      "role": "display.tag.row",
+      "engine": "custom",
+      "contract": "TagRow.contract.json"
+    },
+    "Card": {
+      "role": "display.card",
+      "engine": "custom",
+      "contract": "Card.contract.json"
+    },
+    "Image": {
+      "role": "display.image",
+      "engine": "custom",
+      "contract": "Image.contract.json"
+    },
+    "Paragraph": {
+      "role": "display.text.paragraph",
+      "engine": "custom",
+      "contract": "Paragraph.contract.json"
+    },
+    "SectionHeader": {
+      "role": "display.text.section-header",
+      "engine": "custom",
+      "contract": "SectionHeader.contract.json"
+    },
+    "ListItem": {
+      "role": "display.list.item",
+      "engine": "custom",
+      "contract": "ListItem.contract.json"
+    },
+    "Divider": {
+      "role": "display.divider",
+      "engine": "custom",
+      "contract": "Divider.contract.json"
+    },
+    "Table": {
+      "role": "data.table",
+      "engine": "custom",
+      "contract": "Table.contract.json"
+    },
+    "TableRow": {
+      "role": "data.table.row",
+      "engine": "custom",
+      "contract": "Table-Row.contract.json"
+    },
+    "TableCell": {
+      "role": "data.table.cell",
+      "engine": "custom",
+      "contract": "Table-Cell.contract.json"
+    },
+    "TableHeaderRow": {
+      "role": "data.table.header-row",
+      "engine": "custom",
+      "contract": null
+    },
+    "TableHeaderCell": {
+      "role": "data.table.header-cell",
+      "engine": "custom",
+      "contract": null
+    },
+    "GridContainer": {
+      "role": "layout.grid.container",
+      "engine": "custom",
+      "contract": "GridContainer.contract.json"
+    },
+    "GridItem": {
+      "role": "layout.grid.item",
+      "engine": "custom",
+      "contract": null
+    },
+    "ScrollBar": {
+      "role": "layout.scrollbar",
+      "engine": "custom",
+      "contract": "ScrollBar.contract.json",
+      "deprecated": true,
+      "replacement": "ScrollArea (from @ai-ds/core/shared)"
+    },
+    "SkeletonCard": {
+      "role": "loading.skeleton.card",
+      "engine": "custom",
+      "contract": "Skeleton.contract.json"
+    },
+    "SkeletonChart": {
+      "role": "loading.skeleton.chart",
+      "engine": "custom",
+      "contract": "Skeleton.contract.json"
+    },
+    "SkeletonList": {
+      "role": "loading.skeleton.list",
+      "engine": "custom",
+      "contract": "Skeleton.contract.json"
+    },
+    "SkeletonPage": {
+      "role": "loading.skeleton.page",
+      "engine": "custom",
+      "contract": "Skeleton.contract.json"
+    },
+    "SkeletonTable": {
+      "role": "loading.skeleton.table",
+      "engine": "custom",
+      "contract": "Skeleton.contract.json"
+    }
+  }
+}

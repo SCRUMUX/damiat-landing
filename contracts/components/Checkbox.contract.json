@@ -1,0 +1,348 @@
+{
+  "name": "@UI/Checkbox",
+  "description": "Checkbox: 4 размера (xs, sm, md, lg), 6 состояний (unchecked, checked, indeterminate + disabled). Без семантических стилей.",
+  "variantProps": [
+    "size",
+    "state"
+  ],
+  "variantAxes": {
+    "size": [
+      "xs",
+      "sm",
+      "md",
+      "lg"
+    ],
+    "state": [
+      "unchecked",
+      "checked",
+      "indeterminate",
+      "exclude",
+      "focus-unchecked",
+      "focus-checked",
+      "focus-exclude",
+      "disabled-unchecked",
+      "disabled-checked",
+      "disabled-indeterminate",
+      "disabled-exclude"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {
+        "state": "unchecked"
+      },
+      "style": {
+        "bg": "color_surface_3",
+        "borderColor": "color_border_strong",
+        "borderRadius": "radius_default",
+        "iconColor": "color_icon_on_brand",
+        "opacity": 1
+      },
+      "tailwindClasses": [
+        "[--icon-color:var(--color-icon-on-brand)]",
+        "bg-[var(--color-surface-3)]",
+        "border",
+        "border-[var(--color-border-strong)]",
+        "rounded-default"
+      ]
+    },
+    {
+      "when": {
+        "state": "checked"
+      },
+      "style": {
+        "bg": "color_brand_primary",
+        "borderColor": "color_brand_primary",
+        "borderRadius": "radius_default",
+        "icon": "check",
+        "iconColor": "color_icon_on_brand"
+      },
+      "tailwindClasses": [
+        "[--icon-color:var(--color-icon-on-brand)]",
+        "bg-[var(--color-brand-primary)]",
+        "border",
+        "border-[var(--color-brand-primary)]",
+        "rounded-default",
+        "[data-icon=\"check\"]"
+      ]
+    },
+    {
+      "when": {
+        "state": "indeterminate"
+      },
+      "style": {
+        "bg": "color_brand_primary",
+        "borderColor": "color_brand_primary",
+        "borderRadius": "radius_default",
+        "icon": "close-x",
+        "iconColor": "color_icon_on_brand"
+      },
+      "tailwindClasses": [
+        "[--icon-color:var(--color-icon-on-brand)]",
+        "bg-[var(--color-brand-primary)]",
+        "border",
+        "border-[var(--color-brand-primary)]",
+        "rounded-default",
+        "[data-icon=\"close-x\"]"
+      ]
+    },
+    {
+      "when": {
+        "state": "exclude"
+      },
+      "style": {
+        "bg": "color_brand_primary",
+        "borderColor": "color_brand_primary",
+        "borderRadius": "radius_default",
+        "icon": "minus",
+        "iconColor": "color_icon_on_brand"
+      },
+      "tailwindClasses": [
+        "[--icon-color:var(--color-icon-on-brand)]",
+        "bg-[var(--color-brand-primary)]",
+        "border",
+        "border-[var(--color-brand-primary)]",
+        "rounded-default",
+        "[data-icon=\"minus\"]"
+      ]
+    },
+    {
+      "when": {
+        "state": "disabled-unchecked"
+      },
+      "style": {
+        "bg": "color_surface_3",
+        "borderColor": "color_border_strong",
+        "borderRadius": "radius_default",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-surface-3)]",
+        "border",
+        "border-[var(--color-border-strong)]",
+        "rounded-default",
+        "opacity-[var(--opacity-disabled)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "disabled-checked"
+      },
+      "style": {
+        "bg": "color_brand_primary",
+        "borderColor": "color_brand_primary",
+        "borderRadius": "radius_default",
+        "icon": "check",
+        "iconColor": "color_icon_on_brand",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "[--icon-color:var(--color-icon-on-brand)]",
+        "bg-[var(--color-brand-primary)]",
+        "border",
+        "border-[var(--color-brand-primary)]",
+        "rounded-default",
+        "opacity-[var(--opacity-disabled)]",
+        "[data-icon=\"check\"]"
+      ]
+    },
+    {
+      "when": {
+        "state": "disabled-indeterminate"
+      },
+      "style": {
+        "bg": "color_brand_primary",
+        "borderColor": "color_brand_primary",
+        "borderRadius": "radius_default",
+        "icon": "close-x",
+        "iconColor": "color_icon_on_brand",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "[--icon-color:var(--color-icon-on-brand)]",
+        "bg-[var(--color-brand-primary)]",
+        "border",
+        "border-[var(--color-brand-primary)]",
+        "rounded-default",
+        "opacity-[var(--opacity-disabled)]",
+        "[data-icon=\"close-x\"]"
+      ]
+    },
+    {
+      "when": {
+        "state": "disabled-exclude"
+      },
+      "style": {
+        "bg": "color_brand_primary",
+        "borderColor": "color_brand_primary",
+        "borderRadius": "radius_default",
+        "icon": "minus",
+        "iconColor": "color_icon_on_brand",
+        "opacityToken": "opacity_disabled"
+      },
+      "tailwindClasses": [
+        "[--icon-color:var(--color-icon-on-brand)]",
+        "bg-[var(--color-brand-primary)]",
+        "border",
+        "border-[var(--color-brand-primary)]",
+        "rounded-default",
+        "opacity-[var(--opacity-disabled)]",
+        "[data-icon=\"minus\"]"
+      ]
+    },
+    {
+      "when": {
+        "size": "xs"
+      },
+      "style": {
+        "boxSize": "space_12",
+        "iconSize": "space_10"
+      },
+      "tailwindClasses": [
+        "w-[var(--space-12)]",
+        "h-[var(--space-12)]",
+        "[--icon-size:var(--space-10)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "sm"
+      },
+      "style": {
+        "boxSize": "space_16",
+        "iconSize": "space_icon_checkbox_sm"
+      },
+      "tailwindClasses": [
+        "w-[var(--space-16)]",
+        "h-[var(--space-16)]",
+        "[--icon-size:var(--space-icon-checkbox-sm)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "md"
+      },
+      "style": {
+        "boxSize": "space_20"
+      },
+      "tailwindClasses": [
+        "w-[var(--space-20)]",
+        "h-[var(--space-20)]"
+      ]
+    },
+    {
+      "when": {
+        "size": "lg"
+      },
+      "style": {
+        "boxSize": "space_24"
+      },
+      "tailwindClasses": [
+        "w-[var(--space-24)]",
+        "h-[var(--space-24)]"
+      ]
+    },
+    {
+      "when": {
+        "state": "focus-unchecked"
+      },
+      "style": {
+        "bg": "color_surface_3",
+        "borderColor": "color_brand_primary",
+        "borderRadius": "radius_default",
+        "iconColor": "color_icon_on_brand",
+        "focusRing": "effect_focus_brand"
+      },
+      "tailwindClasses": [
+        "[--icon-color:var(--color-icon-on-brand)]",
+        "bg-[var(--color-surface-3)]",
+        "border",
+        "border-transparent",
+        "rounded-default",
+        "shadow-focus-brand"
+      ]
+    },
+    {
+      "when": {
+        "state": "focus-checked"
+      },
+      "style": {
+        "bg": "color_brand_primary",
+        "borderColor": "color_brand_primary",
+        "borderRadius": "radius_default",
+        "icon": "check",
+        "iconColor": "color_icon_on_brand",
+        "focusRing": "effect_focus_brand"
+      },
+      "tailwindClasses": [
+        "[--icon-color:var(--color-icon-on-brand)]",
+        "bg-[var(--color-brand-primary)]",
+        "border",
+        "border-transparent",
+        "rounded-default",
+        "shadow-focus-brand",
+        "[data-icon=\"check\"]"
+      ]
+    },
+    {
+      "when": {
+        "state": "focus-exclude"
+      },
+      "style": {
+        "bg": "color_brand_primary",
+        "borderColor": "color_brand_primary",
+        "borderRadius": "radius_default",
+        "icon": "minus",
+        "iconColor": "color_icon_on_brand",
+        "focusRing": "effect_focus_brand"
+      },
+      "tailwindClasses": [
+        "[--icon-color:var(--color-icon-on-brand)]",
+        "bg-[var(--color-brand-primary)]",
+        "border",
+        "border-transparent",
+        "rounded-default",
+        "shadow-focus-brand",
+        "[data-icon=\"minus\"]"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "responsiveProps": {
+    "boxSize": {
+      "xs": "space_12",
+      "sm": "space_16",
+      "md": "space_20",
+      "lg": "space_24"
+    },
+    "iconSize": {
+      "xs": "space_10",
+      "sm": "space_icon_checkbox_sm"
+    }
+  },
+  "element": "button",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "fixed",
+    "cross": "fixed"
+  },
+  "rootAlign": {
+    "main": "center",
+    "cross": "center"
+  },
+  "customStructure": "checkbox",
+  "styleKeys": [
+    "boxSize",
+    "icon",
+    "bg",
+    "borderColor",
+    "borderRadius",
+    "iconColor",
+    "opacityToken"
+  ],
+  "heightConstraint": "hug",
+  "borderWidthToken": "border_width_base",
+  "generatorStrategy": "template",
+  "template": "Checkbox"
+}

@@ -1,0 +1,85 @@
+{
+  "tokenCategory": "Typography",
+  "description": "Typography tokens for the design system. Source of truth: @Typography.pdf.",
+  "sourceDocument": "@Typography.pdf",
+  "primitives": {
+    "fontFamily": {
+      "font_family_base": { "type": "String", "value": "Inter" },
+      "font_family_mono": { "type": "String", "value": "Roboto Mono" }
+    },
+    "fontWeight": {
+      "font_weight_regular":  { "type": "Number", "value": 400 },
+      "font_weight_medium":   { "type": "Number", "value": 500 },
+      "font_weight_semibold": { "type": "Number", "value": 600 }
+    },
+    "fontSize": {
+      "font_size_8":  { "type": "Number", "value": 8,  "unit": "px" },
+      "font_size_10": { "type": "Number", "value": 10, "unit": "px" },
+      "font_size_12": { "type": "Number", "value": 12, "unit": "px" },
+      "font_size_14": { "type": "Number", "value": 14, "unit": "px" },
+      "font_size_16": { "type": "Number", "value": 16, "unit": "px" },
+      "font_size_18": { "type": "Number", "value": 18, "unit": "px" },
+      "font_size_20": { "type": "Number", "value": 20, "unit": "px" },
+      "font_size_24": { "type": "Number", "value": 24, "unit": "px" },
+      "font_size_32": { "type": "Number", "value": 32, "unit": "px" }
+    },
+    "lineHeight": {
+      "line_height_12": { "type": "Number", "value": 12, "unit": "px" },
+      "line_height_16": { "type": "Number", "value": 16, "unit": "px" },
+      "line_height_20": { "type": "Number", "value": 20, "unit": "px" },
+      "line_height_24": { "type": "Number", "value": 24, "unit": "px" },
+      "line_height_28": { "type": "Number", "value": 28, "unit": "px" },
+      "line_height_32": { "type": "Number", "value": 32, "unit": "px" },
+      "line_height_40": { "type": "Number", "value": 40, "unit": "px" }
+    }
+  },
+  "semantic": {
+    "roles": {
+      "text_role_display": { "description": "Презентационные заголовки" },
+      "text_role_heading": { "description": "Структура контента" },
+      "text_role_body":    { "description": "Основной текст" },
+      "text_role_caption": { "description": "Подписи / вторичный текст" },
+      "text_role_mono":    { "description": "Код / данные" }
+    },
+    "emphasis": {
+      "text_emphasis_default": { "description": "Нейтральный текст" },
+      "text_emphasis_strong":  { "description": "Акцент" },
+      "text_emphasis_muted":   { "description": "Вторичный" }
+    },
+    "context": {
+      "text_context_ui":      { "description": "Интерфейс" },
+      "text_context_content": { "description": "Контент" },
+      "text_context_data":    { "description": "Таблицы / цифры" },
+      "text_context_code":    { "description": "Код / логи" }
+    }
+  },
+  "textStyles": {
+    "Text/Display/1":     { "fontSize": "font_size_32", "lineHeight": "line_height_40", "fontWeight": "font_weight_semibold", "fontFamily": "font_family_base" },
+    "Text/Heading/H1":    { "fontSize": "font_size_24", "lineHeight": "line_height_32", "fontWeight": "font_weight_semibold", "fontFamily": "font_family_base" },
+    "Text/Heading/H2":    { "fontSize": "font_size_20", "lineHeight": "line_height_28", "fontWeight": "font_weight_semibold", "fontFamily": "font_family_base" },
+    "Text/Heading/H3":    { "fontSize": "font_size_18", "lineHeight": "line_height_24", "fontWeight": "font_weight_semibold", "fontFamily": "font_family_base" },
+    "Text/Heading/H4":    { "fontSize": "font_size_16", "lineHeight": "line_height_24", "fontWeight": "font_weight_semibold", "fontFamily": "font_family_base" },
+    "Text/Body/Base":     { "fontSize": "font_size_14", "lineHeight": "line_height_20", "fontWeight": "font_weight_regular",  "fontFamily": "font_family_base" },
+    "Text/Body/Strong":   { "fontSize": "font_size_14", "lineHeight": "line_height_20", "fontWeight": "font_weight_semibold", "fontFamily": "font_family_base" },
+    "Text/Body/SM":       { "fontSize": "font_size_12", "lineHeight": "line_height_16", "fontWeight": "font_weight_regular",  "fontFamily": "font_family_base" },
+    "Text/Body/XS":       { "fontSize": "font_size_10", "lineHeight": "line_height_12", "fontWeight": "font_weight_regular",  "fontFamily": "font_family_base" },
+    "Text/Caption/Base":  { "fontSize": "font_size_12", "lineHeight": "line_height_16", "fontWeight": "font_weight_medium",   "fontFamily": "font_family_base" },
+    "Text/Caption/XS":    { "fontSize": "font_size_10", "lineHeight": "line_height_12", "fontWeight": "font_weight_medium",   "fontFamily": "font_family_base" },
+    "Text/Mono/Body":     { "fontSize": "font_size_14", "lineHeight": "line_height_20", "fontWeight": "font_weight_regular",  "fontFamily": "font_family_mono" }
+  },
+  "usageRules": {
+    "Display/1":    { "primaryUsage": "Hero, Empty state",    "forbiddenUsage": "Forms, Tables" },
+    "Heading/H1":   { "primaryUsage": "Page title",           "forbiddenUsage": "Card title" },
+    "Heading/H2":   { "primaryUsage": "Section title",        "forbiddenUsage": "Button" },
+    "Heading/H3":   { "primaryUsage": "Card title",           "forbiddenUsage": "Inline text" },
+    "Body/Base":    { "primaryUsage": "Main UI text",         "forbiddenUsage": "Long paragraphs" },
+    "Body/Strong":  { "primaryUsage": "Emphasis in body",     "forbiddenUsage": "Labels" },
+    "Caption/Base": { "primaryUsage": "Labels, helper text",  "forbiddenUsage": "Body copy" },
+    "Caption/XS":   { "primaryUsage": "Meta, timestamps",     "forbiddenUsage": "Inputs" },
+    "Mono/Body":    { "primaryUsage": "Code, logs, IDs",      "forbiddenUsage": "Marketing text" }
+  },
+  "constraints": {
+    "noHardcodedTypography": "All font sizes, weights, and families must come from this contract.",
+    "useTextStyles": "Prefer pre-composed TextStyles over manual composition of primitives."
+  }
+}

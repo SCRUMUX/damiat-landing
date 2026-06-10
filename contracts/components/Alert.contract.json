@@ -1,0 +1,362 @@
+{
+  "name": "@UI/Alert",
+  "description": "Alert: иконка слева (exclamation-diamond-fill), заголовок, параграф, иконка справа (close). Варианты appearance (warning, info, danger, success), variant (basic, leftBorder, topBorder, solid). ",
+  "variantProps": [
+    "appearance",
+    "variant"
+  ],
+  "variantAxes": {
+    "appearance": [
+      "warning",
+      "info",
+      "danger",
+      "success"
+    ],
+    "variant": [
+      "basic",
+      "leftBorder",
+      "topBorder",
+      "solid"
+    ]
+  },
+  "variantRules": [
+    {
+      "when": {},
+      "style": {
+        "paddingX": "space_6",
+        "paddingY": "space_4",
+        "gap": "space_4",
+        "textColor": "color_text_primary",
+        "titleStyle": "Text/Body/Strong",
+        "paragraphStyle": "Text/Body/SM",
+        "borderSide": "none",
+        "borderRadius": "radius_medium",
+        "minWidth": "space_container_content_min",
+        "maxWidth": "space_container_content_max"
+      },
+      "tailwindClasses": [
+        "text-[var(--color-text-primary)]",
+        "border",
+        "border-transparent",
+        "px-[var(--space-6)]",
+        "py-[var(--space-4)]",
+        "gap-[var(--space-4)]",
+        "min-w-[var(--space-container-content-min)]",
+        "max-w-[var(--space-container-content-max)]",
+        "rounded-medium",
+        "[--title-text-class:text-style-body-strong]",
+        "[--paragraph-text-class:text-style-body-sm]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "warning"
+      },
+      "style": {
+        "background": "color_warning_surface",
+        "iconColor": "color_warning_base",
+        "borderColor": "color_warning_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-warning-surface)]",
+        "[--icon-color:var(--color-warning-base)]",
+        "border",
+        "border-[var(--color-warning-base)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "info"
+      },
+      "style": {
+        "background": "color_info_surface",
+        "iconColor": "color_info_base",
+        "borderColor": "color_info_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-info-surface)]",
+        "[--icon-color:var(--color-info-base)]",
+        "border",
+        "border-[var(--color-info-base)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "danger"
+      },
+      "style": {
+        "background": "color_danger_surface",
+        "iconColor": "color_danger_base",
+        "borderColor": "color_danger_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-danger-surface)]",
+        "[--icon-color:var(--color-danger-base)]",
+        "border",
+        "border-[var(--color-danger-base)]"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "success"
+      },
+      "style": {
+        "background": "color_success_surface",
+        "iconColor": "color_success_base",
+        "borderColor": "color_success_base"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-success-surface)]",
+        "[--icon-color:var(--color-success-base)]",
+        "border",
+        "border-[var(--color-success-base)]"
+      ]
+    },
+    {
+      "when": {
+        "variant": "basic"
+      },
+      "style": {
+        "borderSide": "none"
+      },
+      "tailwindClasses": [
+        "border",
+        "border-transparent"
+      ]
+    },
+    {
+      "when": {
+        "variant": "leftBorder"
+      },
+      "style": {
+        "borderSide": "left"
+      },
+      "tailwindClasses": [
+        "border-0",
+        "border-l"
+      ]
+    },
+    {
+      "when": {
+        "variant": "topBorder"
+      },
+      "style": {
+        "borderSide": "top"
+      },
+      "tailwindClasses": [
+        "border-0",
+        "border-t"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "warning",
+        "variant": "solid"
+      },
+      "style": {
+        "background": "color_warning_base",
+        "textColor": "color_warning_text",
+        "iconColor": "color_warning_text",
+        "borderSide": "none"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-warning-base)]",
+        "text-[var(--color-warning-text)]",
+        "[--icon-color:var(--color-warning-text)]",
+        "border",
+        "border-transparent"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "info",
+        "variant": "solid"
+      },
+      "style": {
+        "background": "color_info_base",
+        "textColor": "color_info_text",
+        "iconColor": "color_info_text",
+        "borderSide": "none"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-info-base)]",
+        "text-[var(--color-info-text)]",
+        "[--icon-color:var(--color-info-text)]",
+        "border",
+        "border-transparent"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "danger",
+        "variant": "solid"
+      },
+      "style": {
+        "background": "color_danger_base",
+        "textColor": "color_danger_text",
+        "iconColor": "color_danger_text",
+        "borderSide": "none"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-danger-base)]",
+        "text-[var(--color-danger-text)]",
+        "[--icon-color:var(--color-danger-text)]",
+        "border",
+        "border-transparent"
+      ]
+    },
+    {
+      "when": {
+        "appearance": "success",
+        "variant": "solid"
+      },
+      "style": {
+        "background": "color_success_base",
+        "textColor": "color_success_text",
+        "iconColor": "color_success_text",
+        "borderSide": "none"
+      },
+      "tailwindClasses": [
+        "bg-[var(--color-success-base)]",
+        "text-[var(--color-success-text)]",
+        "[--icon-color:var(--color-success-text)]",
+        "border",
+        "border-transparent"
+      ]
+    }
+  ],
+  "focusRing": "focus-visible:outline-none focus-visible:shadow-focus-brand focus-visible:border-transparent",
+  "focusRingDanger": "focus-visible:outline-none focus-visible:shadow-focus-danger focus-visible:border-transparent",
+  "element": "div",
+  "rootLayout": "horizontal",
+  "rootSizing": {
+    "main": "hug",
+    "cross": "hug"
+  },
+  "rootAlign": {
+    "main": "center",
+    "cross": "start"
+  },
+  "slots": [
+    {
+      "name": "iconLeft",
+      "figmaName": "Left icon",
+      "type": "icon",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "fixed"
+    },
+    {
+      "name": "content",
+      "figmaName": "Content",
+      "type": "frame",
+      "optional": false,
+      "sizing": "fill",
+      "layout": "vertical",
+      "children": [
+        {
+          "name": "title",
+          "figmaName": "Title",
+          "type": "text",
+          "optional": true,
+          "default": "Alert title",
+          "sizing": "fill"
+        },
+        {
+          "name": "paragraph",
+          "figmaName": "Paragraph",
+          "type": "text",
+          "optional": true,
+          "default": "Alert message",
+          "sizing": "fill"
+        }
+      ]
+    },
+    {
+      "name": "iconRight",
+      "figmaName": "Right icon",
+      "type": "icon",
+      "optional": true,
+      "defaultVisible": false,
+      "sizing": "fixed"
+    }
+  ],
+  "booleanProps": [
+    {
+      "name": "showLeftIcon",
+      "figmaName": "Left icon",
+      "controls": "iconLeft",
+      "default": false
+    },
+    {
+      "name": "showRightIcon",
+      "figmaName": "Right icon",
+      "controls": "iconRight",
+      "default": false
+    },
+    {
+      "name": "showTitle",
+      "figmaName": "Title",
+      "controls": "title",
+      "default": true
+    },
+    {
+      "name": "showParagraph",
+      "figmaName": "Paragraph",
+      "controls": "paragraph",
+      "default": true
+    }
+  ],
+  "instanceSwapProps": [
+    {
+      "name": "leftIcon",
+      "figmaName": "Left Icon",
+      "slot": "iconLeft",
+      "role": "icon"
+    },
+    {
+      "name": "rightIcon",
+      "figmaName": "Right Icon",
+      "slot": "iconRight",
+      "role": "close"
+    }
+  ],
+  "textProps": [
+    {
+      "name": "title",
+      "figmaName": "Title text",
+      "default": "Alert title"
+    },
+    {
+      "name": "paragraph",
+      "figmaName": "Paragraph text",
+      "default": "Alert message"
+    }
+  ],
+  "styleKeys": [
+    "paddingX",
+    "paddingY",
+    "gap",
+    "titleStyle",
+    "textColor",
+    "paragraphStyle",
+    "background",
+    "borderSide",
+    "borderColor",
+    "borderRadius",
+    "iconColor",
+    "minWidth",
+    "maxWidth"
+  ],
+  "heightConstraint": "hug",
+  "borderWidthToken": "border_width_thick",
+  "iconSizeMap": {
+    "xs": 20,
+    "sm": 20,
+    "md": 20,
+    "lg": 24,
+    "xl": 20
+  },
+  "generatorStrategy": "template",
+  "template": "Alert"
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://synaptik.dev/schemas/asset-meta.json",
+  "title": "AssetMeta",
+  "type": "object",
+  "required": ["name", "category", "style", "createdBy"],
+  "properties": {
+    "name": { "type": "string" },
+    "category": { "type": "string" },
+    "style": { "type": "string" },
+    "createdBy": { "type": "string" },
+    "conceptId": { "type": "string" },
+    "sourceCard": { "type": "string" },
+    "promptHash": { "type": "string" },
+    "sessionId": { "type": "string" },
+    "cardId": { "type": "string" },
+    "iconSlug": { "type": "string" },
+    "publishedAt": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,386 @@
+{
+  "version": 1,
+  "icons": [
+    {
+      "projectSlug": "agriculture-technology",
+      "iconSlug": "co2-poteri-massy-pri-khranenii",
+      "name": "Co2PoteriMassyPriKhranenii",
+      "category": "AgroTech",
+      "style": "Damiat",
+      "relativePath": "agriculture-technology/co2-poteri-massy-pri-khranenii"
+    },
+    {
+      "projectSlug": "agriculture-technology",
+      "iconSlug": "dannye-v-platformu",
+      "name": "DannyeVPlatformu",
+      "category": "AgroTech",
+      "style": "Damiat",
+      "relativePath": "agriculture-technology/dannye-v-platformu"
+    },
+    {
+      "projectSlug": "agriculture-technology",
+      "iconSlug": "dinamika-po-mesyatsam",
+      "name": "DinamikaPoMesyatsam",
+      "category": "AgroTech",
+      "style": "Damiat",
+      "relativePath": "agriculture-technology/dinamika-po-mesyatsam"
+    },
+    {
+      "projectSlug": "agriculture-technology",
+      "iconSlug": "etilen-khranenie-i-dozarivanie",
+      "name": "EtilenKhranenieIDozarivanie",
+      "category": "AgroTech",
+      "style": "Damiat",
+      "relativePath": "agriculture-technology/etilen-khranenie-i-dozarivanie"
+    },
+    {
+      "projectSlug": "agriculture-technology",
+      "iconSlug": "izmerenie-mikroklimata",
+      "name": "IzmerenieMikroklimata",
+      "category": "AgroTech",
+      "style": "Damiat",
+      "relativePath": "agriculture-technology/izmerenie-mikroklimata"
+    },
+    {
+      "projectSlug": "agriculture-technology",
+      "iconSlug": "mikroklimat-usloviya-khraneniya",
+      "name": "MikroklimatUsloviyaKhraneniya",
+      "category": "AgroTech",
+      "style": "Damiat",
+      "relativePath": "agriculture-technology/mikroklimat-usloviya-khraneniya"
+    },
+    {
+      "projectSlug": "agriculture-technology",
+      "iconSlug": "nevernyj-moment-prodazhi",
+      "name": "NevernyjMomentProdazhi",
+      "category": "AgroTech",
+      "style": "Damiat",
+      "relativePath": "agriculture-technology/nevernyj-moment-prodazhi"
+    },
+    {
+      "projectSlug": "agriculture-technology",
+      "iconSlug": "nevernyy-moment-prodazhi",
+      "name": "NevernyyMomentProdazhi",
+      "category": "AgroTech",
+      "style": "Damiat",
+      "relativePath": "agriculture-technology/nevernyy-moment-prodazhi"
+    },
+    {
+      "projectSlug": "agriculture-technology",
+      "iconSlug": "ozonirovanie",
+      "name": "Ozonirovanie",
+      "category": "AgroTech",
+      "style": "Damiat",
+      "relativePath": "agriculture-technology/ozonirovanie"
+    },
+    {
+      "projectSlug": "agriculture-technology",
+      "iconSlug": "parametry-stoimosti",
+      "name": "ParametryStoimosti",
+      "category": "AgroTech",
+      "style": "Damiat",
+      "relativePath": "agriculture-technology/parametry-stoimosti"
+    },
+    {
+      "projectSlug": "agriculture-technology",
+      "iconSlug": "parametry-urozhaya",
+      "name": "ParametryUrozhaya",
+      "category": "Analytics",
+      "style": "Damiat",
+      "relativePath": "agriculture-technology/parametry-urozhaya"
+    },
+    {
+      "projectSlug": "agriculture-technology",
+      "iconSlug": "poteri-12-17",
+      "name": "Poteri1217",
+      "category": "Business",
+      "style": "Damiat",
+      "relativePath": "agriculture-technology/poteri-12-17"
+    },
+    {
+      "projectSlug": "agriculture-technology",
+      "iconSlug": "prorastanie-i-sozrevanie",
+      "name": "ProrastanieISozrevanie",
+      "category": "Performance",
+      "style": "Damiat",
+      "relativePath": "agriculture-technology/prorastanie-i-sozrevanie"
+    },
+    {
+      "projectSlug": "agriculture-technology",
+      "iconSlug": "sokhranost-urozhaya",
+      "name": "SokhranostUrozhaya",
+      "category": "AgroTech",
+      "style": "Damiat",
+      "relativePath": "agriculture-technology/sokhranost-urozhaya"
+    },
+    {
+      "projectSlug": "agriculture-technology",
+      "iconSlug": "usushka-i-porcha",
+      "name": "UsushkaIPorcha",
+      "category": "Performance",
+      "style": "Damiat",
+      "relativePath": "agriculture-technology/usushka-i-porcha"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "12-17",
+      "name": "1217",
+      "category": "Business",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/12-17"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "24-7",
+      "name": "247",
+      "category": "Performance",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/24-7"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "6",
+      "name": "6",
+      "category": "Analytics",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/6"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-00904f5c23",
+      "name": "Card00904f5c23",
+      "category": "Performance",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-00904f5c23"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-343a0cd4df",
+      "name": "Card343a0cd4df2",
+      "category": "Product",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-343a0cd4df"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-35195232a8",
+      "name": "Card35195232a8",
+      "category": "Analytics",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-35195232a8"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-3ad7260126",
+      "name": "Card3ad7260126",
+      "category": "Business",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-3ad7260126"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-40c9ccfc45",
+      "name": "Card40c9ccfc455",
+      "category": "Performance",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-40c9ccfc45"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-43a44f1f5a",
+      "name": "Card43a44f1f5a",
+      "category": "Business",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-43a44f1f5a"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-49337256ec",
+      "name": "Card49337256ec",
+      "category": "Product",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-49337256ec"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-4e104b1c87",
+      "name": "Card4e104b1c87",
+      "category": "Product",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-4e104b1c87"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-52257113ea",
+      "name": "Card52257113ea",
+      "category": "Performance",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-52257113ea"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-538b6cb267",
+      "name": "Card538b6cb267",
+      "category": "Performance",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-538b6cb267"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-574a74e0f8",
+      "name": "Card574a74e0f8",
+      "category": "Business",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-574a74e0f8"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-5badf82455",
+      "name": "Card5badf82455",
+      "category": "Analytics",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-5badf82455"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-6abcafe7fa",
+      "name": "Card6abcafe7fa",
+      "category": "Performance",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-6abcafe7fa"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-6e3b768aa8",
+      "name": "Card6e3b768aa8",
+      "category": "Business",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-6e3b768aa8"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-7fe8be0e6a",
+      "name": "Card7fe8be0e6a",
+      "category": "Performance",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-7fe8be0e6a"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-83888742fd",
+      "name": "Card83888742fd",
+      "category": "Business",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-83888742fd"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-8a270b4af6",
+      "name": "Card8a270b4af6",
+      "category": "Performance",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-8a270b4af6"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-9068874dff",
+      "name": "Card9068874dff",
+      "category": "Performance",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-9068874dff"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-96f67de640",
+      "name": "Card96f67de640",
+      "category": "Performance",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-96f67de640"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-abb0ad49a9",
+      "name": "CardAbb0ad49a9",
+      "category": "Performance",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-abb0ad49a9"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-b19e135931",
+      "name": "CardB19e1359313",
+      "category": "Product",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-b19e135931"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-c9df3dc074",
+      "name": "CardC9df3dc074",
+      "category": "Product",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-c9df3dc074"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-da1bb29476",
+      "name": "CardDa1bb29476",
+      "category": "Business",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-da1bb29476"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-e5990fea2b",
+      "name": "CardE5990fea2b",
+      "category": "Performance",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-e5990fea2b"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "card-f15224e653",
+      "name": "CardF15224e653",
+      "category": "Product",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/card-f15224e653"
+    },
+    {
+      "projectSlug": "agritech",
+      "iconSlug": "co2",
+      "name": "Co24",
+      "category": "Analytics",
+      "style": "Damiat",
+      "styleLabel": "Damiat",
+      "relativePath": "agritech/co2"
+    }
+  ]
+}
