@@ -23,10 +23,14 @@ export const WhyUsCard: React.FC<WhyUsCardProps> = ({
 }) => (
   <article className={cn(WHY_US_CARD_CLASS, className)}>
     <div className={WHY_US_CARD_BODY_CLASS}>
-      <div className={cn(WHY_US_CARD_TITLE_CLASS, titleClassName)}>{title}</div>
+      <h3 className={cn(WHY_US_CARD_TITLE_CLASS, titleClassName)}>{title}</h3>
       <p className={WHY_US_CARD_DESCRIPTION_CLASS}>{description}</p>
     </div>
-    {icon ? <div className={WHY_US_CARD_ICON_SLOT_CLASS}>{icon}</div> : null}
+    {icon ? (
+      <div className={WHY_US_CARD_ICON_SLOT_CLASS}>
+        <div className="flex h-full w-full items-end justify-end">{icon}</div>
+      </div>
+    ) : null}
   </article>
 );
 

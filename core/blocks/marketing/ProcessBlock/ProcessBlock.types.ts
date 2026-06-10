@@ -7,6 +7,8 @@ export interface ProcessStepItem {
   title: string;
   titleBreakBefore?: string;
   description: string;
+  /** Optional Synaptik / marketing illustration in the step card. */
+  icon?: React.ReactNode;
 }
 
 export interface ProcessBlockProps {

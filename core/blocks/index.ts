@@ -120,7 +120,98 @@ export type {
 export { DamiatLandingPage } from './marketing/DamiatLandingPage';
 export type { DamiatLandingPageProps } from './marketing/DamiatLandingPage';
 
+export { LoginBlock } from './marketing/LoginBlock';
+export type {
+  LoginBlockProps,
+  LoginFormLabels,
+  LoginFormValues,
+  LoginLegalLink,
+} from './marketing/LoginBlock';
+
+export { DamiatLoginPage } from './marketing/DamiatLoginPage';
+export type { DamiatLoginPageProps } from './marketing/DamiatLoginPage';
+
+export { CaseStudyIntroBlock } from './marketing/CaseStudyIntroBlock';
+export type { CaseStudyIntroBlockProps, CaseStudyHighlight } from './marketing/CaseStudyIntroBlock';
+
+export { CaseStudySectionsBlock } from './marketing/CaseStudySectionsBlock';
+export type {
+  CaseStudySectionsBlockProps,
+  CaseStudySection,
+  CaseStudyQuote,
+} from './marketing/CaseStudySectionsBlock';
+
+export { CaseStudyInlineStatsBlock } from './marketing/CaseStudyInlineStatsBlock';
+export type { CaseStudyInlineStatsBlockProps, CaseStudyInlineStat } from './marketing/CaseStudyInlineStatsBlock';
+
+export { CaseStudyImplementedBlock } from './marketing/CaseStudyImplementedBlock';
+export type { CaseStudyImplementedBlockProps } from './marketing/CaseStudyImplementedBlock';
+
+export { CaseStudyAnchorNav } from './marketing/CaseStudyAnchorNav';
+export type { CaseStudyAnchorNavProps, CaseStudyAnchorItem } from './marketing/CaseStudyAnchorNav';
+
+export { CaseStudyArticleSplit } from './marketing/CaseStudyArticleSplit';
+export type { CaseStudyArticleSplitProps } from './marketing/CaseStudyArticleSplit';
+
+export { CaseStudyContactBlock } from './marketing/CaseStudyContactBlock';
+export type {
+  CaseStudyContactBlockProps,
+  CaseStudyContactFormLabels,
+  CaseStudyContactFormValues,
+} from './marketing/CaseStudyContactBlock';
+
+export { DamiatCaseDetailPage } from './marketing/DamiatCaseDetailPage/DamiatCaseDetailPage';
+export type { DamiatCaseDetailPageProps } from './marketing/DamiatCaseDetailPage/DamiatCaseDetailPage';
+
+export { AppShellBlock } from './marketing/AppShellBlock';
+export type { AppShellBlockProps, AppShellNavItem } from './marketing/AppShellBlock';
+
+export { MonitoringWorkspaceBlock } from './marketing/MonitoringWorkspaceBlock';
+export type { MonitoringWorkspaceBlockProps } from './marketing/MonitoringWorkspaceBlock';
+
+export { CabinetStatsStrip } from './marketing/CabinetStatsStrip';
+export type { CabinetStatsStripProps, CabinetStatItem } from './marketing/CabinetStatsStrip';
+
+export { DamiatCabinetPage } from './marketing/DamiatCabinetPage/DamiatCabinetPage';
+export type { DamiatCabinetPageProps } from './marketing/DamiatCabinetPage/DamiatCabinetPage';
+
+export { ShowcasePanelMonitoringView, ShowcasePanelStatusPill } from './marketing/ShowcasePanelBlock';
+
 export { damiatLandingArgs, damiatNavbarFixture, damiatCalculatorContent } from './marketing/damiatLandingFixtures';
+export { damiatLoginArgs, damiatLoginContent, damiatLoginWithErrorContent } from './marketing/damiatLoginFixtures';
+export { damiatCaseDetailArgs } from './marketing/damiatCaseDetailFixtures';
+export { damiatCabinetArgs } from './marketing/damiatCabinetFixtures';
+
+export { AdminContentListBlock } from './marketing/AdminContentListBlock';
+export type { AdminContentListBlockProps } from './marketing/AdminContentListBlock';
+
+export { AdminContentEditorBlock } from './marketing/AdminContentEditorBlock';
+export type {
+  AdminContentEditorBlockProps,
+  AdminAnchorItem,
+  AdminCaseDraft,
+  AdminContentDraft,
+  AdminContentKind,
+  AdminEditorSectionId,
+  AdminEventDraft,
+  AdminPartnerRecord,
+  AdminPublishStatus,
+  AdminUserRecord,
+} from './marketing/AdminContentEditorBlock';
+
+export { AdminContentWorkspaceBlock } from './marketing/AdminContentWorkspaceBlock';
+export type { AdminContentWorkspaceBlockProps } from './marketing/AdminContentWorkspaceBlock';
+
+export { AdminUsersWorkspaceBlock } from './marketing/AdminUsersWorkspaceBlock';
+export type { AdminUsersWorkspaceBlockProps } from './marketing/AdminUsersWorkspaceBlock';
+
+export { AdminPartnersWorkspaceBlock } from './marketing/AdminPartnersWorkspaceBlock';
+export type { AdminPartnersWorkspaceBlockProps } from './marketing/AdminPartnersWorkspaceBlock';
+
+export { DamiatAdminPage } from './marketing/DamiatAdminPage';
+export type { AdminSectionId, DamiatAdminPageProps } from './marketing/DamiatAdminPage';
+
+export { damiatAdminArgs } from './marketing/damiatAdminFixtures';
 
 /** Enterprise landing demo fixtures — reference payloads for consumer apps. */
 export {

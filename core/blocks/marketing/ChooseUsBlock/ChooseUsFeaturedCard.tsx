@@ -3,6 +3,7 @@ import { cn } from '../../../components/primitives/_shared';
 import {
   CHOOSE_US_FEATURED_CLASS,
   CHOOSE_US_FEATURED_DESCRIPTION_CLASS,
+  CHOOSE_US_FEATURED_MEDIA_SCRIM_CLASS,
   CHOOSE_US_FEATURED_TITLE_CLASS,
 } from '../../_shared/blockLayout';
 import type { ChooseUsFeaturedItem } from './ChooseUsBlock.types';
@@ -83,7 +84,12 @@ export const ChooseUsFeaturedCard: React.FC<ChooseUsFeaturedCardProps> = ({
     )}
   >
     {media ? (
-      <div className="absolute inset-[-1px]">{media}</div>
+      <>
+        <div className="absolute inset-0">{media}</div>
+        {contentAlign === 'bottom' ? (
+          <div className={CHOOSE_US_FEATURED_MEDIA_SCRIM_CLASS} aria-hidden />
+        ) : null}
+      </>
     ) : imageSrc || imageSrcMobile ? (
       <>
         {imageSrcMobile ? (

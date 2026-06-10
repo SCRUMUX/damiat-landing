@@ -3,7 +3,8 @@ import {
   BLOCK_CARD_STANDARD_RADIUS_CLASS,
   BLOCK_CARD_STANDARD_SHELL_CLASS,
   BLOCK_CARD_STANDARD_INSET_CLASS,
-  BLOCK_SURFACE_MEDIA_SLOT_CLASS,
+  TRUST_PILLAR_ICON_SLOT_CLASS,
+  WHY_US_FEATURED_MEDIA_SCRIM_CLASS,
 } from '../../_shared/blockLayout';
 import { cn } from '../../../components/primitives/_shared';
 import type { TrustPillarItem } from './TrustBlock.types';
@@ -43,6 +44,7 @@ export const TrustPillarCard: React.FC<TrustPillarCardProps> = ({
     >
       {isFeatured ? (
         <>
+          <div className="absolute inset-0 z-0 bg-[var(--color-brand-primary)]" aria-hidden />
           {imageSrc ? (
             <img
               src={imageSrc}
@@ -51,10 +53,14 @@ export const TrustPillarCard: React.FC<TrustPillarCardProps> = ({
             />
           ) : null}
           {cover ? <div className="absolute inset-0 z-0">{cover}</div> : null}
-          <div
-            className="pointer-events-none absolute inset-0 z-[1] bg-[var(--color-brand-primary)]/40 min-[1024px]:bg-gradient-to-t min-[1024px]:from-[var(--color-brand-primary)]/95 min-[1024px]:via-[var(--color-brand-primary)]/70 min-[1024px]:to-transparent"
-            aria-hidden="true"
-          />
+          {cover && !imageSrc ? (
+            <div className={WHY_US_FEATURED_MEDIA_SCRIM_CLASS} aria-hidden />
+          ) : imageSrc ? (
+            <div
+              className="pointer-events-none absolute inset-0 z-[1] bg-[var(--color-brand-primary)]/40 min-[1024px]:bg-gradient-to-t min-[1024px]:from-[var(--color-brand-primary)]/95 min-[1024px]:via-[var(--color-brand-primary)]/70 min-[1024px]:to-transparent"
+              aria-hidden="true"
+            />
+          ) : null}
         </>
       ) : null}
 
@@ -64,11 +70,12 @@ export const TrustPillarCard: React.FC<TrustPillarCardProps> = ({
         {!isFeatured ? (
           <div className="flex min-h-0 flex-1 flex-col justify-start gap-[var(--space-section-stack-m)]">
             {imageSrc || cover ? (
-              <div className={BLOCK_SURFACE_MEDIA_SLOT_CLASS}>
+              <div className={TRUST_PILLAR_ICON_SLOT_CLASS}>
                 {imageSrc ? (
                   <img src={imageSrc} alt={imageAlt ?? ''} className="h-full w-full object-cover" />
-                ) : null}
-                {cover ? <div className="absolute inset-0">{cover}</div> : null}
+                ) : (
+                  cover
+                )}
               </div>
             ) : null}
             <h3 className="m-0 font-medium text-style-h3 min-[1024px]:text-style-h4">{title}</h3>

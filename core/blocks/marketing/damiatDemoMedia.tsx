@@ -4,9 +4,9 @@ import type { HeroBlockProps } from './HeroBlock';
 
 import type { ShowcasePanelBlockProps } from './ShowcasePanelBlock';
 
-import type { WhyUsBlockProps } from './WhyUsBlock';
 
 import { damiatScenarioContent, damiatDeviceIntroContent } from './damiatLandingFixtures';
+import { withDamiatDeviceIntroMedia } from './damiatDeviceIntroIcons';
 import { DamiatGasOscilloscope } from './demo-assets/DamiatGasOscilloscope';
 import { getDamiatScenarioPreview } from './demo-assets/scenario';
 
@@ -80,8 +80,6 @@ export const damiatScenarioWithMedia = withDamiatScenarioMedia(damiatScenarioCon
 
 
 
-export function withDamiatDeviceIntroMedia(content: WhyUsBlockProps): WhyUsBlockProps {
-  return content;
-}
+export { withDamiatDeviceIntroMedia } from './damiatDeviceIntroIcons';
 
 export const damiatDeviceIntroWithMedia = withDamiatDeviceIntroMedia(damiatDeviceIntroContent);

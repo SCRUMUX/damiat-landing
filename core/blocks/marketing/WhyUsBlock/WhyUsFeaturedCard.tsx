@@ -17,18 +17,18 @@ function WhyUsFeaturedTitle({
   titleClassName,
 }: Pick<WhyUsFeaturedItem, 'title' | 'titleBreakBefore'> & { titleClassName?: string }) {
   if (!titleBreakBefore || !title.includes(titleBreakBefore)) {
-    return <div className={cn(WHY_US_FEATURED_TITLE_CLASS, titleClassName)}>{title}</div>;
+    return <h3 className={cn(WHY_US_FEATURED_TITLE_CLASS, titleClassName)}>{title}</h3>;
   }
 
   const [before, after] = title.split(titleBreakBefore);
 
   return (
-    <div className={cn(WHY_US_FEATURED_TITLE_CLASS, titleClassName)}>
+    <h3 className={cn(WHY_US_FEATURED_TITLE_CLASS, titleClassName)}>
       {before}
       <br className="min-[1024px]:hidden" />
       {titleBreakBefore}
       {after}
-    </div>
+    </h3>
   );
 }
 
@@ -88,7 +88,7 @@ export const WhyUsFeaturedCard: React.FC<WhyUsFeaturedCardProps> = ({
     {media ? (
       <>
         {isPrimary ? <div className="absolute inset-0 bg-[var(--color-brand-primary)]" aria-hidden /> : null}
-        <div className="absolute inset-[-1px] h-[101%] w-[101%]">{media}</div>
+        <div className="absolute inset-0">{media}</div>
         {isPrimary ? <div className={WHY_US_FEATURED_MEDIA_SCRIM_CLASS} aria-hidden /> : null}
       </>
     ) : videoSrc ? (

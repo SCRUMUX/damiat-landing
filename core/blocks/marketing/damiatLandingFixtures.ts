@@ -20,6 +20,12 @@ import type { DamiatCaseStudiesBlockProps } from './DamiatCaseStudiesBlock';
 import type { DamiatVolumeBenefitBlockProps } from './DamiatVolumeBenefitBlock';
 import { damiatPartnerItems } from './demo-assets/damiatPartnerLogos';
 import { damiatCaseStudyImagesById } from './demo-assets/damiatCaseStudyImages';
+import {
+  damiatCardIcon,
+  damiatCatalogIcon,
+  damiatFeaturedCover,
+  damiatTrustCover,
+} from './damiatGeneratedIcons';
 
 export const damiatNavbarFixture: NavbarBlockProps = {
   variant: 'enterprise',
@@ -31,7 +37,7 @@ export const damiatNavbarFixture: NavbarBlockProps = {
   links: [
     { label: 'Калькулятор', href: '#calculator' },
     { label: 'Сценарии', href: '#scenarios' },
-    { label: 'Прибор', href: '#device' },
+    { label: 'Генератор', href: '#device' },
     { label: 'Кейсы', href: '#case' },
   ],
   phone: {
@@ -105,25 +111,25 @@ export const damiatProblemContent: FeaturesBlockProps = {
   features: [
     {
       id: 'sprouting',
-      icon: '🌱',
+      icon: damiatCatalogIcon('card-abb0ad49a9'),
       title: 'Прорастание и созревание',
       description: 'Естественное накопление этилена ускоряет физиологическое старение клубней.',
     },
     {
       id: 'shrinkage',
-      icon: '💧',
+      icon: damiatCatalogIcon('card-96f67de640'),
       title: 'Усушка и порча',
       description: 'Метаболизм и патогены без КГС снижают товарный вид и массу партии.',
     },
     {
       id: 'losses',
-      icon: '📉',
+      icon: damiatCatalogIcon('12-17'),
       title: 'Потери 12–17%',
       description: 'Против 4–6,5% при контролируемой атмосфере и этиленгенераторе DAMIAT.',
     },
     {
       id: 'timing',
-      icon: '⏱',
+      icon: damiatCatalogIcon('card-574a74e0f8'),
       title: 'Неверный момент продажи',
       description: 'Снижение качества и рыночный тайминг вместе съедают маржу хозяйства.',
     },
@@ -355,24 +361,34 @@ export const damiatDevicePrincipleContent: ProcessBlockProps = {
   headingAppearance: 'primary',
   steps: [
     {
+      id: 'measure',
       title: 'Измерение микроклимата',
       description: 'Контроллер отслеживает T°, влажность, CO₂, C₂H₄ и O₃ в камере и в продукте.',
+      icon: damiatCardIcon('card-343a0cd4df'),
     },
     {
+      id: 'ethylene',
       title: 'Регулирование этилена',
       description: 'Поддерживается состав атмосферы, замедляется созревание и дыхание клубней.',
+      icon: damiatCardIcon('card-6abcafe7fa'),
     },
     {
+      id: 'ozone',
       title: 'Озонирование',
       description: 'Озонатор подключается к генератору и работает по заданным программам обеззараживания.',
+      icon: damiatCardIcon('card-538b6cb267'),
     },
     {
+      id: 'preserve',
       title: 'Сохранность урожая',
       description: 'Снижаются потери от убыли, болезней и механических повреждений при отгрузке.',
+      icon: damiatCardIcon('card-3ad7260126'),
     },
     {
+      id: 'platform',
       title: 'Данные в платформу',
       description: 'Телеметрия уходит в архив и DAMIAT — прогноз рисков и рекомендации по продаже.',
+      icon: damiatCardIcon('card-49337256ec'),
     },
   ],
 };
@@ -399,6 +415,7 @@ export const damiatGeneratorBenefitsContent: ChooseUsBlockProps = {
     {
       id: 'preservation',
       size: 'wide',
+      icon: damiatCardIcon('card-f15224e653'),
       title: 'Длительная сохранность',
       description:
         'Клубни дольше остаются в товарном состоянии: меньше убыли и порчи. Продаёте в нужный месяц — а не когда качество уже падает.',
@@ -406,6 +423,7 @@ export const damiatGeneratorBenefitsContent: ChooseUsBlockProps = {
     {
       id: 'ripening',
       size: 'wide',
+      icon: damiatCardIcon('card-e5990fea2b'),
       title: 'Дозаривание перед реализацией',
       description:
         'Режим дозаривания выравнивает созревание партии и готовит картофель к отгрузке — без химической обработки.',
@@ -413,6 +431,7 @@ export const damiatGeneratorBenefitsContent: ChooseUsBlockProps = {
     {
       id: 'sprout-control',
       size: 'narrow',
+      icon: damiatCardIcon('card-7fe8be0e6a'),
       title: 'Контроль прорастания на хранении',
       description:
         'Замедляет прорастание и физиологическое старение на длинном хранении — клубни дольше «спят» и не теряют массу.',
@@ -420,6 +439,7 @@ export const damiatGeneratorBenefitsContent: ChooseUsBlockProps = {
     {
       id: 'sale-prep',
       size: 'narrow',
+      icon: damiatCardIcon('card-8a270b4af6'),
       title: 'Подготовка партии к продаже',
       description:
         'Управляемый этилен помогает подвести партию к нужному состоянию перед отгрузкой: от сдерживания прорастания до дозаривания.',
@@ -427,6 +447,7 @@ export const damiatGeneratorBenefitsContent: ChooseUsBlockProps = {
     {
       id: 'market-mass',
       size: 'narrow',
+      icon: damiatCardIcon('card-83888742fd'),
       title: 'Больше массы доходит до рынка',
       description:
         'С контролируемой газовой средой теряете меньше тонн на складе — больше урожая превращается в выручку с того же объёма хранения.',
@@ -437,6 +458,7 @@ export const damiatGeneratorBenefitsContent: ChooseUsBlockProps = {
     titleBreakBefore: ' без химикатов',
     description:
       'Сохранение урожая за счёт контролируемой атмосферы и этилена — без хлора, ингибиторов прорастания и антисептиков. Меньше food loss, безопаснее для продукта и персонала.',
+    media: damiatFeaturedCover('card-52257113ea'),
   },
 };
 
@@ -528,10 +550,12 @@ export const damiatTrustContent: TrustBlockProps = {
       featured: true,
       title: 'Сколково и пилотные внедрения',
       description: 'Резидент фонда «Сколково», участие в AgroTech и Golden Potato, пилоты в ЮФО и ЦФО.',
+      cover: damiatFeaturedCover('card-da1bb29476'),
     },
     {
       title: 'Участие в выставках',
       description: 'AgroTech, Golden Potato, отраслевые форумы 2024–2026.',
+      cover: damiatTrustCover('card-43a44f1f5a'),
     },
   ],
   standardsTitle: 'Подтверждения',

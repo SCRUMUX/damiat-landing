@@ -228,6 +228,24 @@ export const BLOCK_SURFACE_MEDIA_SLOT_CLASS = cn(
   'rounded-[var(--radius-medium)] bg-[var(--color-surface-2)]',
 );
 
+/** Trust secondary pillar — Synaptik icon, no meta background. */
+export const TRUST_PILLAR_ICON_SLOT_CLASS = cn(
+  'relative flex w-full shrink-0 items-center justify-start',
+  'h-[var(--space-140)] min-[1024px]:h-[var(--space-168)]',
+);
+
+/** Trust secondary pillar — icon left, copy right (e.g. «Участие в выставках»). */
+export const TRUST_PILLAR_SECONDARY_ROW_CLASS = cn(
+  'relative z-[2] flex w-full min-w-0 items-center',
+  'gap-[var(--space-section-content-m)] min-[1024px]:gap-[var(--space-section-content-l)]',
+);
+
+/** Trust secondary pillar — large icon slot (primary-scale plate). */
+export const TRUST_PILLAR_SECONDARY_ICON_CLASS = cn(
+  'flex shrink-0 items-center justify-center',
+  'min-w-[var(--space-120)] min-[1024px]:min-w-[var(--space-140)]',
+);
+
 /** Solution case card ↗ — round brand fill; hover deepens brand + icon rotate (card `group`). */
 export const SOLUTION_ARROW_BUTTON_CLASS = cn(
   'group inline-flex shrink-0 items-center justify-center',
@@ -363,7 +381,7 @@ export const BLOCK_SPLIT_CLASS = cn(
 export const EVENTS_FEATURED_SPLIT_CLASS = cn(
   BLOCK_GRID_BASE_CLASS,
   'grid-cols-1 min-[1024px]:grid-cols-[minmax(0,var(--space-280))_minmax(0,1fr)]',
-  'min-[1024px]:items-center min-[1024px]:gap-[var(--space-80)]',
+  'min-[1024px]:items-start min-[1024px]:gap-[var(--space-80)]',
 );
 
 /** Solutions desktop mosaic — 12-col: row1 (4+4+4), row2 (6+3+3) (Cortel). */
@@ -382,6 +400,14 @@ export const SOLUTIONS_SCROLL_STRIP_CLASS = cn(
   'snap-x snap-mandatory [&>*]:snap-start',
 );
 
+/** Solutions equal grid — case detail related projects (Cortel 3-col). */
+export const SOLUTIONS_EQUAL_GRID_CLASS = cn(
+  'grid w-full min-w-0',
+  'grid-cols-1 gap-[var(--space-16)]',
+  'min-[768px]:grid-cols-2',
+  'min-[1024px]:grid-cols-3',
+);
+
 /** Solutions catalog — Cortel /solutions: equal 3-col grid, bordered hover cards. */
 export const SOLUTIONS_CATALOG_GRID_CLASS = cn(
   'm-0 grid w-full min-w-0 list-none gap-[var(--space-16)] p-0',
@@ -390,7 +416,8 @@ export const SOLUTIONS_CATALOG_GRID_CLASS = cn(
 
 export const SOLUTIONS_CATALOG_CARD_SHELL_CLASS = cn(
   BLOCK_CARD_COMPACT_CLASS,
-  'relative transition-colors duration-200 hover:bg-[var(--color-surface-2)]',
+  'relative transition-[border-color] duration-200',
+  'hover:border-[var(--color-brand-primary)] hover:bg-[var(--color-surface-1)]',
 );
 
 export const SOLUTIONS_CATALOG_CARD_LINK_CLASS = cn(
@@ -406,7 +433,7 @@ export const SOLUTIONS_CATALOG_HEADER_ROW_CLASS = cn(
   'desktop:pr-[calc(var(--space-32)+var(--space-inset-xl))]',
 );
 
-export const SOLUTIONS_CATALOG_ICON_CLASS = 'shrink-0';
+export const SOLUTIONS_CATALOG_ICON_CLASS = cn('shrink-0', '[&_img]:object-contain');
 
 export const SOLUTIONS_CATALOG_TITLE_CLASS = cn(
   'm-0 text-balance font-medium text-style-h4 text-[var(--color-text-primary)]',
@@ -708,10 +735,11 @@ export const WHY_US_ROW_BOTTOM_CLASS = cn(
 
 export const WHY_US_CARD_CLASS = cn(
   'flex min-h-[var(--space-302)] flex-col justify-between',
+  BLOCK_CARD_STANDARD_SHELL_CLASS,
   BLOCK_CARD_STANDARD_INSET_CLASS,
-  BLOCK_CARD_PROMINENT_SHELL_CLASS,
+  'bg-[var(--color-surface-1)] transition-[border-color] duration-200',
+  'hover:border-[var(--color-brand-primary)] hover:bg-[var(--color-surface-1)]',
   'min-[1024px]:h-full',
-  'min-[1024px]:border min-[1024px]:border-solid min-[1024px]:border-[var(--color-border-base)]',
 );
 
 export const WHY_US_CARD_BODY_CLASS = cn(
@@ -720,7 +748,7 @@ export const WHY_US_CARD_BODY_CLASS = cn(
 );
 
 export const WHY_US_CARD_TITLE_CLASS = cn(
-  'font-medium text-style-h4 text-[var(--color-text-primary)]',
+  'm-0 font-medium text-style-h4 text-[var(--color-text-primary)]',
   'min-[1024px]:text-style-body-lg',
 );
 
@@ -729,7 +757,11 @@ export const WHY_US_CARD_DESCRIPTION_CLASS = cn(
   'min-[1024px]:mt-[var(--space-14)]',
 );
 
-export const WHY_US_CARD_ICON_SLOT_CLASS = 'mt-[var(--space-16)] flex self-end';
+export const WHY_US_CARD_ICON_SLOT_CLASS = cn(
+  'mt-[var(--space-16)] flex shrink-0 items-end justify-end self-end',
+  'h-[var(--space-50)] w-[var(--space-50)]',
+  'min-[1024px]:mt-[var(--space-12)] min-[1024px]:h-[var(--space-100)] min-[1024px]:w-[var(--space-100)]',
+);
 
 export const WHY_US_FEATURED_CLASS = cn(
   'relative flex overflow-hidden rounded-[var(--radius-large)]',
@@ -737,15 +769,79 @@ export const WHY_US_FEATURED_CLASS = cn(
   'h-[var(--space-296)] min-[1024px]:h-full',
 );
 
-export const WHY_US_FEATURED_PRIMARY_CLASS = 'bg-[var(--color-brand-primary)]';
-
-export const WHY_US_FEATURED_MEDIA_SCRIM_CLASS = cn(
-  'pointer-events-none absolute inset-0',
-  'bg-gradient-to-t from-[color-mix(in_srgb,var(--color-brand-primary)_92%,black)] via-[color-mix(in_srgb,var(--color-brand-primary)_45%,transparent)] to-[color-mix(in_srgb,var(--color-brand-primary)_18%,transparent)]',
+export const WHY_US_FEATURED_PRIMARY_CLASS = cn(
+  'bg-[var(--color-brand-primary)] text-[var(--color-text-on-brand)]',
 );
 
+/** Text-only scrim for primary featured — bottom-left, does not cover corner icon. */
+export const DAMIAT_PRIMARY_FEATURED_TEXT_SCRIM_CLASS = cn(
+  'pointer-events-none absolute inset-0 z-[1]',
+  'bg-[radial-gradient(ellipse_120%_90%_at_16%_100%,color-mix(in_srgb,var(--color-brand-primary)_48%,black),transparent_70%)]',
+);
+
+/** Corner slot for glass icon frame on brand primary featured cards (interactive). */
+export const DAMIAT_PRIMARY_FEATURED_ICON_SLOT_CLASS = cn(
+  'pointer-events-auto absolute bottom-[var(--space-16)] right-[var(--space-16)] z-[3]',
+  'flex max-h-[58%] max-w-[52%] items-end justify-end',
+  'min-[1024px]:bottom-[var(--space-24)] min-[1024px]:right-[var(--space-24)]',
+);
+
+/** Gradient rim — transitions from bright edge into glass fill. */
+export const DAMIAT_PRIMARY_FEATURED_ICON_PLATE_BORDER_CLASS = cn(
+  'group/plate relative max-w-full shrink-0 rounded-[var(--radius-section)] p-px',
+  'desktop:rounded-[var(--radius-large)]',
+  'bg-[linear-gradient(148deg,color-mix(in_srgb,var(--color-text-on-brand)_52%,transparent)_0%,color-mix(in_srgb,var(--color-text-on-brand)_18%,transparent)_40%,color-mix(in_srgb,var(--color-brand-hover)_72%,transparent)_100%)]',
+  'shadow-[0_10px_28px_rgba(0,0,0,0.2)]',
+  'transition-[transform,box-shadow,background] duration-200 ease-out',
+  'hover:-translate-y-[var(--space-2)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.3)]',
+  'hover:bg-[linear-gradient(148deg,color-mix(in_srgb,var(--color-text-on-brand)_62%,transparent)_0%,color-mix(in_srgb,var(--color-text-on-brand)_28%,transparent)_42%,color-mix(in_srgb,var(--color-brand-primary)_58%,transparent)_100%)]',
+);
+
+/**
+ * Frosted glass inset (backdrop-blur on brand — not applied to img pixels).
+ * @see BLOCK_GLASS_CHROME_OVERLAY_CLASS
+ */
+export const DAMIAT_PRIMARY_FEATURED_ICON_PLATE_CLASS = cn(
+  'relative overflow-hidden rounded-[inherit]',
+  'rounded-[calc(var(--radius-section)-1px)] desktop:rounded-[calc(var(--radius-large)-1px)]',
+  'backdrop-blur-background',
+  'bg-[color-mix(in_srgb,var(--color-text-on-brand)_14%,transparent)]',
+  'p-[var(--space-10)] desktop:p-[var(--space-14)]',
+  'shadow-[inset_0_1px_0_color-mix(in_srgb,var(--color-text-on-brand)_42%,transparent)]',
+  'transition-[background] duration-200 ease-out',
+  'group-hover/plate:bg-[color-mix(in_srgb,var(--color-text-on-brand)_22%,transparent)]',
+);
+
+export const DAMIAT_PRIMARY_FEATURED_ICON_PLATE_SHEEN_CLASS = cn(
+  'pointer-events-none absolute inset-0 rounded-[inherit]',
+  'bg-[linear-gradient(145deg,color-mix(in_srgb,var(--color-text-on-brand)_26%,transparent)_0%,transparent_52%)]',
+  'transition-opacity duration-200 group-hover/plate:opacity-90',
+);
+
+export const DAMIAT_PRIMARY_FEATURED_ICON_PLATE_EDGE_CLASS = cn(
+  'pointer-events-none absolute inset-0 rounded-[inherit]',
+  'ring-1 ring-inset ring-[color-mix(in_srgb,var(--color-text-on-brand)_22%,transparent)]',
+);
+
+/** Raster clip — same radius family as glass shell. */
+export const DAMIAT_PRIMARY_FEATURED_ICON_IMAGE_WRAP_CLASS = cn(
+  'relative z-[1] overflow-hidden',
+  'rounded-[var(--radius-medium)] desktop:rounded-[var(--radius-section)]',
+  'bg-[var(--color-surface-1)]',
+  'transition-[transform] duration-200 ease-out',
+  'group-hover/plate:scale-[1.02]',
+);
+
+export const DAMIAT_PRIMARY_FEATURED_ICON_IMAGE_CLASS = cn(
+  'block max-h-[var(--space-120)] w-auto max-w-full object-contain',
+  'desktop:max-h-[var(--space-160)]',
+);
+
+/** @deprecated Use DAMIAT_PRIMARY_FEATURED_TEXT_SCRIM_CLASS */
+export const WHY_US_FEATURED_MEDIA_SCRIM_CLASS = DAMIAT_PRIMARY_FEATURED_TEXT_SCRIM_CLASS;
+
 export const WHY_US_FEATURED_TITLE_CLASS = cn(
-  'font-medium text-style-h4 text-[var(--color-text-on-brand)]',
+  'm-0 font-medium text-style-h4 text-[var(--color-text-on-brand)]',
   'min-[1024px]:text-style-h3',
 );
 
@@ -810,11 +906,14 @@ export const CHOOSE_US_CARD_ICON_SLOT_CLASS = cn(
 
 export const CHOOSE_US_FEATURED_CLASS = cn(
   'relative flex h-[var(--space-300)] w-full shrink-0 flex-col justify-end overflow-hidden',
-  'rounded-[var(--radius-section)] text-[var(--color-text-on-brand)]',
+  'rounded-[var(--radius-section)] bg-[var(--color-brand-primary)] text-[var(--color-text-on-brand)]',
   BLOCK_CARD_STANDARD_INSET_CLASS,
   'desktop:h-auto desktop:min-h-[var(--space-608)] desktop:rounded-[var(--radius-large)]',
   'desktop:gap-[var(--space-16)]',
 );
+
+/** @deprecated Use DAMIAT_PRIMARY_FEATURED_TEXT_SCRIM_CLASS */
+export const CHOOSE_US_FEATURED_MEDIA_SCRIM_CLASS = DAMIAT_PRIMARY_FEATURED_TEXT_SCRIM_CLASS;
 
 export const CHOOSE_US_FEATURED_TITLE_CLASS = cn(
   'm-0 font-medium text-style-h3 text-[var(--color-text-on-brand)]',
@@ -877,6 +976,495 @@ export const PROCESS_STEP_TITLE_CLASS = cn(
 export const PROCESS_STEP_DESCRIPTION_CLASS = cn(
   'm-0 mt-[var(--space-8)] font-normal text-style-body-lg text-[var(--color-text-secondary)]',
   'min-[1024px]:mt-[var(--space-20)]',
+);
+
+/** Auth login — Cortel console: split brand decor + white form panel. */
+export const LOGIN_PAGE_SPLIT_CLASS = cn(
+  'flex min-h-screen w-full min-w-0 flex-col',
+  'min-[1024px]:flex-row',
+);
+
+export const LOGIN_BRAND_PANEL_CLASS = cn(
+  'relative hidden min-h-[var(--space-240)] overflow-hidden',
+  'bg-[var(--color-brand-primary)] text-[var(--color-text-on-brand)]',
+  'min-[1024px]:flex min-[1024px]:min-h-screen min-[1024px]:min-w-0 min-[1024px]:flex-1',
+);
+
+export const LOGIN_FORM_PANEL_CLASS = cn(
+  'flex min-h-screen min-w-0 flex-1 flex-col',
+  'bg-[var(--color-surface-1)] text-[var(--color-text-primary)]',
+);
+
+export const LOGIN_FORM_INNER_CLASS = cn(
+  'flex w-full min-w-0 flex-1 flex-col justify-center',
+  'px-[var(--space-inset-l)] py-[var(--space-section-y-l)]',
+  'min-[1024px]:px-[var(--space-60)] min-[1024px]:py-[var(--space-section-y-xl)]',
+);
+
+export const LOGIN_FORM_COLUMN_CLASS = cn(
+  'mx-auto w-full min-w-0 max-w-[var(--space-480)]',
+);
+
+export const LOGIN_FORM_HEADER_CLASS = cn(
+  'mb-[var(--space-section-content-m)] flex w-full min-w-0 flex-col items-start',
+  'gap-[var(--space-section-stack-s)]',
+);
+
+export const LOGIN_FORM_STACK_CLASS = cn(
+  'flex w-full min-w-0 flex-col gap-[var(--space-section-stack-m)]',
+);
+
+export const LOGIN_REMEMBER_FORGOT_ROW_CLASS = cn(
+  'flex w-full min-w-0 items-center justify-between gap-[var(--space-section-stack-m)]',
+);
+
+export const LOGIN_REGISTRATION_HINT_CLASS = cn(
+  'm-0 text-style-body-sm text-[var(--color-text-secondary)]',
+);
+
+export const LOGIN_LEGAL_FOOTER_CLASS = cn(
+  'mt-auto flex w-full min-w-0 flex-wrap items-center justify-center gap-[var(--space-section-stack-m)]',
+  'border-t border-solid border-[var(--color-border-base)]',
+  'px-[var(--space-inset-l)] py-[var(--space-section-stack-m)]',
+  'min-[1024px]:px-[var(--space-60)]',
+);
+
+/** @deprecated Use LOGIN_PAGE_SPLIT_CLASS — kept for import stability. */
+export const LOGIN_PAGE_CENTER_CLASS = LOGIN_FORM_INNER_CLASS;
+
+/** @deprecated Split layout — form is flat on white panel, no card shell. */
+export const LOGIN_CARD_CLASS = LOGIN_FORM_COLUMN_CLASS;
+
+/** @deprecated Use LOGIN_FORM_HEADER_CLASS */
+export const LOGIN_CARD_HEADER_CLASS = LOGIN_FORM_HEADER_CLASS;
+
+/** Case study detail — unified long-read article stack (Cortel case page). */
+export const CASE_STUDY_ARTICLE_STACK_CLASS = cn(
+  'flex w-full min-w-0 flex-col',
+  'gap-[var(--space-section-content-l)]',
+);
+
+/** Case study — desktop split: sticky anchor nav + content column. */
+export const CASE_STUDY_ARTICLE_SPLIT_CLASS = cn(
+  'grid w-full min-w-0',
+  'grid-cols-1 gap-[var(--space-section-content-l)]',
+  'min-[1024px]:grid-cols-[minmax(0,var(--space-280))_minmax(0,1fr)]',
+  'min-[1024px]:items-start min-[1024px]:gap-[var(--space-section-content-l)]',
+);
+
+export const CASE_STUDY_ARTICLE_CONTENT_STACK_CLASS = cn(
+  'flex w-full min-w-0 max-w-[var(--space-800)] flex-col',
+  'gap-[var(--space-section-content-l)]',
+);
+
+export const CASE_STUDY_ANCHOR_NAV_STICKY_CLASS = cn(
+  'hidden min-[1024px]:block',
+  'sticky z-[calc(var(--z-header)-2)] self-start',
+  'top-[var(--navbar-chrome-height,0px)]',
+  'pt-[var(--space-section-stack-s)]',
+);
+
+export const CASE_STUDY_ANCHOR_LIST_CLASS = cn(
+  'm-0 flex list-none flex-col gap-[var(--space-section-stack-s)] p-0',
+);
+
+/** Side nav link — shared by case-study anchor nav and app-shell sidebar. */
+export const BLOCK_SIDE_NAV_LINK_CLASS = cn(
+  'block rounded-[var(--radius-section)] px-[var(--space-inset-m)] py-[var(--space-section-stack-s)]',
+  'text-left text-style-body text-[var(--color-text-secondary)] no-underline',
+  'transition-colors duration-150',
+  'hover:text-[var(--color-text-primary)]',
+);
+
+export const BLOCK_SIDE_NAV_LINK_ACTIVE_CLASS = cn(
+  BLOCK_SIDE_NAV_LINK_CLASS,
+  'bg-[var(--color-surface-2)] font-medium text-[var(--color-text-primary)]',
+);
+
+export const CASE_STUDY_ANCHOR_LINK_CLASS = cn(BLOCK_SIDE_NAV_LINK_CLASS, 'w-full');
+
+export const CASE_STUDY_ANCHOR_LINK_ACTIVE_CLASS = cn(
+  BLOCK_SIDE_NAV_LINK_ACTIVE_CLASS,
+  'w-full',
+);
+
+/** Compact gray stat card — case study inline stats and cabinet KPI strip. */
+export const BLOCK_COMPACT_STAT_CARD_CLASS = cn(
+  BLOCK_CARD_COMPACT_CLASS,
+  BLOCK_CARD_COMPACT_INSET_CLASS,
+  'flex min-w-0 flex-col gap-[var(--space-section-stack-s)]',
+  'bg-[var(--color-surface-2)]',
+);
+
+export const CASE_STUDY_STAT_CARD_CLASS = BLOCK_COMPACT_STAT_CARD_CLASS;
+
+/** Case study inline stats — 2-col grid inside article column. */
+export const CASE_STUDY_INLINE_STATS_GRID_CLASS = cn(
+  'grid w-full min-w-0',
+  'grid-cols-1 gap-[var(--space-section-content-m)]',
+  'min-[768px]:grid-cols-2 min-[768px]:gap-x-[var(--space-section-content-l)]',
+);
+
+export const CASE_STUDY_INLINE_STAT_VALUE_CLASS = cn(
+  'm-0 font-semibold text-style-h2 text-[var(--color-text-primary)]',
+);
+
+export const CASE_STUDY_INLINE_STAT_LABEL_CLASS = cn(
+  'm-0 text-style-body-lg text-[var(--color-text-secondary)]',
+);
+
+export const BLOCK_COMPACT_STAT_VALUE_CLASS = CASE_STUDY_INLINE_STAT_VALUE_CLASS;
+export const BLOCK_COMPACT_STAT_LABEL_CLASS = CASE_STUDY_INLINE_STAT_LABEL_CLASS;
+
+/** Case study detail — intro prose column (Cortel long-read). */
+export const CASE_STUDY_PROSE_CLASS = cn(
+  'flex w-full min-w-0 max-w-[var(--space-800)] flex-col',
+  'gap-[var(--space-section-stack-m)]',
+);
+
+export const CASE_STUDY_PROSE_PARAGRAPH_CLASS = cn(
+  'm-0 text-style-body-lg text-[var(--color-text-secondary)]',
+  'min-[1024px]:text-style-body-xl',
+);
+
+/** Case study intro — highlight metric pairs below prose. */
+export const CASE_STUDY_HIGHLIGHTS_GRID_CLASS = cn(
+  'grid w-full min-w-0 max-w-[var(--space-800)]',
+  'grid-cols-1 gap-[var(--space-section-content-m)]',
+  'min-[768px]:grid-cols-2 min-[768px]:gap-x-[var(--space-section-content-l)]',
+);
+
+export const CASE_STUDY_HIGHLIGHT_CELL_CLASS = cn(
+  'flex min-w-0 flex-col gap-[var(--space-section-stack-s)]',
+);
+
+export const CASE_STUDY_HIGHLIGHT_LABEL_CLASS = cn(
+  'm-0 text-style-body text-[var(--color-text-secondary)]',
+);
+
+export const CASE_STUDY_HIGHLIGHT_VALUE_CLASS = cn(
+  'm-0 font-semibold text-style-h3 text-[var(--color-brand-primary)]',
+  'min-[1024px]:text-style-h2',
+);
+
+/** Case study narrative sections stack. */
+export const CASE_STUDY_SECTIONS_STACK_CLASS = cn(
+  'flex w-full min-w-0 flex-col',
+  'gap-[var(--space-section-content-l)]',
+);
+
+export const CASE_STUDY_SECTION_TITLE_CLASS = cn(
+  'm-0 font-medium text-style-h2 text-[var(--color-text-primary)]',
+);
+
+export const CASE_STUDY_SECTION_BODY_CLASS = cn(
+  'flex flex-col gap-[var(--space-section-stack-m)]',
+);
+
+export const CASE_STUDY_SECTION_PARAGRAPH_CLASS = CASE_STUDY_PROSE_PARAGRAPH_CLASS;
+
+export const CASE_STUDY_BULLETS_CLASS = cn(
+  'm-0 flex flex-col gap-[var(--space-section-stack-s)] pl-[var(--space-inset-m)]',
+  'text-style-body-lg text-[var(--color-text-secondary)] min-[1024px]:text-style-body-xl',
+  'list-disc marker:text-[var(--color-brand-primary)]',
+);
+
+export const CASE_STUDY_QUOTE_CLASS = cn(
+  'relative m-0 border-0 border-l-[var(--space-4)] border-solid border-[var(--color-brand-primary)]',
+  'py-[var(--space-section-stack-s)] pl-[var(--space-inset-l)]',
+  'text-style-body-lg italic text-[var(--color-text-primary)]',
+  'min-[1024px]:text-style-body-xl',
+);
+
+export const CASE_STUDY_QUOTE_ATTRIBUTION_CLASS = cn(
+  'mt-[var(--space-section-stack-m)] not-italic text-style-body-sm text-[var(--color-text-secondary)]',
+);
+
+/** Case study contact — surface split + white form card override. */
+export const CASE_STUDY_CONTACT_SPLIT_CLASS = CONTACT_HERO_SPLIT_CLASS;
+
+export const CASE_STUDY_CONTACT_COPY_CLASS = CONTACT_HERO_COPY_CLASS;
+
+export const CASE_STUDY_CONTACT_DESCRIPTION_CLASS = cn(
+  'mt-[var(--space-section-stack-m)] text-balance text-style-body-lg text-[var(--color-text-secondary)]',
+  'min-[1024px]:mt-[var(--space-section-content-m)] min-[1024px]:max-w-[var(--space-440)]',
+);
+
+export const CASE_STUDY_CONTACT_FORM_WRAP_CLASS = cn(
+  CONTACT_HERO_FORM_COLUMN_CLASS,
+  '[&_form]:rounded-[var(--radius-section)]',
+  '[&_form]:border [&_form]:border-solid [&_form]:border-[var(--color-border-base)]',
+  '[&_form]:bg-[var(--color-surface-1)]',
+  '[&_form]:shadow-elevation-1',
+  '[&_form]:backdrop-blur-none',
+  '[&_label]:text-[var(--color-text-secondary)] [&_label]:opacity-100',
+  'min-[1024px]:[&_form]:rounded-[var(--radius-large)]',
+);
+
+/** App shell — dashboard sidebar + main (LK / console). */
+export const APP_SHELL_ROOT_CLASS = cn(
+  'flex min-h-[100svh] w-full bg-[var(--color-surface-1)]',
+);
+
+/** Shared header row — sidebar logo + main topbar (same height and inset). */
+export const APP_SHELL_CHROME_ROW_CLASS = cn(
+  'flex shrink-0 items-center',
+  'min-h-[var(--space-48)]',
+  'py-[var(--space-inset-m)]',
+);
+
+export const APP_SHELL_SIDEBAR_CLASS = cn(
+  'hidden min-h-[100svh] min-[1024px]:flex',
+  'w-[var(--space-280)] shrink-0 flex-col',
+  'border-r border-solid border-[var(--color-border-base)]',
+  'bg-[var(--color-surface-1)]',
+);
+
+export const APP_SHELL_SIDEBAR_HEADER_CLASS = cn(
+  APP_SHELL_CHROME_ROW_CLASS,
+  'border-b border-solid border-[var(--color-border-base)]',
+  'px-[var(--space-inset-l)]',
+);
+
+export const APP_SHELL_SIDEBAR_LOGO_CLASS = cn(
+  'm-0 font-semibold text-style-h4 text-[var(--color-brand-primary)]',
+);
+
+export const APP_SHELL_SIDEBAR_NAV_CLASS = cn(
+  'm-0 flex list-none flex-col gap-[var(--space-section-stack-s)] p-0',
+  'px-[var(--space-inset-l)] py-[var(--space-inset-m)]',
+);
+
+export const APP_SHELL_MAIN_WRAP_CLASS = cn(
+  'flex min-h-[100svh] min-w-0 flex-1 flex-col',
+);
+
+export const APP_SHELL_TOPBAR_CLASS = cn(
+  APP_SHELL_CHROME_ROW_CLASS,
+  'justify-between gap-[var(--space-section-content-m)]',
+  'border-b border-solid border-[var(--color-border-base)]',
+  'bg-[var(--color-surface-1)] px-[var(--space-inset-l)]',
+);
+
+export const APP_SHELL_TOPBAR_CONTEXT_CLASS = cn(
+  'm-0 min-w-0 font-medium text-style-h4 text-[var(--color-text-primary)]',
+);
+
+export const APP_SHELL_TOPBAR_USER_CLASS = cn(
+  'shrink-0 text-style-body-sm text-[var(--color-text-secondary)]',
+);
+
+export const APP_SHELL_MOBILE_NAV_CLASS = cn(
+  'flex shrink-0 overflow-x-auto min-[1024px]:hidden',
+  'gap-[var(--space-section-stack-s)]',
+  'border-b border-solid border-[var(--color-border-base)]',
+  'px-[var(--space-inset-l)] py-[var(--space-inset-s)]',
+);
+
+export const APP_SHELL_MOBILE_NAV_LIST_CLASS = cn(
+  'm-0 flex list-none gap-[var(--space-section-stack-s)] p-0',
+);
+
+export const APP_SHELL_NAV_ICON_ROW_CLASS = cn(
+  'inline-flex items-center gap-[var(--space-section-stack-s)]',
+);
+
+export const APP_SHELL_NAV_LINK_CLASS = cn(BLOCK_SIDE_NAV_LINK_CLASS, 'whitespace-nowrap');
+
+export const APP_SHELL_NAV_LINK_ACTIVE_CLASS = cn(
+  BLOCK_SIDE_NAV_LINK_ACTIVE_CLASS,
+  'whitespace-nowrap',
+);
+
+export const APP_SHELL_MAIN_CLASS = cn(
+  'flex min-h-0 flex-1 flex-col min-w-0 overflow-y-auto',
+);
+
+export const APP_SHELL_MAIN_INNER_CLASS = cn(
+  'flex min-h-0 w-full flex-1 flex-col',
+  'gap-[var(--space-content-s)]',
+  'px-[var(--space-inset-l)] py-[var(--space-inset-m)]',
+);
+
+/** Cabinet KPI strip — 4 telemetry tiles in app main. */
+export const CABINET_STATS_STRIP_CLASS = cn(
+  'grid w-full min-w-0',
+  'grid-cols-2 gap-[var(--space-section-content-m)]',
+  'min-[768px]:grid-cols-4',
+);
+
+export const CABINET_STAT_CARD_CLASS = BLOCK_COMPACT_STAT_CARD_CLASS;
+
+export const CABINET_STAT_VALUE_CLASS = BLOCK_COMPACT_STAT_VALUE_CLASS;
+
+export const CABINET_STAT_LABEL_CLASS = BLOCK_COMPACT_STAT_LABEL_CLASS;
+
+export const CABINET_SCENARIO_SUMMARY_GRID_CLASS = cn(
+  'grid w-full min-w-0',
+  'grid-cols-1 gap-[var(--space-section-content-m)]',
+  'min-[768px]:grid-cols-3',
+);
+
+export const CABINET_SCENARIO_SUMMARY_CARD_CLASS = cn(
+  BLOCK_CARD_STANDARD_SHELL_CLASS,
+  BLOCK_CARD_STANDARD_INSET_CLASS,
+  'flex min-w-0 flex-col gap-[var(--space-section-stack-m)]',
+  'bg-[var(--color-surface-1)]',
+);
+
+export const CABINET_OVERVIEW_SECTION_CLASS = cn(
+  'flex w-full min-w-0 flex-col gap-[var(--space-section-content-m)]',
+);
+
+export const CABINET_SECTION_TITLE_CLASS = cn(
+  'm-0 font-medium text-style-h4 text-[var(--color-text-primary)]',
+);
+
+export const CABINET_SCENARIO_SUMMARY_TITLE_CLASS = CABINET_SECTION_TITLE_CLASS;
+
+export const CABINET_SCENARIO_SUMMARY_ITEM_TITLE_CLASS = cn(
+  'font-medium text-style-h4 text-[var(--color-text-primary)]',
+);
+
+export const CABINET_SCENARIO_SUMMARY_METRIC_CLASS = CASE_STUDY_HIGHLIGHT_VALUE_CLASS;
+
+export const CABINET_SCENARIO_SUMMARY_CARD_INTERACTIVE_CLASS = cn(
+  CABINET_SCENARIO_SUMMARY_CARD_CLASS,
+  'cursor-pointer border-0 text-left transition-colors duration-150',
+  'hover:bg-[var(--color-surface-2)]',
+  'outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)]',
+);
+
+/** Status pill — monitoring panels and cabinet scenario summary. */
+export const BLOCK_STATUS_PILL_BASE_CLASS = cn(
+  'inline-flex w-fit items-center rounded-[var(--radius-medium)] border px-[var(--space-10)] py-[var(--space-4)]',
+  'text-style-caption font-normal leading-snug',
+);
+
+export const BLOCK_STATUS_PILL_OK_CLASS = cn(
+  BLOCK_STATUS_PILL_BASE_CLASS,
+  'border-[var(--color-brand-primary)] bg-[var(--color-brand-muted)] text-[var(--color-brand-primary)]',
+);
+
+export const BLOCK_STATUS_PILL_WATCH_CLASS = cn(
+  BLOCK_STATUS_PILL_BASE_CLASS,
+  'border-[var(--color-warning-base)] bg-[color-mix(in_srgb,var(--color-warning-hover-bg)_75%,var(--color-surface-1))] text-[var(--color-text-primary)]',
+);
+
+export const BLOCK_STATUS_PILL_ALERT_CLASS = cn(
+  BLOCK_STATUS_PILL_BASE_CLASS,
+  'border-[var(--color-danger-base)] bg-[color-mix(in_srgb,var(--color-danger-subtle)_75%,var(--color-surface-1))] text-[var(--color-text-primary)]',
+);
+
+export const MONITORING_WORKSPACE_SHELL_CLASS = cn(
+  BLOCK_CARD_STANDARD_SHELL_CLASS,
+  BLOCK_CARD_STANDARD_INSET_CLASS,
+  'flex w-full min-w-0 flex-col gap-[var(--space-section-content-m)]',
+  'bg-[var(--color-surface-1)]',
+  'min-h-0',
+);
+
+export const MONITORING_WORKSPACE_TITLE_CLASS = cn(
+  'm-0 font-medium text-style-h3 text-[var(--color-text-primary)]',
+);
+
+/** Admin panel — app-shell workspaces (cases, events, users, partners). */
+export const ADMIN_WORKSPACE_CLASS = cn(
+  'flex w-full min-w-0 flex-col gap-[var(--space-section-content-m)]',
+);
+
+export const ADMIN_TOOLBAR_CLASS = cn(
+  'flex w-full min-w-0 flex-wrap items-center justify-between gap-[var(--space-section-content-m)]',
+);
+
+export const ADMIN_TOOLBAR_TITLE_CLASS = cn(
+  'm-0 font-medium text-style-h4 text-[var(--color-text-primary)]',
+);
+
+export const ADMIN_TOOLBAR_ACTIONS_CLASS = cn(
+  'flex min-w-0 flex-wrap items-center gap-[var(--space-section-stack-s)]',
+);
+
+export const ADMIN_TABLE_WRAP_CLASS = cn('w-full min-w-0 overflow-x-auto');
+
+export const ADMIN_EDITOR_SPLIT_CLASS = cn(
+  'grid w-full min-w-0',
+  'grid-cols-1 gap-[var(--space-section-content-m)]',
+  'min-[1024px]:grid-cols-[var(--space-240)_minmax(0,1fr)] min-[1024px]:gap-[var(--space-section-content-l)]',
+);
+
+export const ADMIN_EDITOR_NAV_STICKY_CLASS = cn(
+  'min-[1024px]:sticky min-[1024px]:self-start',
+  'min-[1024px]:top-[var(--space-section-stack-m)]',
+);
+
+export const ADMIN_EDITOR_NAV_LIST_CLASS = cn(
+  'm-0 flex list-none flex-col gap-[var(--space-section-stack-s)] p-0',
+  'max-[1023px]:flex-row max-[1023px]:overflow-x-auto max-[1023px]:pb-[var(--space-inset-s)]',
+);
+
+export const ADMIN_EDITOR_NAV_LINK_CLASS = cn(
+  BLOCK_SIDE_NAV_LINK_CLASS,
+  'whitespace-nowrap max-[1023px]:shrink-0',
+);
+
+export const ADMIN_EDITOR_NAV_LINK_ACTIVE_CLASS = cn(
+  BLOCK_SIDE_NAV_LINK_ACTIVE_CLASS,
+  'whitespace-nowrap max-[1023px]:shrink-0',
+);
+
+export const ADMIN_EDITOR_FORM_PANEL_CLASS = cn(
+  BLOCK_CARD_STANDARD_SHELL_CLASS,
+  BLOCK_CARD_STANDARD_INSET_CLASS,
+  'flex min-w-0 flex-col gap-[var(--space-section-content-m)]',
+  'bg-[var(--color-surface-1)]',
+);
+
+export const ADMIN_FORM_STACK_CLASS = cn(
+  'flex w-full min-w-0 flex-col gap-[var(--space-section-stack-m)]',
+);
+
+export const ADMIN_FORM_SECTION_TITLE_CLASS = cn(
+  'm-0 font-medium text-style-h4 text-[var(--color-text-primary)]',
+);
+
+export const ADMIN_FORM_FIELD_LABEL_CLASS = cn(
+  'mb-[var(--space-6)] block text-style-body font-medium text-[var(--color-text-secondary)]',
+);
+
+export const ADMIN_REPEATABLE_ITEM_CLASS = cn(
+  BLOCK_CARD_STANDARD_SHELL_CLASS,
+  BLOCK_CARD_STANDARD_INSET_CLASS,
+  'flex min-w-0 flex-col gap-[var(--space-section-stack-m)]',
+  'bg-[var(--color-surface-2)]',
+);
+
+export const ADMIN_REPEATABLE_ACTIONS_CLASS = cn(
+  'flex flex-wrap items-center gap-[var(--space-section-stack-s)]',
+);
+
+export const ADMIN_PARTNER_GRID_CLASS = cn(
+  'grid w-full min-w-0',
+  'grid-cols-2 gap-[var(--space-section-content-m)]',
+  'min-[768px]:grid-cols-3 min-[1024px]:grid-cols-4',
+);
+
+export const ADMIN_PARTNER_TILE_CLASS = cn(
+  BLOCK_CARD_COMPACT_CLASS,
+  BLOCK_CARD_COMPACT_INSET_CLASS,
+  'relative flex min-w-0 flex-col gap-[var(--space-section-stack-s)]',
+  'bg-[var(--color-surface-2)]',
+);
+
+export const ADMIN_PARTNER_LOGO_CLASS = cn(
+  'mx-auto h-[var(--space-48)] w-full max-w-[var(--space-120)] object-contain',
+);
+
+export const ADMIN_EMPTY_STATE_CLASS = cn(
+  'flex w-full min-w-0 flex-col items-center justify-center gap-[var(--space-section-stack-m)]',
+  'rounded-[var(--radius-section)] border border-dashed border-[var(--color-border-base)]',
+  'bg-[var(--color-surface-2)] px-[var(--space-inset-l)] py-[var(--space-section-content-l)]',
+  'text-center text-style-body text-[var(--color-text-secondary)]',
 );
 
 /** FAQ enterprise — Cortel vmware card accordion. */

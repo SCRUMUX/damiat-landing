@@ -266,6 +266,20 @@
       "uxReference": "cortel.cloud",
       "whenToUse": "Case study showcase — muted band, 2-row mosaic grid (3 equal + 6/3/3), mobile scroll strip, inverse hover reveal with brand gradient cover"
     },
+    "marketing.solutions.grid": {
+      "block": "SolutionsBlock",
+      "recipe": "section.solutions",
+      "category": "marketing",
+      "primitives": [
+        "Card",
+        "Button",
+        "Badge",
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/SolutionsBlock",
+      "uxReference": "cortel.cloud/importozameshhenie-vmware-podderzhka-i-obsluzhivanie-spacevm",
+      "whenToUse": "Case detail related projects — equal 3-col SolutionCard grid with category/client/date meta, no mosaic spans"
+    },
     "marketing.solutions.catalog": {
       "block": "SolutionsBlock",
       "recipe": "section.solutions",
@@ -357,6 +371,145 @@
       "storyReference": "Blocks/Marketing/ContactHeroBlock",
       "uxReference": "cortel.cloud",
       "whenToUse": "Brand contact hero — parallax background, split title + glass form (name, phone, company), white submit CTA, consent checkbox"
+    },
+    "marketing.auth.login": {
+      "block": "LoginBlock",
+      "recipe": "section.auth.login",
+      "category": "marketing",
+      "primitives": [
+        "Input",
+        "Button",
+        "Checkbox",
+        "Link",
+        "Alert"
+      ],
+      "storyReference": "Blocks/Marketing/LoginBlock",
+      "uxReference": "console.cortel.cloud",
+      "whenToUse": "Auth login — Cortel console split-screen: brand decor panel + white form panel, left-aligned logo/title, login/password, remember+forgot row, submit, registration hint, legal footer links"
+    },
+    "marketing.app-shell": {
+      "block": "AppShellBlock",
+      "recipe": "section.app-shell",
+      "category": "marketing",
+      "primitives": [],
+      "storyReference": "Blocks/Marketing/AppShellBlock",
+      "whenToUse": "Dashboard app shell — fixed sidebar nav + top bar (storage context, user) + scrollable main; mobile horizontal nav pills"
+    },
+    "marketing.monitoring.workspace": {
+      "block": "MonitoringWorkspaceBlock",
+      "recipe": "section.app-shell",
+      "category": "marketing",
+      "primitives": [],
+      "storyReference": "Blocks/Marketing/MonitoringWorkspaceBlock",
+      "whenToUse": "LK monitoring panel — full-width ShowcasePanel monitoring UI (modes, metrics, resources, alerts) without marketing accordion"
+    },
+    "marketing.cabinet.stats-strip": {
+      "block": "CabinetStatsStrip",
+      "recipe": "section.app-shell",
+      "category": "marketing",
+      "primitives": [],
+      "storyReference": "Blocks/Marketing/CabinetStatsStrip",
+      "whenToUse": "Cabinet KPI row — compact 4-tile telemetry strip (surface-2 cards) for overview dashboard"
+    },
+    "marketing.admin.content-list": {
+      "block": "AdminContentListBlock",
+      "recipe": "section.app-shell",
+      "category": "marketing",
+      "primitives": ["Input", "Button", "Table", "Chip"],
+      "storyReference": "Screens/DAMIAT Admin",
+      "whenToUse": "Admin content index — searchable table of cases or events with create/edit/delete actions"
+    },
+    "marketing.admin.content-editor": {
+      "block": "AdminContentEditorBlock",
+      "recipe": "section.app-shell",
+      "category": "marketing",
+      "primitives": ["Input", "Textarea", "Select", "Button"],
+      "storyReference": "Screens/DAMIAT Admin",
+      "whenToUse": "Shared schema editor — anchor-nav sections for case (hero/intro/stats/narrative) or event (card/body) drafts"
+    },
+    "marketing.admin.users": {
+      "block": "AdminUsersWorkspaceBlock",
+      "recipe": "section.app-shell",
+      "category": "marketing",
+      "primitives": ["Table", "Modal", "Input", "Select", "Button", "Toast"],
+      "storyReference": "Screens/DAMIAT Admin",
+      "whenToUse": "Admin user management — generate/change/send passwords, add users (front-only mock)"
+    },
+    "marketing.admin.partners": {
+      "block": "AdminPartnersWorkspaceBlock",
+      "recipe": "section.app-shell",
+      "category": "marketing",
+      "primitives": ["FileUpload", "Input", "Button", "Toast"],
+      "storyReference": "Screens/DAMIAT Admin",
+      "whenToUse": "Partner logo CRUD — upload preview grid with add/remove (local state only)"
+    },
+    "marketing.case-detail.intro": {
+      "block": "CaseStudyIntroBlock",
+      "recipe": "section.case-intro",
+      "category": "marketing",
+      "primitives": [
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/CaseStudyIntroBlock",
+      "uxReference": "cortel.cloud/importozameshhenie-vmware-podderzhka-i-obsluzhivanie-spacevm",
+      "whenToUse": "Case study intro — lead prose, 2-col highlight metrics, trail paragraph (embedded in article shell on detail page)"
+    },
+    "marketing.case-detail.inline-stats": {
+      "block": "CaseStudyInlineStatsBlock",
+      "recipe": "section.case-article",
+      "category": "marketing",
+      "primitives": [
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/CaseStudyInlineStatsBlock",
+      "uxReference": "cortel.cloud/importozameshhenie-vmware-podderzhka-i-obsluzhivanie-spacevm",
+      "whenToUse": "Case study business results — h2 + gray stat cards in 2-col grid inside article column"
+    },
+    "marketing.case-detail.implemented": {
+      "block": "CaseStudyImplementedBlock",
+      "recipe": "section.case-article",
+      "category": "marketing",
+      "primitives": [
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/CaseStudyImplementedBlock",
+      "uxReference": "cortel.cloud/importozameshhenie-vmware-podderzhka-i-obsluzhivanie-spacevm",
+      "whenToUse": "Case study implemented list — h2 + intro paragraph + plain bullet list, no feature cards"
+    },
+    "marketing.case-detail.sections": {
+      "block": "CaseStudySectionsBlock",
+      "recipe": "section.case-sections",
+      "category": "marketing",
+      "primitives": [
+        "SectionHeader"
+      ],
+      "storyReference": "Blocks/Marketing/CaseStudySectionsBlock",
+      "uxReference": "cortel.cloud/importozameshhenie-vmware-podderzhka-i-obsluzhivanie-spacevm",
+      "whenToUse": "Case study narrative — repeatable h2 sections with prose, bullet lists, pull quotes"
+    },
+    "marketing.case-detail.anchor-nav": {
+      "block": "CaseStudyAnchorNav",
+      "recipe": "section.case-article",
+      "category": "marketing",
+      "primitives": [
+        "Link"
+      ],
+      "storyReference": "Blocks/Marketing/CaseStudyAnchorNav",
+      "uxReference": "cortel.cloud/importozameshhenie-vmware-podderzhka-i-obsluzhivanie-spacevm",
+      "whenToUse": "Case study sticky anchor nav — left column pill links with scroll-spy active state (desktop)"
+    },
+    "marketing.case-detail.contact": {
+      "block": "CaseStudyContactBlock",
+      "recipe": "section.case-contact",
+      "category": "marketing",
+      "primitives": [
+        "Input",
+        "Button",
+        "Checkbox"
+      ],
+      "storyReference": "Blocks/Marketing/CaseStudyContactBlock",
+      "uxReference": "cortel.cloud/importozameshhenie-vmware-podderzhka-i-obsluzhivanie-spacevm",
+      "whenToUse": "Case study bottom CTA — muted split layout, title + description + white form (name + company only)"
     },
     "marketing.why-us.grid": {
       "block": "WhyUsBlock",
@@ -517,6 +670,56 @@
       "component": "DamiatLandingPage",
       "fixtureReference": "damiatLandingArgs",
       "notes": "Storybook: Screens/DAMIAT Product Landing. UX: calculator → scenarios → device → platform → case (Agro holding)."
+    },
+    "marketing.auth.login.damiat": {
+      "description": "DAMIAT login page — Cortel console split-screen, brand decor left + white form right",
+      "sections": [
+        "marketing.auth.login"
+      ],
+      "component": "DamiatLoginPage",
+      "fixtureReference": "damiatLoginArgs",
+      "notes": "Storybook: Screens/DAMIAT Login. Split 50/50 desktop; login + password, remember/forgot row, registration hint, legal footer."
+    },
+    "marketing.case-detail.damiat": {
+      "description": "DAMIAT case detail page — Cortel long-read with anchor nav and landing closing band",
+      "sections": [
+        "marketing.hero.page",
+        "marketing.case-detail.intro",
+        "marketing.case-detail.anchor-nav",
+        "marketing.case-detail.inline-stats",
+        "marketing.case-detail.implemented",
+        "marketing.case-detail.sections",
+        "marketing.solutions.grid",
+        "marketing.contact.hero",
+        "marketing.footer.enterprise"
+      ],
+      "component": "DamiatCaseDetailPage",
+      "fixtureReference": "damiatCaseDetailArgs",
+      "notes": "Storybook: Screens/DAMIAT Case Detail. Photo-hero above-fold (backgrounds.case) + overlay navbar, white intro with brand highlight metrics (no badge), sticky anchor nav + split body, gray stat cards, landing BrandPhotoHeroSection closing with damiatContactHeroContent + damiatFooterContent."
+    },
+    "marketing.cabinet.damiat": {
+      "description": "DAMIAT user cabinet — app-shell monitoring from landing scenarios + telemetry",
+      "sections": [
+        "marketing.app-shell",
+        "marketing.cabinet.stats-strip",
+        "marketing.monitoring.workspace"
+      ],
+      "component": "DamiatCabinetPage",
+      "fixtureReference": "damiatCabinetArgs",
+      "notes": "Storybook: Screens/DAMIAT Cabinet. Sidebar: Overview + Ethylene/CO2/Climate; overview KPI strip + scenario summary cards; scenario views use MonitoringWorkspaceBlock. Landing unchanged."
+    },
+    "marketing.admin.damiat": {
+      "description": "DAMIAT admin panel — cases/events content editor, users/passwords, partner logos",
+      "sections": [
+        "marketing.app-shell",
+        "marketing.admin.content-list",
+        "marketing.admin.content-editor",
+        "marketing.admin.users",
+        "marketing.admin.partners"
+      ],
+      "component": "DamiatAdminPage",
+      "fixtureReference": "damiatAdminArgs",
+      "notes": "Storybook: Screens/DAMIAT Admin. Front-only local state; shared schema editor for cases and events; password modals + partner logo CRUD. No API or routing."
     }
   }
 }

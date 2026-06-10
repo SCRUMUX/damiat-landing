@@ -10,3 +10,6 @@ _gh-pages-tmp/
 .DS_Store
 Thumbs.db
 .vercel
+.cursor/
+core/.cursor/
+core/.commitmsg

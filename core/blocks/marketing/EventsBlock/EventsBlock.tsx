@@ -157,10 +157,7 @@ function EventsNavigation({
 function FeaturedEventPanel({ event }: { event: EventItem }) {
   return (
     <article
-      className={cn(
-        'flex w-full min-w-0 flex-col',
-        'min-[1024px]:justify-center min-[1024px]:py-[var(--space-2)]',
-      )}
+      className="flex w-full min-w-0 flex-col"
       style={{ gap: 'var(--space-section-content-m)' }}
       aria-live="polite"
     >

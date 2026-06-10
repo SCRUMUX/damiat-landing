@@ -15,15 +15,17 @@ function StatCell({
   stat,
   onBrand,
   className,
+  labelClassName,
 }: {
   stat: HeroStat;
   onBrand?: boolean;
   className?: string;
+  labelClassName?: string;
 }) {
   return (
     <div
       className={cn(
-        'flex shrink-0 flex-col gap-[var(--space-2)] py-[var(--space-2)]',
+        'flex min-w-0 flex-col gap-[var(--space-2)] py-[var(--space-2)]',
         'pr-[var(--space-section-content-l)]',
         className,
       )}
@@ -38,8 +40,9 @@ function StatCell({
       </span>
       <span
         className={cn(
-          'max-w-[var(--space-160)] text-style-body-sm leading-snug',
+          'max-w-[var(--space-160)] text-style-body-sm leading-snug min-[1024px]:max-w-[var(--space-200)]',
           onBrand ? 'text-inherit opacity-90' : 'text-[var(--color-text-secondary)]',
+          labelClassName,
         )}
       >
         {stat.label}
@@ -77,7 +80,11 @@ export const HeroMetricsBand: React.FC<HeroMetricsBandProps> = ({
       {/* Desktop — single row: metrics | description (Cortel band) */}
       <div className="hidden min-[1024px]:flex min-w-0 items-stretch">
         {stats.length > 0 ? (
-          <div className="flex shrink-0 items-stretch" role="list" aria-label="Ключевые показатели">
+          <div
+            className="flex min-w-0 flex-[1.22] items-stretch"
+            role="list"
+            aria-label="Ключевые показатели"
+          >
             {stats.map((stat, index) => (
               <React.Fragment key={stat.label}>
                 {index > 0 ? (
@@ -86,11 +93,11 @@ export const HeroMetricsBand: React.FC<HeroMetricsBandProps> = ({
                     aria-hidden="true"
                   />
                 ) : null}
-                <div role="listitem">
+                <div role="listitem" className="min-w-0 flex-1">
                   <StatCell
                     stat={stat}
                     onBrand={onBrand}
-                    className={index === 0 ? 'pl-0' : undefined}
+                    className={cn('min-w-0', index === 0 ? 'pl-0' : undefined)}
                   />
                 </div>
               </React.Fragment>
@@ -109,7 +116,12 @@ export const HeroMetricsBand: React.FC<HeroMetricsBandProps> = ({
         ) : null}
 
         {description ? (
-          <p className={cn('m-0 min-w-0 flex-1 self-center text-style-body leading-relaxed', textClass)}>
+          <p
+            className={cn(
+              'm-0 min-w-0 flex-[0.78] self-center text-style-body leading-relaxed',
+              textClass,
+            )}
+          >
             {description}
           </p>
         ) : null}

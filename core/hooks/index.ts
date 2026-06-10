@@ -16,6 +16,7 @@ export { registerParallaxElement } from './parallaxRegistry';
 export { useScrollIdle } from './useScrollIdle';
 export { useScrollActivity } from './useScrollActivity';
 export { useScrollDepthReveal, type UseScrollDepthRevealOptions } from './useScrollDepthReveal';
+export { useScrollSpy, type UseScrollSpyOptions } from './useScrollSpy';
 export {
   getScrollRoot,
   getScrollTop,

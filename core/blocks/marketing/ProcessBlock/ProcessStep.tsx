@@ -64,6 +64,7 @@ export const ProcessStep: React.FC<ProcessStepProps> = ({
   title,
   titleBreakBefore,
   description,
+  icon,
   index,
   className,
   titlePrimary = false,
@@ -77,9 +78,14 @@ export const ProcessStep: React.FC<ProcessStepProps> = ({
         <ProcessStepNumber value={stepNumber} />
       </div>
 
-      <div className={PROCESS_STEP_CARD_CLASS}>
+      <div className={cn(PROCESS_STEP_CARD_CLASS, icon && 'relative')}>
         <ProcessStepTitle title={title} titleBreakBefore={titleBreakBefore} primary={titlePrimary} />
         <p className={PROCESS_STEP_DESCRIPTION_CLASS}>{description}</p>
+        {icon ? (
+          <div className="pointer-events-none absolute bottom-[var(--space-16)] right-[var(--space-16)] hidden min-[1024px]:block">
+            {icon}
+          </div>
+        ) : null}
       </div>
     </li>
   );

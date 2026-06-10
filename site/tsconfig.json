@@ -13,8 +13,8 @@
     "jsx": "react-jsx",
     "strict": true,
     "paths": {
-      "@damiat/core/*": ["../core/*"],
-      "@ai-ds/core/*": ["../core/*"]
+      "@damiat/core/*": ["../../DAMIAT/*", "../core/*"],
+      "@ai-ds/core/*": ["../../DAMIAT/*", "../core/*"]
     }
   },
   "include": ["src"]
