@@ -1,8 +1,8 @@
 import React, { useLayoutEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import '@damiat/core/config/css-variables/tokens.css';
-import '@damiat/core/blocks/_shared/marquee-keyframes.css';
+import '@ai-ds/core/tokens';
+import '@ai-ds/core/blocks/_shared/marquee-keyframes.css';
 import './index.css';
 import { App } from './App';
 

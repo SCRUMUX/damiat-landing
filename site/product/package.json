@@ -1,0 +1,18 @@
+{
+  "name": "@damiat/product",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "DAMIAT product blocks — landing, calculator, cabinet. Depends on @ai-ds/core from AICADS-PRO.",
+  "exports": {
+    "./blocks/marketing/DamiatLandingPage": "./blocks/marketing/DamiatLandingPage/index.ts",
+    "./blocks/marketing/damiatLandingFixtures": "./blocks/marketing/damiatLandingFixtures.ts",
+    "./blocks/marketing/damiatDemoMedia": "./blocks/marketing/damiatDemoMedia.tsx",
+    "./blocks/marketing/demo-assets/damiatLandingHeroBackgrounds": "./blocks/marketing/demo-assets/damiatLandingHeroBackgrounds.ts",
+    "./blocks/marketing/trustDemoMedia": "./blocks/marketing/trustDemoMedia.tsx"
+  },
+  "peerDependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  }
+}

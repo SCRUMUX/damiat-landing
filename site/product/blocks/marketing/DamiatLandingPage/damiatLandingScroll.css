@@ -1,0 +1,28 @@
+﻿/**
+ * DAMIAT landing scroll — prod + Storybook (window scroll root).
+ * Requires html[data-damiat-landing-active] from useScrollActivity.
+ */
+
+html[data-scroll-root-window][data-damiat-landing-active],
+html[data-scroll-root-window][data-damiat-landing-active] body {
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  height: auto !important;
+}
+
+/**
+ * Lean landing scroll perf — CSS-only throttling while data-user-scrolling is set.
+ */
+
+html[data-user-scrolling] .damiat-hud-sensor__ring--cw-slow,
+html[data-user-scrolling] .damiat-hud-sensor__ring--ccw-mid,
+html[data-user-scrolling] .damiat-hud-sensor__ring--cw-fast,
+html[data-user-scrolling] .damiat-hud-sensor__ring--ticks,
+html[data-user-scrolling] .damiat-hud-sensor__sweep,
+html[data-user-scrolling] .damiat-hud-sensor__core {
+  animation-play-state: paused;
+}
+
+html[data-user-scrolling] .film-grain-overlay {
+  display: none;
+}

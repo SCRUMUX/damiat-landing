@@ -1,0 +1,86 @@
+/**
+ * In-flow bridge — centered DAMIAT image + slogan.
+ */
+.loop-scroll-bridge {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  min-height: min(100svh, 720px);
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background: #fff;
+  padding: var(--space-section-y-l) var(--grid-margin);
+  text-align: center;
+  overflow: clip;
+}
+
+.loop-scroll-bridge__inner {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loop-scroll-bridge__stage {
+  display: flex;
+  width: min(72vw, 1120px);
+  max-width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-section-content-m);
+}
+
+.loop-scroll-bridge__image-wrap {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.loop-scroll-bridge__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(68vh, 840px);
+  object-fit: contain;
+  object-position: center center;
+  user-select: none;
+}
+
+.loop-scroll-bridge__phrase {
+  margin: 0;
+  width: 100%;
+  max-width: var(--space-640);
+  font-size: clamp(1.5rem, 2.65vw, 2.125rem);
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-wrap: balance;
+  line-height: 1.3;
+}
+
+@media (max-width: 767px) {
+  .loop-scroll-bridge {
+    min-height: min(100svh, 720px);
+    padding: var(--space-section-y-m) var(--grid-margin);
+  }
+
+  .loop-scroll-bridge__stage {
+    width: min(92vw, 100%);
+    gap: var(--space-section-content-s);
+  }
+
+  .loop-scroll-bridge__image {
+    max-height: min(56vh, 580px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loop-scroll-bridge {
+    display: none;
+  }
+}

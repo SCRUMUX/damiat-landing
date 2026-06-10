@@ -1,38 +1,19 @@
 const path = require('path');
 
-
-
-const { resolveCoreRoot } = require('./resolveCoreRoot.cjs');
-
-
-
+const coreConfig = require('@ai-ds/core/tailwind');
 const siteDir = __dirname;
-
-const coreRoot = resolveCoreRoot(siteDir);
-
-const coreConfig = require(path.join(coreRoot, 'config/tailwind/tailwind.config.cjs'));
-
-
+const productRoot = path.join(siteDir, 'product');
 
 module.exports = {
-
   ...coreConfig,
-
   content: {
-
     relative: false,
-
     files: [
-
       ...coreConfig.content.files,
-
       path.join(siteDir, 'index.html'),
-
       path.join(siteDir, 'src/**/*.{ts,tsx,html}'),
-
+      path.join(productRoot, 'blocks/**/*.{ts,tsx}'),
+      path.join(productRoot, 'hooks/**/*.{ts,tsx}'),
     ],
-
   },
-
 };
-
