@@ -234,6 +234,18 @@ export const TRUST_PILLAR_ICON_SLOT_CLASS = cn(
   'h-[var(--space-140)] min-[1024px]:h-[var(--space-168)]',
 );
 
+/** Trust secondary pillar — icon left, copy right (e.g. «Участие в выставках»). */
+export const TRUST_PILLAR_SECONDARY_ROW_CLASS = cn(
+  'relative z-[2] flex w-full min-w-0 items-center',
+  'gap-[var(--space-section-content-m)] min-[1024px]:gap-[var(--space-section-content-l)]',
+);
+
+/** Trust secondary pillar — large icon slot (primary-scale plate). */
+export const TRUST_PILLAR_SECONDARY_ICON_CLASS = cn(
+  'flex shrink-0 items-center justify-center',
+  'min-w-[var(--space-120)] min-[1024px]:min-w-[var(--space-140)]',
+);
+
 /** Solution case card ↗ — round brand fill; hover deepens brand + icon rotate (card `group`). */
 export const SOLUTION_ARROW_BUTTON_CLASS = cn(
   'group inline-flex shrink-0 items-center justify-center',

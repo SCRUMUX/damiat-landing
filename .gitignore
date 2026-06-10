@@ -20,3 +20,5 @@ modules/synaptik-icon-builder/ui/dist/
 .vercel
 templates/damiat-consumer-app/node_modules/
 templates/damiat-consumer-app/dist/
+
+.vercel

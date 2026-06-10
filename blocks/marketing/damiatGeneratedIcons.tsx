@@ -115,20 +115,12 @@ export function damiatFeaturedCover(slug: GeneratedIconSlug): React.ReactNode {
   return damiatBrandFeaturedCornerMedia(slug);
 }
 
-/** Trust secondary pillar — large raster, no slot background (e.g. «Участие в выставках»). */
+/** Trust secondary pillar — primary-scale glass plate (e.g. «Участие в выставках»). */
 export function damiatTrustCover(slug: GeneratedIconSlug): React.ReactNode {
-  const entry = getGeneratedIcon(slug);
-  return (
-    <GeneratedIcon
-      src={entry.png}
-      webpSrc={entry.webp}
-      alt={entry.meta.sourceCard ?? slug}
-      size={128}
-      className={cn(
-        DAMIAT_STANDARD_CARD_ICON_CLASS,
-        'max-h-[var(--space-128)] min-[1024px]:max-h-[var(--space-152)]',
-      )}
-      style={{ width: 'auto', height: 'auto', maxWidth: '100%' }}
-    />
-  );
+  return <DamiatPrimaryFeaturedIconPlate slug={slug} renderSize={120} />;
+}
+
+/** @deprecated Use damiatTrustCover — same primary-scale plate icon. */
+export function damiatTrustPillarIcon(slug: GeneratedIconSlug): React.ReactNode {
+  return damiatTrustCover(slug);
 }
