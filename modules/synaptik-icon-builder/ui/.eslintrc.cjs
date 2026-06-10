@@ -11,7 +11,7 @@ module.exports = {
     browser: true,
     es2022: true,
   },
-  extends: [require.resolve('@ai-ds/core/eslint-config')],
+  extends: [require.resolve('../../../aicads.eslintrc.shared.cjs')],
   rules: {
     'no-hardcoded-tokens': 'error',
   },

@@ -41,6 +41,10 @@ module.exports = {
     'node_modules/',
     'storybook-static/',
     'figma-plugin/figma-ai-ds-code.js',
+    // Synaptik has its own lint script (`npm run synaptik:ui:lint`) with rulesdir;
+    // nested .eslintrc extends @ai-ds/core/eslint-config which is not resolvable in CI.
+    'modules/synaptik-icon-builder/',
+    'templates/',
   ],
   rules: {
     // Default: behavior libs are forbidden everywhere.
