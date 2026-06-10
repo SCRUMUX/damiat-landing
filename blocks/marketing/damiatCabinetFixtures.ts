@@ -1,9 +1,9 @@
 /**
  * DAMIAT user cabinet — monitoring UI from landing (#dashboard + #scenarios).
  */
-import type { AppShellNavItem } from '../AppShellBlock';
-import type { CabinetStatItem } from '../CabinetStatsStrip';
-import type { ShowcasePanelItem } from '../ShowcasePanelBlock/ShowcasePanelBlock.types';
+import type { AppShellNavItem } from './AppShellBlock';
+import type { CabinetStatItem } from './CabinetStatsStrip';
+import type { ShowcasePanelItem } from './ShowcasePanelBlock/ShowcasePanelBlock.types';
 import type { DamiatCabinetPageProps } from './DamiatCabinetPage/DamiatCabinetPage';
 import {
   damiatDashboardStatsContent,

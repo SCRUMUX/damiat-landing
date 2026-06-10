@@ -53,6 +53,194 @@ export type AccordionSize = 'sm' | 'md' | 'lg';
 export type AccordionState = 'open' | 'closed';
 
 // @public (undocumented)
+export interface AdminAnchorItem {
+    // (undocumented)
+    id: string;
+    // (undocumented)
+    label: string;
+}
+
+// Warning: (ae-forgotten-export) The symbol "AdminContentDraftBase" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export interface AdminCaseDraft extends AdminContentDraftBase {
+    // Warning: (ae-forgotten-export) The symbol "AdminStatPair" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    businessStats: AdminStatPair[];
+    // (undocumented)
+    heroBreadcrumbs: string[];
+    // (undocumented)
+    heroSubtitle?: string;
+    // (undocumented)
+    heroTitle: string;
+    // Warning: (ae-forgotten-export) The symbol "AdminHighlightPair" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    highlights: AdminHighlightPair[];
+    // (undocumented)
+    implementedIntro?: string;
+    // (undocumented)
+    implementedItems: string[];
+    // (undocumented)
+    kind: 'case';
+    // (undocumented)
+    leadParagraphs: string[];
+    // Warning: (ae-forgotten-export) The symbol "AdminNarrativeSection" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    narrativeSections: AdminNarrativeSection[];
+    // (undocumented)
+    trailParagraphs: string[];
+}
+
+// @public (undocumented)
+export type AdminContentDraft = AdminCaseDraft | AdminEventDraft;
+
+// @public (undocumented)
+export const AdminContentEditorBlock: React_2.FC<AdminContentEditorBlockProps>;
+
+// @public (undocumented)
+export interface AdminContentEditorBlockProps {
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    draft: AdminContentDraft;
+    // (undocumented)
+    onBack: () => void;
+    // (undocumented)
+    onChange: (draft: AdminContentDraft) => void;
+    // (undocumented)
+    onDelete: (id: string) => void;
+    // (undocumented)
+    onPublish: (draft: AdminContentDraft) => void;
+    // (undocumented)
+    onSave: (draft: AdminContentDraft) => void;
+}
+
+// @public (undocumented)
+export type AdminContentKind = 'case' | 'event';
+
+// @public (undocumented)
+export const AdminContentListBlock: React_2.FC<AdminContentListBlockProps>;
+
+// @public (undocumented)
+export interface AdminContentListBlockProps {
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    items: AdminContentDraft[];
+    // (undocumented)
+    kind: AdminContentKind;
+    // (undocumented)
+    onCreate: () => void;
+    // (undocumented)
+    onDelete: (id: string) => void;
+    // (undocumented)
+    onEdit: (id: string) => void;
+}
+
+// @public (undocumented)
+export const AdminContentWorkspaceBlock: React_2.FC<AdminContentWorkspaceBlockProps>;
+
+// @public (undocumented)
+export interface AdminContentWorkspaceBlockProps {
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    initialSelectedId?: string;
+    // (undocumented)
+    initialView?: 'list' | 'edit';
+    // (undocumented)
+    items: AdminContentDraft[];
+    // (undocumented)
+    kind: AdminContentKind;
+    // (undocumented)
+    onItemsChange: (items: AdminContentDraft[]) => void;
+}
+
+// @public (undocumented)
+export type AdminEditorSectionId = 'general' | 'navigation' | 'hero' | 'intro' | 'stats' | 'implemented' | 'sections' | 'event-card' | 'event-body' | 'publish';
+
+// @public (undocumented)
+export interface AdminEventDraft extends AdminContentDraftBase {
+    // (undocumented)
+    date: string;
+    // (undocumented)
+    eventTitle: string;
+    // (undocumented)
+    format: 'online' | 'offline' | 'hybrid';
+    // (undocumented)
+    href?: string;
+    // (undocumented)
+    kind: 'event';
+    // (undocumented)
+    location?: string;
+    // (undocumented)
+    paragraphs: string[];
+}
+
+// @public (undocumented)
+export interface AdminPartnerRecord {
+    // (undocumented)
+    href?: string;
+    // (undocumented)
+    id: string;
+    // (undocumented)
+    imageSrc?: string;
+    // (undocumented)
+    name: string;
+}
+
+// @public (undocumented)
+export const AdminPartnersWorkspaceBlock: React_2.FC<AdminPartnersWorkspaceBlockProps>;
+
+// @public (undocumented)
+export interface AdminPartnersWorkspaceBlockProps {
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    onPartnersChange: (partners: AdminPartnerRecord[]) => void;
+    // (undocumented)
+    partners: AdminPartnerRecord[];
+}
+
+// @public (undocumented)
+export type AdminPublishStatus = 'draft' | 'published';
+
+// @public (undocumented)
+export type AdminSectionId = 'cases' | 'events' | 'users' | 'partners';
+
+// @public (undocumented)
+export interface AdminUserRecord {
+    // (undocumented)
+    email: string;
+    // (undocumented)
+    id: string;
+    // (undocumented)
+    lastLogin?: string;
+    // (undocumented)
+    organization: string;
+    // (undocumented)
+    passwordStatus: 'active' | 'pending' | 'expired';
+    // (undocumented)
+    role: string;
+}
+
+// @public (undocumented)
+export const AdminUsersWorkspaceBlock: React_2.FC<AdminUsersWorkspaceBlockProps>;
+
+// @public (undocumented)
+export interface AdminUsersWorkspaceBlockProps {
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    onUsersChange: (users: AdminUserRecord[]) => void;
+    // (undocumented)
+    users: AdminUserRecord[];
+}
+
+// @public (undocumented)
 export const aicadsEnterpriseHeroDemoContent: HeroBlockProps;
 
 // @public
@@ -98,6 +286,39 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
 
 // @public (undocumented)
 export type AlertVariant = 'basic' | 'leftBorder' | 'topBorder' | 'solid';
+
+// @public (undocumented)
+export const AppShellBlock: React_2.FC<AppShellBlockProps>;
+
+// @public (undocumented)
+export interface AppShellBlockProps {
+    // (undocumented)
+    activeId: string;
+    // (undocumented)
+    children: React_2.ReactNode;
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    logo?: React_2.ReactNode;
+    // (undocumented)
+    nav: AppShellNavItem[];
+    // (undocumented)
+    onNavigate?: (id: string) => void;
+    // (undocumented)
+    storageLabel: string;
+    // (undocumented)
+    userLabel: string;
+}
+
+// @public (undocumented)
+export interface AppShellNavItem {
+    // (undocumented)
+    icon?: React_2.ReactNode;
+    // (undocumented)
+    id: string;
+    // (undocumented)
+    label: string;
+}
 
 // @public (undocumented)
 export const Autocomplete: React_2.ForwardRefExoticComponent<AutocompleteProps & React_2.RefAttributes<HTMLDivElement>>;
@@ -387,6 +608,25 @@ export type ButtonSize = 'sm' | 'md' | 'lg';
 export type ButtonState = 'base' | 'active' | 'hover' | 'focus' | 'disabled';
 
 // @public (undocumented)
+export interface CabinetStatItem {
+    // (undocumented)
+    label: string;
+    // (undocumented)
+    value: string;
+}
+
+// @public (undocumented)
+export const CabinetStatsStrip: React_2.FC<CabinetStatsStripProps>;
+
+// @public (undocumented)
+export interface CabinetStatsStripProps {
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    stats: CabinetStatItem[];
+}
+
+// @public (undocumented)
 export const Captcha: React_2.ForwardRefExoticComponent<CaptchaProps & React_2.RefAttributes<HTMLDivElement>>;
 
 // @public (undocumented)
@@ -423,6 +663,187 @@ export type CardState = 'base' | 'hover' | 'focus' | 'disabled';
 
 // @public
 export type CardVariant = 'base' | 'outlined' | 'elevated' | 'filled';
+
+// @public (undocumented)
+export interface CaseStudyAnchorItem {
+    // (undocumented)
+    id: string;
+    // (undocumented)
+    label: string;
+}
+
+// @public (undocumented)
+export const CaseStudyAnchorNav: React_2.FC<CaseStudyAnchorNavProps>;
+
+// @public (undocumented)
+export interface CaseStudyAnchorNavProps {
+    // (undocumented)
+    activeId?: string;
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    items: CaseStudyAnchorItem[];
+    // (undocumented)
+    onNavigate?: (id: string) => void;
+}
+
+// @public (undocumented)
+export const CaseStudyArticleSplit: React_2.FC<CaseStudyArticleSplitProps>;
+
+// @public (undocumented)
+export interface CaseStudyArticleSplitProps {
+    // (undocumented)
+    children: React_2.ReactNode;
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    nav: Pick<CaseStudyAnchorNavProps, 'items'>;
+}
+
+// @public (undocumented)
+export const CaseStudyContactBlock: React_2.FC<CaseStudyContactBlockProps>;
+
+// @public (undocumented)
+export interface CaseStudyContactBlockProps {
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    consentLabel?: React_2.ReactNode;
+    // (undocumented)
+    defaultValues?: Partial<CaseStudyContactFormValues>;
+    // (undocumented)
+    description?: string;
+    // (undocumented)
+    labels?: CaseStudyContactFormLabels;
+    // (undocumented)
+    onChange?: (values: CaseStudyContactFormValues) => void;
+    // (undocumented)
+    onSubmit?: (values: CaseStudyContactFormValues) => void;
+    // (undocumented)
+    submitLabel?: string;
+    // (undocumented)
+    title?: string;
+    // (undocumented)
+    values?: Partial<CaseStudyContactFormValues>;
+}
+
+// @public (undocumented)
+export interface CaseStudyContactFormLabels {
+    // (undocumented)
+    company?: string;
+    // (undocumented)
+    name?: string;
+}
+
+// @public (undocumented)
+export interface CaseStudyContactFormValues {
+    // (undocumented)
+    company: string;
+    // (undocumented)
+    consent: boolean;
+    // (undocumented)
+    name: string;
+}
+
+// @public (undocumented)
+export interface CaseStudyHighlight {
+    // (undocumented)
+    label: string;
+    // (undocumented)
+    value: string;
+}
+
+// @public (undocumented)
+export const CaseStudyImplementedBlock: React_2.FC<CaseStudyImplementedBlockProps>;
+
+// @public (undocumented)
+export interface CaseStudyImplementedBlockProps {
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    intro?: string;
+    // (undocumented)
+    items: string[];
+    // (undocumented)
+    sectionId?: string;
+    // (undocumented)
+    title?: string;
+}
+
+// @public (undocumented)
+export interface CaseStudyInlineStat {
+    // (undocumented)
+    label: string;
+    // (undocumented)
+    value: string;
+}
+
+// @public (undocumented)
+export const CaseStudyInlineStatsBlock: React_2.FC<CaseStudyInlineStatsBlockProps>;
+
+// @public (undocumented)
+export interface CaseStudyInlineStatsBlockProps {
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    sectionId?: string;
+    // (undocumented)
+    stats: CaseStudyInlineStat[];
+    // (undocumented)
+    title?: string;
+}
+
+// @public (undocumented)
+export const CaseStudyIntroBlock: React_2.FC<CaseStudyIntroBlockProps>;
+
+// @public (undocumented)
+export interface CaseStudyIntroBlockProps {
+    // (undocumented)
+    className?: string;
+    embedded?: boolean;
+    // (undocumented)
+    highlights?: CaseStudyHighlight[];
+    leadParagraphs?: string[];
+    // @deprecated (undocumented)
+    paragraphs?: string[];
+    trailParagraphs?: string[];
+}
+
+// @public (undocumented)
+export interface CaseStudyQuote {
+    // (undocumented)
+    attribution: string;
+    // (undocumented)
+    role?: string;
+    // (undocumented)
+    text: string;
+}
+
+// @public (undocumented)
+export interface CaseStudySection {
+    // (undocumented)
+    bullets?: string[];
+    // (undocumented)
+    id?: string;
+    // (undocumented)
+    paragraphs?: string[];
+    // (undocumented)
+    quote?: CaseStudyQuote;
+    // (undocumented)
+    title: string;
+}
+
+// @public (undocumented)
+export const CaseStudySectionsBlock: React_2.FC<CaseStudySectionsBlockProps>;
+
+// @public (undocumented)
+export interface CaseStudySectionsBlockProps {
+    // (undocumented)
+    className?: string;
+    embedded?: boolean;
+    // (undocumented)
+    sections: CaseStudySection[];
+}
 
 // @public (undocumented)
 export const Checkbox: React_2.ForwardRefExoticComponent<CheckboxProps & React_2.RefAttributes<HTMLButtonElement>>;
@@ -484,13 +905,17 @@ export const ChooseUsBlock: React_2.FC<ChooseUsBlockProps>;
 export interface ChooseUsBlockProps {
     // (undocumented)
     cards: ChooseUsCardItem[];
+    cardTitleClassName?: string;
     // (undocumented)
     className?: string;
     // (undocumented)
     featured: ChooseUsFeaturedItem;
+    featuredContentAlign?: 'top' | 'bottom';
+    featuredTitleClassName?: string;
     // (undocumented)
     title?: string;
     titleAccent?: string;
+    titleClassName?: string;
 }
 
 // @public (undocumented)
@@ -619,6 +1044,7 @@ export interface ContactHeroBlockProps {
     defaultValues?: Partial<ContactHeroFormValues>;
     // (undocumented)
     description?: string;
+    embeddedInPhotoHero?: boolean;
     // (undocumented)
     labels?: ContactHeroFormLabels;
     // (undocumented)
@@ -739,6 +1165,246 @@ export interface CTABlockProps {
     // (undocumented)
     variant?: 'card' | 'band';
 }
+
+// @public (undocumented)
+export const damiatAdminArgs: DamiatAdminPageProps;
+
+// @public (undocumented)
+export const DamiatAdminPage: React_2.FC<DamiatAdminPageProps>;
+
+// @public (undocumented)
+export interface DamiatAdminPageProps {
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    defaultSection?: AdminSectionId;
+    // (undocumented)
+    initialCases: AdminCaseDraft[];
+    // (undocumented)
+    initialContentSelectedId?: string;
+    initialContentView?: 'list' | 'edit';
+    // (undocumented)
+    initialEvents: AdminEventDraft[];
+    // (undocumented)
+    initialPartners: AdminPartnerRecord[];
+    // (undocumented)
+    initialUsers: AdminUserRecord[];
+    // (undocumented)
+    logo?: AppShellBlockProps['logo'];
+    // (undocumented)
+    nav: AppShellBlockProps['nav'];
+    // (undocumented)
+    storageLabel: string;
+    // (undocumented)
+    userLabel: string;
+}
+
+// @public (undocumented)
+export const damiatCabinetArgs: DamiatCabinetPageProps;
+
+// @public (undocumented)
+export const DamiatCabinetPage: React_2.FC<DamiatCabinetPageProps>;
+
+// @public (undocumented)
+export interface DamiatCabinetPageProps {
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    defaultActiveId?: string;
+    // (undocumented)
+    logo?: AppShellBlockProps['logo'];
+    // (undocumented)
+    nav: AppShellBlockProps['nav'];
+    // (undocumented)
+    panels: ShowcasePanelItem[];
+    // (undocumented)
+    storageLabel: string;
+    // (undocumented)
+    telemetry: CabinetStatItem[];
+    // (undocumented)
+    userLabel: string;
+}
+
+// @public (undocumented)
+export const DamiatCalculatorBlock: React_2.FC<DamiatCalculatorBlockProps>;
+
+// @public (undocumented)
+export interface DamiatCalculatorBlockProps {
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    defaultValues?: Partial<DamiatCalculatorFormValues>;
+    // (undocumented)
+    devicesTitle?: string;
+    priceApiUrl?: string;
+    // (undocumented)
+    subtitle?: string;
+    // (undocumented)
+    title?: string;
+}
+
+// @public (undocumented)
+export const damiatCalculatorContent: DamiatCalculatorBlockProps;
+
+// @public (undocumented)
+export interface DamiatCalculatorFormValues {
+    // (undocumented)
+    device1: boolean;
+    // (undocumented)
+    hectares: string;
+    manualBasePricePerTon: string;
+    opexRubByMonth: string[];
+    priceAdjustPercent: number;
+    // Warning: (ae-forgotten-export) The symbol "SalesPlanMode" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    salesPlanMode: SalesPlanMode;
+    salesTonsByMonth: string[];
+    // (undocumented)
+    yieldTonsPerHa: string;
+}
+
+// @public
+export interface DamiatCalculatorSummaryData {
+    // (undocumented)
+    deviceCostHint: string;
+    // (undocumented)
+    deviceCostRub: string;
+    // (undocumented)
+    massWithoutTons: string;
+    // (undocumented)
+    massWithTons: string;
+    // (undocumented)
+    moneyWithoutRub: string;
+    // (undocumented)
+    moneyWithRub: string;
+}
+
+// @public (undocumented)
+export const damiatCaseDetailArgs: DamiatCaseDetailPageProps;
+
+// @public (undocumented)
+export const DamiatCaseDetailPage: React_2.FC<DamiatCaseDetailPageProps>;
+
+// @public (undocumented)
+export interface DamiatCaseDetailPageProps {
+    // (undocumented)
+    anchorNav: Pick<CaseStudyAnchorNavProps, 'items'>;
+    // (undocumented)
+    businessResults: CaseStudyInlineStatsBlockProps;
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    closingBackgroundImage?: string;
+    // (undocumented)
+    contactHero: ContactHeroBlockProps;
+    // (undocumented)
+    footer: FooterBlockProps;
+    // (undocumented)
+    hero: HeroBlockProps;
+    // (undocumented)
+    heroBackgroundImage?: string;
+    // (undocumented)
+    implemented: CaseStudyImplementedBlockProps;
+    // (undocumented)
+    intro: CaseStudyIntroBlockProps;
+    // (undocumented)
+    narrative: CaseStudySectionsBlockProps;
+    // (undocumented)
+    navbar: NavbarBlockProps;
+    // (undocumented)
+    relatedProjects: Extract<SolutionsBlockProps, {
+        variant: 'grid';
+    }>;
+}
+
+// @public (undocumented)
+export const damiatLandingArgs: DamiatLandingPageProps;
+
+// @public
+export const DamiatLandingPage: React_2.FC<DamiatLandingPageProps>;
+
+// @public (undocumented)
+export interface DamiatLandingPageProps {
+    // (undocumented)
+    calculator: DamiatCalculatorBlockProps;
+    // Warning: (ae-forgotten-export) The symbol "DamiatCaseStudiesBlockProps" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    caseStudies: DamiatCaseStudiesBlockProps;
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    contactHero: ContactHeroBlockProps;
+    // (undocumented)
+    dashboardStats: StatsBlockProps;
+    // (undocumented)
+    deviceIntro: WhyUsBlockProps;
+    // (undocumented)
+    devicePrinciple: ProcessBlockProps;
+    // (undocumented)
+    events: EventsBlockProps;
+    // (undocumented)
+    footer: FooterBlockProps;
+    // (undocumented)
+    generatorBenefits: ChooseUsBlockProps;
+    // (undocumented)
+    hero: HeroBlockProps;
+    // (undocumented)
+    heroBackgroundImage?: string;
+    // Warning: (ae-forgotten-export) The symbol "DamiatMotionProfile" needs to be exported by the entry point index.d.ts
+    motionProfile?: DamiatMotionProfile;
+    // (undocumented)
+    navbar: NavbarBlockProps;
+    // (undocumented)
+    partners: PartnersBlockProps;
+    // (undocumented)
+    problem: FeaturesBlockProps;
+    // (undocumented)
+    scenario: ShowcasePanelBlockProps;
+    // Warning: (ae-forgotten-export) The symbol "DamiatLandingHeroBackgroundKey" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    sectionBackgrounds?: Partial<Record<DamiatLandingHeroBackgroundKey, string>>;
+    // (undocumented)
+    trust: TrustBlockProps;
+    // Warning: (ae-forgotten-export) The symbol "DamiatVolumeBenefitBlockProps" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    volumeBenefit: DamiatVolumeBenefitBlockProps;
+}
+
+// @public (undocumented)
+export const damiatLoginArgs: {
+    login: LoginBlockProps;
+};
+
+// @public (undocumented)
+export const damiatLoginContent: LoginBlockProps;
+
+// @public (undocumented)
+export const DamiatLoginPage: React_2.FC<DamiatLoginPageProps>;
+
+// @public (undocumented)
+export interface DamiatLoginPageProps extends LoginBlockProps {
+    brandBackgroundImage?: string;
+    // (undocumented)
+    brandGrainIntensity?: PhotoHeroBackdropProps['grainIntensity'];
+    // (undocumented)
+    brandImageParallaxFactor?: PhotoHeroBackdropProps['imageParallaxFactor'];
+    // Warning: (ae-forgotten-export) The symbol "PhotoHeroBackdropProps" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    brandPhotoTone?: PhotoHeroBackdropProps['photoTone'];
+    // (undocumented)
+    className?: string;
+}
+
+// @public (undocumented)
+export const damiatLoginWithErrorContent: LoginBlockProps;
+
+// @public (undocumented)
+export const damiatNavbarFixture: NavbarBlockProps;
 
 // @public (undocumented)
 export const DEFAULT_OVERLAY_CONFIG: OverlayConfig;
@@ -990,6 +1656,7 @@ export interface EventsBlockProps {
     subtitle?: string;
     // (undocumented)
     title?: string;
+    titleScale?: 'display' | 'section' | 'compact';
     variant?: 'featured' | 'list';
 }
 
@@ -1023,7 +1690,11 @@ export interface FAQItem {
 export interface FeatureItem {
     // (undocumented)
     description: string;
+    // (undocumented)
+    href?: string;
     icon?: React_2.ReactNode;
+    // (undocumented)
+    id?: string;
     // (undocumented)
     title: string;
 }
@@ -1043,8 +1714,10 @@ export interface FeaturesBlockProps {
     features: FeatureItem[];
     // (undocumented)
     subtitle?: string;
+    subtitleAccent?: string;
     // (undocumented)
     title?: string;
+    variant?: 'default' | 'catalog';
 }
 
 // @public (undocumented)
@@ -1085,6 +1758,7 @@ export interface FooterBlockProps {
     navLinks?: FooterLink[];
     // (undocumented)
     showBackToTop?: boolean;
+    showTopDivider?: boolean;
     // (undocumented)
     socialLinks?: FooterSocialLink[];
     variant?: 'minimal' | 'enterprise';
@@ -1369,8 +2043,16 @@ export interface HeroBlockProps {
     breadcrumbs?: HeroBreadcrumbItem[];
     // (undocumented)
     className?: string;
+    copyParallaxFactor?: number;
+    depthParallax?: boolean;
+    embedded?: boolean;
     fillViewport?: boolean;
     media?: React_2.ReactNode;
+    // (undocumented)
+    mediaParallaxFactor?: number;
+    // (undocumented)
+    metricsParallaxFactor?: number;
+    metricsShowTopBorder?: boolean;
     // (undocumented)
     primaryAction?: HeroBlockAction;
     // (undocumented)
@@ -1737,6 +2419,71 @@ export function loadLayoutSpec(spec: unknown): ResolveResult;
 export function loadLayoutSpecPartial(spec: unknown): ResolveResult;
 
 // @public (undocumented)
+export const LoginBlock: React_2.FC<LoginBlockProps>;
+
+// @public (undocumented)
+export interface LoginBlockProps {
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    defaultValues?: Partial<LoginFormValues>;
+    // (undocumented)
+    errorMessage?: string;
+    // (undocumented)
+    forgotPasswordHref?: string;
+    // (undocumented)
+    forgotPasswordLabel?: string;
+    // (undocumented)
+    labels?: LoginFormLabels;
+    // (undocumented)
+    legalLinks?: LoginLegalLink[];
+    // (undocumented)
+    logo?: React_2.ReactNode;
+    // (undocumented)
+    onChange?: (values: LoginFormValues) => void;
+    // (undocumented)
+    onSubmit?: (values: LoginFormValues) => void;
+    // (undocumented)
+    registrationHint?: React_2.ReactNode;
+    // (undocumented)
+    rememberMeLabel?: string;
+    // (undocumented)
+    submitLabel?: string;
+    // (undocumented)
+    subtitle?: string;
+    // (undocumented)
+    title?: string;
+    // (undocumented)
+    values?: Partial<LoginFormValues>;
+}
+
+// @public (undocumented)
+export interface LoginFormLabels {
+    // (undocumented)
+    password?: string;
+    // (undocumented)
+    username?: string;
+}
+
+// @public (undocumented)
+export interface LoginFormValues {
+    // (undocumented)
+    password: string;
+    // (undocumented)
+    rememberMe: boolean;
+    // (undocumented)
+    username: string;
+}
+
+// @public (undocumented)
+export interface LoginLegalLink {
+    // (undocumented)
+    href: string;
+    // (undocumented)
+    label: string;
+}
+
+// @public (undocumented)
 export const LogoCloudBlock: React_2.FC<LogoCloudBlockProps>;
 
 // @public (undocumented)
@@ -1807,6 +2554,19 @@ export type ModalSize = 'sm' | 'md' | 'lg';
 export type ModalVariant = 'base' | 'danger' | 'warning' | 'success';
 
 // @public (undocumented)
+export const MonitoringWorkspaceBlock: React_2.FC<MonitoringWorkspaceBlockProps>;
+
+// @public (undocumented)
+export interface MonitoringWorkspaceBlockProps {
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    panel: ShowcasePanelItem;
+    // (undocumented)
+    title?: string;
+}
+
+// @public (undocumented)
 export const NavbarBlock: React_2.FC<NavbarBlockProps>;
 
 // @public (undocumented)
@@ -1825,10 +2585,12 @@ export interface NavbarBlockProps {
     overlay?: boolean;
     // (undocumented)
     phone?: NavbarPhoneInfo;
+    scrollPerf?: boolean;
     servicesMenu?: NavbarServiceCategory[];
     servicesTriggerLabel?: string;
     showSocialRail?: boolean;
     socialLinks?: NavbarSocialLink[];
+    staticGlass?: boolean;
     // (undocumented)
     sticky?: boolean;
     variant?: 'default' | 'enterprise';
@@ -2168,6 +2930,7 @@ export const ProcessBlock: React_2.FC<ProcessBlockProps>;
 export interface ProcessBlockProps {
     // (undocumented)
     className?: string;
+    headingAppearance?: 'default' | 'primary';
     // (undocumented)
     steps: ProcessStepItem[];
     // (undocumented)
@@ -2178,6 +2941,7 @@ export interface ProcessBlockProps {
 export interface ProcessStepItem {
     // (undocumented)
     description: string;
+    icon?: React_2.ReactNode;
     // (undocumented)
     id?: string;
     number?: string;
@@ -2579,6 +3343,15 @@ export interface ShowcasePanelAction {
 }
 
 // @public (undocumented)
+export type ShowcasePanelAlert = {
+    level: 'info' | 'warning' | 'success';
+    title: string;
+    detail?: string;
+    timeframe?: string;
+    actor?: 'auto' | 'operator';
+};
+
+// @public (undocumented)
 export const ShowcasePanelBlock: React_2.FC<ShowcasePanelBlockProps>;
 
 // @public (undocumented)
@@ -2587,15 +3360,23 @@ export interface ShowcasePanelBlockProps {
     className?: string;
     // (undocumented)
     panels: ShowcasePanelItem[];
+    parallax?: 'section' | false;
     // (undocumented)
     title?: string;
     titleBreakBefore?: string;
 }
 
 // @public (undocumented)
+export type ShowcasePanelHarvestStatus = {
+    label: string;
+    level: 'ok' | 'watch' | 'alert';
+};
+
+// @public (undocumented)
 export interface ShowcasePanelItem {
     // (undocumented)
     action?: ShowcasePanelAction;
+    alerts?: ShowcasePanelAlert[];
     // (undocumented)
     bullets: string[];
     // (undocumented)
@@ -2604,10 +3385,58 @@ export interface ShowcasePanelItem {
     imageAlt?: string;
     // (undocumented)
     imageSrc?: string;
+    metrics?: ShowcasePanelMetric[];
+    modes?: ShowcasePanelOperationMode[];
+    modesLabel?: string;
     preview?: React_2.ReactNode;
+    resources?: ShowcasePanelResource[];
+    status?: ShowcasePanelHarvestStatus;
     // (undocumented)
     title: string;
 }
+
+// @public (undocumented)
+export type ShowcasePanelMetric = {
+    label: string;
+    value: string;
+    unit?: string;
+    min: string;
+    max: string;
+    trend?: ShowcasePanelMetricTrend;
+};
+
+// @public (undocumented)
+export type ShowcasePanelMetricTrend = 'up' | 'down' | 'stable';
+
+// @public (undocumented)
+export function ShowcasePanelMonitoringView(input: {
+    panel: ShowcasePanelItem;
+    expanded?: boolean;
+    layout?: 'accordion' | 'workspace';
+}): JSX_2.Element;
+
+// @public (undocumented)
+export type ShowcasePanelOperationMode = {
+    id: string;
+    label: string;
+    active?: boolean;
+    description?: string;
+};
+
+// @public (undocumented)
+export type ShowcasePanelResource = {
+    label: string;
+    level: string;
+    unit?: string;
+    consumption?: string;
+    remainingDays?: string;
+    trend?: ShowcasePanelMetricTrend;
+};
+
+// @public (undocumented)
+export function ShowcasePanelStatusPill(input: {
+    status: ShowcasePanelHarvestStatus;
+}): JSX_2.Element;
 
 // @public (undocumented)
 export const SkeletonCard: React_2.MemoExoticComponent<React_2.ForwardRefExoticComponent<SkeletonCardProps & React_2.RefAttributes<HTMLDivElement>>>;
@@ -2772,10 +3601,11 @@ export interface SolutionItem {
 export const SolutionsBlock: React_2.FC<SolutionsBlockProps>;
 
 // Warning: (ae-forgotten-export) The symbol "SolutionsShowcaseBlockProps" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "SolutionsGridBlockProps" needs to be exported by the entry point index.d.ts
 // Warning: (ae-forgotten-export) The symbol "SolutionsCatalogBlockProps" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
-export type SolutionsBlockProps = SolutionsShowcaseBlockProps | SolutionsCatalogBlockProps;
+export type SolutionsBlockProps = SolutionsShowcaseBlockProps | SolutionsGridBlockProps | SolutionsCatalogBlockProps;
 
 // @public (undocumented)
 export interface SolutionsViewAllAction {
@@ -2844,7 +3674,7 @@ export interface SpacingRecipe {
 }
 
 // @public (undocumented)
-export type SpacingRecipeId = 'section.hero' | 'section.hero.page' | 'section.features' | 'section.pricing' | 'section.cta' | 'section.footer' | 'section.navbar' | 'section.logos' | 'section.stats' | 'section.testimonials' | 'section.faq' | 'section.steps' | 'section.newsletter' | 'section.events' | 'section.services' | 'section.solutions' | 'section.trust' | 'section.support' | 'section.showcase-panel' | 'section.blog' | 'section.partners' | 'section.contact-hero' | 'section.why-us' | 'section.choose-us' | 'section.process' | 'section.app-shell';
+export type SpacingRecipeId = 'section.hero' | 'section.hero.page' | 'section.features' | 'section.pricing' | 'section.cta' | 'section.footer' | 'section.navbar' | 'section.logos' | 'section.stats' | 'section.testimonials' | 'section.faq' | 'section.steps' | 'section.newsletter' | 'section.events' | 'section.services' | 'section.solutions' | 'section.trust' | 'section.support' | 'section.showcase-panel' | 'section.blog' | 'section.case-studies' | 'section.partners' | 'section.contact-hero' | 'section.why-us' | 'section.choose-us' | 'section.process' | 'section.calculator' | 'section.app-shell' | 'section.auth.login' | 'section.case-intro' | 'section.case-sections' | 'section.case-contact' | 'section.case-article';
 
 // @public (undocumented)
 export type SpacingSide = 'top' | 'right' | 'bottom' | 'left' | 'x' | 'y' | 'all';
@@ -3468,6 +4298,7 @@ export const WhyUsBlock: React_2.FC<WhyUsBlockProps>;
 
 // @public (undocumented)
 export interface WhyUsBlockProps {
+    cardTitleClassName?: string;
     // (undocumented)
     className?: string;
     // (undocumented)
@@ -3500,6 +4331,7 @@ export interface WhyUsFeaturedItem {
     // (undocumented)
     title: string;
     titleBreakBefore?: string;
+    variant?: 'primary' | 'neutral';
     // (undocumented)
     videoPoster?: string;
     // (undocumented)

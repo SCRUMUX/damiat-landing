@@ -7,7 +7,8 @@ const DEMO_WHITE = DEMO_PALETTE.white;
 
 function CatalogIcon({ children, label }: { children: React.ReactNode; label: string }) {
   return (
-    <svg viewBox="0 0 28 28" fill="none" className={ICON_CLASS} aria-hidden="true" title={label}>
+    <svg viewBox="0 0 28 28" fill="none" className={ICON_CLASS} aria-hidden="true">
+      <title>{label}</title>
       {children}
     </svg>
   );

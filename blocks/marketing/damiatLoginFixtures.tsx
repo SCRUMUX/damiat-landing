@@ -1,4 +1,4 @@
-import type { LoginBlockProps } from '../LoginBlock';
+import type { LoginBlockProps } from './LoginBlock';
 
 export const damiatLoginContent: LoginBlockProps = {
   logo: 'DAMIAT',

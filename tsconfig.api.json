@@ -23,6 +23,6 @@
       "react": ["node_modules/@types/react"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "components/**/*.ts", "components/**/*.tsx", "hooks/**/*.ts", "layout/**/*.ts", "behaviors/**/*.ts", "utils/**/*.ts", "blocks/**/*.ts", "recipes/**/*.ts"],
+  "include": ["types/**/*.d.ts", "src/**/*.ts", "src/**/*.tsx", "components/**/*.ts", "components/**/*.tsx", "hooks/**/*.ts", "layout/**/*.ts", "behaviors/**/*.ts", "utils/**/*.ts", "blocks/**/*.ts", "blocks/**/*.tsx", "recipes/**/*.ts", "generated-icons/**/*.ts"],
   "exclude": ["**/*.stories.tsx", "node_modules", "dist", "playground", "figma-plugin"]
 }

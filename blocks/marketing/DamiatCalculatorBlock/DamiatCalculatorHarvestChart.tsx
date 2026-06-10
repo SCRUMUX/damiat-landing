@@ -465,7 +465,7 @@ export const DamiatCalculatorHarvestChart: React.FC<DamiatCalculatorHarvestChart
                     width: CALC_LEGEND_SWATCH_SIZE,
                     height: CALC_LEGEND_SWATCH_SIZE,
                     background: item.fill,
-                    opacity: 'opacity' in item ? item.opacity : 1,
+                    opacity: 1,
                   }}
                   aria-hidden
                 />

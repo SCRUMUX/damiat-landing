@@ -1,7 +1,7 @@
 /**
  * DAMIAT admin panel — Storybook fixtures (front-only, no API).
  */
-import type { AppShellNavItem } from '../AppShellBlock';
+import type { AppShellNavItem } from './AppShellBlock';
 import type {
   AdminCaseDraft,
   AdminEventDraft,

@@ -5,6 +5,7 @@ import './filmGrainOverlay.css';
 export type FilmGrainIntensity = 'none' | 'subtle' | 'medium' | 'strong' | 'heavy';
 
 const INTENSITY_OPACITY: Record<FilmGrainIntensity, string> = {
+  none: '',
   subtle: 'opacity-[0.12]',
   medium: 'opacity-[0.20]',
   strong: 'opacity-[0.28]',
