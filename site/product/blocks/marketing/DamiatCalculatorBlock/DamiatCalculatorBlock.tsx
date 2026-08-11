@@ -220,7 +220,7 @@ export const DamiatCalculatorBlock: React.FC<DamiatCalculatorBlockProps> = ({
   }, [volumeTons]);
 
   return (
-    <SectionShell recipe="section.calculator" appearance="base" className={className} aria-label="DAMIAT calculator">
+    <SectionShell recipe="section.features" appearance="base" className={className} aria-label="DAMIAT calculator">
       <BlockSectionHeader title={title} subtitle={subtitle} />
 
       <div className="relative w-full min-w-0">
