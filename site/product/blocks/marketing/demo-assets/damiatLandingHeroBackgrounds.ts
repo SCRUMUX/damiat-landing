@@ -1,20 +1,12 @@
-/** DAMIAT landing — photo backgrounds (SVG placeholders when PNGs are absent). */
-
-import {
-  damiatHeroCasePlaceholder,
-  damiatHeroCtaPlaceholder,
-  damiatHeroMainPlaceholder,
-  damiatHeroPlatformPlaceholder,
-  damiatHeroScenariosPlaceholder,
-} from './damiatDemoPlaceholders';
+/** DAMIAT landing — photo backgrounds served from /public/images/. */
 
 export const damiatLandingHeroBackgrounds = {
-  main: damiatHeroMainPlaceholder,
-  platform: damiatHeroPlatformPlaceholder,
-  scenarios: damiatHeroScenariosPlaceholder,
-  closing: damiatHeroCtaPlaceholder,
-  case: damiatHeroCasePlaceholder,
-  cta: damiatHeroCtaPlaceholder,
+  main: '/images/damiat-hero-main-bg.png',
+  platform: '/images/potato-storage-monitoring-bg.png',
+  scenarios: '/images/agro-economic-landscape-bg.png',
+  closing: '/images/agro-tech-storage-bg.png',
+  case: '/images/damiat-gpd-case-bg.png',
+  cta: '/images/agro-tech-storage-bg.png',
 } as const;
 
 export type DamiatLandingHeroBackgroundKey = keyof typeof damiatLandingHeroBackgrounds;

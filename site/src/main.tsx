@@ -5,6 +5,9 @@ import '@ai-ds/core/tokens';
 import './index.css';
 import { App } from './App';
 
+// Apply theme synchronously before first paint — prevents flash of unstyled tokens.
+document.documentElement.setAttribute('data-theme', 'light');
+
 class ErrorBoundary extends Component<{ children: ReactNode }, { error: Error | null }> {
   constructor(props: { children: ReactNode }) {
     super(props);
@@ -38,8 +41,6 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { error: Error | 
 
 function ThemeRoot({ children }: { children: React.ReactNode }) {
   useLayoutEffect(() => {
-    const root = document.documentElement;
-    root.setAttribute('data-theme', 'light');
     document.body.style.background = 'var(--color-bg-base)';
     document.body.style.color = 'var(--color-text-primary)';
   }, []);
