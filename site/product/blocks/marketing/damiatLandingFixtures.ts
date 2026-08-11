@@ -18,6 +18,7 @@ import type { EventsBlockProps } from '@ai-ds/core/blocks/EventsBlock';
 import type { DamiatLandingPageProps } from './DamiatLandingPage/DamiatLandingPage';
 import type { DamiatCaseStudiesBlockProps } from './DamiatCaseStudiesBlock';
 import type { DamiatVolumeBenefitBlockProps } from './DamiatVolumeBenefitBlock';
+import type { DamiatEthylenePhysiologyBlockProps } from './DamiatEthylenePhysiologyBlock';
 import { damiatPartnerItems } from './demo-assets/damiatPartnerLogos';
 import { damiatCaseStudyImagesById } from './demo-assets/damiatCaseStudyImages';
 import {
@@ -614,6 +615,42 @@ export const damiatFooterContent: FooterBlockProps = {
   showBackToTop: true,
 };
 
+export const damiatEthylenePhysiologyContent: DamiatEthylenePhysiologyBlockProps = {
+  title: 'Этилен для картофеля работает иначе',
+  subtitle:
+    'У томатов и бананов высокая доза этилена запускает созревание. ' +
+    'Для картофеля микродоза — сигнал «спи дальше», а не «расти».',
+  modes: [
+    {
+      id: 'storage',
+      label: 'Режим хранения',
+      badge: 'DAMIAT · КГС',
+      badgeVariant: 'brand',
+      ppm: '~0,3 ppm',
+      rhythm: 'Постоянная микроподача',
+      mechanism:
+        'Подавляет АПК-сигнал апикальной меристемы — клетки ростка ' +
+        'не получают команду делиться.',
+      effect: 'Клубень «спит» 8–12 месяцев, масса не убывает',
+    },
+    {
+      id: 'ripening',
+      label: 'Режим дозаривания',
+      badge: 'Не применяется при хранении',
+      badgeVariant: 'muted',
+      ppm: '2–8 ppm',
+      rhythm: 'Кратковременная подача перед отгрузкой',
+      mechanism:
+        'Активирует ACC-синтазу — путь актуален для томатов и бананов; ' +
+        'у картофеля иной рецепторный ответ.',
+      effect: 'Выравнивание кондиции партии для товарного вида',
+    },
+  ],
+  footnote:
+    'DAMIAT автоматически удерживает коридор хранения ' +
+    'и переключает режим дозаривания перед отгрузкой по расписанию.',
+};
+
 export const damiatLandingArgs: DamiatLandingPageProps = {
   navbar: damiatNavbarFixture,
   hero: damiatHeroContent,
@@ -627,6 +664,7 @@ export const damiatLandingArgs: DamiatLandingPageProps = {
   generatorBenefits: damiatGeneratorBenefitsContent,
   caseStudies: damiatCaseStudiesContent,
   volumeBenefit: damiatVolumeBenefitContent,
+  ethylenePhysiology: damiatEthylenePhysiologyContent,
   trust: damiatTrustContent,
   partners: damiatPartnersContent,
   contactHero: damiatContactHeroContent,

@@ -22,6 +22,10 @@ import { ProcessBlock, type ProcessBlockProps } from '@ai-ds/core/blocks/Process
 import { ChooseUsBlock, type ChooseUsBlockProps } from '@ai-ds/core/blocks/ChooseUsBlock';
 import { DamiatCaseStudiesBlock, type DamiatCaseStudiesBlockProps } from '../DamiatCaseStudiesBlock';
 import { DamiatVolumeBenefitBlock, type DamiatVolumeBenefitBlockProps } from '../DamiatVolumeBenefitBlock';
+import {
+  DamiatEthylenePhysiologyBlock,
+  type DamiatEthylenePhysiologyBlockProps,
+} from '../DamiatEthylenePhysiologyBlock';
 import { TrustBlock, type TrustBlockProps } from '@ai-ds/core/blocks/TrustBlock';
 import { PartnersBlock, type PartnersBlockProps } from '@ai-ds/core/blocks/PartnersBlock';
 import { ContactHeroBlock, type ContactHeroBlockProps } from '@ai-ds/core/blocks/ContactHeroBlock';
@@ -35,7 +39,7 @@ import { damiatBridgeImage, damiatBridgePhrase } from '../damiatBridgeContent';
 
 export type DamiatLandingHeroBackgrounds = typeof damiatLandingHeroBackgrounds;
 
-/** `lean` ó no parallax, fade reveals on key sections; `full` ó legacy motion stack. */
+/** `lean` ù no parallax, fade reveals on key sections; `full` ù legacy motion stack. */
 export type DamiatMotionProfile = 'lean' | 'full';
 
 function LandingSectionReveal({
@@ -79,6 +83,7 @@ export interface DamiatLandingScrollBodyProps {
   generatorBenefits: ChooseUsBlockProps;
   caseStudies: DamiatCaseStudiesBlockProps;
   volumeBenefit: DamiatVolumeBenefitBlockProps;
+  ethylenePhysiology: DamiatEthylenePhysiologyBlockProps;
   trust: TrustBlockProps;
   partners: PartnersBlockProps;
   contactHero: ContactHeroBlockProps;
@@ -90,8 +95,6 @@ export interface DamiatLandingScrollBodyProps {
   backgrounds: DamiatLandingHeroBackgrounds;
   motionProfile?: DamiatMotionProfile;
 }
-
-/** Scrollable landing body (hero through footer). */
 export const DamiatLandingScrollBody: React.FC<DamiatLandingScrollBodyProps> = ({
   events,
   problem,
@@ -103,6 +106,7 @@ export const DamiatLandingScrollBody: React.FC<DamiatLandingScrollBodyProps> = (
   generatorBenefits,
   caseStudies,
   volumeBenefit,
+  ethylenePhysiology,
   trust,
   partners,
   contactHero,
@@ -210,6 +214,12 @@ export const DamiatLandingScrollBody: React.FC<DamiatLandingScrollBodyProps> = (
         </LandingSectionReveal>
       </div>
 
+      <div id="ethylene-science">
+        <LandingSectionReveal profile={motionProfile} intensity="subtle">
+          <DamiatEthylenePhysiologyBlock {...ethylenePhysiology} />
+        </LandingSectionReveal>
+      </div>
+
       <div id="dashboard">
         <BrandPhotoHeroSection
           backgroundImageSrc={backgrounds.platform}
@@ -306,18 +316,19 @@ export interface DamiatLandingPageProps {
   generatorBenefits: ChooseUsBlockProps;
   caseStudies: DamiatCaseStudiesBlockProps;
   volumeBenefit: DamiatVolumeBenefitBlockProps;
+  ethylenePhysiology: DamiatEthylenePhysiologyBlockProps;
   trust: TrustBlockProps;
   partners: PartnersBlockProps;
   contactHero: ContactHeroBlockProps;
   footer: FooterBlockProps;
   heroBackgroundImage?: string;
   sectionBackgrounds?: Partial<Record<DamiatLandingHeroBackgroundKey, string>>;
-  /** Default `lean` for Product Landing ó lighter scroll + fade reveals on key sections. */
+  /** Default `lean` for Product Landing ù lighter scroll + fade reveals on key sections. */
   motionProfile?: DamiatMotionProfile;
   className?: string;
 }
 
-/** DAMIAT product landing ó calculator & scenarios, then ethylene generator, platform, case study. */
+/** DAMIAT product landing ù calculator & scenarios, then ethylene generator, platform, case study. */
 export const DamiatLandingPage: React.FC<DamiatLandingPageProps> = ({
   navbar,
   hero,
@@ -331,6 +342,7 @@ export const DamiatLandingPage: React.FC<DamiatLandingPageProps> = ({
   generatorBenefits,
   caseStudies,
   volumeBenefit,
+  ethylenePhysiology,
   trust,
   partners,
   contactHero,
@@ -363,6 +375,7 @@ export const DamiatLandingPage: React.FC<DamiatLandingPageProps> = ({
         generatorBenefits={generatorBenefits}
         caseStudies={caseStudies}
         volumeBenefit={volumeBenefit}
+        ethylenePhysiology={ethylenePhysiology}
         trust={trust}
         partners={partners}
         contactHero={contactHero}
