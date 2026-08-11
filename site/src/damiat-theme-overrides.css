@@ -1,0 +1,171 @@
+/**
+ * DAMIAT brand color overrides.
+ *
+ * @ai-ds/core (AICADS-PRO) ships a shared, generic blue palette used across
+ * multiple products. DAMIAT's original brand is a dark green. This file
+ * restores the exact values from the previous vendored copy
+ * (formerly site/core/config/css-variables/tokens.css) by redefining the
+ * same semantic custom properties, using the same selectors as
+ * @ai-ds/core/tokens so the cascade takes over cleanly.
+ *
+ * Import this AFTER '@ai-ds/core/tokens' in main.tsx — later declarations
+ * of equal specificity win.
+ */
+
+:root {
+  /* Primitive referenced directly by DAMIAT blocks (not in the shared palette) */
+  --core-green-900: #0B3D2E;
+}
+
+:root,
+[data-theme='light'] {
+  --color-active: #146B4F;
+  --color-bg-base: #F7F8F5;
+  --color-bg-disabled: #F1F4F0;
+  --color-bg-muted: #EEF2EC;
+  --color-border-base: #D9E2DA;
+  --color-border-disabled: #D9E2DA;
+  --color-border-strong: #D9E2DA;
+  --color-brand-hover: #2BCB7A;
+  --color-brand-hover-bg: #EBF4F0;
+  --color-brand-muted: #A7E6C4;
+  --color-brand-pressed: #146B4F;
+  --color-brand-primary: #22A06B;
+  --color-brand-subtle: #A7E6C4;
+  --color-danger-base: #E25555;
+  --color-danger-hover-bg: #FFE8E9;
+  --color-danger-subtle: #FFE8E9;
+  --color-danger-surface: #FFE8E9;
+  --color-danger-text: #FFFFFF;
+  --color-divider: #E6EEE8;
+  --color-focus-outline: #22A06B;
+  --color-icon-on-base: #6B7C73;
+  --color-icon-on-brand: #FFFFFF;
+  --color-icon-on-danger: #FFFFFF;
+  --color-icon-on-ghost: #6B7C73;
+  --color-icon-on-outline: #22A06B;
+  --color-icon-on-success: #FFFFFF;
+  --color-icon-on-warning: #0E1512;
+  --color-info-base: #22A06B;
+  --color-info-hover-bg: #A7E6C4;
+  --color-info-surface: #A7E6C4;
+  --color-info-text: #FFFFFF;
+  --color-link-default: #22A06B;
+  --color-link-hover: #2BCB7A;
+  --color-link-visited: #146B4F;
+  --color-success-base: #22A06B;
+  --color-success-hover-bg: #A7E6C4;
+  --color-success-subtle: #A7E6C4;
+  --color-success-surface: #A7E6C4;
+  --color-success-text: #FFFFFF;
+  --color-surface-1: #FFFFFF;
+  --color-surface-2: #F1F4F0;
+  --color-surface-3: #EEF2EC;
+  --color-text-disabled: #6B7C73;
+  --color-text-muted: #6B7C73;
+  --color-text-on-brand: #FFFFFF;
+  --color-text-primary: #0E1512;
+  --color-text-secondary: #2C3A34;
+  --color-tooltip-bg: #0E1512;
+  --color-tooltip-text: #FFFFFF;
+  --color-viz-categorical-1: #22A06B;
+  --color-viz-categorical-2: #146B4F;
+  --color-viz-categorical-3: #E25555;
+  --color-viz-categorical-4: #E6A23C;
+  --color-viz-categorical-5: #0F4D3A;
+  --color-viz-categorical-6: #A7E6C4;
+  --color-viz-categorical-7: #0B3D2E;
+  --color-viz-categorical-8: #E25555;
+  --color-warning-base: #E6A23C;
+  --color-warning-hover-bg: #FFF3DC;
+  --color-warning-surface: #FFF3DC;
+  --color-warning-text: #0E1512;
+
+  --effect-elevation-1: 0px 2px 10px 0px rgba(14, 21, 18, 0.06);
+  --effect-elevation-2: 0px 10px 30px 0px rgba(14, 21, 18, 0.1);
+  --effect-elevation-3: 0px 20px 60px 0px rgba(14, 21, 18, 0.14);
+  --effect-elevation-glow: 0px 0px 16px 0px var(--color-brand-primary);
+  --effect-focus-brand: 0px 0px 0px 1px var(--color-brand-primary);
+  --effect-focus-danger: 0px 0px 0px 1px var(--color-danger-base);
+  --effect-focus-success: 0px 0px 0px 1px var(--color-success-base);
+  --effect-focus-warning: 0px 0px 0px 1px var(--color-warning-base);
+
+  --color-surface-hover: var(--color-surface-3);
+  --color-surface-active: var(--color-surface-3);
+}
+
+[data-theme='dark'] {
+  --color-active: #146B4F;
+  --color-bg-base: #0C1F18;
+  --color-bg-disabled: #102820;
+  --color-bg-muted: #102820;
+  --color-border-base: #143329;
+  --color-border-disabled: #2C3A34;
+  --color-border-strong: #2C3A34;
+  --color-brand-hover: #2BCB7A;
+  --color-brand-hover-bg: #143329;
+  --color-brand-muted: #102820;
+  --color-brand-pressed: #146B4F;
+  --color-brand-primary: #22A06B;
+  --color-brand-subtle: #102820;
+  --color-danger-base: #E25555;
+  --color-danger-hover-bg: #2A1314;
+  --color-danger-subtle: #2A1314;
+  --color-danger-surface: #2A1314;
+  --color-danger-text: #E6EEE8;
+  --color-divider: #102820;
+  --color-focus-outline: #22A06B;
+  --color-icon-on-base: #E6EEE8;
+  --color-icon-on-brand: #FFFFFF;
+  --color-icon-on-danger: #FFFFFF;
+  --color-icon-on-ghost: #E6EEE8;
+  --color-icon-on-outline: #22A06B;
+  --color-icon-on-success: #FFFFFF;
+  --color-icon-on-warning: #E6EEE8;
+  --color-info-base: #22A06B;
+  --color-info-hover-bg: #0C1F18;
+  --color-info-surface: #0C1F18;
+  --color-info-text: #E6EEE8;
+  --color-link-default: #22A06B;
+  --color-link-hover: #2BCB7A;
+  --color-link-visited: #146B4F;
+  --color-success-base: #22A06B;
+  --color-success-hover-bg: #0B3D2E;
+  --color-success-subtle: #0B3D2E;
+  --color-success-surface: #0B3D2E;
+  --color-success-text: #E6EEE8;
+  --color-surface-1: #102820;
+  --color-surface-2: #102820;
+  --color-surface-3: #143329;
+  --color-text-disabled: #6B7C73;
+  --color-text-muted: #6B7C73;
+  --color-text-on-brand: #FFFFFF;
+  --color-text-primary: #E6EEE8;
+  --color-text-secondary: #6B7C73;
+  --color-tooltip-bg: #E6EEE8;
+  --color-tooltip-text: #102820;
+  --color-viz-categorical-1: #2BCB7A;
+  --color-viz-categorical-2: #2BCB7A;
+  --color-viz-categorical-3: #E25555;
+  --color-viz-categorical-4: #E6A23C;
+  --color-viz-categorical-5: #22A06B;
+  --color-viz-categorical-6: #146B4F;
+  --color-viz-categorical-7: #2BCB7A;
+  --color-viz-categorical-8: #E25555;
+  --color-warning-base: #E6A23C;
+  --color-warning-hover-bg: #2A210E;
+  --color-warning-surface: #2A210E;
+  --color-warning-text: #E6EEE8;
+
+  --effect-elevation-1: 0px 2px 10px 0px rgba(14, 21, 18, 0.12);
+  --effect-elevation-2: 0px 10px 30px 0px rgba(14, 21, 18, 0.2);
+  --effect-elevation-3: 0px 20px 60px 0px rgba(14, 21, 18, 0.28);
+  --effect-elevation-glow: 0px 0px 16px 0px var(--color-brand-primary);
+  --effect-focus-brand: 0px 0px 0px 1px var(--color-brand-primary);
+  --effect-focus-danger: 0px 0px 0px 1px var(--color-danger-base);
+  --effect-focus-success: 0px 0px 0px 1px var(--color-success-base);
+  --effect-focus-warning: 0px 0px 0px 1px var(--color-warning-base);
+
+  --color-surface-hover: var(--color-surface-3);
+  --color-surface-active: var(--color-surface-3);
+}

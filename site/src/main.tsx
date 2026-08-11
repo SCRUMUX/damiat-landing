@@ -2,6 +2,9 @@ import React, { useLayoutEffect, Component, type ErrorInfo, type ReactNode } fro
 import { createRoot } from 'react-dom/client';
 
 import '@ai-ds/core/tokens';
+// Must load after @ai-ds/core/tokens — restores DAMIAT's green brand palette
+// over the shared AICADS-PRO generic blue palette (same selectors, later wins).
+import './damiat-theme-overrides.css';
 import './index.css';
 import { App } from './App';
 
